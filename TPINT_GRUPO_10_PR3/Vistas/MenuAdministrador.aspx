@@ -36,8 +36,8 @@
 
     .boton-estandar {
         width: 164px;
-        height: 30px; /* opcional */
-        font-size: 14px; /* opcional, para uniformar el texto */
+        height: 30px;
+        font-size: 14px;
     }
 
     </style>

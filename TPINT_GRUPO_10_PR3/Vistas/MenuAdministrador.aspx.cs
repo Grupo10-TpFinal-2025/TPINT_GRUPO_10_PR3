@@ -19,7 +19,7 @@ namespace Vistas
             Response.Redirect("MenuGestionMedicos.aspx");
         }
 
-        protected System.Void btnGestionTurnos_Click(System.Object sender, System.EventArgs e)
+        protected void btnGestionTurnos_Click(object sender, EventArgs e)
         {
             Response.Redirect("MenuGestionTurnos.aspx");
         }

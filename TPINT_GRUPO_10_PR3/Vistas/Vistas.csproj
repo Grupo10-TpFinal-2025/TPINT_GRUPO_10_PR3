@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaMedico.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MenuAdministrador.aspx" />
     <Content Include="MenuGestionMedicos.aspx" />
@@ -74,6 +75,13 @@
     <Content Include="MenuMedico.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaMedico.aspx.cs">
+      <DependentUpon>AltaMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaMedico.aspx.designer.cs">
+      <DependentUpon>AltaMedico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

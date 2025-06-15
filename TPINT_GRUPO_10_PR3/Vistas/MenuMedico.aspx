@@ -32,9 +32,9 @@
             <tr>
                 <td class="auto-style2"></td>
                 <td class="auto-style6">
-                    <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesion</asp:HyperLink>
+                    <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesión</asp:HyperLink>
                 </td>
-                <td class="auto-style2">Usuario:<strong><asp:Label ID="lblModoMedico" runat="server" Text="Médico"></asp:Label>
+                <td class="auto-style2">Usuario:<strong> <asp:Label ID="lblModoMedico" runat="server" Text="Médico"></asp:Label>
                     </strong></td>
                 <td class="auto-style2"></td>
                 <td class="auto-style2"></td>

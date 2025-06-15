@@ -48,7 +48,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style8">
-                    <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesion</asp:HyperLink>
+                    <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesión</asp:HyperLink>
                 </td>
                 <td>
                     Usuario:
@@ -87,7 +87,7 @@
                 <td class="auto-style3"></td>
                 <td class="auto-style6"></td>
                 <td class="auto-style4">
-                    <asp:Button ID="btnGestionMedicos" runat="server" Text="Gestionar medicos" CssClass="boton-estandar" OnClick="btnGestionMedicos_Click" />
+                    <asp:Button ID="btnGestionMedicos" runat="server" Text="Gestionar médicos" CssClass="boton-estandar" OnClick="btnGestionMedicos_Click" />
                 </td>
                 <td class="auto-style4"></td>
                 <td class="auto-style4"></td>

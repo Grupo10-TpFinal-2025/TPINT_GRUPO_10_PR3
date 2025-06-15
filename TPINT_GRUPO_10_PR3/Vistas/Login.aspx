@@ -44,7 +44,7 @@
                 <tr>
                     <td class="auto-style7">&nbsp;</td>
                     <td class="auto-style2" style="font-size: x-large; text-decoration: underline; font-weight: bolder"></td>
-                    <td class="auto-style3" style="font-size: x-large; font-weight: bolder; text-decoration: underline">Sistema de Gestion Clinica Medica</td>
+                    <td class="auto-style3" style="font-size: x-large; font-weight: bolder; text-decoration: underline">Sistema de Gestión Clínica Médica</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -103,7 +103,7 @@
                     <td class="auto-style7">&nbsp;</td>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style3">
-                        <asp:Button ID="Button1" runat="server" Font-Bold="True" Text="Ingresar" />
+                        <asp:Button ID="btnIngresar" runat="server" Font-Bold="True" Text="Ingresar" />
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

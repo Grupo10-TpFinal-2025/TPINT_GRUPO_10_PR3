@@ -73,6 +73,7 @@
     <Content Include="MenuGestionMedicos.aspx" />
     <Content Include="Web.config" />
     <Content Include="MenuMedico.aspx" />
+    <Content Include="MenuGestionPacientes.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AltaMedico.aspx.cs">
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="MenuMedico.aspx.designer.cs">
       <DependentUpon>MenuMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuGestionPacientes.aspx.cs">
+      <DependentUpon>MenuGestionPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuGestionPacientes.aspx.designer.cs">
+      <DependentUpon>MenuGestionPacientes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

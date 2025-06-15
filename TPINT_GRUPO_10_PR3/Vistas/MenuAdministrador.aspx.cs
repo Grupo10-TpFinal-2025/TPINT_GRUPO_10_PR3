@@ -18,5 +18,10 @@ namespace Vistas
         {
             Response.Redirect("MenuGestionMedicos.aspx");
         }
+
+        protected void btnGestionPacientes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MenuGestionPacientes.aspx");
+        }
     }
 }

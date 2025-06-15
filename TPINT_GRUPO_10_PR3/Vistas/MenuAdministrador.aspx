@@ -127,7 +127,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnGestionPacientes" runat="server" Text="Gestionar pacientes" CssClass="boton-estandar" />
+                    <asp:Button ID="btnGestionPacientes" runat="server" Text="Gestionar pacientes" CssClass="boton-estandar" OnClick="btnGestionPacientes_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

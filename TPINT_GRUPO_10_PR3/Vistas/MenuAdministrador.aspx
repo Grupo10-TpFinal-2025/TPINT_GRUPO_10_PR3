@@ -107,7 +107,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnGestionTurnos" runat="server" Text="Gestionar turnos" CssClass="boton-estandar" />
+                    <asp:Button ID="btnGestionTurnos" runat="server" Text="Gestionar turnos" CssClass="boton-estandar" OnClick="btnGestionTurnos_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

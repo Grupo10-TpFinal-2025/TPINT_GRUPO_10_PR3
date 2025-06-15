@@ -13,5 +13,11 @@ namespace Vistas
 		{
 
 		}
+
+        protected void btnAltaMedico_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AltaMedico.aspx");
+
+        }
     }
 }

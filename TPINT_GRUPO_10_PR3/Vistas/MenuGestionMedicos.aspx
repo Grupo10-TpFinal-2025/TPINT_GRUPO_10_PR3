@@ -99,7 +99,7 @@
                 <td class="auto-style3"></td>
                 <td class="auto-style6"></td>
                 <td class="auto-style4">
-                    <asp:Button ID="btnAltaMedico" runat="server" Text="Alta Registro Medico" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnAltaMedico" runat="server" Text="Alta Registro Medico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnAltaMedico_Click" />
                 </td>
                 <td class="auto-style4"></td>
                 <td class="auto-style4"></td>

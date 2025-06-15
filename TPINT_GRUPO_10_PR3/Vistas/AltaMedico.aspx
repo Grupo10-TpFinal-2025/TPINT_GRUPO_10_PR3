@@ -101,7 +101,7 @@
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">Nacionalidad:
                         <asp:TextBox ID="NacionalidadMedico" runat="server" Font-Size="Small"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Provincia:
-                        <asp:DropDownList ID="DropDownList1" runat="server" Font-Size="Small">
+                        <asp:DropDownList ID="ddlProvinciaMedico" runat="server" Font-Size="Small">
                         </asp:DropDownList>
 &nbsp; </td>
                 </tr>
@@ -134,7 +134,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small">Especialidad:
-                        <asp:DropDownList ID="DropDownList2" runat="server" Font-Size="Small">
+                        <asp:DropDownList ID="ddlEspecialidadMedico" runat="server" Font-Size="Small">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -159,7 +159,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:Button ID="btnDisponibilidadMedico" runat="server" Height="30px" OnClick="btnDisponivilidadMedico_Click" Text="Registrar Disponibilidad" Width="200px" />
+                        <asp:Button ID="btnDisponibilidadMedico" runat="server" Height="30px" Text="Registrar Disponibilidad" Width="200px" />
                     </td>
                 </tr>
                 <tr>

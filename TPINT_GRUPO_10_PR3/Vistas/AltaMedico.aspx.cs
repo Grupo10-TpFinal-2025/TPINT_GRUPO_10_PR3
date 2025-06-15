@@ -16,7 +16,7 @@ namespace Vistas
 
         protected void btnDisponivilidadMedico_Click(object sender, EventArgs e)
         {
-			btnDisponibilidadMedico.Visible = true;
+			hlDisponibilidadRapida.Visible = true;
         }
     }
 }

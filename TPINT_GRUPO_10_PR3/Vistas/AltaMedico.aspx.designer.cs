@@ -132,13 +132,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox NacionalidadMedico;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control ddlProvinciaMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvinciaMedico;
 
         /// <summary>
         /// Control txtLocalidadMedico.
@@ -177,13 +177,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtTelefonoMedico;
 
         /// <summary>
-        /// Control DropDownList2.
+        /// Control ddlEspecialidadMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidadMedico;
 
         /// <summary>
         /// Control btnRegistrarMedico.

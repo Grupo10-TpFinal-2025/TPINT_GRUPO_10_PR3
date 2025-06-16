@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\BajaMedico.aspx" />
@@ -89,6 +90,13 @@
     <Content Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.cs">
+      <DependentUpon>MenuReportes-Informes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.designer.cs">
+      <DependentUpon>MenuReportes-Informes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.cs">
       <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -233,6 +241,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

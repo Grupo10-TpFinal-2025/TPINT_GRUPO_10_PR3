@@ -145,7 +145,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnBajaPaciente" runat="server" Text="Dar de Baja Paciente" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnBajaPaciente" runat="server" Text="Dar de Baja Paciente" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnBajaPaciente_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

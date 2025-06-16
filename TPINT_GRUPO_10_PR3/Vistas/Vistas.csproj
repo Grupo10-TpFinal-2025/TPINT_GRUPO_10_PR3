@@ -67,28 +67,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AltaMedico.aspx" />
-    <Content Include="BajaTurno.aspx" />
+    <Content Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx" />
+    <Content Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="MenuAdministrador.aspx" />
-    <Content Include="MenuGestionMedicos.aspx" />
+    <Content Include="Administrador\MenuAdministrador.aspx" />
+    <Content Include="Administrador\MenuGestionMedicos.aspx" />
     <Content Include="Web.config" />
-    <Content Include="MenuMedico.aspx" />
-    <Content Include="MenuGestionPacientes.aspx" />
+    <Content Include="Medico\MenuMedico.aspx" />
+    <Content Include="Administrador\MenuGestionPacientes.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AltaMedico.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AltaMedico.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx.designer.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BajaTurno.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx.cs">
       <DependentUpon>BajaTurno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BajaTurno.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx.designer.cs">
       <DependentUpon>BajaTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
@@ -98,33 +98,33 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuAdministrador.aspx.cs">
+    <Compile Include="Administrador\MenuAdministrador.aspx.cs">
       <DependentUpon>MenuAdministrador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuAdministrador.aspx.designer.cs">
+    <Compile Include="Administrador\MenuAdministrador.aspx.designer.cs">
       <DependentUpon>MenuAdministrador.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuGestionMedicos.aspx.cs">
+    <Compile Include="Administrador\MenuGestionMedicos.aspx.cs">
       <DependentUpon>MenuGestionMedicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuGestionMedicos.aspx.designer.cs">
+    <Compile Include="Administrador\MenuGestionMedicos.aspx.designer.cs">
       <DependentUpon>MenuGestionMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MenuMedico.aspx.cs">
+    <Compile Include="Medico\MenuMedico.aspx.cs">
       <DependentUpon>MenuMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuMedico.aspx.designer.cs">
+    <Compile Include="Medico\MenuMedico.aspx.designer.cs">
       <DependentUpon>MenuMedico.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuGestionPacientes.aspx.cs">
+    <Compile Include="Administrador\MenuGestionPacientes.aspx.cs">
       <DependentUpon>MenuGestionPacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MenuGestionPacientes.aspx.designer.cs">
+    <Compile Include="Administrador\MenuGestionPacientes.aspx.designer.cs">
       <DependentUpon>MenuGestionPacientes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

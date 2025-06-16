@@ -20,10 +20,6 @@
         .auto-style3 {
             width: 1770px;
         }
-        .auto-style5 {
-            width: 1770px;
-            height: 112px;
-        }
         .auto-style4 {
             width: 1770px;
             height: 34px;
@@ -80,7 +76,7 @@
                     <td class="auto-style3" style="font-size: medium; text-decoration: underline overline">CARGAR DISPONIBILIDAD:</td>
                 </tr>
                 <tr>
-                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Legajo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Legajo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtLegajoDisponibilidad" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
@@ -91,7 +87,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Horario de Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlHorarioInicioDis" runat="server">
+                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Horario de Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlHorarioInicioDis" runat="server">
                         </asp:DropDownList>
                     </td>
                 </tr>

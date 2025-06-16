@@ -13,5 +13,18 @@ namespace Vistas
 		{
 
 		}
-	}
+        protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
+        {
+            if (btnMenuFiltrosAvanzados.Text == "Aplicar filtros avanzados")
+            {
+                pnlFiltrosAvanzados.Visible = true;
+                btnMenuFiltrosAvanzados.Text = "Ocultar filtros avanzados";
+            }
+            else
+            {
+                pnlFiltrosAvanzados.Visible = false;
+                btnMenuFiltrosAvanzados.Text = "Aplicar filtros avanzados";
+            }
+        }
+    }
 }

@@ -24,40 +24,40 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control hlAltaMedico.
+        /// Control hlAltaPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlAltaMedico;
+        protected global::System.Web.UI.WebControls.HyperLink hlAltaPaciente;
 
         /// <summary>
-        /// Control hlBajaMedico.
+        /// Control hlBajaPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlBajaMedico;
+        protected global::System.Web.UI.WebControls.HyperLink hlBajaPaciente;
 
         /// <summary>
-        /// Control hlModificacionMedico.
+        /// Control hlModificacionPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlModificacionMedico;
+        protected global::System.Web.UI.WebControls.HyperLink hlModificacionPaciente;
 
         /// <summary>
-        /// Control hlListarMedicos.
+        /// Control hlListarPacientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlListarMedicos;
+        protected global::System.Web.UI.WebControls.HyperLink hlListarPacientes;
 
         /// <summary>
         /// Control lblUsuarioAdministrador.
@@ -267,12 +267,12 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.Label lblFiltrosAvanzadosVacios;
 
         /// <summary>
-        /// Control hpRegresarMenuGestionMedicos.
+        /// Control hlMenuGestionPacientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpRegresarMenuGestionMedicos;
+        protected global::System.Web.UI.WebControls.HyperLink hlMenuGestionPacientes;
     }
 }

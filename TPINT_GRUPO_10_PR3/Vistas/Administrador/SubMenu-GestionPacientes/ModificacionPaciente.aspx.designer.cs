@@ -11,7 +11,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 {
 
 
-    public partial class BajaPaciente
+    public partial class ModificacionPaciente
     {
 
         /// <summary>
@@ -69,40 +69,40 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.Label lblUsuarioAdministrador;
 
         /// <summary>
-        /// Control lblTituloBaja.
+        /// Control lblTituloAltaPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTituloBaja;
+        protected global::System.Web.UI.WebControls.Label lblTituloAltaPaciente;
 
         /// <summary>
-        /// Control txtDNIBaja.
+        /// Control lvModificacionPacientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDNIBaja;
+        protected global::System.Web.UI.WebControls.ListView lvModificacionPacientes;
 
         /// <summary>
-        /// Control btnBaja.
+        /// Control SQLAccesoBD.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBaja;
+        protected global::System.Web.UI.WebControls.SqlDataSource SQLAccesoBD;
 
         /// <summary>
-        /// Control lblResultadoBaja.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResultadoBaja;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
         /// Control hlMenuGestionPacientes.

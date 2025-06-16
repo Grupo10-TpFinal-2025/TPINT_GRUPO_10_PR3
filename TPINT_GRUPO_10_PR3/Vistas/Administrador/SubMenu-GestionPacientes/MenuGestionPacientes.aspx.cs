@@ -28,5 +28,10 @@ namespace Vistas
         {
             Response.Redirect("BajaPaciente.aspx");
         }
+
+        protected void btnModificacionPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificacionPaciente.aspx");
+        }
     }
 }

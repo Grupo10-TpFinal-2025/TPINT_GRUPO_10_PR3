@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BajaPaciente.aspx.cs" Inherits="Vistas.Administrador.SubMenu_GestionPacientes.BajaPaciente" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificacionPaciente.aspx.cs" Inherits="Vistas.Administrador.SubMenu_GestionPacientes.ModificacionPaciente" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,6 @@
 
 
 
-
         .auto-style1 {
             width: 100%;
             height: 100%;
@@ -19,11 +18,19 @@
         .auto-style2 {
             width: 853px;
         }
-        .auto-style9 {
-            width: 1772px;
+        .auto-style8 {
+            width: 23px;
+            height: 23px;
+        }
+        .auto-style19 {
+            width: 496px;
+            height: 23px;
         }
         .auto-style7 {
-            width: 926px;
+            width: 23px;
+        }
+        .auto-style18 {
+            width: 496px;
         }
         </style>
 </head>
@@ -45,10 +52,10 @@
                         <asp:HyperLink ID="hlBajaPaciente" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/BajaPaciente.aspx">Baja Paciente</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionPaciente" runat="server" Font-Size="Large">Modificacion Paciente</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionPaciente" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/ModificacionPaciente.aspx">Modificacion Paciente</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlListarPacientes" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/ListarPacientes.aspx">Listar Pacientes</asp:HyperLink>
+                        <asp:HyperLink ID="hlListarPacientes" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/ModificacionPaciente.aspx">Listar Pacientes</asp:HyperLink>
                     </td>
                 </tr>
             </table>
@@ -62,33 +69,47 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblTituloBaja" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Baja de Paciente:"></asp:Label>
+                        <asp:Label ID="lblTituloAltaPaciente" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Modificacion de Registros de Pacientes:"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
-            <br />
-            <table class="auto-style9">
-                <tr>
-                    <td class="auto-style7">
-                        DNI Paciente:&nbsp;<asp:TextBox ID="txtDNIBaja" runat="server"></asp:TextBox>
-&nbsp;&nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style7">
-                        <br />
-                        <asp:Label ID="lblResultadoBaja" runat="server"></asp:Label>
-                        <br />
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style7">
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style8"></td>
+                <td class="auto-style19"></td>
+            </tr>
+            <tr>
+                <td class="auto-style7">&nbsp;</td>
+                <td class="auto-style18">
+                    <asp:ListView ID="lvModificacionPacientes" runat="server" DataSourceID="SQLAccesoBD">
+                    </asp:ListView>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style7">&nbsp;</td>
+                <td class="auto-style18">
+                    <asp:SqlDataSource ID="SQLAccesoBD" runat="server"></asp:SqlDataSource>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style8"></td>
+                <td class="auto-style19">
+                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style19">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style19">
                         <asp:HyperLink ID="hlMenuGestionPacientes" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/MenuGestionPacientes.aspx">Regresar a Menú de Gestion Pacientes...</asp:HyperLink>
                     </td>
-                </tr>
-            </table>
+            </tr>
+        </table>
         </div>
     </form>
 </body>

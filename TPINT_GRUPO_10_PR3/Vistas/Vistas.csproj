@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx" />
+    <Content Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\BajaMedico.aspx" />
@@ -97,6 +98,13 @@
     </Compile>
     <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.designer.cs">
       <DependentUpon>MenuReportes-Informes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx.cs">
+      <DependentUpon>ResultadosReportes-Informes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx.designer.cs">
+      <DependentUpon>ResultadosReportes-Informes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.cs">
       <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>

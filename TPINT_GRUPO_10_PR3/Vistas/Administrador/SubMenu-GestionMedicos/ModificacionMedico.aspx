@@ -18,6 +18,27 @@
         .auto-style2 {
             width: 853px;
         }
+        .auto-style8 {
+            width: 23px;
+            height: 23px;
+        }
+        .auto-style19 {
+            width: 496px;
+            height: 23px;
+        }
+        .auto-style17 {
+            height: 23px;
+            width: 212px;
+        }
+        .auto-style7 {
+            width: 23px;
+        }
+        .auto-style18 {
+            width: 496px;
+        }
+        .auto-style15 {
+            width: 212px;
+        }
         </style>
 </head>
 <body>
@@ -38,7 +59,7 @@
                         <asp:HyperLink ID="hlBajaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/BajaMedico.aspx">Baja Medico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large">Modificacion Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ModificacionMedico.aspx">Modificacion Medico</asp:HyperLink>
                     </td>
                     <td>
                         <asp:HyperLink ID="hlListarMedicos" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ListarMedicos.aspx">Listar Medicos</asp:HyperLink>
@@ -63,6 +84,65 @@
                     <td>&nbsp;</td>
                 </tr>
             </table>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style8"></td>
+                <td class="auto-style19"></td>
+                <td class="auto-style17"></td>
+                <td class="auto-style17"></td>
+            </tr>
+            <tr>
+                <td class="auto-style7">&nbsp;</td>
+                <td class="auto-style18">
+                    <asp:ListView ID="lvModificacionMedico" runat="server" DataSourceID="SQLAccesoBD">
+                    </asp:ListView>
+                </td>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style15">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style7">&nbsp;</td>
+                <td class="auto-style18">
+                    <asp:SqlDataSource ID="SQLAccesoBD" runat="server"></asp:SqlDataSource>
+                </td>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style15">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style8"></td>
+                <td class="auto-style19">
+                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                </td>
+                <td class="auto-style17">
+                    &nbsp;</td>
+                <td class="auto-style17"></td>
+            </tr>
+            <tr>
+                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style19">
+                    &nbsp;</td>
+                <td class="auto-style17">
+                    &nbsp;</td>
+                <td class="auto-style17">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style19">
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MenuGestionMedicos.aspx">Regresar a Menú de Gestion Medicos...</asp:HyperLink>
+                </td>
+                <td class="auto-style17">
+                    &nbsp;</td>
+                <td class="auto-style17">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style7"></td>
+                <td class="auto-style18">
+                    &nbsp;</td>
+                <td class="auto-style15">
+                </td>
+                <td class="auto-style15"></td>
+            </tr>
+        </table>
             <br />
         </div>
     </form>

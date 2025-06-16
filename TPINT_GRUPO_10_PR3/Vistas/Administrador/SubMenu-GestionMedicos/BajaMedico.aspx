@@ -44,7 +44,7 @@
                         <asp:HyperLink ID="hlBajaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/BajaMedico.aspx">Baja Medico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large">Modificacion Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ModificacionMedico.aspx">Modificacion Medico</asp:HyperLink>
                     </td>
                     <td>
                         <asp:HyperLink ID="hlListarMedicos" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ListarMedicos.aspx">Listar Medicos</asp:HyperLink>
@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblTituloBajaMedico" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Baja de Medicos:"></asp:Label>
+                        <asp:Label ID="lblTituloBajaMedico" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Baja de Medico:"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>

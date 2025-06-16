@@ -71,10 +71,10 @@
     <Content Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Administrador\MenuAdministrador.aspx" />
-    <Content Include="Administrador\MenuGestionMedicos.aspx" />
+    <Content Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx" />
     <Content Include="Web.config" />
     <Content Include="Medico\MenuMedico.aspx" />
-    <Content Include="Administrador\MenuGestionPacientes.aspx" />
+    <Content Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx.cs">
@@ -105,11 +105,11 @@
     <Compile Include="Administrador\MenuAdministrador.aspx.designer.cs">
       <DependentUpon>MenuAdministrador.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\MenuGestionMedicos.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx.cs">
       <DependentUpon>MenuGestionMedicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\MenuGestionMedicos.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx.designer.cs">
       <DependentUpon>MenuGestionMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,11 +120,11 @@
     <Compile Include="Medico\MenuMedico.aspx.designer.cs">
       <DependentUpon>MenuMedico.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\MenuGestionPacientes.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx.cs">
       <DependentUpon>MenuGestionPacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\MenuGestionPacientes.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx.designer.cs">
       <DependentUpon>MenuGestionPacientes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

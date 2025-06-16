@@ -115,7 +115,7 @@
             <tr>
                 <td class="auto-style4"></td>
                 <td class="auto-style5">
-                    <asp:Button ID="btnAltaPaciente" runat="server" Text="Dar de Alta Paciente" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnAltaPaciente" runat="server" Text="Dar de Alta Paciente" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnAltaPaciente_Click" />
                 </td>
                 <td class="auto-style6"></td>
                 <td class="auto-style6"></td>

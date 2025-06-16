@@ -26,6 +26,10 @@
             width: 1770px;
             height: 112px;
         }
+        .auto-style6 {
+            width: 1770px;
+            height: 26px;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +75,7 @@
             <br />
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style3" style="font-size: medium; text-decoration: underline overline">DATOS PERSONALES:</td>
+                    <td class="auto-style6" style="font-size: medium; text-decoration: underline overline">DATOS PERSONALES:</td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp;&nbsp;&nbsp;

@@ -75,6 +75,7 @@
     <Content Include="Administrador\SubMenu-GestionPacientes\BajaPaciente.aspx" />
     <Content Include="Administrador\SubMenu-GestionPacientes\ListarPacientes.aspx" />
     <Content Include="Administrador\SubMenu-GestionPacientes\ModificacionPaciente.aspx" />
+    <Content Include="Administrador\SubMenu-GestionTurnos\AltaTurno.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\ListarMedicos.aspx" />
     <Content Include="Login.aspx" />
@@ -142,6 +143,13 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionPacientes\ModificacionPaciente.aspx.designer.cs">
       <DependentUpon>ModificacionPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionTurnos\AltaTurno.aspx.cs">
+      <DependentUpon>AltaTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionTurnos\AltaTurno.aspx.designer.cs">
+      <DependentUpon>AltaTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx.cs">
       <DependentUpon>BajaTurno.aspx</DependentUpon>

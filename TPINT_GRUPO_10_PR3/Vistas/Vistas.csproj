@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx" />
+    <Content Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx" />
@@ -77,6 +79,7 @@
     <Content Include="Administrador\SubMenu-GestionPacientes\BajaPaciente.aspx" />
     <Content Include="Administrador\SubMenu-GestionPacientes\ListarPacientes.aspx" />
     <Content Include="Administrador\SubMenu-GestionPacientes\ModificacionPaciente.aspx" />
+    <Content Include="Administrador\SubMenu-GestionTurnos\AltaTurno.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\ListarMedicos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\MenuGestionTurnos.aspx" />
@@ -104,6 +107,19 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx.designer.cs">
       <DependentUpon>BajaDisponibilidad.aspx</DependentUpon>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.cs">
+      <DependentUpon>MenuReportes-Informes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.designer.cs">
+      <DependentUpon>MenuReportes-Informes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx.cs">
+      <DependentUpon>ResultadosReportes-Informes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx.designer.cs">
+      <DependentUpon>ResultadosReportes-Informes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.cs">
       <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>
@@ -160,6 +176,13 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionPacientes\ModificacionPaciente.aspx.designer.cs">
       <DependentUpon>ModificacionPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionTurnos\AltaTurno.aspx.cs">
+      <DependentUpon>AltaTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionTurnos\AltaTurno.aspx.designer.cs">
+      <DependentUpon>AltaTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx.cs">
       <DependentUpon>BajaTurno.aspx</DependentUpon>
@@ -249,6 +272,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

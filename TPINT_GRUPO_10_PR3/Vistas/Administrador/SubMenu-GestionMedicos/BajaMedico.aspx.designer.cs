@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Vistas
+namespace Vistas.Administrador.SubMenu_GestionMedicos
 {
 
 
-    public partial class BajaTurno
+    public partial class BajaMedico
     {
 
         /// <summary>
@@ -24,66 +24,93 @@ namespace Vistas
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control hpListarTurnos.
+        /// Control hlAltaMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpListarTurnos;
+        protected global::System.Web.UI.WebControls.HyperLink hlAltaMedico;
 
         /// <summary>
-        /// Control lblAdministrador.
+        /// Control hlBajaMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdministrador;
+        protected global::System.Web.UI.WebControls.HyperLink hlBajaMedico;
 
         /// <summary>
-        /// Control lblBajaTurno.
+        /// Control hlModificacionMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBajaTurno;
+        protected global::System.Web.UI.WebControls.HyperLink hlModificacionMedico;
 
         /// <summary>
-        /// Control txtCodigoTurno.
+        /// Control hlListarMedicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoTurno;
+        protected global::System.Web.UI.WebControls.HyperLink hlListarMedicos;
 
         /// <summary>
-        /// Control btnCancelarTurno.
+        /// Control lblUsuarioAdministrador.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarTurno;
+        protected global::System.Web.UI.WebControls.Label lblUsuarioAdministrador;
 
         /// <summary>
-        /// Control lblResultadoBaja.
+        /// Control lblTituloBajaMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResultadoBaja;
+        protected global::System.Web.UI.WebControls.Label lblTituloBajaMedico;
 
         /// <summary>
-        /// Control hpGestionTurnos0.
+        /// Control txtLejajoBajaMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpGestionTurnos0;
+        protected global::System.Web.UI.WebControls.TextBox txtLejajoBajaMedico;
+
+        /// <summary>
+        /// Control btnBajaMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBajaMedico;
+
+        /// <summary>
+        /// Control lblResultadoBajaMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResultadoBajaMedico;
+
+        /// <summary>
+        /// Control hpRegresarMenuGestionMedicos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hpRegresarMenuGestionMedicos;
     }
 }

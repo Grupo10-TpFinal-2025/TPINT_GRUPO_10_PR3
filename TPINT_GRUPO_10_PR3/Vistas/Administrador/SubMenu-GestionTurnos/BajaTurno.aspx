@@ -8,10 +8,10 @@
     <title></title>
     <style type="text/css">
         .auto-style6 {
-            width: 281px;
+            width: 173px;
         }
         .auto-style7 {
-            width: 362px;
+            width: 377px;
         }
         .auto-style8 {
             width: 163px;
@@ -30,8 +30,7 @@
                         <asp:HyperLink ID="hpListarTurnos" runat="server">Listar Turnos</asp:HyperLink>
                     </td>
                     <td class="auto-style6">
-                        <asp:HyperLink ID="hpGestionTurnos" runat="server">Regresar Gestion Turnos</asp:HyperLink>
-                    </td>
+                        &nbsp;</td>
                     <td class="auto-style8">Usuario:
                         <asp:Label ID="lblAdministrador" runat="server" Font-Bold="True" Text="Administrador"></asp:Label>
 &nbsp;</td>
@@ -56,10 +55,21 @@
                     <td class="auto-style8">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style7">&nbsp;</td>
-                    <td class="auto-style6">
+                    <td class="auto-style7">
+                        <br />
                         <asp:Label ID="lblResultadoBaja" runat="server"></asp:Label>
+                        <br />
                     </td>
+                    <td class="auto-style6">
+                        &nbsp;</td>
+                    <td class="auto-style8">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">
+                        <asp:HyperLink ID="hpGestionTurnos0" runat="server">Regresar Gestion Turnos</asp:HyperLink>
+                    </td>
+                    <td class="auto-style6">
+                        &nbsp;</td>
                     <td class="auto-style8">&nbsp;</td>
                 </tr>
             </table>

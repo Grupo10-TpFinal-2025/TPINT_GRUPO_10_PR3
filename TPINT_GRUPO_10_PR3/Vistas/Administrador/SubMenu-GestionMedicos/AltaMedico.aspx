@@ -90,7 +90,6 @@
                     <td class="auto-style5" style="font-size: small; text-decoration: blink">Sexo: <asp:RadioButtonList ID="rblSexoMedico" runat="server" Font-Size="Small">
                             <asp:ListItem Value="F">Femenino</asp:ListItem>
                             <asp:ListItem Value="M">Masculino</asp:ListItem>
-                            <asp:ListItem Value="O">Otro</asp:ListItem>
                         </asp:RadioButtonList>
 &nbsp;</td>
                 </tr>
@@ -151,15 +150,11 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="hlDisponibilidadRapida" runat="server" Visible="False">Cargar la Disponibilidad del Medico Dado de Alta</asp:HyperLink>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">&nbsp;</td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:Button ID="btnDisponibilidadMedico" runat="server" Height="30px" Text="Registrar Disponibilidad" Width="200px" />
+                        <asp:HyperLink ID="hlDisponibilidadRapida" runat="server" Visible="False">Cargar la Disponibilidad del Medico Dado de Alta</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>

@@ -72,6 +72,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Administrador\MenuAdministrador.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx" />
+    <Content Include="Medico\CambioDeTurno.aspx" />
+    <Content Include="Medico\ListarPacientesSeleccionados.aspx" />
     <Content Include="Web.config" />
     <Content Include="Medico\MenuMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx" />
@@ -111,6 +113,20 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx.designer.cs">
       <DependentUpon>MenuGestionMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medico\CambioDeTurno.aspx.cs">
+      <DependentUpon>CambioDeTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medico\CambioDeTurno.aspx.designer.cs">
+      <DependentUpon>CambioDeTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medico\ListarPacientesSeleccionados.aspx.cs">
+      <DependentUpon>ListarPacientesSeleccionados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medico\ListarPacientesSeleccionados.aspx.designer.cs">
+      <DependentUpon>ListarPacientesSeleccionados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Medico\MenuMedico.aspx.cs">

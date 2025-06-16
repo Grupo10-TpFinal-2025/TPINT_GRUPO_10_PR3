@@ -24,5 +24,10 @@ namespace Vistas
         {
             Response.Redirect("ListarMedicos.aspx");
         }
+
+        protected void btnBajaMedico_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BajaMedico.aspx");
+        }
     }
 }

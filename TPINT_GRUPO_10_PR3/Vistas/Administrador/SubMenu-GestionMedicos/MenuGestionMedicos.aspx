@@ -119,7 +119,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnBajaMedico" runat="server" Text="Baja Registro Medico" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnBajaMedico" runat="server" Text="Baja Registro Medico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnBajaMedico_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

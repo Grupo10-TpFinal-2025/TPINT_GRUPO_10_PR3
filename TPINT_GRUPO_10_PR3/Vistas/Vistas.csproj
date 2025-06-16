@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\BajaMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\ModificacionMedico.aspx" />
@@ -86,6 +87,13 @@
     <Content Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.cs">
+      <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.designer.cs">
+      <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx.cs">
       <DependentUpon>AltaMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

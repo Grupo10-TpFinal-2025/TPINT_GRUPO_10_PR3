@@ -13,5 +13,10 @@ namespace Vistas
         {
 
         }
+
+        protected void btnListarPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListarPacientes.aspx");
+        }
     }
 }

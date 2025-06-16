@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class BajaTurno
+    public partial class ModificacionTurno
     {
 
         /// <summary>
@@ -33,22 +33,22 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.HyperLink hlAltaTurno;
 
         /// <summary>
-        /// Control hlModificacionTurno.
+        /// Control hlBajaTurno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlModificacionTurno;
+        protected global::System.Web.UI.WebControls.HyperLink hlBajaTurno;
 
         /// <summary>
-        /// Control hpListarTurnos.
+        /// Control hlListarTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpListarTurnos;
+        protected global::System.Web.UI.WebControls.HyperLink hlListarTurnos;
 
         /// <summary>
         /// Control lblAdministrador.
@@ -60,48 +60,48 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblAdministrador;
 
         /// <summary>
-        /// Control lblBajaTurno.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBajaTurno;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control txtCodigoTurno.
+        /// Control lvModificacionTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoTurno;
+        protected global::System.Web.UI.WebControls.ListView lvModificacionTurnos;
 
         /// <summary>
-        /// Control btnCancelarTurno.
+        /// Control dsTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarTurno;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsTurnos;
 
         /// <summary>
-        /// Control lblResultadoBaja.
+        /// Control lblModificacionMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResultadoBaja;
+        protected global::System.Web.UI.WebControls.Label lblModificacionMensaje;
 
         /// <summary>
-        /// Control hpGestionTurnos.
+        /// Control hlGestionTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpGestionTurnos;
+        protected global::System.Web.UI.WebControls.HyperLink hlGestionTurnos;
     }
 }

@@ -72,6 +72,7 @@
     <Content Include="MenuAdministrador.aspx" />
     <Content Include="MenuGestionMedicos.aspx" />
     <Content Include="MenuGestionTurnos.aspx" />
+    <Content Include="ModificacionTurno.aspx" />
     <Content Include="Web.config" />
     <Content Include="MenuMedico.aspx" />
   </ItemGroup>
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="MenuGestionTurnos.aspx.designer.cs">
       <DependentUpon>MenuGestionTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificacionTurno.aspx.cs">
+      <DependentUpon>ModificacionTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificacionTurno.aspx.designer.cs">
+      <DependentUpon>ModificacionTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MenuMedico.aspx.cs">

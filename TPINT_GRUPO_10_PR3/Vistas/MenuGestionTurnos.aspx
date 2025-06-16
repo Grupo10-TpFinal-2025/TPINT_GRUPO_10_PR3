@@ -142,7 +142,7 @@
                     <td class="auto-style15"></td>
                     <td class="auto-style16"></td>
                     <td class="auto-style17">
-                        <asp:Button ID="btnBajaTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Baja Turno Médico" Width="200px" />
+                        <asp:Button ID="btnBajaTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Baja Turno Médico" Width="200px" OnClick="btnBajaTurno_Click" />
                     </td>
                     <td class="auto-style18"></td>
                     <td class="auto-style18"></td>
@@ -162,7 +162,7 @@
                     <td class="auto-style15"></td>
                     <td class="auto-style16"></td>
                     <td class="auto-style17">
-                        <asp:Button ID="btnModificacionTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Modificación Turno Médico" Width="200px" />
+                        <asp:Button ID="btnModificacionTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Modificación Turno Médico" Width="200px" OnClick="btnModificacionTurno_Click" />
                     </td>
                     <td class="auto-style18"></td>
                     <td class="auto-style18"></td>

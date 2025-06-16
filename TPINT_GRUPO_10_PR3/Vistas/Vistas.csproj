@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx.designer.cs">
       <DependentUpon>BajaDisponibilidad.aspx</DependentUpon>
+	</Compile>
     <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.cs">
       <DependentUpon>MenuReportes-Informes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

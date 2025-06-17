@@ -95,7 +95,7 @@
                 <td class="auto-style3"></td>
                 <td class="auto-style6"></td>
                 <td class="auto-style4">
-                    <asp:Button ID="btnAltaDisponibilidad" runat="server" Text="Alta Disponibilidad" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnAltaDisponibilidad" runat="server" Text="Alta Disponibilidad" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnAltaDisponibilidad_Click" />
                 </td>
                 <td class="auto-style4"></td>
                 <td class="auto-style4"></td>
@@ -115,7 +115,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnBajaDisponibilidad" runat="server" Text="Baja Disponibilidad" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnBajaDisponibilidad" runat="server" Text="Baja Disponibilidad" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnBajaDisponibilidad_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

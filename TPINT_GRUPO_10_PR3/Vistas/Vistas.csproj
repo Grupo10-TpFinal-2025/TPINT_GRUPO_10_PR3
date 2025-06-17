@@ -71,6 +71,7 @@
     <Content Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx" />
+    <Content Include="Administrador\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionDisponibilidad\ModificacionDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx" />
@@ -109,7 +110,7 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx.designer.cs">
       <DependentUpon>BajaDisponibilidad.aspx</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.cs">
       <DependentUpon>MenuReportes-Informes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -123,6 +124,13 @@
     </Compile>
     <Compile Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx.designer.cs">
       <DependentUpon>ResultadosReportes-Informes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx.cs">
+      <DependentUpon>ListarDisponibilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx.designer.cs">
+      <DependentUpon>ListarDisponibilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.cs">
       <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>

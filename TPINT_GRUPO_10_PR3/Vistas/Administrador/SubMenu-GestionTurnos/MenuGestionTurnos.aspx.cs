@@ -18,5 +18,10 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
 			Response.Redirect("ModificacionTurno.aspx");
         }
+
+        protected void btnListadoTurno_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListarTurnos.aspx");
+        }
     }
 }

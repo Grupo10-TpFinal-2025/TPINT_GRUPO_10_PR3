@@ -80,6 +80,7 @@
     <Content Include="Administrador\SubMenu-GestionTurnos\AltaTurno.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\BajaTurno.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\ListarMedicos.aspx" />
+    <Content Include="Administrador\SubMenu-GestionTurnos\ListarTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\MenuGestionTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\ModificacionTurno.aspx" />
     <Content Include="Login.aspx" />
@@ -182,6 +183,13 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionMedicos\ListarMedicos.aspx.designer.cs">
       <DependentUpon>ListarMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionTurnos\ListarTurnos.aspx.cs">
+      <DependentUpon>ListarTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador\SubMenu-GestionTurnos\ListarTurnos.aspx.designer.cs">
+      <DependentUpon>ListarTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionTurnos\MenuGestionTurnos.aspx.cs">
       <DependentUpon>MenuGestionTurnos.aspx</DependentUpon>

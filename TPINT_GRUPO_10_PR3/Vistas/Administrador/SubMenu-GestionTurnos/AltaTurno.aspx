@@ -13,12 +13,9 @@
             height: 100%;
             margin-bottom: 0px;
         }
-        .auto-style2 {
-            width: 853px;
-        }
         .auto-style6 {
             width: 1770px;
-            height: 26px;
+            height: 21px;
         }
         .auto-style3 {
             width: 1770px;
@@ -27,12 +24,18 @@
             width: 1770px;
             height: 112px;
         }
-        .auto-style4 {
-            width: 1770px;
-            height: 34px;
-        }
         .auto-style7 {
             height: 26px;
+        }
+        .auto-style10 {
+            height: 26px;
+            width: 882px;
+        }
+        .auto-style11 {
+            width: 882px;
+        }
+        .auto-style12 {
+            width: 883px;
         }
     </style>
 </head>
@@ -41,41 +44,30 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style7"></td>
-                    <td class="auto-style7"></td>
-                    <td class="auto-style7"></td>
+                    <td class="auto-style10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:HyperLink ID="hlAltaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/BajaTurno.aspx">Baja Turno</asp:HyperLink>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:HyperLink ID="hlBajaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ModificacionTurno.aspx">Modificación Turno</asp:HyperLink>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:HyperLink ID="hlModificacionTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ListarTurnos.aspx">Listar Turno</asp:HyperLink>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Usuario:
+                        <asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True" Text="Administrador"></asp:Label>
+                    </td>
                     <td class="auto-style7"></td>
                 </tr>
                 <tr>
-                    <td>
-                        <asp:HyperLink ID="hlAltaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/AltaTurno.aspx">Alta Turno</asp:HyperLink>
-                    </td>
-                    <td>
-                        <asp:HyperLink ID="hlBajaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/BajaTurno.aspx">Baja Turno</asp:HyperLink>
-                    </td>
-                    <td>
-                        <asp:HyperLink ID="hlModificacionTurno" runat="server" Font-Size="Large">Modificacion Turno</asp:HyperLink>
-                    </td>
+                    <td class="auto-style11">
+                        &nbsp;</td>
                     <td>
                         &nbsp;</td>
                 </tr>
             </table>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Label ID="lblTituloAltaTurno" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Alta de un Turno:"></asp:Label>
             <br />
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
-                    <td style="font-size: medium">Usuario:
-                        <asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True" Text="Administrador"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Label ID="lblTituloAltaTurno" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Alta de un Turno:"></asp:Label>
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
-            <br />
+                    <td class="auto-style12">
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style6" style="font-size: medium; text-decoration: underline overline"></td>
@@ -120,37 +112,15 @@
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="text-decoration: underline overline; font-size: medium">
-                        </td>
+                    <td class="auto-style3">
+                        &nbsp;</td>
                 </tr>
-                <tr>
-                    <td class="auto-style3" style="font-size: small">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style4">
-                        <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;
-                        <br />
-                        <br />
+                </table>
                     </td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">
-                        &nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
+            <br />
             <br />
             <br />
         </div>

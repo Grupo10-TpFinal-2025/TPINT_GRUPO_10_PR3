@@ -42,15 +42,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.HyperLink hlBajaTurno;
 
         /// <summary>
-        /// Control hlListarTurnos0.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlListarTurnos0;
-
-        /// <summary>
         /// Control hlListarTurnos.
         /// </summary>
         /// <remarks>

@@ -168,7 +168,7 @@
                     <td class="auto-style15"></td>
                     <td class="auto-style16"></td>
                     <td class="auto-style17">
-                        <asp:Button ID="btnListadoTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Listar Turnos Médicos" Width="200px" />
+                        <asp:Button ID="btnListadoTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Listar Turnos Médicos" Width="200px" OnClick="btnListadoTurno_Click" />
                     </td>
                     <td class="auto-style18"></td>
                     <td class="auto-style18"></td>

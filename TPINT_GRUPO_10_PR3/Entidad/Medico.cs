@@ -14,7 +14,7 @@ namespace Entidades
         private string _Apellido = "";
         private char _Sexo;
         private string _Nacionalidad = "";
-        private DateOnly _FechaNacimiento;
+        private DateTime _FechaNacimiento;
         private string _Direccion = "";
         private string _Localidad = "";
         private int _CodigoProvincia;
@@ -61,7 +61,7 @@ namespace Entidades
             set {_Nacionalidad = value;}
         }
 
-        public DateOnly FechaNacimiento
+        public DateTime FechaNacimiento
         {
             get {return _FechaNacimiento;}
             set {_FechaNacimiento = value;}

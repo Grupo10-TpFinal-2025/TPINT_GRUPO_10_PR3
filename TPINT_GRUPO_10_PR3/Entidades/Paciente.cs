@@ -15,7 +15,7 @@ namespace Entidades
         private string _apellido;
         private char _sexo;
         private string _nacionalidad;
-        private DateTime _fechaNacimiento;
+        private DateOnly _fechaNacimiento;
         private string _direccion;
         private string _localidad;
         private string _provincia;
@@ -24,7 +24,7 @@ namespace Entidades
         private bool _estado;
         //Metodos
         public Paciente() { }
-        public Paciente(int legajo,string dni, string nombre, string apellido, char sexo, string nacionalidad, DateTime fechaNacimiento, string direccion, string localidad, string provincia, string correoElectronico, string telefono, bool estado)
+        public Paciente(int legajo, string dni, string nombre, string apellido, char sexo, string nacionalidad, DateOnly fechaNacimiento, string direccion, string localidad, string provincia, string correoElectronico, string telefono, bool estado)
         {
             _legajo = legajo;
             _dni = dni;
@@ -70,7 +70,7 @@ namespace Entidades
             get { return _nacionalidad; }
             set { _nacionalidad = value; }
         }
-        public DateTime FechaNacimiento
+        public DateOnly FechaNacimiento
         {
             get { return _fechaNacimiento; }
             set { _fechaNacimiento = value; }

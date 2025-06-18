@@ -97,7 +97,7 @@ namespace Entidades
             set {_Telefono = value;}
         }
 
-        public int CodigoEspecialdiad
+        public int CodigoEspecialidad
         {
             get {return _CodigoEspecialidad;}
             set {_CodigoEspecialidad = value;}

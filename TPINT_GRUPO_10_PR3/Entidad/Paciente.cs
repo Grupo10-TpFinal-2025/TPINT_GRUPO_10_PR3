@@ -10,17 +10,17 @@ namespace Entidades
     {
         //Parametros
         private int _legajo;
-        private string _dni = string.Empty;
-        private string _nombre = string.Empty;
-        private string _apellido = string.Empty;
+        private string _dni;
+        private string _nombre;
+        private string _apellido;
         private char _sexo;
-        private string _nacionalidad = string.Empty;
+        private string _nacionalidad;
         private DateOnly _fechaNacimiento;
-        private string _direccion = string.Empty;
-        private string _localidad = string.Empty;
-        private string _provincia = string.Empty;
-        private string _correoElectronico = string.Empty;
-        private string _telefono = string.Empty;
+        private string _direccion;
+        private string _localidad;
+        private string _provincia;
+        private string _correoElectronico;
+        private string _telefono;
         private bool _estado;
         //Metodos
         public Paciente() { }

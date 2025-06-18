@@ -298,8 +298,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{e8064012-0dae-4b16-afb3-814b71d6f75c}</Project>
+    <ProjectReference Include="..\Entidad\Entidades.csproj">
+      <Project>{53236f9b-4be3-42e9-a8e2-85a69b376de3}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
     <ProjectReference Include="..\Negocios\Negocios.csproj">

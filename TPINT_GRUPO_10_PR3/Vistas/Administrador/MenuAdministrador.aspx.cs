@@ -11,7 +11,15 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
+            if (!IsPostBack)
+            {
+                lblModoAdministrador.Text = "Administrador";
+            }
         }
 
         protected void btnGestionMedicos_Click(object sender, EventArgs e)

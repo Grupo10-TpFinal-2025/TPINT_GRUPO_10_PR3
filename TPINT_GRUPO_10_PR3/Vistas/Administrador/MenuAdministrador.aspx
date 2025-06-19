@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     Usuario:
-                    <asp:Label ID="lblModoAdministrador" runat="server" Font-Bold="True" Text="Administrador"></asp:Label>
+                    <asp:Label ID="lblModoAdministrador" runat="server" Font-Bold="True"></asp:Label>
                 </td>
             </tr>
             <tr>

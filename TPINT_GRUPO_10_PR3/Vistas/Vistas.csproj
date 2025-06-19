@@ -298,6 +298,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{f36f461b-75e9-45c4-9726-26b6f708765b}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidad\Entidades.csproj">
       <Project>{53236f9b-4be3-42e9-a8e2-85a69b376de3}</Project>
       <Name>Entidades</Name>

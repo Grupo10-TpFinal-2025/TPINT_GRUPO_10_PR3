@@ -10,10 +10,10 @@ using System.Data;
 
 namespace Datos
 {
-    internal class AccesoDatos
+    public class AccesoDatos
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
-        private string rutaConeccion = "ata Source=localhost\\SQLEXPRESS;Initial Catalog=TPI-Grupo10.dat;Integrated Security=True";
+        private string rutaConeccion = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=TPI-Grupo10;Integrated Security=True";
         private bool estadoConexion = false;
         private SqlConnection conexion;
         private SqlDataAdapter dataAdapter;

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Datos;
 using Entidades;
 
-namespace Negocios
-{
-    class NegocioDisponibilidad
-    {
-        DaoDisponibilidad daoDisponibilidad = new DaoDisponibilidad();
+//namespace Negocios
+//{
+//    class NegocioDisponibilidad
+//    {
+//        DaoDisponibilidad daoDisponibilidad = new DaoDisponibilidad();
         
-    }
-}
+//    }
+//}

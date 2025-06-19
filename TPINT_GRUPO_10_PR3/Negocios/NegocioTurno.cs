@@ -7,10 +7,10 @@ using Datos;
 using Entidades;
 
 
-namespace Negocios
-{
-    class NegocioTurno
-    {
-        DaoTurno daoTurno = new DaoTurno();
-    }
-}
+//namespace Negocios
+//{
+//    class NegocioTurno
+//    {
+//        DaoTurno daoTurno = new DaoTurno();
+//    }
+//}

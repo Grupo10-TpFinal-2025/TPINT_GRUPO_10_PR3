@@ -11,8 +11,9 @@ namespace Vistas
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
-		}
+            //Comando para que anden los validators
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+        }
 
         protected void btnDisponivilidadMedico_Click(object sender, EventArgs e)
         {

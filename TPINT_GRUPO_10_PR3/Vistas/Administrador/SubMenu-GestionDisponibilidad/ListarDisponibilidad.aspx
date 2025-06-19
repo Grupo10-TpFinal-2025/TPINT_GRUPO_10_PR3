@@ -55,7 +55,7 @@
                         <asp:HyperLink ID="hlBajaDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/BajaDisponibilidad.aspx">Baja Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/ModificacionDisponibilidad.aspx">Modificacion Disponibilidad</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/ModificacionDisponibilidad.aspx">Modificación Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
                         <asp:HyperLink ID="hlListarDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/ListarDisponibilidad.aspx">Listar Disponibilidad</asp:HyperLink>
@@ -72,7 +72,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblTituloListadoDisponibilidad" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Listado de Disponibilidad Medica:"></asp:Label>
+                        <asp:Label ID="lblTituloListadoDisponibilidad" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Listado de Disponibilidad Médica:"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -85,7 +85,7 @@
             </table>
             <br />
             <br />
-            Búsqueda por legajo de medico:
+            Búsqueda por legajo de médico:
                                 <asp:TextBox ID="txtFiltroLegajoMedico" runat="server" Width="162px" TextMode="Number"></asp:TextBox>
                             &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -155,7 +155,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestión Disponibilidad...</asp:HyperLink>
+                            <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestión de Disponibilidad...</asp:HyperLink>
                         </td>
                     </tr>
                 </table>

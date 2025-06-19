@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style7">
-                        <asp:HyperLink ID="hlMenuDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Disponibilidad...</asp:HyperLink>
+                        <asp:HyperLink ID="hlMenuDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestión de Disponibilidad...</asp:HyperLink>
                     </td>
                 </tr>
             </table>

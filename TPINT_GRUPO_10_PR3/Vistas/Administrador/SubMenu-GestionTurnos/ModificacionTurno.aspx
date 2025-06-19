@@ -73,7 +73,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style7">
-                        <asp:HyperLink ID="hlGestionTurnos" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/MenuGestionTurnos.aspx">Regresar Menú Gestión Turnos...</asp:HyperLink>
+                        <asp:HyperLink ID="hlGestionTurnos" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/MenuGestionTurnos.aspx">Regresar a  Menú de Gestión de Turnos...</asp:HyperLink>
                     </td>
                     <td class="auto-style10"></td>
                 </tr>

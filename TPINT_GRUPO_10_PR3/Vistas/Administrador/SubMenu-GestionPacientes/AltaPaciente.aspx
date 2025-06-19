@@ -48,7 +48,7 @@
                         <asp:HyperLink ID="hlBajaPaciente" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/BajaPaciente.aspx">Baja Paciente</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionPaciente" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/ModificacionPaciente.aspx">Modificacion Paciente</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionPaciente" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/ModificacionPaciente.aspx">Modificación Paciente</asp:HyperLink>
                     </td>
                     <td>
                         <asp:HyperLink ID="hlListarPacientes" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/ModificacionPaciente.aspx">Listar Pacientes</asp:HyperLink>
@@ -76,7 +76,7 @@
                     <td class="auto-style3" style="font-size: medium; text-decoration: underline overline">DATOS PERSONALES:</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp;&nbsp;&nbsp;
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp; Fecha Nacimiento:
                         <asp:TextBox ID="txtFechaNacimientoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
@@ -84,7 +84,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">Nombre: <asp:TextBox ID="txtNombrePaciente" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtApellidoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
@@ -109,7 +109,7 @@
                 <tr>
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">&nbsp;&nbsp; Localidad:&nbsp;&nbsp;
                         <asp:TextBox ID="txtLocalidadPaciente" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Direccion:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dirección:
                         <asp:TextBox ID="DireccionPaciente" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
@@ -119,12 +119,12 @@
                         DATOS DE CONTACTO:</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">Correo Electronico:
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">Correo Electrónico:
                         <asp:TextBox ID="txtCorreoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Telefono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtTelefonoMedico" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
@@ -144,7 +144,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="hlMenuGestionPacientes" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/MenuGestionPacientes.aspx">Regresar a Menú de Gestion Pacientes...</asp:HyperLink>
+                        <asp:HyperLink ID="hlMenuGestionPacientes" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/MenuGestionPacientes.aspx">Regresar a Menú de Gestión de Pacientes...</asp:HyperLink>
                     </td>
                 </tr>
             </table>

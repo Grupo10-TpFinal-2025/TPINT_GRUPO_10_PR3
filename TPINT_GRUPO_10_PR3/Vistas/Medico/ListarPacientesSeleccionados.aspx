@@ -40,11 +40,11 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style4">
-                        <asp:HyperLink ID="hpCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesion</asp:HyperLink>
+                        <asp:HyperLink ID="hpCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesión</asp:HyperLink>
                     </td>
                     <td class="auto-style4"></td>
                     <td class="auto-style5">
-                        <asp:HyperLink ID="hpMenuMedico" runat="server" NavigateUrl="~/Medico/MenuMedico.aspx">Volver al menu</asp:HyperLink>
+                        <asp:HyperLink ID="hpMenuMedico" runat="server" NavigateUrl="~/Medico/MenuMedico.aspx">Volver al menú</asp:HyperLink>
                     </td>
                     <td class="auto-style5"></td>
                     <td class="auto-style5">Usuario:<asp:Label ID="lblUsuario" runat="server"></asp:Label>

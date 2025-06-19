@@ -56,7 +56,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style8">
-                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar Menú Administrador</asp:HyperLink>
+                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
                 </td>
                 <td>
                     Usuario:

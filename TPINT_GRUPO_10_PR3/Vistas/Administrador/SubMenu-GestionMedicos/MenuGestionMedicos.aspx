@@ -60,7 +60,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style8">
-                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar Menú Administrador</asp:HyperLink>
+                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
                 </td>
                 <td>
                     Usuario:
@@ -75,7 +75,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style8">
-                    <asp:Label ID="lblTituloGestionMedico" runat="server" Font-Bold="True" Font-Size="25pt" Text="Gestion de Registros de Medicos:"></asp:Label>
+                    <asp:Label ID="lblTituloGestionMedico" runat="server" Font-Bold="True" Font-Size="25pt" Text="Gestión de Registros de Médicos:"></asp:Label>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -99,7 +99,7 @@
                 <td class="auto-style3"></td>
                 <td class="auto-style6"></td>
                 <td class="auto-style4">
-                    <asp:Button ID="btnAltaMedico" runat="server" Text="Alta Registro Medico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnAltaMedico_Click" />
+                    <asp:Button ID="btnAltaMedico" runat="server" Text="Alta Registro Médico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnAltaMedico_Click" />
                 </td>
                 <td class="auto-style4"></td>
                 <td class="auto-style4"></td>
@@ -119,7 +119,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnBajaMedico" runat="server" Text="Baja Registro Medico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnBajaMedico_Click" />
+                    <asp:Button ID="btnBajaMedico" runat="server" Text="Baja Registro Médico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnBajaMedico_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -139,7 +139,7 @@
                 <td class="auto-style9"></td>
                 <td class="auto-style10"></td>
                 <td class="auto-style11">
-                    <asp:Button ID="btnModificacionMedico" runat="server" Text="Modificacion Registro Medico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnModificacionMedico_Click" />
+                    <asp:Button ID="btnModificacionMedico" runat="server" Text="Modificación Registro Médico" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnModificacionMedico_Click" />
                 </td>
                 <td class="auto-style11"></td>
                 <td class="auto-style11"></td>
@@ -159,7 +159,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnListadoMedicos" runat="server" Text="Listar Registros Medicos" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnListadoMedicos_Click" />
+                    <asp:Button ID="btnListadoMedicos" runat="server" Text="Listar Registros Médicos" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnListadoMedicos_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

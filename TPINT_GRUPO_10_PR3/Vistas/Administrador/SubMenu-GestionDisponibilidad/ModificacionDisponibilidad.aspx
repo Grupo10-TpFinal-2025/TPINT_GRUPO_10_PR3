@@ -53,7 +53,7 @@
                         <asp:HyperLink ID="hlBajaDisponibilidad" runat="server" Font-Size="Large">Baja Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large">Modificacion Disponibilidad</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large">Modificación Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
                         <asp:HyperLink ID="hlListarDisponibilidad" runat="server" Font-Size="Large">Listar Disponibilidad</asp:HyperLink>
@@ -70,7 +70,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblTituloAltaPaciente" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Modificacion de Disponibilidad Medica:"></asp:Label>
+                        <asp:Label ID="lblTituloAltaPaciente" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Modificación de Disponibilidad Médica:"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -107,7 +107,7 @@
             <tr>
                 <td class="auto-style8">&nbsp;</td>
                 <td class="auto-style19">
-                        <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestion Disponibilidad...</asp:HyperLink>
+                        <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestion de Disponibilidad...</asp:HyperLink>
                     </td>
             </tr>
         </table>

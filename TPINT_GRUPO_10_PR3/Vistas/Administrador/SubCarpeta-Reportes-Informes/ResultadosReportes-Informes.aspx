@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:HyperLink ID="hlRegresarMenuReportes" runat="server" NavigateUrl="~/Administrador/SubCarpeta-Reportes-Informes/MenuReportes-Informes.aspx">Regresar Menú Reportes Info...</asp:HyperLink>
+                    <asp:HyperLink ID="hlRegresarMenuReportes" runat="server" NavigateUrl="~/Administrador/SubCarpeta-Reportes-Informes/MenuReportes-Informes.aspx">Regresar a Menú de Reportes de Infoemación...</asp:HyperLink>
                 </td>
                 <td class="auto-style19">
                         &nbsp;</td>

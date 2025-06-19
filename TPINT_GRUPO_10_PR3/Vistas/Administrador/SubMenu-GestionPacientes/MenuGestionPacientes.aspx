@@ -40,7 +40,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar Menú Administrador</asp:HyperLink>
+                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
                 </td>
                 <td>Usuario:<asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True" Text="Administrador"></asp:Label>
                 </td>
@@ -71,7 +71,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Label ID="lblTituloGestionPacientes" runat="server" Font-Bold="True" Font-Size="25pt" Text="Gestion de Pacientes:"></asp:Label>
+                    <asp:Label ID="lblTituloGestionPacientes" runat="server" Font-Bold="True" Font-Size="25pt" Text="Gestión de Pacientes:"></asp:Label>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

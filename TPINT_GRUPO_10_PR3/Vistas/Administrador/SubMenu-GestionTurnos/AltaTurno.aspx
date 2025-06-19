@@ -37,6 +37,10 @@
         .auto-style12 {
             width: 883px;
         }
+        .auto-style13 {
+            width: 1770px;
+            height: 29px;
+        }
     </style>
 </head>
 <body>
@@ -98,8 +102,8 @@
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: medium; text-decoration: underline overline">
-                        <asp:Button ID="btnRegresarMenuAdmT" runat="server" Text="Regresar al menu de turnos" />
+                    <td class="auto-style9" style="text-decoration: blink; font-size: small">
+                        <asp:HyperLink ID="hlGestionTurnos" runat="server" Font-Size="12pt" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/MenuGestionTurnos.aspx">Regresar a Menú de Gestión de Turnos...</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>

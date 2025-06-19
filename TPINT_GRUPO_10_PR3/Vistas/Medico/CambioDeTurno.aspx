@@ -47,11 +47,11 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style4">
-                        <asp:HyperLink ID="hpCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesion</asp:HyperLink>
+                        <asp:HyperLink ID="hpCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesión</asp:HyperLink>
                     </td>
                     <td class="auto-style4"></td>
                     <td class="auto-style5">
-                        <asp:HyperLink ID="hpMenuMedico" runat="server" NavigateUrl="~/Medico/MenuMedico.aspx">Volver al menu</asp:HyperLink>
+                        <asp:HyperLink ID="hpMenuMedico" runat="server" NavigateUrl="~/Medico/MenuMedico.aspx">Volver al menú</asp:HyperLink>
                     </td>
                     <td class="auto-style5"></td>
                     <td class="auto-style5">Usuario:<asp:Label ID="lblUsuario" runat="server"></asp:Label>
@@ -72,7 +72,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:Label ID="lblTitulo" runat="server" Font-Bold="True" Font-Size="25pt" Text="Modificacion de turno"></asp:Label>
+                    <asp:Label ID="lblTitulo" runat="server" Font-Bold="True" Font-Size="25pt" Text="Modificación de turno"></asp:Label>
                 </td>
                 <td class="auto-style15">&nbsp;</td>
                 <td class="auto-style15">&nbsp;</td>

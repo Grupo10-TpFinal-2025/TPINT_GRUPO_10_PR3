@@ -44,16 +44,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="hlAltaMedico" runat="server" Font-Size="Large" NavigateUrl="~/AltaMedico.aspx">Alta Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlAltaMedico" runat="server" Font-Size="Large" NavigateUrl="~/AltaMedico.aspx">Alta Médico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlBajaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/BajaMedico.aspx">Baja Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlBajaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/BajaMedico.aspx">Baja Médico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ModificacionMedico.aspx">Modificacion Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ModificacionMedico.aspx">Modificación Médico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlListarMedicos" runat="server" Font-Size="Large">Listar Medicos</asp:HyperLink>
+                        <asp:HyperLink ID="hlListarMedicos" runat="server" Font-Size="Large">Listar Médicos</asp:HyperLink>
                     </td>
                 </tr>
             </table>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblTituloAltaMedico" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Alta de un Medico:"></asp:Label>
+                        <asp:Label ID="lblTituloAltaMedico" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Alta de un Médico:"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -78,7 +78,7 @@
                     <td class="auto-style6" style="font-size: medium; text-decoration: underline overline">DATOS PERSONALES:</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp;&nbsp;&nbsp;
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp;&nbsp; &nbsp;
                         <asp:TextBox ID="txtDniMedico" runat="server" Font-Size="Small"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp; Fecha Nacimiento:
                         <asp:TextBox ID="txtFechaNacimientoMedico" runat="server" Font-Size="Small"></asp:TextBox>
@@ -86,7 +86,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">Nombre: <asp:TextBox ID="txtNombreMedico" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtApellidoMedico" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
@@ -111,7 +111,7 @@
                 <tr>
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">&nbsp;&nbsp; Localidad:&nbsp;&nbsp;
                         <asp:TextBox ID="txtLocalidadMedico" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Direccion:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dirección:
                         <asp:TextBox ID="DireccionMedico" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
@@ -121,12 +121,12 @@
                         DATOS DE CONTACTO:</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">Correo Electronico:
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">Correo Electrónico:
                         <asp:TextBox ID="txtCorreoMedico" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Telefono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtTelefonoMedico" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
@@ -158,7 +158,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="hlDisponibilidadRapida" runat="server" Visible="False">Cargar la Disponibilidad del Medico Dado de Alta</asp:HyperLink>
+                        <asp:HyperLink ID="hlDisponibilidadRapida" runat="server" Visible="False">Cargar la Disponibilidad del Médico Dado de Alta</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>
@@ -166,7 +166,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MenuGestionMedicos.aspx">Regresar a Menú de Gestion Medicos...</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MenuGestionMedicos.aspx">Regresar a Menú de Gestión de Médicos...</asp:HyperLink>
                     </td>
                 </tr>
             </table>

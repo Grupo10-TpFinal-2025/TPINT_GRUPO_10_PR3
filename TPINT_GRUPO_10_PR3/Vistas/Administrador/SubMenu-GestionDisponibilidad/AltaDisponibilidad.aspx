@@ -87,7 +87,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Horario de Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlHorarioInicioDis" runat="server">
+                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Horario de Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlHorarioInicioDis" runat="server">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -113,7 +113,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestión Disponibilidad...</asp:HyperLink>
+                        <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestión de Disponibilidad...</asp:HyperLink>
                     </td>
                 </tr>
             </table>

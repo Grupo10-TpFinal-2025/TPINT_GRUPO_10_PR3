@@ -42,7 +42,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/Administrador/MenuAdministrador.aspx">Regresar Menú Administrador</asp:HyperLink>
+                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/Administrador/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
                 </td>
                 <td>Usuario:<asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True" Text="Administrador"></asp:Label>
                 </td>
@@ -117,7 +117,7 @@
             <tr>
                 <td class="auto-style4"></td>
                 <td class="auto-style5">
-                    <asp:Button ID="btnMedicoMasSolicitado" runat="server" Text="Medico Más Solicitado" CssClass="boton-estandar" Height="30px" Width="230px" />
+                    <asp:Button ID="btnMedicoMasSolicitado" runat="server" Text="Médico Más Solicitado" CssClass="boton-estandar" Height="30px" Width="230px" />
                 </td>
                 <td class="auto-style6"></td>
                 <td class="auto-style6"></td>
@@ -147,7 +147,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnbtnPromedioMEspecialidad" runat="server" Text="Promedio Medicos X Especialidad" CssClass="boton-estandar" Height="30px" Width="230px" />
+                    <asp:Button ID="btnbtnPromedioMEspecialidad" runat="server" Text="Promedio Médicos X Especialidad" CssClass="boton-estandar" Height="30px" Width="230px" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -207,7 +207,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnListarPaciente" runat="server" Text="Concurrencia Turnos X Dia" CssClass="boton-estandar" Height="30px" Width="230px"/>
+                    <asp:Button ID="btnListarPaciente" runat="server" Text="Concurrencia Turnos X Dáa" CssClass="boton-estandar" Height="30px" Width="230px"/>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

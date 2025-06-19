@@ -96,12 +96,12 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblResultadoBaja;
 
         /// <summary>
-        /// Control hpGestionTurnos0.
+        /// Control hlGestionTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpGestionTurnos0;
+        protected global::System.Web.UI.WebControls.HyperLink hlGestionTurnos;
     }
 }

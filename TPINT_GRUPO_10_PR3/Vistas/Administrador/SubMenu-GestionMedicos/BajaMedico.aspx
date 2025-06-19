@@ -38,16 +38,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="hlAltaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/AltaMedico.aspx">Alta Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlAltaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/AltaMedico.aspx">Alta Médico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlBajaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/BajaMedico.aspx">Baja Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlBajaMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/BajaMedico.aspx">Baja Médico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ModificacionMedico.aspx">Modificacion Medico</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionMedico" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ModificacionMedico.aspx">Modificación Médico</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlListarMedicos" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ListarMedicos.aspx">Listar Medicos</asp:HyperLink>
+                        <asp:HyperLink ID="hlListarMedicos" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/ListarMedicos.aspx">Listar Médicos</asp:HyperLink>
                     </td>
                 </tr>
             </table>
@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblTituloBajaMedico" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Baja de Medico:"></asp:Label>
+                        <asp:Label ID="lblTituloBajaMedico" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Baja de Médico:"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -73,7 +73,7 @@
                 <tr>
                     <td class="auto-style7">
                         <br />
-                        Legajo del Medico:&nbsp;<asp:TextBox ID="txtLejajoBajaMedico" runat="server"></asp:TextBox>
+                        Legajo del Médico:&nbsp;<asp:TextBox ID="txtLejajoBajaMedico" runat="server"></asp:TextBox>
 &nbsp;&nbsp; <asp:Button ID="btnBajaMedico" runat="server" Text="Dar de Baja" Width="107px" />
                     </td>
                 </tr>
@@ -86,7 +86,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style7">
-                        <asp:HyperLink ID="hpRegresarMenuGestionMedicos" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/MenuGestionMedicos.aspx">Regresar Menú Gestion Medicos...</asp:HyperLink>
+                        <asp:HyperLink ID="hpRegresarMenuGestionMedicos" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/MenuGestionMedicos.aspx">Regresar a Menú de Gestión de Médicos...</asp:HyperLink>
                     </td>
                 </tr>
             </table>

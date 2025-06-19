@@ -68,7 +68,7 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
+                        <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/Administrador/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
                     </td>
                     <td>Usuario:
                         <asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True" Text="Administrador"></asp:Label>
@@ -108,7 +108,7 @@
                     <td class="auto-style4">&nbsp;</td>
                     <td class="auto-style5">&nbsp;</td>
                     <td class="auto-style6">
-                        <asp:Button ID="btnAltaTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Alta Turno Médico" Width="200px" />
+                        <asp:Button ID="btnAltaTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Alta Turno Médico" Width="200px" OnClick="btnAltaTurno_Click" />
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -128,7 +128,7 @@
                     <td class="auto-style15"></td>
                     <td class="auto-style16"></td>
                     <td class="auto-style17">
-                        <asp:Button ID="btnBajaTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Baja Turno Médico" Width="200px" />
+                        <asp:Button ID="btnBajaTurno" runat="server" CssClass="boton-estandar" Height="30px" Text="Baja Turno Médico" Width="200px" OnClick="btnBajaTurno_Click" />
                     </td>
                     <td class="auto-style18"></td>
                     <td class="auto-style18"></td>

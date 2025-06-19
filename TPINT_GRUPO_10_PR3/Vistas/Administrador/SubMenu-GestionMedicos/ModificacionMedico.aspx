@@ -128,7 +128,7 @@
             <tr>
                 <td class="auto-style8">&nbsp;</td>
                 <td class="auto-style19">
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MenuGestionMedicos.aspx">Regresar a Menú de Gestión de Médicos...</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/MenuGestionMedicos.aspx">Regresar a Menú de Gestión de Médicos...</asp:HyperLink>
                 </td>
                 <td class="auto-style17">
                     &nbsp;</td>

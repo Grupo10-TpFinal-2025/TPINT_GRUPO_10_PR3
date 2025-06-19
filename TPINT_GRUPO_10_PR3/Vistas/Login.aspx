@@ -44,7 +44,7 @@
                 <tr>
                     <td class="auto-style7">&nbsp;</td>
                     <td class="auto-style2" style="font-size: x-large; text-decoration: underline; font-weight: bolder"></td>
-                    <td class="auto-style3" style="font-size: x-large; font-weight: bolder; text-decoration: underline">Sistema de Gestión Clinica Médica</td>
+                    <td class="auto-style3" style="font-size: x-large; font-weight: bolder; text-decoration: underline">Sistema de Gestión Clínica Médica</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

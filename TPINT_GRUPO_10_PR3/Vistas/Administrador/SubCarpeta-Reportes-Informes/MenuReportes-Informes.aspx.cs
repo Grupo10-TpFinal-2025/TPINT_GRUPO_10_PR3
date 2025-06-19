@@ -13,5 +13,25 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
 		{
 
 		}
-	}
+
+        protected void btnMedicoMasSolicitado_Click(object sender, EventArgs e)
+        {
+			Response.Redirect("ResultadosReportes-Informes.aspx");
+        }
+
+        protected void btnbtnPromedioMEspecialidad_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ResultadosReportes-Informes.aspx");
+        }
+
+        protected void btnPorcentajePresencialidadT_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ResultadosReportes-Informes.aspx");
+        }
+
+        protected void btnListarPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ResultadosReportes-Informes.aspx");
+        }
+    }
 }

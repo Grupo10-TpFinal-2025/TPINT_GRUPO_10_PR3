@@ -117,7 +117,7 @@
             <tr>
                 <td class="auto-style4"></td>
                 <td class="auto-style5">
-                    <asp:Button ID="btnMedicoMasSolicitado" runat="server" Text="Médico Más Solicitado" CssClass="boton-estandar" Height="30px" Width="230px" />
+                    <asp:Button ID="btnMedicoMasSolicitado" runat="server" Text="Médico Más Solicitado" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnMedicoMasSolicitado_Click" />
                 </td>
                 <td class="auto-style6"></td>
                 <td class="auto-style6"></td>
@@ -147,7 +147,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnbtnPromedioMEspecialidad" runat="server" Text="Promedio Médicos X Especialidad" CssClass="boton-estandar" Height="30px" Width="230px" />
+                    <asp:Button ID="btnbtnPromedioMEspecialidad" runat="server" Text="Porcentaje Médicos X Especialidad" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnbtnPromedioMEspecialidad_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -177,7 +177,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnPorcentajePresencialidadT" runat="server" Text="Porcentaje Presencialidad Turnos" CssClass="boton-estandar" Height="30px" Width="230px" />
+                    <asp:Button ID="btnPorcentajePresencialidadT" runat="server" Text="Porcentaje Presencialidad Turnos" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnPorcentajePresencialidadT_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -207,7 +207,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnListarPaciente" runat="server" Text="Concurrencia Turnos X Dáa" CssClass="boton-estandar" Height="30px" Width="230px"/>
+                    <asp:Button ID="btnListarPaciente" runat="server" Text="Concurrencia Turnos X Día" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnListarPaciente_Click"/>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

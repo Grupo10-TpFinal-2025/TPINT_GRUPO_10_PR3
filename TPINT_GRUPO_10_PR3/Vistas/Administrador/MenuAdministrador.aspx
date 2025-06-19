@@ -107,7 +107,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnGestionTurnos" runat="server" Text="Gestionar turnos" CssClass="boton-estandar" />
+                    <asp:Button ID="btnGestionTurnos" runat="server" Text="Gestionar turnos" CssClass="boton-estandar" OnClick="btnGestionTurnos_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -147,7 +147,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnGestionPacientes0" runat="server" Text="Reportes e Informes" CssClass="boton-estandar" OnClick="btnGestionPacientes_Click" />
+                    <asp:Button ID="btnReportes" runat="server" Text="Reportes e Informes" CssClass="boton-estandar" OnClick="btnReportes_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

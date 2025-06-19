@@ -16,12 +16,22 @@ namespace Vistas
 
         protected void btnGestionMedicos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MenuGestionMedicos.aspx");
+            Response.Redirect("SubMenu-GestionMedicos/MenuGestionMedicos.aspx");
+        }
+
+        protected void btnGestionTurnos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SubMenu-GestionTurnos/MenuGestionTurnos.aspx");
         }
 
         protected void btnGestionPacientes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MenuGestionPacientes.aspx");
+            Response.Redirect("SubMenu-GestionPacientes/MenuGestionPacientes.aspx");
+        }
+
+        protected void btnReportes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SubCarpeta-Reportes-Informes/MenuReportes-Informes.aspx");
         }
     }
 }

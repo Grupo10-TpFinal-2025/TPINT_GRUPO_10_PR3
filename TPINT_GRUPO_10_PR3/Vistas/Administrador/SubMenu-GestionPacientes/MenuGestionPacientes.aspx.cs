@@ -14,11 +14,6 @@ namespace Vistas
 
         }
 
-        protected void btnListarPaciente_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ListarPacientes.aspx");
-        }
-
         protected void btnAltaPaciente_Click(object sender, EventArgs e)
         {
             Response.Redirect("AltaPaciente.aspx");
@@ -32,6 +27,11 @@ namespace Vistas
         protected void btnModificacionPaciente_Click(object sender, EventArgs e)
         {
             Response.Redirect("ModificacionPaciente.aspx");
+        }
+
+        protected void btnListarPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListarPacientes.aspx");
         }
     }
 }

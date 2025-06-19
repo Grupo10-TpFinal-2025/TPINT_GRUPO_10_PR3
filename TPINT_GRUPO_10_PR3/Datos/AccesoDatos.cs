@@ -22,23 +22,18 @@ namespace Datos
         private DataSet dataSet;
         private int filasAfectadas;
 
-        ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
         public AccesoDatos()
         {
 
         }
-
-        ///------------------------------------------------------ Getters ---------------------------------------------------------------------------------
         public string GetRutaConeccion()
         {
             return rutaConeccion;
         }
-
         public bool GetEstadoConeccion()
         {
             return estadoConexion;
         }
-
         public SqlConnection GetConeccion()
         {
             return conexion;
@@ -55,25 +50,18 @@ namespace Datos
         {
             return filasAfectadas;
         }
-
         public DataSet GetDataSet()
         {
             return dataSet;
         }
-
-
-
-        ///------------------------------------------------------ Setters ---------------------------------------------------------------------------------
         public void SetRutaConeccion(string ruta)
         {
             rutaConeccion = ruta;
         }
-
         public void SetEstadoConeccion(bool estado)
         {
             estadoConexion = estado;
         }
-
         public void SetConeccion(SqlConnection Conexion)
         {
             conexion = Conexion;
@@ -95,8 +83,6 @@ namespace Datos
             dataSet = ds;
         }
 
-
-        ///------------------------------------------------------ Metodos ---------------------------------------------------------------------------------
        
         //Suvidos al FORO ----------------------------------->
         public SqlConnection ObtenerConexion()
@@ -151,7 +137,7 @@ namespace Datos
                     sqlCommand = command;
                     sqlCommand.Connection = conexion;
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.CommandText = nombreProcedimiento; // Nombre del procedimiento almacenado            
+                    sqlCommand.CommandText = nombreProcedimiento;            
                     filasAfectadas = sqlCommand.ExecuteNonQuery();
                 }
 
@@ -207,18 +193,12 @@ namespace Datos
         public DataTable ObtenerTablaFiltrada(string nombreTabla, SqlCommand consulta)
         {
             dataSet = new DataSet();
-            SqlConnection connection = ObtenerConexion();
-            consulta.Connection = connection;
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(consulta);
-
-            //Relleno el dataset
+            conexion = ObtenerConexion();
+            consulta.Connection = conexion;
+            dataAdapter = new SqlDataAdapter(consulta);
             dataAdapter.Fill(dataSet, nombreTabla);
-
-            //Cierro
-            connection.Close();
+            conexion.Close();
             estadoConexion = false;
-
-            //Devuelvo la tabla
             return dataSet.Tables[nombreTabla];
         }
 

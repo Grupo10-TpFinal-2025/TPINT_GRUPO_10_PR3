@@ -84,7 +84,7 @@ namespace Datos
         }
 
        
-        //Suvidos al FORO ----------------------------------->
+        //Subidos al FORO ----------------------------------->
         public SqlConnection ObtenerConexion()
         {
             conexion = new SqlConnection(rutaConeccion);
@@ -201,6 +201,5 @@ namespace Datos
             estadoConexion = false;
             return dataSet.Tables[nombreTabla];
         }
-
     }
 }

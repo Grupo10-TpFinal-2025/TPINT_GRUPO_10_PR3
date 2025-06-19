@@ -13,11 +13,23 @@ namespace Vistas
 		{
             //Comando para que anden los validators
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
+            //Pregunto por el postback
+            if (!IsPostBack)
+            {
+                //Cargo los ddl
+            }
         }
 
         protected void btnDisponivilidadMedico_Click(object sender, EventArgs e)
         {
 			hlDisponibilidadRapida.Visible = true;
+        }
+
+        //Funcion que carga los ddl
+        void cargarDDLS()
+        {
+
         }
     }
 }

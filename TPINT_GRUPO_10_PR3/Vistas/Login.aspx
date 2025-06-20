@@ -83,7 +83,7 @@
                     <td class="auto-style8" style="font-size: large; font-weight: bolder;">Contraseña:</td>
                     <td class="auto-style5"></td>
                     <td class="auto-style6">
-                        <asp:TextBox ID="txtContraseña" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtContraseña" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     </td>
                     <td class="auto-style4"></td>

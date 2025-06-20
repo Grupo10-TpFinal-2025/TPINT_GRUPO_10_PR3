@@ -51,6 +51,10 @@ namespace Negocios
         }
         // ------------------------------------------------------------------------
 
+        public bool BajaLogicaPaciente(int legajo)
+        {
+            return daoP.BajaLogicaPaciente(legajo) == 1;
+        }
 
     }
 }

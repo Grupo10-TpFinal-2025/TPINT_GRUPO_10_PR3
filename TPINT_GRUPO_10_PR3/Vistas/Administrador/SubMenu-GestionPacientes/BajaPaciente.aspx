@@ -72,7 +72,7 @@
                 <tr>
                     <td class="auto-style7">
                         DNI Paciente:&nbsp;<asp:TextBox ID="txtDNIBaja" runat="server"></asp:TextBox>
-&nbsp;&nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" />
+&nbsp;&nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" OnClick="btnBaja_Click" />
                     </td>
                 </tr>
                 <tr>

@@ -119,6 +119,17 @@ namespace Datos
 
         // -----------------------------------------------------------------------------------------------------------------------------
 
+        public int BajaLogicaPaciente(int legajo)
+        {
+            string consulta = "UPDATE Paciente SET Estado_PA = 0 WHERE Legajo_PA = @Legajo_PA";
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                SqlCommand comando = new SqlCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("@Legajo_PA", legajo);
+                int filasAfectadas = comando.ExecuteNonQuery();
+                return filasAfectadas;
+            }
+        }
 
     }
 

@@ -10,10 +10,10 @@ using System.Data;
 
 namespace Datos
 {
-    internal class AccesoDatos
+    public class AccesoDatos
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
-        private string rutaConeccion = "ata Source=localhost\\SQLEXPRESS;Initial Catalog=TPI-Grupo10.dat;Integrated Security=True";
+        private string rutaConexion = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=TPI-Grupo10;Integrated Security=True";
         private bool estadoConexion = false;
         private SqlConnection conexion;
         private SqlDataAdapter dataAdapter;
@@ -26,15 +26,15 @@ namespace Datos
         {
 
         }
-        public string GetRutaConeccion()
+        public string GetRutaConexion()
         {
-            return rutaConeccion;
+            return rutaConexion;
         }
-        public bool GetEstadoConeccion()
+        public bool GetEstadoConexion()
         {
             return estadoConexion;
         }
-        public SqlConnection GetConeccion()
+        public SqlConnection GetConexion()
         {
             return conexion;
         }
@@ -54,15 +54,15 @@ namespace Datos
         {
             return dataSet;
         }
-        public void SetRutaConeccion(string ruta)
+        public void SetRutaConexion(string ruta)
         {
-            rutaConeccion = ruta;
+            rutaConexion = ruta;
         }
-        public void SetEstadoConeccion(bool estado)
+        public void SetEstadoConexion(bool estado)
         {
             estadoConexion = estado;
         }
-        public void SetConeccion(SqlConnection Conexion)
+        public void SetConexion(SqlConnection Conexion)
         {
             conexion = Conexion;
         }
@@ -87,7 +87,7 @@ namespace Datos
         //Subidos al FORO ----------------------------------->
         public SqlConnection ObtenerConexion()
         {
-            conexion = new SqlConnection(rutaConeccion);
+            conexion = new SqlConnection(rutaConexion);
             try
             {
                 conexion.Open();

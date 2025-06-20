@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Datos;
 using Entidades;
 
-namespace Negocios
-{
-    class NegocioMedico
-    {
-        DaoMedico daoMedico = new DaoMedico();
-    }
-}
+//namespace Negocios
+//{
+//    class NegocioMedico
+//    {
+//        DaoMedico daoMedico = new DaoMedico();
+//    }
+//}

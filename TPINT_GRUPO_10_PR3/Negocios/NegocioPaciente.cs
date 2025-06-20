@@ -7,6 +7,7 @@ using Datos;
 using Entidades;
 
 
+<<<<<<< HEAD
 namespace Negocios
 {   
     class NegocioPaciente
@@ -19,3 +20,12 @@ namespace Negocios
         }
     }
 }
+=======
+//namespace Negocios
+//{
+//    class NegocioPaciente
+//    {
+//        DaoPaciente daoPaciente = new DaoPaciente();
+//    }
+//}
+>>>>>>> 05e5b75c9287a95ae01beba9079a840c54125998

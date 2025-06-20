@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,22 +13,19 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 	public partial class AltaPaciente : System.Web.UI.Page
 	{
 
-        Paciente paciente = new Paciente();
+        Paciente paciente;
         NegocioPaciente negocioPaciente;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Manejar la confirmación del usuario
-            if (IsPostBack && Request["__EVENTTARGET"] == "btnRegistrarPacienteConfirmado")
+            if (!IsPostBack)
             {
-                // El usuario confirmo el registro del paciente
-                Registrar_AltaPaciente();
+                CargarProvincias();
             }
-
-            CargarProvincias();
         }
 
         public void Registrar_AltaPaciente()
         {
+            paciente = getPaciente();
             bool resultado = negocioPaciente.AltaPaciente(paciente);
 
             if (resultado)
@@ -70,8 +68,10 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
         }
 
-        protected void btnRegistrarPaciente_Click1(object sender, EventArgs e)
+       public Paciente getPaciente()
         {
+            paciente = new Paciente();
+            paciente = new Paciente();
             negocioPaciente = new NegocioPaciente();
             paciente.Dni = txtDniPaciente.Text;
             paciente.Nombre = txtNombrePaciente.Text;
@@ -81,21 +81,47 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             paciente.FechaNacimiento = Convert.ToDateTime(txtFechaNacimientoPaciente.Text);
             paciente.Direccion = txtDireccionPaciente.Text;
             paciente.Localidad = txtLocalidadPaciente.Text;
-            paciente.Provincia = ddlProvinciaPaciente.SelectedItem.Text;
+            paciente.CodProvincia = Convert.ToInt32(ddlProvinciaPaciente.SelectedValue);
             paciente.CorreoElectronico = txtCorreoPaciente.Text;
             paciente.Telefono = txtTelefonoPaciente.Text;
+            return paciente;
+        }
+
+        protected void btnRegistrarPaciente_Click1(object sender, EventArgs e)
+        {
+            paciente = new Paciente();
+
+            paciente = getPaciente();
 
             // Verificar si ya existe un paciente con ese DNI
             if (negocioPaciente.VerificarExistenciaPacienteXDNI(paciente))
             {
-                // Mostrar confirmación al usuario
                 string script = "if(confirm('Ya existe un paciente registrado con ese mismo DNI. ¿Está seguro de que desea registrarlo de todas formas?')) { " +
-                               "__doPostBack('btnRegistrarPacienteConfirmado',''); }";
+                        "__doPostBack('" + btnAux.UniqueID + "',''); " +
+                        "}";
+
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ConfirmarRegistro", script, true);
-                // Detener ejecución hasta que el usuario confirme
-                return;
             }
-            Registrar_AltaPaciente();
+            else
+            {
+                Registrar_AltaPaciente();
+            }
+        }
+
+        protected void btnAux_Click1(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Registrar_AltaPaciente();
+                lblMensaje.Text = "Paciente duplicado registrado exitosamente según su confirmación.";
+                lblMensaje.CssClass = "mensaje-exito";
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = "Ocurrió un error al registrar: " + ex.Message;
+                lblMensaje.CssClass = "mensaje-error";
+            }
 
         }
     }

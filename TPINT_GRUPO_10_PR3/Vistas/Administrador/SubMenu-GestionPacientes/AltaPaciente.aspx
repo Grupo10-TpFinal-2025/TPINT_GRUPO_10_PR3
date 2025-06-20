@@ -134,6 +134,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnRegistrarPaciente" runat="server" Height="30px" Text="Agregar" Width="100px" OnClick="btnRegistrarPaciente_Click1" />
 &nbsp;
+                        <asp:Button ID="btnAux" runat="server" OnClick="btnAux_Click1" Text="aux" Style="display:none;" UseSubmitBehavior="false"  />
                         <br />
                         <br />
                         <asp:Label ID="lblMensaje" runat="server" Font-Size="Small"></asp:Label>

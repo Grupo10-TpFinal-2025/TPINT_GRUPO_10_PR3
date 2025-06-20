@@ -46,12 +46,13 @@ namespace Datos
                     @Localidad_PA NVARCHAR(50),
                     @CodProvincia_PA INT,
                     @Correo_PA NVARCHAR(100),
-                    @Telefono_PA NVARCHAR(15)
+                    @Telefono_PA NVARCHAR(15),
+                    @Estado_PA BIT
+
                 AS
                 BEGIN
-                    SET NOCOUNT ON;
-                    INSERT INTO Paciente (DNI_PA, Nombre_PA, Apellido_PA, Sexo_PA, Nacionalidad_PA, FechaNacimiento_PA, Direccion_PA, Localidad_PA, CodProvincia_PA, Correo_PA, Telefono_PA)
-                    VALUES (@DNI_PA, @Nombre_PA, @Apellido_PA, @Sexo_PA, @Nacionalidad_PA, @FechaNacimiento_PA, @Direccion_PA, @Localidad_PA, @CodProvincia_PA, @Correo_PA, @Telefono_PA);
+                    INSERT INTO Paciente (DNI_PA, Nombre_PA, Apellido_PA, Sexo_PA, Nacionalidad_PA, FechaNacimiento_PA, Direccion_PA, Localidad_PA, CodProvincia_PA, Correo_PA, Telefono_PA, Estado_PA)
+                    VALUES (@DNI_PA, @Nombre_PA, @Apellido_PA, @Sexo_PA, @Nacionalidad_PA, @FechaNacimiento_PA, @Direccion_PA, @Localidad_PA, @CodProvincia_PA, @Correo_PA, @Telefono_PA, @Estado_PA);
                 END";
                     SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
                     cmdCrear.ExecuteNonQuery();
@@ -72,6 +73,7 @@ namespace Datos
             command.Parameters.AddWithValue("@CodProvincia_PA", paciente.CodProvincia);
             command.Parameters.AddWithValue("@Correo_PA", paciente.CorreoElectronico);
             command.Parameters.AddWithValue("@Telefono_PA", paciente.Telefono);
+            command.Parameters.AddWithValue("@Estado_PA", true);
         }
 
         public int AltaPaciente(Paciente paciente)

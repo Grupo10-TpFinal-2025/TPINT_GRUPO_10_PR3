@@ -51,13 +51,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.HyperLink hlModificacionTurno;
 
         /// <summary>
-        /// Control lblAdministrador.
+        /// Control lblUsuarioAdministrador.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdministrador;
+        protected global::System.Web.UI.WebControls.Label lblUsuarioAdministrador;
 
         /// <summary>
         /// Control Label1.

@@ -17,9 +17,16 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         NegocioPaciente negocioPaciente;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 CargarProvincias();
+                lblUsuarioAdministrador.Text = "Administrador";
             }
         }
 

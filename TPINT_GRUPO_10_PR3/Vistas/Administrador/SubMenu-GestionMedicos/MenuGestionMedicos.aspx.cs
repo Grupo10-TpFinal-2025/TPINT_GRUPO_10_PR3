@@ -9,10 +9,18 @@ namespace Vistas
 {
 	public partial class MenuGestionMedicos : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
-		}
+            if (!IsPostBack)
+            {
+                lblUsuarioAdministrador.Text = "Administrador";
+            }
+        }
 
         protected void btnAltaMedico_Click(object sender, EventArgs e)
         {

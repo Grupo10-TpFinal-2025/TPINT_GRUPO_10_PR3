@@ -12,9 +12,17 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 	public partial class BajaPaciente : System.Web.UI.Page
 	{
 		protected void Page_Load(object sender, EventArgs e)
-		{
+        {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
-		}
+            if (!IsPostBack)
+            {
+                lblUsuarioAdministrador.Text = "Administrador";
+            }
+        }
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {

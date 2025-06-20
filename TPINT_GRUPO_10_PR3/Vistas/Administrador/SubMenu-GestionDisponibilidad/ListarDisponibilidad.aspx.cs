@@ -9,10 +9,19 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 {
 	public partial class ListarDisponibilidad : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
-		}
+            if (!IsPostBack)
+            {
+                lblUsuarioAdministrador.Text = "Administrador";
+            }
+        }
+
 
         protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
         {

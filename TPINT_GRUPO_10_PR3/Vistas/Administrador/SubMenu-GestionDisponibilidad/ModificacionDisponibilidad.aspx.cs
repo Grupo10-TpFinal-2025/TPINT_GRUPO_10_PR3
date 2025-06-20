@@ -9,9 +9,18 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 {
 	public partial class ModificacionDisponibilidad : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
-		}
-	}
+            if (!IsPostBack)
+            {
+                lblUsuarioAdministrador.Text = "Administrador";
+            }
+        }
+
+    }
 }

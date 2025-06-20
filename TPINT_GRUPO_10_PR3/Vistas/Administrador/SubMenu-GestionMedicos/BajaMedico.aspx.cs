@@ -9,9 +9,17 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 {
 	public partial class BajaMedico : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
-		}
-	}
+            if (!IsPostBack)
+            {
+                lblUsuarioAdministrador.Text = "Administrador";
+            }
+        }
+    }
 }

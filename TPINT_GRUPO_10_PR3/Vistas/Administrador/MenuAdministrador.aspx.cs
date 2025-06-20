@@ -18,7 +18,7 @@ namespace Vistas
 
             if (!IsPostBack)
             {
-                lblModoAdministrador.Text = "Administrador";
+                lblUsuarioAdministrador.Text = "Administrador";
             }
         }
 

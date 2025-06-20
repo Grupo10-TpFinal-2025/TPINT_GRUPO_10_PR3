@@ -17,16 +17,23 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
 
 
         //Page load
-		protected void Page_Load(object sender, EventArgs e)
-		{
-            //Comando para que anden los validators
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Habilitar validadores
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
-            //Pregunto por el postback
+            // Verificar si hay sesión activa
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return; // para evitar que siga ejecutando el resto si redirige
+            }
+
+            // Ejecutar solo la primera vez que carga la página
             if (!IsPostBack)
             {
-                //Cargo los ddl
-                CargarDDLS();
+                CargarDDLS(); // Cargar los DropDownList
+                lblUsuarioAdministrador.Text = "Administrador";
             }
         }
 

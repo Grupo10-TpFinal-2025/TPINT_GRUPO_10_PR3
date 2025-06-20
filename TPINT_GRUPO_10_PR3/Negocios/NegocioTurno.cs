@@ -9,7 +9,7 @@ using Entidades;
 
 //namespace Negocios
 //{
-//    class NegocioTurno
+//    public class NegocioTurno
 //    {
 //        DaoTurno daoTurno = new DaoTurno();
 //    }

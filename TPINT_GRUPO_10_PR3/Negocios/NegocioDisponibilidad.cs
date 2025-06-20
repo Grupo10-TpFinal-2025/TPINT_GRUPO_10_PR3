@@ -6,24 +6,17 @@ using System.Threading.Tasks;
 using Datos;
 using Entidades;
 
-<<<<<<< HEAD
+
 namespace Negocios
 {
-    class NegocioDisponibilidad
+   public class NegocioDisponibilidad
     {
         DaoDisponibilidad daoD;
 
-        NegocioDisponibilidad()
+       public NegocioDisponibilidad()
         {
             daoD = new DaoDisponibilidad();
         }
-=======
-//namespace Negocios
-//{
-//    class NegocioDisponibilidad
-//    {
-//        DaoDisponibilidad daoDisponibilidad = new DaoDisponibilidad();
->>>>>>> 05e5b75c9287a95ae01beba9079a840c54125998
-        
-//    }
-//}
+    }
+}
+

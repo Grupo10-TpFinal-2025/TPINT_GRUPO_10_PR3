@@ -19,6 +19,7 @@ namespace Entidades
         private string _direccion;
         private string _localidad;
         private string _provincia;
+        private int _codProvincia;
         private string _correoElectronico;
         private string _telefono;
         private bool _estado;
@@ -89,6 +90,11 @@ namespace Entidades
         {
             get { return _provincia; }
             set { _provincia = value; }
+        }
+        public int CodProvincia
+        {
+            get { return _codProvincia; }
+            set { _codProvincia = value; }
         }
         public string CorreoElectronico
         {

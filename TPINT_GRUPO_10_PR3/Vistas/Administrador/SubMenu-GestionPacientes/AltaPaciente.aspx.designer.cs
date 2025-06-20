@@ -123,13 +123,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.RadioButtonList rblSexoPaciente;
 
         /// <summary>
-        /// Control NacionalidadPaciente.
+        /// Control txtNacionalidadPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NacionalidadPaciente;
+        protected global::System.Web.UI.WebControls.TextBox txtNacionalidadPaciente;
 
         /// <summary>
         /// Control ddlProvinciaPaciente.
@@ -150,13 +150,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.TextBox txtLocalidadPaciente;
 
         /// <summary>
-        /// Control DireccionPaciente.
+        /// Control txtDireccionPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DireccionPaciente;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionPaciente;
 
         /// <summary>
         /// Control txtCorreoPaciente.
@@ -168,13 +168,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.TextBox txtCorreoPaciente;
 
         /// <summary>
-        /// Control txtTelefonoMedico.
+        /// Control txtTelefonoPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTelefonoMedico;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoPaciente;
 
         /// <summary>
         /// Control btnRegistrarPaciente.

@@ -100,7 +100,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">Nacionalidad:
-                        <asp:TextBox ID="NacionalidadPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                        <asp:TextBox ID="txtNacionalidadPaciente" runat="server" Font-Size="Small"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Provincia:
                         <asp:DropDownList ID="ddlProvinciaPaciente" runat="server" Font-Size="Small">
                         </asp:DropDownList>
@@ -110,7 +110,7 @@
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">&nbsp;&nbsp; Localidad:&nbsp;&nbsp;
                         <asp:TextBox ID="txtLocalidadPaciente" runat="server" Font-Size="Small"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dirección:
-                        <asp:TextBox ID="DireccionPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                        <asp:TextBox ID="txtDireccionPaciente" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -125,14 +125,14 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtTelefonoMedico" runat="server" Font-Size="Small"></asp:TextBox>
+                        <asp:TextBox ID="txtTelefonoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
                         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnRegistrarPaciente" runat="server" Height="30px" Text="Agregar" Width="100px" />
+                        <asp:Button ID="btnRegistrarPaciente" runat="server" Height="30px" Text="Agregar" Width="100px" OnClick="btnRegistrarPaciente_Click1" />
 &nbsp;
                         <br />
                         <br />

@@ -8,7 +8,7 @@ using Entidades;
 
 //namespace Negocios
 //{
-//    class NegocioMedico
+//    public class NegocioMedico
 //    {
 //        DaoMedico daoMedico = new DaoMedico();
 //    }

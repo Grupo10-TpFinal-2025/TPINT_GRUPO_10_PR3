@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocios", "Negocios\Negoci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidad\Entidades.csproj", "{53236F9B-4BE3-42E9-A8E2-85A69B376DE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatosBD", "..\..\..\Documents\Facultad\Cursadas\Cursada 3\Programacion 3\TPs\Mis Practicas\MiPractica_TPIntegrador\Datos\DatosBD.csproj", "{CA2CF8EE-9867-4CE8-80D6-685DEC0B6823}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +35,6 @@ Global
 		{53236F9B-4BE3-42E9-A8E2-85A69B376DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53236F9B-4BE3-42E9-A8E2-85A69B376DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53236F9B-4BE3-42E9-A8E2-85A69B376DE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA2CF8EE-9867-4CE8-80D6-685DEC0B6823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA2CF8EE-9867-4CE8-80D6-685DEC0B6823}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA2CF8EE-9867-4CE8-80D6-685DEC0B6823}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA2CF8EE-9867-4CE8-80D6-685DEC0B6823}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

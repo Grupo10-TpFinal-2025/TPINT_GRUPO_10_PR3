@@ -1,18 +1,20 @@
-﻿using Entidades;
-using Negocios;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Entidades;
+using Negocios;
 
-namespace Vistas
+namespace Vistas.Administrador.SubMenu_GestionMedico
 {
 	public partial class AltaMedico : System.Web.UI.Page
 	{
         //Variables globales
         NegocioMedico negocioMedico = new NegocioMedico();
+
 
         //Page load
 		protected void Page_Load(object sender, EventArgs e)

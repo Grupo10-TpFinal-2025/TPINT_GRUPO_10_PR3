@@ -145,6 +145,22 @@ namespace Datos
             }
         }
 
+        public bool AltaPorParametros(SqlCommand cmd)
+        {
+            //Obtengo lo necesario usando los metodos anteriores
+            SqlConnection connection = ObtenerConexion();
+
+            //Creo el sqlComand y ejecuto
+            cmd.Connection = connection;
+            cmd.ExecuteNonQuery();
+
+            //Cierro
+            CerrarConexion();
+
+            //Devuelvo true
+            return true;
+        }
+
         //----------------------------------------------->
         public DataTable ObtenerTabla(string NombreTabla, string consulta)
         {
@@ -200,5 +216,6 @@ namespace Datos
             estadoConexion = false;
             return dataSet.Tables[nombreTabla];
         }
+
     }
 }

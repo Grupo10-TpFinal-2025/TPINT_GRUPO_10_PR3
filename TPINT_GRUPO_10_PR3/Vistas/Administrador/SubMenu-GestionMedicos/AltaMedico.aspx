@@ -125,7 +125,7 @@
                 <tr>
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">Nacionalidad:
                         <asp:TextBox ID="txtNacionalidadMedico" runat="server" Font-Size="Small" ValidationGroup="alta"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvNacionaldiad" runat="server" ControlToValidate="NacionalidadMedico" ErrorMessage="Debe ingresar una nacionalidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvNacionaldiad" runat="server" ControlToValidate="txtNacionalidadMedico" ErrorMessage="Debe ingresar una nacionalidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Provincia:
                         <asp:DropDownList ID="ddlProvinciaMedico" runat="server" Font-Size="Small" Height="17px" ValidationGroup="alta" Width="126px" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaMedico_SelectedIndexChanged">
                         </asp:DropDownList>
@@ -139,8 +139,8 @@
 &nbsp;<asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="txtLocalidadMedico" ErrorMessage="Debe ingresar una localidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
                         &nbsp;&nbsp;&nbsp;&nbsp; Dirección:
                         <asp:TextBox ID="txtDireccionMedico" runat="server" Font-Size="Small" ValidationGroup="alta"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="DireccionMedico" ErrorMessage="Ingrese la direccion." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="DireccionMedico" ErrorMessage="Debe ingresar calle y numero." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Ingrese la direccion." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Debe ingresar calle y numero." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -163,7 +163,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="text-decoration: underline overline; font-size: medium">
+                    <td class="auto-style10" style="text-decoration: underline overline; font-size: medium">
                         <br />
                         DATOS MEDICOS:</td>
                 </tr>

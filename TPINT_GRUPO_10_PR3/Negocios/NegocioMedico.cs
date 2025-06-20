@@ -33,5 +33,10 @@ namespace Negocios
             return daoMedico.readerEspecialidad();
         }
 
+        public bool AgregarMedico(Medico medico)
+        {
+            return daoMedico.AgregarMedico(medico);
+        }
+
     }
 }

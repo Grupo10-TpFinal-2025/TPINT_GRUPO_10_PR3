@@ -10,7 +10,12 @@ namespace Negocios
 {
     class NegocioDisponibilidad
     {
-        DaoDisponibilidad daoDisponibilidad = new DaoDisponibilidad();
+        DaoDisponibilidad daoD;
+
+        NegocioDisponibilidad()
+        {
+            daoD = new DaoDisponibilidad();
+        }
         
     }
 }

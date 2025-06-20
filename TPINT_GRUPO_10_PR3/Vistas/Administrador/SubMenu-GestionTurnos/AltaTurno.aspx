@@ -78,7 +78,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Legajo:&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtLegajo" runat="server" Font-Size="Small"></asp:TextBox>
+                        <asp:TextBox ID="txtLegajo" runat="server" Font-Size="Small" OnTextChanged="txtLegajo_TextChanged"></asp:TextBox>
                         &nbsp;&nbsp;&nbsp;&nbsp; DNI Paciente:
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small"></asp:TextBox>
                     </td>

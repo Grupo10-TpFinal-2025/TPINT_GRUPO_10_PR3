@@ -11,6 +11,7 @@ namespace Entidades
         // ------------------------- Propiedades -------------------------
         private int _codTurno;
         private int _legajoMedico;
+        private int _legajoPaciente;
         private DateTime _fecha;
         private bool _pendiente;
         private bool _asistencia;

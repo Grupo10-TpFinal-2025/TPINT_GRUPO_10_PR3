@@ -8,9 +8,14 @@ using Entidades;
 
 
 namespace Negocios
-{
+{   
     class NegocioPaciente
     {
-        DaoPaciente daoPaciente = new DaoPaciente();
+        DaoPaciente daoP;
+
+        NegocioPaciente()
+        {
+            daoP = new DaoPaciente();
+        }
     }
 }

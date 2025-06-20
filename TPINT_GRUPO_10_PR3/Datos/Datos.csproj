@@ -42,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="DaoDisponibilidad.cs" />
+    <Compile Include="DaoLogin.cs" />
+    <Compile Include="DaoMedico.cs" />
+    <Compile Include="DaoPaciente.cs" />
+    <Compile Include="DaoTurno.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

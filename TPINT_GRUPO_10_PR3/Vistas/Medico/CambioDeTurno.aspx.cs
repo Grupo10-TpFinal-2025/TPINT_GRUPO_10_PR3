@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Vistas.Medico
+namespace Vistas.Medicos
 {
     public partial class CambioDeTurno : System.Web.UI.Page
     {

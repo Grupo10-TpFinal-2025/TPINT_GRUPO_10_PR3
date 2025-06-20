@@ -177,13 +177,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RadioButtonList rblSexoMedico;
 
         /// <summary>
-        /// Control NacionalidadMedico.
+        /// Control txtNacionalidadMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NacionalidadMedico;
+        protected global::System.Web.UI.WebControls.TextBox txtNacionalidadMedico;
 
         /// <summary>
         /// Control rfvNacionaldiad.
@@ -231,13 +231,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLocalidad;
 
         /// <summary>
-        /// Control DireccionMedico.
+        /// Control txtDireccionMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DireccionMedico;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionMedico;
 
         /// <summary>
         /// Control rfvDireccion.

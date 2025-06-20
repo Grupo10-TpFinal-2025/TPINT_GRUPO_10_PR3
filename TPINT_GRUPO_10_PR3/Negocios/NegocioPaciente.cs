@@ -51,9 +51,9 @@ namespace Negocios
         }
         // ------------------------------------------------------------------------
 
-        public bool BajaLogicaPaciente(int legajo)
+        public bool BajaLogicaPacientePorDNI(string dni)
         {
-            return daoP.BajaLogicaPaciente(legajo) == 1;
+            return daoP.BajaLogicaPacientePorDNI(dni) == 1;
         }
 
     }

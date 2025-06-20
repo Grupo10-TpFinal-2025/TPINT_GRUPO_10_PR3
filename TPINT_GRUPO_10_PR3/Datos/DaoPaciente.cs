@@ -119,13 +119,15 @@ namespace Datos
 
         // -----------------------------------------------------------------------------------------------------------------------------
 
-        public int BajaLogicaPaciente(int legajo)
+        public int BajaLogicaPacientePorDNI(string dni)
         {
-            string consulta = "UPDATE Paciente SET Estado_PA = 0 WHERE Legajo_PA = @Legajo_PA";
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
+                string consulta = "UPDATE Paciente SET Estado_PA = 0 WHERE DNI_PA = @DNI_PA AND Estado_PA = 1";
+
                 SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Legajo_PA", legajo);
+                comando.Parameters.AddWithValue("@DNI_PA", dni);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
                 return filasAfectadas;
             }

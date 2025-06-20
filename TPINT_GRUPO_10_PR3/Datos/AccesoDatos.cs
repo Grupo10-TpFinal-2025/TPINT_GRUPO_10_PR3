@@ -13,7 +13,7 @@ namespace Datos
     public class AccesoDatos
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
-        private string rutaConexion = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=TPI-Grupo10.dat;Integrated Security=True;Encrypt=False;";
+        private string rutaConexion = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=TPI-Grupo10;Integrated Security=True;Encrypt=False;";
         private bool estadoConexion = false;
         private SqlConnection conexion;
         private SqlDataAdapter dataAdapter;
@@ -146,7 +146,6 @@ namespace Datos
         }
 
         //----------------------------------------------->
-
         public DataTable ObtenerTabla(string NombreTabla, string consulta)
         {
             conexion = ObtenerConexion();

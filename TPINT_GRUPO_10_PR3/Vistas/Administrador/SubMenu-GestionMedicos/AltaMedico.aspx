@@ -123,7 +123,7 @@
                         <asp:TextBox ID="NacionalidadMedico" runat="server" Font-Size="Small" ValidationGroup="alta"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvNacionaldiad" runat="server" ControlToValidate="NacionalidadMedico" ErrorMessage="Debe ingresar una nacionalidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Provincia:
-                        <asp:DropDownList ID="ddlProvinciaMedico" runat="server" Font-Size="Small" Height="17px" ValidationGroup="alta" Width="126px">
+                        <asp:DropDownList ID="ddlProvinciaMedico" runat="server" Font-Size="Small" Height="17px" ValidationGroup="alta" Width="126px" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaMedico_SelectedIndexChanged">
                         </asp:DropDownList>
 &nbsp; 
                         <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvinciaMedico" ErrorMessage="Debe seleccionar una provincia." InitialValue="0" ValidationGroup="alta">*</asp:RequiredFieldValidator>
@@ -155,7 +155,7 @@
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtTelefonoMedico" runat="server" Font-Size="Small" TextMode="Number" ValidationGroup="alta"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefonoMedico" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefonoMedico" ErrorMessage="Solo pueda usar numeros y un &quot;+&quot; al inicio." ValidationExpression="&quot;^\+?\d+$&quot; " ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefonoMedico" ErrorMessage="Solo se permiten numeros." ValidationExpression="^\d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -165,7 +165,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small">Especialidad:
-                        <asp:DropDownList ID="ddlEspecialidadMedico" runat="server" Font-Size="Small" Height="16px" ValidationGroup="alta" Width="137px">
+                        <asp:DropDownList ID="ddlEspecialidadMedico" runat="server" Font-Size="Small" Height="16px" ValidationGroup="alta" Width="137px" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidadMedico_SelectedIndexChanged">
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidadMedico" ErrorMessage="Debe seleccionar una especialdiad." InitialValue="0" ValidationGroup="alta">*</asp:RequiredFieldValidator>
                     </td>
@@ -200,6 +200,7 @@
                 </tr>
             </table>
             <br />
+            <asp:ValidationSummary ID="vsAltaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="alta" />
             <br />
         </div>
     </form>

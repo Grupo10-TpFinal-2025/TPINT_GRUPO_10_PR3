@@ -102,6 +102,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
             Entidades.Medico medico = new Entidades.Medico();
 
             //Le cargo los valores
+            medico.Legajo = 0;
             medico.Nombre = txtNombreMedico.Text.Trim();
             medico.Apellido = txtApellidoMedico.Text.Trim();
             medico.Sexo = Convert.ToChar(rblSexoMedico.SelectedValue);

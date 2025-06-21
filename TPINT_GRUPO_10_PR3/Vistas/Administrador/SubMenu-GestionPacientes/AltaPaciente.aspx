@@ -79,7 +79,7 @@
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp; Fecha Nacimiento:
-                        <asp:TextBox ID="txtFechaNacimientoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaNacimientoPaciente" runat="server" Font-Size="Small" TextMode="Date"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Datos
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
         private readonly AccesoDatos datos;
+        private string ConsultaBase = "SELECT M.Localidad_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', M.FechaNacimiento_ME AS 'Fecha Nacimiento' ,M.Nacionalidad_ME AS 'Nacionalidad' , (SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo', M.CodigoEspecialidad_ME AS 'CodEspecialidad' , (SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad'  FROM Medico AS M WHERE M.Estado_ME = 1";
         private SqlCommand sqlCommand;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
@@ -21,9 +23,11 @@ namespace Datos
             datos = new AccesoDatos();
         }
 
-        ///-------------------------------------------------- Getters y Setters ---------------------------------------------------------------------------------
-
         ///------------------------------------------------------ Metodos ---------------------------------------------------------------------------------
+
+
+        //Alta Medico----------------------------------------------------------------------------------
+
         //devuelve el reader para provincia
         public SqlDataReader readerProvincias()
         {
@@ -150,6 +154,14 @@ namespace Datos
         //Carga los parametros en el SQL command
         private void CargarParametros(ref SqlCommand cmd, Medico medico)
         {
+            if (medico.Legajo != 0)
+            {
+                cmd.Parameters.Add("@Legajo_ME", SqlDbType.Int).Value = medico.Legajo;
+            }
+            else
+            {
+                cmd.Parameters.Add("@Estado_ME", SqlDbType.Bit).Value = medico.Estado;
+            }
             cmd.Parameters.Add("@Nombre_ME", SqlDbType.NVarChar, 50).Value = medico.Nombre;
             cmd.Parameters.Add("@Apellido_ME", SqlDbType.NVarChar, 50).Value = medico.Apellido;
             cmd.Parameters.Add("@Sexo_ME", SqlDbType.Char).Value = medico.Sexo;
@@ -162,7 +174,6 @@ namespace Datos
             cmd.Parameters.Add("@Telefono_ME", SqlDbType.Char, 10).Value = medico.Telefono;
             cmd.Parameters.Add("@CodigoEspecialidad_ME", SqlDbType.Int).Value = medico.CodigoEspecialidad;
             cmd.Parameters.Add("@DNI_ME", SqlDbType.Char, 8).Value = medico.DNI;
-            cmd.Parameters.Add("@Estado_ME", SqlDbType.Bit).Value = medico.Estado;
         }
 
         public void ArmarParametro_LegajoMedico(ref SqlCommand command, Medico medico)
@@ -182,8 +193,57 @@ namespace Datos
 
             //Cargo los parametros
             CargarParametros(ref sqlCommand, medico);
-
             return datos.AltaPorParametros(sqlCommand);
         }
+
+        //Modificacion Medico ------------------------------------------------------------------------
+        public DataTable ObtenerTablaCompleta_Medico()
+        {
+            //Obtengo la tabla
+            return datos.ObtenerTabla("Medico", ConsultaBase);
+        }
+
+        public void ValidarOCrearProcedimientoModificacionMedico()
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consultaExiste = "SELECT COUNT(*) FROM sys.objects WHERE type = 'P' AND name = 'ModificarMedico_Grupo10'";
+                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
+                if ((int)cmdExiste.ExecuteScalar() == 0)
+                {
+                    string crearProc = @"
+                    CREATE PROCEDURE ModificarMedico_Grupo10
+                        @Legajo_ME INT, @DNI_ME CHAR(8), @Nombre_ME VARCHAR(50), @Apellido_ME VARCHAR(50),
+                        @Sexo_ME CHAR(1), @Nacionalidad_ME VARCHAR(50), @FechaNacimiento_ME DATE,
+                        @Direccion_ME VARCHAR(100), @Localidad_ME VARCHAR(50), @CodProvincia_ME INT,
+                        @CodEspecialidad_ME INT, @Correo_ME VARCHAR(100), @Telefono_ME CHAR(12)
+                    AS
+                    BEGIN
+                        UPDATE Medico SET 
+                            DNI_ME = @DNI_ME, Nombre_ME = @Nombre_ME, Apellido_ME = @Apellido_ME, Sexo_ME = @Sexo_ME, 
+                            Nacionalidad_ME = @Nacionalidad_ME, FechaNacimiento_ME = @FechaNacimiento_ME, 
+                            Direccion_ME = @Direccion_ME, Localidad_ME = @Localidad_ME, 
+                            CodProvincia_ME = @CodProvincia_ME, 
+                            CodEspecialidad_ME = @CodEspecialidad_ME, 
+                            Correo_ME = @Correo_ME, Telefono_ME = @Telefono_ME
+                        WHERE Legajo_ME = @Legajo_ME;
+                    END";
+                    SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
+                    cmdCrear.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public int ModificacionMedico(Medico medico)
+        {
+            sqlCommand = new SqlCommand();
+            CargarParametros(ref sqlCommand, medico);
+            ValidarOCrearProcedimientoModificacionMedico();
+            return datos.EjecutarProcedimientoAlmacenado("ModificarMedico_Grupo10", sqlCommand);
+        }
+
+
+
+
     }
 }

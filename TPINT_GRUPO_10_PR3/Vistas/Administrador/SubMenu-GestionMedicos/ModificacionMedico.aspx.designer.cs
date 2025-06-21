@@ -78,22 +78,22 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         protected global::System.Web.UI.WebControls.Label lblTituloModificacionMedico;
 
         /// <summary>
-        /// Control lvModificacionMedico.
+        /// Control gvModificacionMedicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvModificacionMedico;
+        protected global::System.Web.UI.WebControls.GridView gvModificacionMedicos;
 
         /// <summary>
-        /// Control SQLAccesoBD.
+        /// Control dsSqlAcessoProvincias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SQLAccesoBD;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsSqlAcessoProvincias;
 
         /// <summary>
         /// Control lblMensaje.

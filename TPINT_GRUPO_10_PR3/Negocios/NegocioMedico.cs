@@ -21,9 +21,9 @@ namespace Negocios
             daoMedico = new DaoMedico();
         }
 
-        ///-------------------------------------------------- Getters y Setters ---------------------------------------------------------------------------------
-
         ///------------------------------------------------------ Metodos ---------------------------------------------------------------------------------
+        
+        //Alta Medico---------------------------------------------
         public SqlDataReader readerProvincias()
         {
             return daoMedico.readerProvincias();
@@ -47,6 +47,24 @@ namespace Negocios
         public bool AgregarMedico(Medico medico)
         {
             return daoMedico.AgregarMedico(medico);
+        }
+
+        //Modificar Medico----------------------------------------
+        public DataTable ObtenerMedicos()
+        {
+            return daoMedico.ObtenerTablaCompleta_Medico();
+        }
+
+        public bool ModificarMedico(Medico medico)
+        {
+            if (daoMedico.ModificacionMedico(medico) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

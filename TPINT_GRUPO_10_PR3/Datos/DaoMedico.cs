@@ -12,7 +12,7 @@ namespace Datos
     public class DaoMedico
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
-        private AccesoDatos datos;
+        private readonly AccesoDatos datos;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
         public DaoMedico()
@@ -33,6 +33,22 @@ namespace Datos
         public SqlDataReader readerEspecialidad()
         {
             return datos.ObtenerLista("SELECT * FROM Especialidad");
+        }
+
+        public DataTable getTablaMedicos()
+        {
+            const string consulta =
+                "SELECT Legajo_ME AS Legajo, Apellido_ME AS Apellido, Nombre_ME AS Nombre, Sexo_ME AS Sexo, Nacionalidad_ME AS Nacionalidad, " +
+                "FORMAT(FechaNacimiento_ME, 'dd/MM/yyyy') AS [Fecha de Nacimiento], Direccion_ME AS Dirección, Localidad_ME AS Localidad, " +
+                "Descripcion_PR AS Provincia, Correo_ME AS Correo, Telefono_ME AS Teléfono, Descripcion_ES AS Especialidad, " +
+                "DNI_ME AS DNI " +
+                "FROM (Medico INNER JOIN Provincia " +
+                "ON CodProvincia_ME = CodProvincia_PR) INNER JOIN Especialidad " +
+                "ON CodigoEspecialidad_ME = CodEspecialidad_ES " +
+                "WHERE Estado_ME = 1 ";
+            
+            DataTable dataTable = datos.ObtenerTabla("Medico", consulta);
+            return dataTable;
         }
 
         //Carga los parametros en el SQL command

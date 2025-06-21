@@ -114,31 +114,31 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblLegajoNoEncontrado;
 
         /// <summary>
-        /// Control SQLdsAccesoDB.
+        /// Control sqldsDias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SQLdsAccesoDB;
+        protected global::System.Web.UI.WebControls.SqlDataSource sqldsDias;
 
         /// <summary>
-        /// Control dlFiltroProvinciasMedicos.
+        /// Control dlFiltroDiasAtendidosM.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlFiltroProvinciasMedicos;
+        protected global::System.Web.UI.WebControls.DataList dlFiltroDiasAtendidosM;
 
         /// <summary>
-        /// Control lvListarMedicos.
+        /// Control gvListaMedicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvListarMedicos;
+        protected global::System.Web.UI.WebControls.GridView gvListaMedicos;
 
         /// <summary>
         /// Control lblMensaje.

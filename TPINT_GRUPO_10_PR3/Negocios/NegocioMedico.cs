@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Negocios
     public class NegocioMedico
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
-        private DaoMedico daoMedico;
+        private readonly DaoMedico daoMedico;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
         public NegocioMedico()
@@ -33,10 +34,14 @@ namespace Negocios
             return daoMedico.readerEspecialidad();
         }
 
+        public DataTable getTablaMedicos()
+        {
+            return daoMedico.getTablaMedicos();
+        }
+
         public bool AgregarMedico(Medico medico)
         {
             return daoMedico.AgregarMedico(medico);
         }
-
     }
 }

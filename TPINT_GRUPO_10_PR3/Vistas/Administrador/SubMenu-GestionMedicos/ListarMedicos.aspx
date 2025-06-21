@@ -24,6 +24,9 @@
         .auto-style4 {
             width: 281px;
         }
+        .auto-style5 {
+            width: 357px;
+        }
     </style>
 </head>
 <body>
@@ -81,13 +84,36 @@
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
-                        <asp:SqlDataSource ID="SQLdsAccesoDB" runat="server"></asp:SqlDataSource>
-                        <asp:DataList ID="dlFiltroProvinciasMedicos" runat="server" DataSourceID="SQLdsAccesoDB">
+                        &nbsp;</td>
+                    <td class="auto-style5">
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">
+                        <asp:SqlDataSource ID="sqldsDias" runat="server" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=TPI-Grupo10;Integrated Security=True;Encrypt=False" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Descripcion_DI] FROM [Dia]"></asp:SqlDataSource>
+                        <asp:DataList ID="dlFiltroDiasAtendidosM" runat="server" DataSourceID="sqldsDias">
+                            <ItemTemplate>
+                                <asp:Button ID="btnDia" runat="server" Text='<%# Eval("Descripcion_DI") %>' />
+                                <br />
+                                <br />
+                            </ItemTemplate>
                         </asp:DataList>
                     </td>
-                    <td>
-                        <asp:ListView ID="lvListarMedicos" runat="server">
-                        </asp:ListView>
+                    <td class="auto-style5">
+                        <asp:GridView ID="gvListaMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvListaMedicos_PageIndexChanging">
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <EditRowStyle BackColor="#999999" />
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                        </asp:GridView>
                         <br />
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                         <br />
@@ -96,6 +122,7 @@
                         <br />
                         <br />
                         </td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
             <asp:Panel ID="pnlFiltrosAvanzados" runat="server" Visible="False">

@@ -33,6 +33,10 @@ namespace Negocios
             return daoMedico.readerEspecialidad();
         }
 
+        public SqlDataReader ObtenerListaMedicoPorEspecialidad(string cod)
+        {
+            return daoMedico.ObtenerListaMedicoPorEspecialidad(cod);
+        }
         public bool AgregarMedico(Medico medico)
         {
             return daoMedico.AgregarMedico(medico);

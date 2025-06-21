@@ -35,6 +35,27 @@ namespace Datos
             return datos.ObtenerLista("SELECT * FROM Especialidad");
         }
 
+        public SqlDataReader ObtenerListaMedicoPorEspecialidad(string cod)
+        {
+            SqlDataReader reader;
+            SqlConnection conexion;
+
+            try
+            {
+                conexion = datos.ObtenerConexion();
+                SqlCommand comando = new SqlCommand("SP_ObtenerListaMedicosPorEspecialidad", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@CodigoEspecialidad_ME", cod);
+                reader = comando.ExecuteReader(CommandBehavior.CloseConnection);                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return reader;
+        }
+
         //Carga los parametros en el SQL command
         private void CargarParametros(ref SqlCommand cmd, Medico medico)
         {

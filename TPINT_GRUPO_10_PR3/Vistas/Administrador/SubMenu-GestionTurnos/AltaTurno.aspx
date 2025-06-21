@@ -37,6 +37,10 @@
         .auto-style13 {
             width: 959px;
         }
+        .auto-style14 {
+            width: 1770px;
+            height: 29px;
+        }
     </style>
 </head>
 <body>
@@ -72,15 +76,26 @@
                     <td class="auto-style6" style="font-size: medium; text-decoration: underline overline"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Legajo:&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtLegajo" runat="server" Font-Size="Small" OnTextChanged="txtLegajo_TextChanged"></asp:TextBox>
-                        &nbsp;&nbsp;&nbsp;&nbsp; DNI Paciente:
-                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                    <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Especialidad:&nbsp;&nbsp;<asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" Width="120px">
+                        </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Médico:&nbsp;
+                        <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Width="202px">
+                            <asp:ListItem>-Seleccione una especialidad-</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mes:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="ddlMesFechaT" runat="server">
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI Paciente:
+                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fecha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlMesFechaT" runat="server" Height="20px" Width="120px">
                         </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
                     </td>
                 </tr>
                 <tr>

@@ -24,15 +24,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 lblUsuarioAdministrador.Text = "Administrador";
                 CargarDDLEspecialidad();
             }
-            else
-            {
-                // 🔥 Siempre que haya una especialidad seleccionada, cargá los médicos.
-                if (ddlEspecialidad.SelectedValue != "0")
-                {
-                    CargarDDLMedico();
-                }
-            }
-
         }
 
         private void CargarDDLEspecialidad()
@@ -46,6 +37,29 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
            
         }
+
+        private void CargarDDLMedico()
+        {
+            string cod = ddlEspecialidad.SelectedValue;
+
+            string medicoSeleccionado = ddlMedico.SelectedValue;
+
+            NegocioMedico negocio = new NegocioMedico();
+            SqlDataReader reader = negocio.ObtenerListaMedicoPorEspecialidad(cod);
+
+            ddlMedico.DataSource = reader;
+            ddlMedico.DataTextField = "Medico";
+            ddlMedico.DataValueField = "CodigoEspecialidad_ME";
+            ddlMedico.DataBind();
+
+            reader.Close();
+
+            if (ddlMedico.Items.FindByValue(medicoSeleccionado) != null)
+            {
+                ddlMedico.SelectedValue = medicoSeleccionado;
+            }
+        }
+
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             string cod = ddlEspecialidad.SelectedValue;
@@ -57,38 +71,9 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 return;
             }
 
-            NegocioMedico negocio = new NegocioMedico();
-            SqlDataReader reader = negocio.ObtenerListaMedicoPorEspecialidad(cod);
-
-            ddlMedico.DataSource = reader;
-            ddlMedico.DataTextField = "Medico";
-            ddlMedico.DataValueField = "CodigoEspecialidad_ME";
-            ddlMedico.DataBind();
-
-            reader.Close();
+            CargarDDLMedico();
         }
 
-        private void CargarDDLMedico()
-        {
-            string cod = ddlEspecialidad.SelectedValue;
-            NegocioMedico negocio = new NegocioMedico();
-            SqlDataReader reader = negocio.ObtenerListaMedicoPorEspecialidad(cod);
-
-            ddlMedico.DataSource = reader;
-            ddlMedico.DataTextField = "Medico";
-            ddlMedico.DataValueField = "CodigoEspecialidad_ME";
-            ddlMedico.DataBind();
-
-            reader.Close();
-
-        }
-
-
-        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        
+                        
     }
 }

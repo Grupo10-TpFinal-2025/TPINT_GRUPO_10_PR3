@@ -79,7 +79,7 @@
                     <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Especialidad:&nbsp;&nbsp;<asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" Width="120px">
                         </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Médico:&nbsp;
-                        <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Width="202px">
+                        <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" Width="202px">
                             <asp:ListItem>-Seleccione una especialidad-</asp:ListItem>
                         </asp:DropDownList>
                     </td>

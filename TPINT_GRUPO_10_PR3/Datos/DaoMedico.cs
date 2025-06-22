@@ -13,8 +13,9 @@ namespace Datos
     public class DaoMedico
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
-        private readonly AccesoDatos datos;
-        private string ConsultaBase = "SELECT M.Localidad_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', M.FechaNacimiento_ME AS 'Fecha Nacimiento' ,M.Nacionalidad_ME AS 'Nacionalidad' , (SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo', M.CodigoEspecialidad_ME AS 'CodEspecialidad' , (SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad'  FROM Medico AS M WHERE M.Estado_ME = 1";
+
+        private AccesoDatos datos;
+        private string ConsultaBase = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', M.FechaNacimiento_ME AS 'Nacimiento' ,M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo',(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad', M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1";
         private SqlCommand sqlCommand;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
@@ -216,7 +217,7 @@ namespace Datos
                         @Legajo_ME INT, @DNI_ME CHAR(8), @Nombre_ME VARCHAR(50), @Apellido_ME VARCHAR(50),
                         @Sexo_ME CHAR(1), @Nacionalidad_ME VARCHAR(50), @FechaNacimiento_ME DATE,
                         @Direccion_ME VARCHAR(100), @Localidad_ME VARCHAR(50), @CodProvincia_ME INT,
-                        @CodEspecialidad_ME INT, @Correo_ME VARCHAR(100), @Telefono_ME CHAR(12)
+                        @CodigoEspecialidad_ME INT, @Correo_ME VARCHAR(100), @Telefono_ME CHAR(12)
                     AS
                     BEGIN
                         UPDATE Medico SET 
@@ -224,7 +225,7 @@ namespace Datos
                             Nacionalidad_ME = @Nacionalidad_ME, FechaNacimiento_ME = @FechaNacimiento_ME, 
                             Direccion_ME = @Direccion_ME, Localidad_ME = @Localidad_ME, 
                             CodProvincia_ME = @CodProvincia_ME, 
-                            CodEspecialidad_ME = @CodEspecialidad_ME, 
+                            CodigoEspecialidad_ME = @CodigoEspecialidad_ME, 
                             Correo_ME = @Correo_ME, Telefono_ME = @Telefono_ME
                         WHERE Legajo_ME = @Legajo_ME;
                     END";

@@ -94,7 +94,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" AutoGenerateEditButton="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5">
+                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" AutoGenerateEditButton="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionMedicos_RowDataBound" AutoGenerateColumns="False">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField HeaderText="Legajo">
@@ -125,7 +125,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:TextBox>
+                                    <asp:Label ID="lbl_et_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
@@ -141,10 +141,10 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fecha Nacimiento">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_FechaNacimiento" runat="server" Text='<%# Bind("Fecha Nacimiento") %>'></asp:Label>
+                                    <asp:Label ID="lbl_et_FechaNacimiento" runat="server" Text='<%# Bind("Nacimiento") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_FechaNacimiento" runat="server" Text='<%# Bind("Fecha Nacimiento") %>'></asp:Label>
+                                    <asp:Label ID="lbl_it_FechaNacimiento" runat="server" Text='<%# Bind("Nacimiento") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nacionalidad">
@@ -157,7 +157,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Provincia">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" DataSourceID="dsSqlAcessoProvincias" DataTextField="Descripcion_PR" DataValueField="CodProvincia_PR">
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server">
                                     </asp:DropDownList>
                                 </EditItemTemplate>
                                 <ItemTemplate>
@@ -198,9 +198,10 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Especialidad">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_Especialidad" runat="server" Text='<%# Bind("CodEspecialidad") %>' Visible='<%# Bind("Especialidad") %>'></asp:Label>
+                                    <asp:Label ID="lbl_et_Especialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
+                                    <asp:Label ID="lbl_et_CodEspecialidad" runat="server" Text='<%# Bind("CodEspecialidad") %>' Visible="False"></asp:Label>
                                 </EditItemTemplate>
-                                <ItemTemplate>
+                                    <ItemTemplate>
                                     <asp:Label ID="lbl_it_Especialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -223,8 +224,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:SqlDataSource ID="dsSqlAcessoProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:TPI-Grupo10_ConnectionString %>" SelectCommand="SELECT [CodProvincia_PR], [Descripcion_PR] FROM [Provincia]"></asp:SqlDataSource>
-                </td>
+                    &nbsp;</td>
                 <td class="auto-style15">&nbsp;</td>
                 <td class="auto-style15">&nbsp;</td>
             </tr>

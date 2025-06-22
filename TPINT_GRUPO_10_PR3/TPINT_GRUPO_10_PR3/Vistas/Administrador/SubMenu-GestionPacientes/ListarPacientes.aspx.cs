@@ -52,20 +52,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
         }
 
-        protected void btnProvincia_Command(object sender, CommandEventArgs e)
-        {
-            if (e.CommandName == "FiltoProvincias")
-            {
-                paciente.CodProvincia = Convert.ToInt32(e.CommandArgument);
-                Session["TablaFiltrada"] = negocioPaciente.ObtenerPacientes_Filtrados(paciente, false, filtros);
-                gvListadoPacientes.DataSource = Session["TablaFiltrada"];
-                gvListadoPacientes.DataBind();
-
-                gvListadoPacientes.PageIndex = 0;
-                paciente.CodProvincia = 0;
-            }
-        }
-
         private bool[,] VerificarFiltroAvanzado()
         {
             if (IsFiltrosVacios())
@@ -257,6 +243,21 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
 
             gvListadoPacientes.DataBind();
+        }
+
+        protected System.Void btnProvincia_Command1(System.Object sender, System.Web.UI.WebControls.CommandEventArgs e)
+        {
+            if (e.CommandName == "FiltoProvincias")
+            {
+                paciente.CodProvincia = Convert.ToInt32(e.CommandArgument);
+                Session["TablaFiltrada"] = negocioPaciente.ObtenerPacientes_Filtrados(paciente, false, filtros);
+                gvListadoPacientes.DataSource = Session["TablaFiltrada"];
+                gvListadoPacientes.DataBind();
+
+                gvListadoPacientes.PageIndex = 0;
+                paciente.CodProvincia = 0;
+            }
+
         }
     }
 }

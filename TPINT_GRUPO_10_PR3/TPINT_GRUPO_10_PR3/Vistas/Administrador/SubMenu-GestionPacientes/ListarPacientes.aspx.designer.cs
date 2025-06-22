@@ -114,13 +114,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.Label lblDNInoEncontrado;
 
         /// <summary>
-        /// Control dlFiltroRangoEtarioPaciente.
+        /// Control dlFiltroProvincias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlFiltroRangoEtarioPaciente;
+        protected global::System.Web.UI.WebControls.DataList dlFiltroProvincias;
 
         /// <summary>
         /// Control dsSQL_AccesoBD.

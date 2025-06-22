@@ -82,12 +82,14 @@
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
-                        <asp:DataList ID="dlFiltroRangoEtarioPaciente" runat="server" DataSourceID="dsSQL_AccesoBD">
+                        <asp:DataList ID="dlFiltroProvincias" runat="server" DataSourceID="dsSQL_AccesoBD" DataKeyField="CodProvincia_PR">
                             <ItemTemplate>
-                                <asp:Button ID="btnProvincia" runat="server" Text='<%# Eval("Descripcion_PR") %>' CommandArgument='<%# Eval("CodProvincia_PR") %>' CommandName="FiltoProvincias" OnCommand="btnProvincia_Command" />
+                                <br />
+                                <asp:Button ID="btnProvincia" runat="server" CommandArgument='<%# Edit("CodProvincia_PR") %>' CommandName="FiltroProvincias" OnCommand="btnProvincia_Command1" Text='<%# Edit("Descripcion_PR") %>' />
+                                <br />
                             </ItemTemplate>
                         </asp:DataList>
-                        <asp:SqlDataSource ID="dsSQL_AccesoBD" runat="server"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="dsSQL_AccesoBD" runat="server" ConnectionString="<%$ ConnectionStrings:TPI-Grupo10Conexion %>" ProviderName="<%$ ConnectionStrings:TPI-Grupo10Conexion.ProviderName %>" SelectCommand="SELECT [CodProvincia_PR], [Descripcion_PR] FROM [Provincia] ORDER BY [Descripcion_PR]"></asp:SqlDataSource>
                     </td>
                     <td>
                         <br />

@@ -84,11 +84,12 @@
                     <td class="auto-style4">
                         <asp:GridView ID="gvProvincias" runat="server" AutoGenerateColumns="False">
                             <Columns>
-                                <asp:ButtonField Text="Botón" />
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnProvincia" runat="server" CommandArgument='<%# Bind("CodProvincia_PR") %>' CommandName="FiltroProvincias" OnCommand="btnProvincia_Command1" Text='<%# Bind("Descripcion_PR") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
-                            <EmptyDataTemplate>
-                                <asp:Button ID="btnProvincia" runat="server" CommandArgument='<%# Bind("CodProvincia_PR") %>' CommandName="FiltroProvincias" OnCommand="btnProvincia_Command1" Text='<%# Bind("Descripcion_PR") %>' />
-                            </EmptyDataTemplate>
                         </asp:GridView>
                     </td>
                     <td>

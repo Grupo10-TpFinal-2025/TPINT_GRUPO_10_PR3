@@ -22,7 +22,7 @@
         }
         .auto-style5 {
             width: 1770px;
-            height: 112px;
+            height: 65px;
         }
         .auto-style7 {
             height: 26px;
@@ -39,7 +39,11 @@
         }
         .auto-style14 {
             width: 1770px;
-            height: 29px;
+            height: 27px;
+        }
+        .auto-style15 {
+            width: 1770px;
+            height: 17px;
         }
     </style>
 </head>
@@ -73,16 +77,17 @@
                     <td class="auto-style12">
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style6" style="font-size: medium; text-decoration: underline overline"></td>
+                    <td class="auto-style6" style="font-size: medium; text-decoration: underline overline">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Especialidad:&nbsp;&nbsp;<asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" Width="120px">
+                    <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Especialidad:&nbsp;
+                        <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged1" Width="202px">
                         </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Médico:&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Médico:&nbsp;
                         <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" Width="202px" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
-                            <asp:ListItem>-Seleccione una especialidad-</asp:ListItem>
+                            
                         </asp:DropDownList>
-                        <asp:Label ID="lblMensaje" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -96,7 +101,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                    <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
                     </td>
                 </tr>
                 <tr>

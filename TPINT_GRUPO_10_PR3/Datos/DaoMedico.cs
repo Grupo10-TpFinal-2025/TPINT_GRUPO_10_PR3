@@ -35,25 +35,31 @@ namespace Datos
             return datos.ObtenerLista("SELECT * FROM Especialidad");
         }
 
-        public SqlDataReader ObtenerListaMedicoPorEspecialidad(string cod)
+        public DataTable ObtenerTablaMedicoPorEspecialidad(string cod)
         {
-            SqlDataReader reader;
+            DataTable tabla;
             SqlConnection conexion;
 
             try
             {
+                ValidarOCrearProcedimientoMedicoPorEspecialidad();
+
                 conexion = datos.ObtenerConexion();
                 SqlCommand comando = new SqlCommand("SP_ObtenerListaMedicosPorEspecialidad", conexion);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@CodigoEspecialidad_ME", cod);
-                reader = comando.ExecuteReader(CommandBehavior.CloseConnection);                
+
+                SqlDataAdapter adapter = new SqlDataAdapter(comando);
+                tabla = new DataTable();
+
+                adapter.Fill(tabla);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return reader;
+            return tabla;
         }
 
         //Carga los parametros en el SQL command
@@ -105,6 +111,42 @@ namespace Datos
             CargarParametros(ref sqlComand, medico);
 
             return datos.AltaPorParametros(sqlComand);
+        }
+
+        public void ValidarOCrearProcedimientoMedicoPorEspecialidad()
+        {
+            SqlConnection conexion = datos.ObtenerConexion();
+            using (conexion)
+            {
+                // Verificar si existe el procedimiento
+                string consultaExiste = @"
+                    SELECT COUNT(*) 
+                    FROM sys.objects 
+                    WHERE type = 'P' AND name = 'SP_ObtenerListaMedicosPorEspecialidad'";
+
+                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
+                int cantidad = (int)cmdExiste.ExecuteScalar();
+
+                if (cantidad == 0)
+                {
+                    // Crear el procedimiento si no existe
+                    string crearProc = @"
+                        CREATE PROCEDURE SP_ObtenerListaMedicosPorEspecialidad(
+                        @CodigoEspecialidad_ME INT
+                        )
+                        AS
+                        BEGIN
+                        SELECT Apellido_ME + ' ' + Nombre_ME AS 'Medico', 
+                               CodigoEspecialidad_ME
+                        FROM Medico
+                        WHERE CodigoEspecialidad_ME = @CodigoEspecialidad_ME
+                        END";
+
+                    SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
+                    cmdCrear.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }

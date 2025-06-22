@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,9 +34,9 @@ namespace Negocios
             return daoMedico.readerEspecialidad();
         }
 
-        public SqlDataReader ObtenerListaMedicoPorEspecialidad(string cod)
+        public DataTable ObtenerTablaMedicoPorEspecialidad(string cod)
         {
-            return daoMedico.ObtenerListaMedicoPorEspecialidad(cod);
+            return daoMedico.ObtenerTablaMedicoPorEspecialidad(cod);
         }
         public bool AgregarMedico(Medico medico)
         {

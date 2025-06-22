@@ -114,6 +114,24 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblLegajoNoEncontrado;
 
         /// <summary>
+        /// Control rfvTxtFiltroLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtFiltroLegajo;
+
+        /// <summary>
+        /// Control revTxtFiltroLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTxtFiltroLegajo;
+
+        /// <summary>
         /// Control sqldsDias.
         /// </summary>
         /// <remarks>
@@ -150,6 +168,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
+        /// Control ValidationSummary1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+
+        /// <summary>
         /// Control btnMenuFiltrosAvanzados.
         /// </summary>
         /// <remarks>
@@ -177,13 +204,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblDniMedico;
 
         /// <summary>
-        /// Control ddOperatorsDni.
+        /// Control ddlOperatorsDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddOperatorsDni;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOperatorsDni;
 
         /// <summary>
         /// Control txtIDniMedico.
@@ -249,6 +276,24 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtCorreoMedico;
 
         /// <summary>
+        /// Control revTxtFiltroDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTxtFiltroDni;
+
+        /// <summary>
+        /// Control revTxtFiltroApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTxtFiltroApellido;
+
+        /// <summary>
         /// Control btnAplicarFiltrosAvanzados.
         /// </summary>
         /// <remarks>
@@ -274,6 +319,15 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFiltrosAvanzadosVacios;
+
+        /// <summary>
+        /// Control ValidationSummary2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
 
         /// <summary>
         /// Control hpRegresarMenuGestionMedicos.

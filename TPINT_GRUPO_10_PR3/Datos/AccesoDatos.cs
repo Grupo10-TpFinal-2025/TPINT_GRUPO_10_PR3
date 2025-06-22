@@ -109,7 +109,6 @@ namespace Datos
         }
         public SqlDataAdapter ObtenerDataAdapter(string consulta, SqlConnection sqlConnection)
         {
-
             try
             {
                 dataAdapter = new SqlDataAdapter(consulta, sqlConnection);
@@ -187,6 +186,29 @@ namespace Datos
             return dataSet.Tables[NombreTabla];
         }
 
+        public DataTable ObtenerTablaFiltrada(string nombreTabla, SqlCommand consulta)
+        {
+            //Instancio el dataSet
+            dataSet = new DataSet();
+
+            //Abro la conexion
+            conexion = ObtenerConexion();
+
+            //Establezco la conexion al SqlCommand e instancio el dataAdapter
+            consulta.Connection = conexion;
+            dataAdapter = new SqlDataAdapter(consulta);
+
+            //Relleno el dataSet
+            dataAdapter.Fill(dataSet, nombreTabla);
+
+            //Cierro la conexion
+            conexion.Close();
+            estadoConexion = false;
+
+            //Devuelvo la tabla
+            return dataSet.Tables[nombreTabla];
+        }
+
         public SqlDataReader ObtenerLista(string consulta)
         {
             conexion = ObtenerConexion();
@@ -204,18 +226,5 @@ namespace Datos
 
             return sqlDataReader;
         }
-
-        public DataTable ObtenerTablaFiltrada(string nombreTabla, SqlCommand consulta)
-        {
-            dataSet = new DataSet();
-            conexion = ObtenerConexion();
-            consulta.Connection = conexion;
-            dataAdapter = new SqlDataAdapter(consulta);
-            dataAdapter.Fill(dataSet, nombreTabla);
-            conexion.Close();
-            estadoConexion = false;
-            return dataSet.Tables[nombreTabla];
-        }
-
     }
 }

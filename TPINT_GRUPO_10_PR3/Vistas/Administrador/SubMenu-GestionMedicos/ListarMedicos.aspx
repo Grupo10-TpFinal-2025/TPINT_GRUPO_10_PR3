@@ -27,6 +27,17 @@
         .auto-style5 {
             width: 357px;
         }
+        .auto-style6 {
+            width: 281px;
+            height: 370px;
+        }
+        .auto-style7 {
+            width: 357px;
+            height: 370px;
+        }
+        .auto-style8 {
+            height: 370px;
+        }
     </style>
 </head>
 <body>
@@ -74,10 +85,10 @@
             </table>
             <br />
             Búsqueda médico por legajo:
-                                <asp:TextBox ID="txtFiltroLegajoMedico" runat="server" Width="162px" TextMode="Number"></asp:TextBox>
-                            &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" />
+                                <asp:TextBox ID="txtFiltroLegajoMedico" runat="server" Width="162px" TextMode="Number" ValidationGroup="GrupoListarMedico"></asp:TextBox>
+                            &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" OnClick="btnFiltrarMedicoLegajo_Click" ValidationGroup="GrupoListarMedico" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" />
+                                <asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
                             &nbsp;&nbsp;
                                 <asp:Label ID="lblLegajoNoEncontrado" runat="server"></asp:Label>
                             <br />
@@ -86,11 +97,13 @@
                     <td class="auto-style4">
                         &nbsp;</td>
                     <td class="auto-style5">
-                        &nbsp;</td>
+                        <asp:RequiredFieldValidator ID="rfvTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Debe ingresar un valor antes de filtrar" ValidationGroup="GrupoListarMedico">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números naturales en el Legajo" ValidationExpression="^\d+$" ValidationGroup="GrupoListarMedico">*</asp:RegularExpressionValidator>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style6">
                         <asp:SqlDataSource ID="sqldsDias" runat="server" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=TPI-Grupo10;Integrated Security=True;Encrypt=False" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Descripcion_DI] FROM [Dia]"></asp:SqlDataSource>
                         <asp:DataList ID="dlFiltroDiasAtendidosM" runat="server" DataSourceID="sqldsDias">
                             <ItemTemplate>
@@ -100,7 +113,7 @@
                             </ItemTemplate>
                         </asp:DataList>
                     </td>
-                    <td class="auto-style5">
+                    <td class="auto-style7">
                         <asp:GridView ID="gvListaMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvListaMedicos_PageIndexChanging">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <EditRowStyle BackColor="#999999" />
@@ -116,11 +129,22 @@
                         </asp:GridView>
                         <br />
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                        <br />
-                        <br />
+                        </td>
+                    <td class="auto-style8"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="GrupoListarMedico" />
+                    </td>
+                    <td class="auto-style5">
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">
+                        &nbsp;</td>
+                    <td class="auto-style5">
                         <asp:Button ID="btnMenuFiltrosAvanzados" runat="server" Height="29px" Text="Aplicar Filtros Avanzados" Width="234px" OnClick="btnMenuFiltrosAvanzados_Click" />
-                        <br />
-                        <br />
                         </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -131,38 +155,42 @@
                         <td>
                             <br />
                             <asp:Label ID="lblDniMedico" runat="server" Text="DNI: "></asp:Label>
-                            &nbsp;<asp:DropDownList ID="ddOperatorsDni" runat="server" Height="20px" Width="105px">
-                                <asp:ListItem Value="igual a">Igual a:</asp:ListItem>
-                                <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
-                                <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
+                            &nbsp;<asp:DropDownList ID="ddlOperatorsDni" runat="server" Height="20px" Width="105px">
+                                <asp:ListItem Value="1">Igual a:</asp:ListItem>
+                                <asp:ListItem Value="2">Mayor a:</asp:ListItem>
+                                <asp:ListItem Value="3">Menor a:</asp:ListItem>
                             </asp:DropDownList>
-                            &nbsp;<asp:TextBox ID="txtIDniMedico" runat="server" Width="54px"></asp:TextBox>
+                            &nbsp;<asp:TextBox ID="txtIDniMedico" runat="server" Width="54px" ValidationGroup="GrupoFiltrarAvanzado"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;
                             <asp:Label ID="lblApellidoMedico" runat="server" Text="Apellido:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsApellido" runat="server" Height="20px" style="margin-bottom: 0px">
-                                <asp:ListItem Value="contiene">Contiene:</asp:ListItem>
-                                <asp:ListItem Value="empieza con">Empieza con:</asp:ListItem>
-                                <asp:ListItem Value="termina con">Termina con:</asp:ListItem>
+                                <asp:ListItem Value="1">Contiene:</asp:ListItem>
+                                <asp:ListItem Value="2">Empieza con:</asp:ListItem>
+                                <asp:ListItem Value="3">Termina con:</asp:ListItem>
                             </asp:DropDownList>
-                            <asp:TextBox ID="txtApellidoMedico" runat="server" Width="145px"></asp:TextBox>
+                            <asp:TextBox ID="txtApellidoMedico" runat="server" Width="145px" ValidationGroup="GrupoFiltrarAvanzado"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;
                             <asp:Label ID="lblCorreoMedico" runat="server" Text="Correo:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsCorreo" runat="server" Height="20px" style="margin-bottom: 0px">
-                                <asp:ListItem Value="contiene">Contiene:</asp:ListItem>
-                                <asp:ListItem Value="empieza con">Empieza con:</asp:ListItem>
-                                <asp:ListItem Value="termina con">Termina con:</asp:ListItem>
+                                <asp:ListItem Value="1">Contiene:</asp:ListItem>
+                                <asp:ListItem Value="2">Empieza con:</asp:ListItem>
+                                <asp:ListItem Value="3">Termina con:</asp:ListItem>
                             </asp:DropDownList>
-                            &nbsp;<asp:TextBox ID="txtCorreoMedico" runat="server" Width="145px"></asp:TextBox>
+                            &nbsp;<asp:TextBox ID="txtCorreoMedico" runat="server" Width="145px" ValidationGroup="GrupoFiltrarAvanzado"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:RegularExpressionValidator ID="revTxtFiltroDni" runat="server" ControlToValidate="txtIDniMedico" ErrorMessage="Solo se permite el ingreso de números naturales en el Legajo" ValidationExpression="^\d+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:RegularExpressionValidator ID="revTxtFiltroApellido" runat="server" ControlToValidate="txtApellidoMedico" ErrorMessage="Solo se permite el ingreso de letras y espacios" ValidationExpression="^[A-ZÁÉÍÓÚÑa-záéíóúñ\s]+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                     </tr>
                     <tr>
                         <td>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" OnClick="btnAplicarFiltrosAvanzados_Click" ValidationGroup="GrupoFiltrarAvanzado" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnLimpiarFiltrosMedicos" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" />
+                            <asp:Button ID="btnLimpiarFiltrosMedicos" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" OnClick="btnLimpiarFiltrosMedicos_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <br />
                             &nbsp;<asp:Label ID="lblFiltrosAvanzadosVacios" runat="server"></asp:Label>
@@ -170,7 +198,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:ValidationSummary ID="ValidationSummary2" runat="server" ValidationGroup="GrupoFiltrarAvanzado" />
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>

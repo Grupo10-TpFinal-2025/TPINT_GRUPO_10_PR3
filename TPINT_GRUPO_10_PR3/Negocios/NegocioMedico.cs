@@ -39,6 +39,11 @@ namespace Negocios
             return daoMedico.getTablaMedicos();
         }
 
+        public DataTable getTablaMedicosFiltrada(Medico medico, bool aplicarFiltroAvanzado, bool[,] filtros)
+        {
+            return daoMedico.getTablaMedicosFiltrada(medico, aplicarFiltroAvanzado, filtros);
+        }
+
         public bool AgregarMedico(Medico medico)
         {
             return daoMedico.AgregarMedico(medico);

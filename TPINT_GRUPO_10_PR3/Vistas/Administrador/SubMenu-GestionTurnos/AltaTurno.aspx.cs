@@ -74,6 +74,10 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             CargarDDLMedico();
         }
 
-                        
+        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblMensaje.Text = ddlMedico.SelectedValue;
+
+        }
     }
 }

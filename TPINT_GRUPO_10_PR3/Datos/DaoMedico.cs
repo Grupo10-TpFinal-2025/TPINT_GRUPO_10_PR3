@@ -35,9 +35,9 @@ namespace Datos
             return datos.ObtenerLista("SELECT * FROM Especialidad");
         }
 
-        public DataTable ObtenerTablaMedicoPorEspecialidad(string cod)
+        public SqlDataReader ObtenerTablaMedicoPorEspecialidad(string cod)
         {
-            DataTable tabla;
+            SqlDataReader reader;
             SqlConnection conexion;
 
             try
@@ -49,17 +49,14 @@ namespace Datos
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@CodigoEspecialidad_ME", cod);
 
-                SqlDataAdapter adapter = new SqlDataAdapter(comando);
-                tabla = new DataTable();
-
-                adapter.Fill(tabla);
+                reader = comando.ExecuteReader();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return tabla;
+            return reader;
         }
 
         //Carga los parametros en el SQL command
@@ -136,7 +133,8 @@ namespace Datos
                         )
                         AS
                         BEGIN
-                        SELECT Apellido_ME + ' ' + Nombre_ME AS 'Medico', 
+                        SELECT Legajo_ME,
+                               Apellido_ME + ' ' + Nombre_ME AS 'Medico', 
                                CodigoEspecialidad_ME
                         FROM Medico
                         WHERE CodigoEspecialidad_ME = @CodigoEspecialidad_ME

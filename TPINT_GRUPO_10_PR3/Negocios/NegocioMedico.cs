@@ -34,7 +34,7 @@ namespace Negocios
             return daoMedico.readerEspecialidad();
         }
 
-        public DataTable ObtenerTablaMedicoPorEspecialidad(string cod)
+        public SqlDataReader ObtenerTablaMedicoPorEspecialidad(string cod)
         {
             return daoMedico.ObtenerTablaMedicoPorEspecialidad(cod);
         }

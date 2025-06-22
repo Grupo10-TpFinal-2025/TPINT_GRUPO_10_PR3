@@ -17,13 +17,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
 
         //Page load
         protected void Page_Load(object sender, EventArgs e)
-<<<<<<< HEAD
         {
-            // Habilitar validadores
-=======
-		{
-            //Comando para que anden los validators
->>>>>>> Encontre el problema de Alejo con "Medico"
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
             // Verificar si hay sesión activa

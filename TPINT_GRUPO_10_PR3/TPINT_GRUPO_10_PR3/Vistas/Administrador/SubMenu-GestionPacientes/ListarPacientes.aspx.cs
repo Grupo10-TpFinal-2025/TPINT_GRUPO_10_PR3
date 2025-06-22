@@ -27,8 +27,15 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             {
                 lblUsuarioAdministrador.Text = "Administrador";
                 CargarTablaPacientes();
+                CargarProvincias();
                 Session["TablaFiltrada"] = null;
             }
+        }
+
+        public void CargarProvincias()
+        {
+            gvProvincias.DataSource = negocioPaciente.getRegistrosProvincias();
+            gvProvincias.DataBind();
         }
 
         public void CargarTablaPacientes()
@@ -245,7 +252,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             gvListadoPacientes.DataBind();
         }
 
-        protected System.Void btnProvincia_Command1(System.Object sender, System.Web.UI.WebControls.CommandEventArgs e)
+        protected void btnProvincia_Command1(System.Object sender, System.Web.UI.WebControls.CommandEventArgs e)
         {
             if (e.CommandName == "FiltoProvincias")
             {

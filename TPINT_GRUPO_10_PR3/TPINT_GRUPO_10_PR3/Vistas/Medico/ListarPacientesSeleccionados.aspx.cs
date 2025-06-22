@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Vistas.Medicos
+namespace Vistas.Medico
 {
     public partial class ListarPacientesSeleccionados : System.Web.UI.Page
     {

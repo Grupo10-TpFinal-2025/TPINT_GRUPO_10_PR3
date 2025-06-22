@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Vistas.Medico
+namespace Vistas.Medicos
 {
-    public partial class ListarPacientesSeleccionados : System.Web.UI.Page
+    public partial class CambioDeTurno : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

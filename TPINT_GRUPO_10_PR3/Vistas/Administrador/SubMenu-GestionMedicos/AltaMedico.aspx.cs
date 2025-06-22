@@ -67,30 +67,6 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "Ha ocurrido un error.";
             }
-            
-            //Subo el objeto medico a la bd
-                bandera = negocioMedico.AgregarMedico(medico);
-
-                //Si todo salio bien
-                if (bandera)
-                {
-                    //Doy opcion a cargar las disponibilidades del medico
-                    hlDisponibilidadRapida.Visible = true;
-
-                    //borro los campos en el formulario
-                    LimpiarCampos();
-
-                    //Mensaje de exito al cargar medico
-                    lblMensaje.Visible = true;
-                    lblMensaje.Text = "Se ha cargado con exito al sistema.";
-
-                }
-                else
-                {
-                    //Mensaje de error
-                    lblMensaje.Visible = true;
-                    lblMensaje.Text = "Ha ocurrido un error.";
-                }
         }
 
         //Funcion que carga los ddl

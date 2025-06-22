@@ -87,13 +87,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.TextBox txtFiltroDNIPaciente;
 
         /// <summary>
-        /// Control btnFiltrarPAcienteDNI.
+        /// Control btnFiltrarPacienteDNI.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFiltrarPAcienteDNI;
+        protected global::System.Web.UI.WebControls.Button btnFiltrarPacienteDNI;
 
         /// <summary>
         /// Control btnMostrarTodosPacientes.
@@ -123,13 +123,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.DataList dlFiltroRangoEtarioPaciente;
 
         /// <summary>
-        /// Control lvListarPacientes.
+        /// Control dsSQL_AccesoBD.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvListarPacientes;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsSQL_AccesoBD;
 
         /// <summary>
         /// Control lblMensaje.
@@ -139,6 +139,15 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
+
+        /// <summary>
+        /// Control gvListadoPacientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvListadoPacientes;
 
         /// <summary>
         /// Control btnMenuFiltrosAvanzados.
@@ -168,13 +177,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.Label lblDniMedico;
 
         /// <summary>
-        /// Control ddOperatorsDni.
+        /// Control ddlOperatorsDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddOperatorsDni;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOperatorsDni;
 
         /// <summary>
         /// Control txtIDniPaciente.
@@ -249,13 +258,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.Button btnAplicarFiltrosAvanzados;
 
         /// <summary>
-        /// Control btnLimpiarFiltrosMedicos.
+        /// Control btnLimpiarFiltrosPacientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpiarFiltrosMedicos;
+        protected global::System.Web.UI.WebControls.Button btnLimpiarFiltrosPacientes;
 
         /// <summary>
         /// Control lblFiltrosAvanzadosVacios.

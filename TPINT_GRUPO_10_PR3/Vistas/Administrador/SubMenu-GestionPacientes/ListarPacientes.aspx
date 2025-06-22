@@ -73,23 +73,27 @@
             </table>
             <br />
             Búsqueda por DNI del paciente: <asp:TextBox ID="txtFiltroDNIPaciente" runat="server" Width="162px" TextMode="Number"></asp:TextBox>
-                            &nbsp;<asp:Button ID="btnFiltrarPAcienteDNI" runat="server" Text="Filtrar" />
+                            &nbsp;<asp:Button ID="btnFiltrarPacienteDNI" runat="server" Text="Filtrar" OnClick="btnFiltrarPacienteDNI_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnMostrarTodosPacientes" runat="server" Text="Mostrar Todos" />
+                                <asp:Button ID="btnMostrarTodosPacientes" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodosPacientes_Click" />
                             &nbsp;&nbsp;
                                 <asp:Label ID="lblDNInoEncontrado" runat="server"></asp:Label>
                             <br />
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
-                        <asp:DataList ID="dlFiltroRangoEtarioPaciente" runat="server">
+                        <asp:DataList ID="dlFiltroRangoEtarioPaciente" runat="server" DataSourceID="dsSQL_AccesoBD">
+                            <ItemTemplate>
+                                <asp:Button ID="btnProvincia" runat="server" Text='<%# Eval("Descripcion_PR") %>' CommandArgument='<%# Eval("CodProvincia_PR") %>' CommandName="FiltoProvincias" OnCommand="btnProvincia_Command" />
+                            </ItemTemplate>
                         </asp:DataList>
+                        <asp:SqlDataSource ID="dsSQL_AccesoBD" runat="server"></asp:SqlDataSource>
                     </td>
                     <td>
-                        <asp:ListView ID="lvListarPacientes" runat="server">
-                        </asp:ListView>
                         <br />
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                        <asp:GridView ID="gvListadoPacientes" runat="server" OnPageIndexChanging="gvListadoPacientes_PageIndexChanging">
+                        </asp:GridView>
                         <br />
                         <br />
                         <asp:Button ID="btnMenuFiltrosAvanzados" runat="server" Height="29px" Text="Aplicar Filtros Avanzados" Width="234px" OnClick="btnMenuFiltrosAvanzados_Click" />
@@ -104,7 +108,7 @@
                         <td>
                             <br />
                             <asp:Label ID="lblDniMedico" runat="server" Text="DNI: "></asp:Label>
-                            &nbsp;<asp:DropDownList ID="ddOperatorsDni" runat="server" Height="20px" Width="105px">
+                            &nbsp;<asp:DropDownList ID="ddlOperatorsDni" runat="server" Height="20px" Width="105px">
                                 <asp:ListItem Value="igual a">Igual a:</asp:ListItem>
                                 <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
                                 <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
@@ -133,9 +137,9 @@
                     </tr>
                     <tr>
                         <td>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" OnClick="btnAplicarFiltrosAvanzados_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnLimpiarFiltrosMedicos" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" />
+                            <asp:Button ID="btnLimpiarFiltrosPacientes" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" OnClick="btnLimpiarFiltrosPacientes_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <br />
                             &nbsp;<asp:Label ID="lblFiltrosAvanzadosVacios" runat="server"></asp:Label>
@@ -155,6 +159,10 @@
                     <td>
                         <asp:HyperLink ID="hlMenuGestionPacientes" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/MenuGestionPacientes.aspx">Regresar a Menú de Gestión de Pacientes...</asp:HyperLink>
                     </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
                 </tr>
             </table>
             <br />

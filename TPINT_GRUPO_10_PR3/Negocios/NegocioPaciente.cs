@@ -14,6 +14,8 @@ namespace Negocios
    public class NegocioPaciente
     {
         DaoPaciente daoP;
+        private bool[,] filtros = new bool[3, 3];
+        Paciente paciente1 = new Paciente();
 
         public NegocioPaciente()
         {
@@ -56,6 +58,15 @@ namespace Negocios
             return daoP.BajaLogicaPacientePorDNI(dni) == 1;
         }
 
+        public DataTable ObtenerPacientes()
+        {
+            return daoP.ObtenerPacientes();
+        }
+
+        public DataTable ObtenerPacientes_Filtrados(Paciente paciente, bool FiltrosAvanzados, bool[,] filtros)
+        {
+            return daoP.ObtenerPacientes_Filtrados(paciente, FiltrosAvanzados, filtros);
+        }
     }
 }
 

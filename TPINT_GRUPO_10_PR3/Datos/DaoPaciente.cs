@@ -133,6 +133,117 @@ namespace Datos
             }
         }
 
-    }
+        public DataTable ObtenerPacientes()
+        {
+            string consulta = consultaBaseSQL + " WHERE P.Estado_PA = 1 ORDER BY P.Apellido_PA, P.Nombre_PA";
+            return datos.ObtenerTabla("Pacientes", consulta);
+        }
 
+        public void ArmarParametro_FiltroPaciente(ref SqlCommand command, Paciente paciente)
+        {
+            if(paciente.Dni.Length > 0)
+            {
+                command.Parameters.AddWithValue("@DNI_PA", paciente.Dni);
+            }
+            else
+            {
+                command.Parameters.AddWithValue("@CodProvincia_PA", paciente.CodProvincia);
+            }
+        }
+
+        public DataTable ObtenerPacientes_Filtrados(Paciente paciente, bool FiltrosAvanzados, bool[,] filtros)
+        {
+            string consulta =
+                "SELECT Legajo_PA AS Legajo, Apellido_PA AS Apellido, Nombre_PA  AS Nombre, Sexo_PA AS Sexo, Nacionalidad_PA AS Nacionalidad, " +
+                "FORMAT(FechaNacimiento_PA, 'dd/MM/yyyy') AS [Fecha de Nacimiento], Direccion_PA AS Dirección, Localidad_PA AS Localidad, " +
+                "Descripcion_PR AS Provincia, Correo_PA AS Correo, Telefono_PA AS Teléfono" + "DNI_PA AS DNI " +
+                "FROM (Paciente INNER JOIN Provincia " + "ON CodProvincia_PA = CodProvincia_PR)" +
+                "WHERE Estado_PA = 1";
+
+            if (!FiltrosAvanzados)
+            {
+                if (paciente.Dni.Trim().Length > 0)
+                {
+                    consulta += " AND DNI_PA = @DNI_PA";
+                }
+                else if (paciente.CodProvincia > 0)
+                {
+                    consulta += " AND CodProvincia_PA = @CodProvincia_PA";
+                }
+
+                sqlCommand = new SqlCommand(consulta);
+                ArmarParametro_FiltroPaciente(ref sqlCommand, paciente);
+
+                return datos.ObtenerTablaFiltrada("Paciente", sqlCommand);
+            }
+            else
+            {
+                sqlCommand = GenerarConsultasAvanzada_Pacientes(paciente, filtros, consulta);
+                return datos.ObtenerTablaFiltrada("Paciente", sqlCommand);
+            }
+        }
+
+        private SqlCommand GenerarConsultasAvanzada_Pacientes(Paciente paciente, bool[,] filtros, string consulta)
+        {
+            sqlCommand = new SqlCommand();
+
+            if (paciente.Dni.Trim().Length > 0)
+            {
+                if (filtros[0, 0]) // Igual a
+                {
+                    consulta += " AND DNI_PA = @DNI_PA";
+                }
+                else if (filtros[0, 1]) // Mayor a
+                {
+                    consulta += " AND DNI_PA > @DNI_PA";
+                }
+                else if (filtros[0, 2]) // Menor a
+                {
+                    consulta += " AND DNI_ME < @DNI_ME";
+                }
+
+                sqlCommand.Parameters.Add("@DNI_PA", SqlDbType.Char, 8).Value = paciente.Dni;
+            }
+
+            if (paciente.Nombre.Trim().Length > 0)
+            {
+                if (filtros[1, 0]) // Contiene
+                {
+                    consulta += " AND Nombre_PA LIKE % @Nombre_PA %";
+                }
+                else if (filtros[1, 1]) // Empieza con
+                {
+                    consulta += " AND Nombre_PA LIKE @Nombre_PA %";
+                }
+                else if (filtros[1, 2]) // Termina con
+                {
+                    consulta += " AND Nombre_PA LIKE % @Nombre_PA";
+                }
+
+                sqlCommand.Parameters.Add("@Nombre_PA", SqlDbType.NVarChar, 50).Value = paciente.Nombre;
+            }
+
+            if (paciente.Telefono.Trim().Length > 0)
+            {
+                if (filtros[2, 0]) // Contiene
+                {
+                    consulta += " AND Telefono_PA LIKE % @Telefono_PA %";
+                }
+                else if (filtros[2, 1]) // Empieza con
+                {
+                    consulta += " AND Telefono_PA LIKE @Telefono_PA %";
+                }
+                else if (filtros[2, 2]) // Termina con
+                {
+                    consulta += " AND Telefono_PA LIKE % @Telefono_PA";
+                }
+
+                sqlCommand.Parameters.Add("@Telefono_PA", SqlDbType.Char, 10).Value = paciente.Telefono;
+            }
+
+            sqlCommand.CommandText = consulta;
+
+            return sqlCommand;
+        }
+    }
 }

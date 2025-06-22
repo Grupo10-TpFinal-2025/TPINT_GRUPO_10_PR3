@@ -16,8 +16,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         NegocioPaciente negocioPaciente = new NegocioPaciente();
         Paciente paciente = new Paciente();
         private bool[,] filtros = new bool[3, 3];
-        bool FiltrosAvanzados = false;
-        DataTable dataTable = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] == null)
@@ -29,9 +27,8 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             {
                 lblUsuarioAdministrador.Text = "Administrador";
                 CargarTablaPacientes();
+                Session["TablaFiltrada"] = null;
             }
-
-
         }
 
         public void CargarTablaPacientes()
@@ -60,10 +57,11 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             if (e.CommandName == "FiltoProvincias")
             {
                 paciente.CodProvincia = Convert.ToInt32(e.CommandArgument);
-                dataTable = negocioPaciente.ObtenerPacientes_Filtrados(paciente, FiltrosAvanzados, filtros); 
-                gvListadoPacientes.DataSource = dataTable;
+                Session["TablaFiltrada"] = negocioPaciente.ObtenerPacientes_Filtrados(paciente, false, filtros);
+                gvListadoPacientes.DataSource = Session["TablaFiltrada"];
                 gvListadoPacientes.DataBind();
 
+                gvListadoPacientes.PageIndex = 0;
                 paciente.CodProvincia = 0;
             }
         }
@@ -145,7 +143,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         {
             if (Page.IsValid)
             {
-                FiltrosAvanzados = true;
                 txtFiltroDNIPaciente.Text = string.Empty;
 
                 paciente.Dni = txtFiltroDNIPaciente.Text.Trim();
@@ -164,20 +161,17 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
                 filtros = VerificarFiltroAvanzado();
 
-                DataTable tablaFiltrada = negocioPaciente.ObtenerPacientes_Filtrados(paciente, FiltrosAvanzados, filtros);
+                DataTable tablaFiltrada = negocioPaciente.ObtenerPacientes_Filtrados(paciente, true, filtros);
+                Session["TablaFiltrada"] = tablaFiltrada;
 
                 if (tablaFiltrada.Rows.Count == 0)
                 {
                     lblFiltrosAvanzadosVacios.Text = "No se encontraron resultados con los filtros aplicados.";
-                    gvListadoPacientes.DataSource = null;
-                    gvListadoPacientes.DataBind();
                 }
-                else
-                {
-                    dataTable = tablaFiltrada;
-                    gvListadoPacientes.DataSource = dataTable;
-                    gvListadoPacientes.DataBind();
-                }
+
+                gvListadoPacientes.DataSource = tablaFiltrada;
+                gvListadoPacientes.DataBind();
+                gvListadoPacientes.PageIndex = 0; 
                 paciente = new Paciente();
             }
         }
@@ -192,7 +186,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             ddlOperatorsNombre.SelectedIndex = 0;
             ddlOperatorsTelefono.SelectedIndex = 0;
             filtros = new bool[3, 3];
-            FiltrosAvanzados = false;
         }
 
         protected void btnLimpiarFiltrosPacientes_Click(object sender, EventArgs e)
@@ -204,6 +197,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
             else
             {
+                Session["TablaFiltrada"] = null;
                 LimpiarFiltrosAvanzados();
                 gvListadoPacientes.PageIndex = 0;
                 CargarTablaPacientes();
@@ -216,57 +210,53 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         {
             if (Page.IsValid)
             {
-                FiltrosAvanzados = false;
                 txtFiltroDNIPaciente.Text = string.Empty;
                 lblFiltrosAvanzadosVacios.Text = string.Empty;
 
                 paciente.Dni = txtFiltroDNIPaciente.Text.Trim();
-                DataTable tablaFiltrada = negocioPaciente.ObtenerPacientes_Filtrados(paciente, FiltrosAvanzados, filtros);
-                
+                DataTable tablaFiltrada = negocioPaciente.ObtenerPacientes_Filtrados(paciente, false, filtros);
+                Session["TablaFiltrada"] = tablaFiltrada;
+
                 if (tablaFiltrada.Rows.Count == 0)
                 {
                     lblDNInoEncontrado.Text = "El DNI ingresado no existe.";
-                    dataTable = null;
-                    gvListadoPacientes.DataSource = dataTable;
-                    gvListadoPacientes.DataBind();
                 }
                 else
                 {
                     lblDNInoEncontrado.Text = string.Empty;
-                    dataTable = tablaFiltrada;
-                    gvListadoPacientes.DataSource = dataTable;
-                    gvListadoPacientes.DataBind();
                 }
+
+                gvListadoPacientes.DataSource = tablaFiltrada;
+                gvListadoPacientes.DataBind();
+                gvListadoPacientes.PageIndex = 0;
                 paciente = new Paciente(); 
             }
         }
 
         protected void btnMostrarTodosPacientes_Click(object sender, EventArgs e)
         {
-            FiltrosAvanzados = false;
-
             LimpiarFiltrosAvanzados();
             txtFiltroDNIPaciente.Text = string.Empty;
             lblDNInoEncontrado.Text = string.Empty;
-            dataTable = null;
+            Session["TablaFiltrada"] = null;
 
             gvListadoPacientes.PageIndex = 0; 
             CargarTablaPacientes();
-
-            
         }
 
         protected void gvListadoPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvListadoPacientes.PageIndex = e.NewPageIndex;
-            if (FiltrosAvanzados || dataTable.Rows.Count > 0)
+            if (Session["TablaFiltrada"] != null)
             {
-                gvListadoPacientes.DataSource = negocioPaciente.ObtenerPacientes_Filtrados(paciente, FiltrosAvanzados, filtros);
+                gvListadoPacientes.DataSource = Session["TablaFiltrada"];
             }
             else
             {
                 gvListadoPacientes.DataSource = negocioPaciente.ObtenerPacientes();
             }
+
+            gvListadoPacientes.DataBind();
         }
     }
 }

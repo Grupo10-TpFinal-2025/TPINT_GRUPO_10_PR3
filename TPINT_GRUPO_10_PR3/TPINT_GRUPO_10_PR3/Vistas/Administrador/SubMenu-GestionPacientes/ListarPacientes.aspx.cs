@@ -18,10 +18,11 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         private bool[,] filtros = new bool[3, 3];
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }
+            }*/
 
             if (!IsPostBack)
             {

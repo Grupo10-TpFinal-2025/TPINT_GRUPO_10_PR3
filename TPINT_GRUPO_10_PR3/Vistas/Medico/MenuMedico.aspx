@@ -34,7 +34,7 @@
                 <td class="auto-style6">
                     <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/Login.aspx">Cerrar sesión</asp:HyperLink>
                 </td>
-                <td class="auto-style2">Usuario:<strong><asp:Label ID="lblModoMedico" runat="server" Text="Médico"></asp:Label>
+                <td class="auto-style2">Usuario:<strong><asp:Label ID="lblUsuario" runat="server"></asp:Label>
                     </strong></td>
                 <td class="auto-style2"></td>
                 <td class="auto-style2"></td>
@@ -89,7 +89,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td class="auto-style4">
-                    <asp:Button ID="btnCambiarTurno" runat="server" Height="30px" Text="Cambiar turno" Width="164px" />
+                    <asp:Button ID="btnCambiarTurno" runat="server" Height="30px" Text="Cambiar turno" Width="164px" OnClick="btnCambiarTurno_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -119,7 +119,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td class="auto-style4">
-                    <asp:Button ID="btnListarPacienteSeleccionado" runat="server" Height="30px" Text="Listar paciente/s" Width="164px" />
+                    <asp:Button ID="btnListarPacienteSeleccionado" runat="server" Height="30px" Text="Listar paciente/s" Width="164px" OnClick="btnListarPacienteSeleccionado_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

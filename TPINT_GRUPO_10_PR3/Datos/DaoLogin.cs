@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-
 namespace Datos
+
 {
     public class DaoLogin
     {
@@ -17,15 +17,51 @@ namespace Datos
             datos = new AccesoDatos();
         }
 
-        public DataTable ObtenerUsuario(string usuario, string contrasena)
+        // LOGIN PARA ADMINISTRADORES
+        public DataTable ObtenerAdministrador(string usuario, string contrasena)
         {
             string consulta = "SELECT * FROM UsuarioAdministrador WHERE Nombre_UA = @usuario AND Contraseña_UA = @contrasena AND Estado_UA = 1";
 
-            SqlCommand comando = new SqlCommand(consulta);
-            comando.Parameters.AddWithValue("@usuario", usuario);
-            comando.Parameters.AddWithValue("@contrasena", contrasena);
+            SqlCommand cmd = new SqlCommand(consulta);
+            cmd.Parameters.AddWithValue("@usuario", usuario);
+            cmd.Parameters.AddWithValue("@contrasena", contrasena);
 
-            return datos.ObtenerTablaFiltrada("UsuarioAdministrador", comando);
+            return datos.ObtenerTablaFiltrada("UsuarioAdministrador", cmd);
+        }
+
+        // LOGIN PARA MÉDICOS
+        public DataTable ObtenerMedico(string usuario, string contrasena)
+        {
+            string consulta = "SELECT * FROM UsuarioMedico WHERE Nombre_UM = @usuario AND Contraseña_UM = @contrasena AND Estado_UM = 1";
+
+            SqlCommand cmd = new SqlCommand(consulta);
+            cmd.Parameters.AddWithValue("@usuario", usuario);
+            cmd.Parameters.AddWithValue("@contrasena", contrasena);
+
+            return datos.ObtenerTablaFiltrada("UsuarioMedico", cmd);
+        }
+
+        // OBTENER NOMBRE + APELLIDO DEL MÉDICO (para mostrar en el label luego del login)
+        public string ObtenerNombreCompletoMedico(int codUsuarioMedico)
+        {
+            string consulta = @"SELECT M.Nombre_ME, M.Apellido_ME 
+                                FROM Medico M 
+                                INNER JOIN UsuarioMedico UM ON M.Legajo_ME = UM.CodUsuarioMedico_UM
+                                WHERE UM.CodUsuarioMedico_UM = @cod";
+
+            SqlCommand cmd = new SqlCommand(consulta);
+            cmd.Parameters.AddWithValue("@cod", codUsuarioMedico);
+
+            DataTable tabla = datos.ObtenerTablaFiltrada("Medico", cmd);
+
+            if (tabla.Rows.Count > 0)
+            {
+                string nombre = tabla.Rows[0]["Nombre_ME"].ToString();
+                string apellido = tabla.Rows[0]["Apellido_ME"].ToString();
+                return $"{nombre} {apellido}";
+            }
+
+            return string.Empty;
         }
     }
 }

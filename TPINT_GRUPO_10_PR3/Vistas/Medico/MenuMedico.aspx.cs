@@ -11,6 +11,39 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+
+            if (!IsPostBack)
+            {
+                lblUsuario.Text = Session["usuario"].ToString();
+            }
+        }
+
+        protected void btnListarPacienteSeleccionado_Click(object sender, EventArgs e)
+        {
+            if (Session["usuario"] != null)
+            {
+                Response.Redirect("~/Medico/ListarPacientesSeleccionados.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx"); // Por si entra sin estar logueado
+            }
+        }
+
+        protected void btnCambiarTurno_Click(object sender, EventArgs e)
+        {
+            if (Session["usuario"] != null)
+            {
+                Response.Redirect("~/Medico/CambioDeTurno.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx"); // Por si entra sin estar logueado
+            }
 
         }
     }

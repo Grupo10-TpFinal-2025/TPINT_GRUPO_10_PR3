@@ -23,10 +23,18 @@ namespace Vistas
 
             NegocioLogin negocioLogin = new NegocioLogin();
 
-            if (negocioLogin.ValidarUsuario(usuario, contrasena))
+            // Validación Administrador
+            if (negocioLogin.ValidarUsuarioAdministrador(usuario, contrasena))
             {
-                Session["usuario"] = usuario;
+                Session["usuario"] = "Administrador";
                 Response.Redirect("~/Administrador/MenuAdministrador.aspx");
+            }
+            // Validación Médico
+            else if (negocioLogin.ValidarUsuarioMedico(usuario, contrasena))
+            {
+                string nombreCompleto = negocioLogin.ObtenerNombreCompletoMedico(usuario, contrasena);
+                Session["usuario"] = nombreCompleto;
+                Response.Redirect("~/Medico/MenuMedico.aspx");
             }
             else
             {

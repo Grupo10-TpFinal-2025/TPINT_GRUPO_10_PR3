@@ -11,7 +11,15 @@ namespace Vistas.Medico
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
 
+            if (!IsPostBack)
+            {
+                lblUsuario.Text = Session["usuario"].ToString();
+            }
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
         //Variables globales
         NegocioMedico negocioMedico = new NegocioMedico();
 
-
         //Page load
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -172,7 +172,7 @@ namespace Datos
             cmd.Parameters.Add("@Localidad_ME", SqlDbType.NVarChar, 50).Value = medico.Localidad;
             cmd.Parameters.Add("@CodProvincia_ME", SqlDbType.Int).Value = medico.CodigoProvincia;
             cmd.Parameters.Add("@Correo_ME", SqlDbType.NVarChar, 100).Value = medico.Correo;
-            cmd.Parameters.Add("@Telefono_ME", SqlDbType.Char, 10).Value = medico.Telefono;
+            cmd.Parameters.Add("@Telefono_ME", SqlDbType.VarChar, 16).Value = medico.Telefono;
             cmd.Parameters.Add("@CodigoEspecialidad_ME", SqlDbType.Int).Value = medico.CodigoEspecialidad;
             cmd.Parameters.Add("@DNI_ME", SqlDbType.Char, 8).Value = medico.DNI;
         }

@@ -18,10 +18,11 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+            
+            /*if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }
+            }*/
 
             if (!IsPostBack)
             {
@@ -104,34 +105,35 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
         protected void gvModificacionMedicos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            negocioMedico = new NegocioMedico(); 
+            Entidades.Medico medico = new Entidades.Medico();
             // Nos aseguramos de que es una fila de datos
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 // Verificamos si la fila está en modo de edición
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
-                    // 1. Encontrar el control DropDownList dentro de la fila
+                    //Encontrar el control DropDownList dentro de la fila
                     DropDownList ddlProvincias = (DropDownList)e.Row.FindControl("ddl_et_Provincias");
+                   
+                    //Llamar al metodo para cargar los datos en el DropDownList
+                    ObtenerProvincias(ddlProvincias);
 
-                        // 2. LLAMAR AL MÉTODO para cargar los datos en el DropDownList
-                        ObtenerProvincias(ddlProvincias);
-
-                    // 3. Seleccionar la provincia actual 
-                    // Obtenemos el ID de la provincia del objeto de datos de la fila
+                    //Seleccionar la provincia actual obteniendo el ID de la provincia  de la fila seleccionada.
                     string IDProvincia = DataBinder.Eval(e.Row.DataItem, "CodProvincia").ToString();
 
-                        // Buscamos y seleccionamos el item en el DropDownList
+                        // Busco y selecciono el item en el DropDownList
                         ListItem item = ddlProvincias.Items.FindByValue(IDProvincia);
                         if (item != null)
                         {
                         ddlProvincias.SelectedValue = IDProvincia;
-                    }
-                    else
-                    {
-                        // Si no se encuentra, podemos manejarlo de alguna manera, por ejemplo, seleccionando el primer item
-                        ddlProvincias.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
-                        ddlProvincias.SelectedIndex = 0;
-                    }
+                        }
+                        else
+                        {
+                            // Si no se encuentra se selecciona el primer item
+                            ddlProvincias.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
+                            ddlProvincias.SelectedIndex = 0;
+                        }
                     
                 }
             }

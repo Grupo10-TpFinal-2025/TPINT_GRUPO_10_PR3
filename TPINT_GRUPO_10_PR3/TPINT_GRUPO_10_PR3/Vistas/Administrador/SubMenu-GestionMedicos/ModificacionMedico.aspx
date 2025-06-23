@@ -94,9 +94,22 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" AutoGenerateEditButton="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionMedicos_RowDataBound" AutoGenerateColumns="False">
-                        <AlternatingRowStyle BackColor="White" />
+                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionMedicos_RowDataBound" AutoGenerateColumns="False"  DataKeyNames="Legajo">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
+                             <asp:TemplateField ShowHeader="False">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnEditar" runat="server" CausesValidation="False" 
+                                        CommandName="Edit" Text="Editar"></asp:LinkButton>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:LinkButton ID="btnActualizar" runat="server" CausesValidation="True" 
+                                        CommandName="Update" Text="Actualizar" 
+                                        ValidationGroup="Modificacion"></asp:LinkButton>
+                                    <asp:LinkButton ID="btnCancelar" runat="server" CausesValidation="False" 
+                                        CommandName="Cancel" Text="Cancelar"></asp:LinkButton>
+                                </EditItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Legajo">
                                 <EditItemTemplate>
                                     <asp:Label ID="lbl_et_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
@@ -109,7 +122,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nombre">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Nombre" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
@@ -117,7 +130,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Apellido">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Apellido" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
@@ -149,7 +162,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nacionalidad">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Nacionalidad" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:Label>
@@ -166,7 +179,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Localidad">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Localidad" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:Label>
@@ -174,7 +187,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Direccion">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Direccion" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Debe ingresar calle y numero." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
@@ -182,7 +196,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Telefono">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Telefono" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^\d{1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
@@ -190,7 +205,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px" Text='<%# Bind("Correo") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Correo" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
@@ -206,16 +222,16 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
-                        <EditRowStyle BackColor="#2461BF" />
-                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                        <RowStyle BackColor="#EFF3FB" />
-                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
                 </td>
                 <td class="auto-style15">&nbsp;</td>
@@ -232,6 +248,8 @@
                 <td class="auto-style8"></td>
                 <td class="auto-style19">
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                    <br />
+            <asp:ValidationSummary ID="vsModificacionMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="Modificacion" />
                 </td>
                 <td class="auto-style17">
                     &nbsp;</td>

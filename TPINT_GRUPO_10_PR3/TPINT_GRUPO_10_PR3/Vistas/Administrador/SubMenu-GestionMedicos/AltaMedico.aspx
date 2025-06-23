@@ -187,7 +187,8 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        &nbsp;</td>
+            <asp:ValidationSummary ID="vsAltaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="alta" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style3">
@@ -204,7 +205,6 @@
                 </tr>
             </table>
             <br />
-            <asp:ValidationSummary ID="vsAltaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="alta" />
             <br />
         </div>
     </form>

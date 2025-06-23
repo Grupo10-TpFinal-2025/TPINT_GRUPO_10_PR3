@@ -154,11 +154,12 @@
                         <br />
                         <br />
                         <asp:Label ID="lblMensaje" runat="server" Font-Size="Small"></asp:Label>
-            <asp:ValidationSummary ID="vsAltaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="alta" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">&nbsp;</td>
+                    <td class="auto-style3">
+            <asp:ValidationSummary ID="vsAltaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="alta" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style3">

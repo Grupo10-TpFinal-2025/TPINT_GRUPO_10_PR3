@@ -78,7 +78,7 @@
                 <tr>
                     <td class="auto-style7">
                         &nbsp;<br />
-                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDniMedico" ErrorMessage="Solo se permite el ingreso de números enteros sin espacios en el legajo." ValidationExpression="^\d+$" ValidationGroup="Baja">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtLegajoBaja" ErrorMessage="Solo se permite el ingreso de números enteros sin espacios en el legajo." ValidationExpression="^\d+$" ValidationGroup="Baja">*</asp:RegularExpressionValidator>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <br />
                         <asp:Label ID="lblResultadoBaja" runat="server"></asp:Label>

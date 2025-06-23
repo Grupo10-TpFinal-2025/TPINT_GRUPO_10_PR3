@@ -263,6 +263,36 @@ namespace Datos
             return datos.EjecutarProcedimientoAlmacenado("ModificarMedico_Grupo10", sqlCommand);
         }
 
+        public int BajaLogicaMedicoPorLegajo(string legajo)
+        {
+            try
+            {
+                using (SqlConnection conexion = datos.ObtenerConexion())
+                {
+                    string consulta = "UPDATE Turno SET Estado_TU = 0 WHERE LegajoMedico_TU = @LegajoMedico_TU AND Estado_TU = 1";
+                    SqlCommand comandoTurnos = new SqlCommand(consulta, conexion);
+                    comandoTurnos.Parameters.AddWithValue("@LegajoMedico_TU", legajo);
+                    comandoTurnos.ExecuteNonQuery();
+
+                    consulta = "UPDATE Disponibilidad SET Estado_DIS = 0 WHERE LegajoMedico_DIS = @LegajoMedico_DIS AND Estado_DIS = 1";
+                    SqlCommand comandoMedico = new SqlCommand(consulta, conexion);
+                    comandoTurnos.Parameters.AddWithValue("@LegajoMedico_TU", legajo);
+                    comandoTurnos.ExecuteNonQuery();
+
+                    consulta = "UPDATE Medico SET Estado_ME = 0 WHERE Legajo_ME = @Legajo_ME AND Estado_ME = 1";
+                    SqlCommand comandoPaciente = new SqlCommand(consulta, conexion);
+                    comandoPaciente.Parameters.AddWithValue("@Legajo_ME", legajo);
+                    int filasAfectadas = comandoPaciente.ExecuteNonQuery();
+
+                    return filasAfectadas;
+                }
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
 
 
 

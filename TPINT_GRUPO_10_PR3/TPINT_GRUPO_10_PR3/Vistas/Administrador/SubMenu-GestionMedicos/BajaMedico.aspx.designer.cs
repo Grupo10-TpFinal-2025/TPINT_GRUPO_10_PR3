@@ -78,13 +78,13 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         protected global::System.Web.UI.WebControls.Label lblTituloBajaMedico;
 
         /// <summary>
-        /// Control txtLejajoBajaMedico.
+        /// Control txtLegajoBajaMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLejajoBajaMedico;
+        protected global::System.Web.UI.WebControls.TextBox txtLegajoBajaMedico;
 
         /// <summary>
         /// Control btnBajaMedico.
@@ -94,6 +94,15 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBajaMedico;
+
+        /// <summary>
+        /// Control revDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revDNI;
 
         /// <summary>
         /// Control lblResultadoBajaMedico.

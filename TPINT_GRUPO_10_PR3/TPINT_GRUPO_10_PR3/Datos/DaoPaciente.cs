@@ -118,30 +118,30 @@ namespace Datos
 
         // -----------------------------------------------------------------------------------------------------------------------------
 
-                    public int BajaLogicaPacientePorLegajo(string legajo)
-                    {
-                        try
-                        {
-                            using (SqlConnection conexion = datos.ObtenerConexion())
-                            {
-                                string consultaTurnos = "UPDATE Turno SET Estado_TU = 0 WHERE LegajoPaciente_TU = @LegajoPaciente_TU AND Estado_TU = 1";
-                                SqlCommand comandoTurnos = new SqlCommand(consultaTurnos, conexion);
-                                comandoTurnos.Parameters.AddWithValue("@LegajoPaciente_TU", legajo);
-                                comandoTurnos.ExecuteNonQuery();
+        public int BajaLogicaPacientePorLegajo(string legajo)
+        {
+            try
+            {
+                using (SqlConnection conexion = datos.ObtenerConexion())
+                {
+                    string consultaTurnos = "UPDATE Turno SET Estado_TU = 0 WHERE LegajoPaciente_TU = @LegajoPaciente_TU AND Estado_TU = 1";
+                    SqlCommand comandoTurnos = new SqlCommand(consultaTurnos, conexion);
+                    comandoTurnos.Parameters.AddWithValue("@LegajoPaciente_TU", legajo);
+                    comandoTurnos.ExecuteNonQuery();
 
-                                string consultaPaciente = "UPDATE Paciente SET Estado_PA = 0 WHERE Legajo_PA = @Legajo_PA AND Estado_PA = 1";
-                                SqlCommand comandoPaciente = new SqlCommand(consultaPaciente, conexion);
-                                comandoPaciente.Parameters.AddWithValue("@Legajo_PA", legajo);
-                                int filasAfectadas = comandoPaciente.ExecuteNonQuery();
+                    string consultaPaciente = "UPDATE Paciente SET Estado_PA = 0 WHERE Legajo_PA = @Legajo_PA AND Estado_PA = 1";
+                    SqlCommand comandoPaciente = new SqlCommand(consultaPaciente, conexion);
+                    comandoPaciente.Parameters.AddWithValue("@Legajo_PA", legajo);
+                    int filasAfectadas = comandoPaciente.ExecuteNonQuery();
 
-                                return filasAfectadas;
-                            }
-                        }
-                        catch
-                        {
-                            return -1;
-                        }
-                    }
+                    return filasAfectadas;
+                }
+            }
+            catch
+            {
+                return -1;
+            }
+        }
 
         public DataTable ObtenerPacientes()
         {
@@ -214,7 +214,6 @@ namespace Datos
 
                 sqlCommand.Parameters.Add("@DNI_PA", SqlDbType.Char, 8).Value = paciente.Dni;
             }
-
             if (paciente.Nombre.Trim().Length > 0)
             {
                 if (filtros[1, 0]) // Contiene
@@ -233,7 +232,6 @@ namespace Datos
                     sqlCommand.Parameters.Add("@Nombre_PA", SqlDbType.NVarChar, 50).Value = "%" + paciente.Nombre;
                 }
             }
-
             if (paciente.Telefono.Trim().Length > 0)
             {
                 if (filtros[2, 0]) // Contiene

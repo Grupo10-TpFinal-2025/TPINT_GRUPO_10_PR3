@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocios;
 
 namespace Vistas.Administrador.SubMenu_GestionMedicos
 {
@@ -19,6 +20,31 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
             if (!IsPostBack)
             {
                 lblUsuarioAdministrador.Text = "Administrador";
+            }
+        }
+
+        protected void btnBajaMedico_Click(object sender, EventArgs e)
+        {
+            string legajo = txtLegajoBajaMedico.Text.Trim();
+
+            if (!string.IsNullOrEmpty(legajo))
+            {
+                NegocioMedico negocioMedico = new NegocioMedico();
+                bool exito = negocioMedico.BajaLogicaMedicoPorLegajo(legajo);
+
+                if (exito)
+                {
+                    lblResultadoBajaMedico.Text = "Paciente dado de baja exitosamente.";
+                    txtLegajoBajaMedico.Text = string.Empty;
+                }
+                else
+                {
+                    lblResultadoBajaMedico.Text = "No se encontró el paciente o ya estaba dado de baja.";
+                }
+            }
+            else
+            {
+                lblResultadoBajaMedico.Text = "Por favor, ingresá un legajo válido.";
             }
         }
     }

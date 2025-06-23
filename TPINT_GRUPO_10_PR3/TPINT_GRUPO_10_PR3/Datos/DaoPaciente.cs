@@ -13,7 +13,7 @@ namespace Datos
     {
         private AccesoDatos datos;
         private SqlCommand sqlCommand;
-        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo Paciente', P.DNI_PA AS 'DNI Paciente', P.Nombre_PA AS 'Nombre', P.Apellido_PA AS 'Apellido', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', P.FechaNacimiento_PA AS 'Fecha Nacimiento', P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', P.Correo_PA AS 'Correo Electronico', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
+        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo Paciente', P.DNI_PA AS 'DNI Paciente', P.Apellido_PA AS 'Apellido', P.Nombre_PA AS 'Nombre', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', FORMAT(P.FechaNacimiento_PA, 'dd/MM/yyyy') AS 'Fecha Nacimiento', P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', P.Correo_PA AS 'Correo Electronico', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
 
         public DaoPaciente()
         {

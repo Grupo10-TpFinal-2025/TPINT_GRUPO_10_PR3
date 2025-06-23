@@ -18,11 +18,11 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
+            
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }*/
+            }
 
             if (!IsPostBack)
             {
@@ -77,7 +77,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
             medico.Localidad = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Localidad")).Text;
             medico.Direccion = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Direccion")).Text;
             medico.Correo = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Correo")).Text;
-            medico.Telefono = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Telefono")).Text;
+            medico.Telefono = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Telefono")).Text.Trim();
             medico.CodigoEspecialidad = int.Parse(((Label)gvModificacionMedicos.Rows[e.RowIndex].FindControl("lbl_et_CodEspecialidad")).Text);
 
             if (negocioMedico.ModificarMedico(medico))

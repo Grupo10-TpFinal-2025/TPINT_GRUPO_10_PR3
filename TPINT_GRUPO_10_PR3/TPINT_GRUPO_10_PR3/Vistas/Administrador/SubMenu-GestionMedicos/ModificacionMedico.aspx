@@ -203,7 +203,7 @@
                             <asp:TemplateField HeaderText="Telefono">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion"></asp:TextBox>
-                                    &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^\d{1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^(?:\s*\d\s*){1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>

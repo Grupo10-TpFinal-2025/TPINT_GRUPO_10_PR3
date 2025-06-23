@@ -179,57 +179,57 @@ namespace Vistas
                 return filtros;
             }
 
-            if (txtIDniMedico.Text.Trim().Length > 0)
+            if (txtIDniMedico.Text.Trim().Length > 0 && ddlOperatorsDni.SelectedValue != null)
             {
                 switch (ddlOperatorsDni.SelectedValue)
                 {
                     case "1":
-                        filtros[0,0] = true;
-                    break;
-                    
+                        filtros[0, 0] = true;
+                        break;
+
                     case "2":
-                        filtros[0,1] = true;
-                    break;
-                    
+                        filtros[0, 1] = true;
+                        break;
+
                     case "3":
-                        filtros[0,2] = true;
-                    break;
+                        filtros[0, 2] = true;
+                        break;
                 }
             }
 
-            if (txtApellidoMedico.Text.Trim().Length > 0)
+            if (txtApellidoMedico.Text.Trim().Length > 0 && ddlOperatorsApellido.SelectedValue != null)
             {
                 switch (ddlOperatorsApellido.SelectedValue)
                 {
                     case "1":
                         filtros[1, 0] = true;
-                    break;
+                        break;
 
                     case "2":
                         filtros[1, 1] = true;
-                    break;
+                        break;
 
                     case "3":
                         filtros[1, 2] = true;
-                    break;
+                        break;
                 }
             }
 
-            if (txtCorreoMedico.Text.Trim().Length > 0)
+            if (txtCorreoMedico.Text.Trim().Length > 0 && ddlOperatorsCorreo.SelectedValue != null)
             {
                 switch (ddlOperatorsCorreo.SelectedValue)
                 {
                     case "1":
                         filtros[2, 0] = true;
-                    break;
+                        break;
 
                     case "2":
                         filtros[2, 1] = true;
-                    break;
+                        break;
 
                     case "3":
                         filtros[2, 2] = true;
-                    break;
+                        break;
                 }
             }
 

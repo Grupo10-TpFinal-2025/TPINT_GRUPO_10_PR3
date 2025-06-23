@@ -49,7 +49,7 @@ namespace Datos
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@CodigoEspecialidad_ME", cod);
 
-                reader = comando.ExecuteReader();
+                reader = comando.ExecuteReader(CommandBehavior.CloseConnection);
             }
             catch (Exception ex)
             {

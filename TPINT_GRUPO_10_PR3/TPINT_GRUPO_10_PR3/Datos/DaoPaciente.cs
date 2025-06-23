@@ -199,7 +199,7 @@ namespace Datos
                 }
                 else if (filtros[0, 2]) // Menor a
                 {
-                    consulta += " AND DNI_ME < @DNI_ME";
+                    consulta += " AND DNI_PA < @DNI_PA";
                 }
 
                 sqlCommand.Parameters.Add("@DNI_PA", SqlDbType.Char, 8).Value = paciente.Dni;
@@ -209,36 +209,38 @@ namespace Datos
             {
                 if (filtros[1, 0]) // Contiene
                 {
-                    consulta += " AND Nombre_PA LIKE % @Nombre_PA %";
+                    consulta += " AND Nombre_PA LIKE @Nombre_PA";
+                    sqlCommand.Parameters.Add("@Nombre_PA", SqlDbType.NVarChar, 50).Value = "%" + paciente.Nombre + "%";
                 }
                 else if (filtros[1, 1]) // Empieza con
                 {
-                    consulta += " AND Nombre_PA LIKE @Nombre_PA %";
+                    consulta += " AND Nombre_PA LIKE @Nombre_PA";
+                    sqlCommand.Parameters.Add("@Nombre_PA", SqlDbType.NVarChar, 50).Value = paciente.Nombre + "%";
                 }
                 else if (filtros[1, 2]) // Termina con
                 {
-                    consulta += " AND Nombre_PA LIKE % @Nombre_PA";
+                    consulta += " AND Nombre_PA LIKE @Nombre_PA";
+                    sqlCommand.Parameters.Add("@Nombre_PA", SqlDbType.NVarChar, 50).Value = "%" + paciente.Nombre;
                 }
-
-                sqlCommand.Parameters.Add("@Nombre_PA", SqlDbType.NVarChar, 50).Value = paciente.Nombre;
             }
 
             if (paciente.Telefono.Trim().Length > 0)
             {
                 if (filtros[2, 0]) // Contiene
                 {
-                    consulta += " AND Telefono_PA LIKE % @Telefono_PA %";
+                    consulta += " AND Telefono_PA LIKE @Telefono_PA";
+                    sqlCommand.Parameters.Add("@Telefono_PA", SqlDbType.Char, 15).Value = "%" + paciente.Telefono + "%";
                 }
                 else if (filtros[2, 1]) // Empieza con
                 {
-                    consulta += " AND Telefono_PA LIKE @Telefono_PA %";
+                    consulta += " AND Telefono_PA LIKE @Telefono_PA";
+                    sqlCommand.Parameters.Add("@Telefono_PA", SqlDbType.Char, 15).Value = paciente.Telefono + "%";
                 }
                 else if (filtros[2, 2]) // Termina con
                 {
-                    consulta += " AND Telefono_PA LIKE % @Telefono_PA";
+                    consulta += " AND Telefono_PA LIKE @Telefono_PA";
+                    sqlCommand.Parameters.Add("@Telefono_PA", SqlDbType.Char, 15).Value = "%" + paciente.Telefono;
                 }
-
-                sqlCommand.Parameters.Add("@Telefono_PA", SqlDbType.Char, 10).Value = paciente.Telefono;
             }
 
             sqlCommand.CommandText = consulta;

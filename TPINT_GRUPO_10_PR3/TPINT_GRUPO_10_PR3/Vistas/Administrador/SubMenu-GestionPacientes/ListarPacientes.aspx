@@ -112,25 +112,25 @@
                             <br />
                             <asp:Label ID="lblDniMedico" runat="server" Text="DNI: "></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsDni" runat="server" Height="20px" Width="105px">
-                                <asp:ListItem Value="igual a">Igual a:</asp:ListItem>
-                                <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
-                                <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
+                                <asp:ListItem Value="1">Igual a:</asp:ListItem>
+                                <asp:ListItem Value="2">Mayor a:</asp:ListItem>
+                                <asp:ListItem Value="3">Menor a:</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;<asp:TextBox ID="txtDniPaciente" runat="server" Width="140px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;
                             <asp:Label ID="lblNombrePaciente" runat="server" Text="Nombre:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsNombre" runat="server" Height="20px" style="margin-bottom: 0px">
-                                <asp:ListItem Value="contiene">Contiene:</asp:ListItem>
-                                <asp:ListItem Value="empieza con">Empieza con:</asp:ListItem>
-                                <asp:ListItem Value="termina con">Termina con:</asp:ListItem>
+                                <asp:ListItem Value="1">Contiene:</asp:ListItem>
+                                <asp:ListItem Value="2">Empieza con:</asp:ListItem>
+                                <asp:ListItem Value="3">Termina con:</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;<asp:TextBox ID="txtNombrePaciente" runat="server" Width="145px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;
                             <asp:Label ID="lblCorreoMedico" runat="server" Text="Teléfono:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsTelefono" runat="server" Height="20px" style="margin-bottom: 0px">
-                                <asp:ListItem Value="contiene">Contiene:</asp:ListItem>
-                                <asp:ListItem Value="empieza con">Empieza con:</asp:ListItem>
-                                <asp:ListItem Value="termina con">Termina con:</asp:ListItem>
+                                <asp:ListItem Value="1">Contiene:</asp:ListItem>
+                                <asp:ListItem Value="2">Empieza con:</asp:ListItem>
+                                <asp:ListItem Value="3">Termina con:</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;<asp:TextBox ID="txtTelefonoPaciente" runat="server" Width="145px"></asp:TextBox>
                         </td>

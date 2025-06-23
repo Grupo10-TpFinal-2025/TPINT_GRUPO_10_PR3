@@ -18,16 +18,17 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
+            System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }*/
+            }
 
             if (!IsPostBack)
             {
                 lblUsuarioAdministrador.Text = "Administrador";
-                CagarMedicosTabla();
+                CargarMedicosTabla();
             }
             else
             {
@@ -35,31 +36,30 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
             }
         }
 
-        public void CagarMedicosTabla()
+        public void CargarMedicosTabla()
         {
             negocioMedico = new NegocioMedico();
             gvModificacionMedicos.DataSource = negocioMedico.ObtenerMedicos();
             gvModificacionMedicos.DataBind();
-
         }
 
         protected void gvModificacionMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            gvModificacionMedicos.EditIndex = -1;
             gvModificacionMedicos.PageIndex = e.NewPageIndex;
-            CagarMedicosTabla();
+            CargarMedicosTabla();
         }
 
         protected void gvModificacionMedicos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvModificacionMedicos.EditIndex = e.NewEditIndex;
-            CagarMedicosTabla();
-
+            CargarMedicosTabla();
         }
 
         protected void gvModificacionMedicos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvModificacionMedicos.EditIndex = -1;
-            CagarMedicosTabla();
+            CargarMedicosTabla();
         }
 
         protected void gvModificacionMedicos_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -77,30 +77,30 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
             medico.Localidad = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Localidad")).Text;
             medico.Direccion = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Direccion")).Text;
             medico.Correo = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Correo")).Text;
-            medico.Telefono = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Telefono")).Text;
+            medico.Telefono = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Telefono")).Text.Trim();
             medico.CodigoEspecialidad = int.Parse(((Label)gvModificacionMedicos.Rows[e.RowIndex].FindControl("lbl_et_CodEspecialidad")).Text);
 
             if (negocioMedico.ModificarMedico(medico))
             {
                 lblMensaje.Text = "Médico modificado correctamente.";
                 gvModificacionMedicos.EditIndex = -1;
-                CagarMedicosTabla();
+                CargarMedicosTabla();
             }
             else
             {
                 lblMensaje.Text = "Error al modificar el médico. Verifique los datos ingresados.";
-
             }
         }
-       public void ObtenerProvincias(DropDownList ddl)
-        {
-            negocioMedico = new NegocioMedico();
 
-            ddl.DataSource = negocioMedico.readerProvincias();
-            ddl.DataTextField = "Descripcion_PR";
-            ddl.DataValueField = "CodProvincia_PR";
-            ddl.DataBind();
-            ddl.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+        public void ObtenerProvincias(DropDownList ddl)
+        {
+             negocioMedico = new NegocioMedico();
+
+             ddl.DataSource = negocioMedico.readerProvincias();
+             ddl.DataTextField = "Descripcion_PR";
+             ddl.DataValueField = "CodProvincia_PR";
+             ddl.DataBind();
+             ddl.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
         }
 
         protected void gvModificacionMedicos_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -122,19 +122,17 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
                     //Seleccionar la provincia actual obteniendo el ID de la provincia  de la fila seleccionada.
                     string IDProvincia = DataBinder.Eval(e.Row.DataItem, "CodProvincia").ToString();
 
-                        // Busco y selecciono el item en el DropDownList
-                        ListItem item = ddlProvincias.Items.FindByValue(IDProvincia);
-                        if (item != null)
-                        {
+                    // Busco y selecciono el item en el DropDownList
+                    ListItem item = ddlProvincias.Items.FindByValue(IDProvincia);
+                    if (item != null)
+                    {
                         ddlProvincias.SelectedValue = IDProvincia;
-                        }
-                        else
-                        {
-                            // Si no se encuentra se selecciona el primer item
-                            ddlProvincias.Items.Insert(0, new ListItem("-- Seleccionar --", "0"));
-                            ddlProvincias.SelectedIndex = 0;
-                        }
-                    
+                    }
+                    else
+                    {
+                        // Si no se encuentra se selecciona el primer item
+                        ddlProvincias.SelectedIndex = 0;
+                    }
                 }
             }
         }

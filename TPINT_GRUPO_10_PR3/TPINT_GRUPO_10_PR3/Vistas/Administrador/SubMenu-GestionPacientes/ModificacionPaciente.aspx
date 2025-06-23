@@ -18,19 +18,19 @@
         .auto-style2 {
             width: 853px;
         }
-        .auto-style8 {
-            width: 23px;
-            height: 23px;
-        }
-        .auto-style19 {
-            width: 496px;
-            height: 23px;
-        }
-        .auto-style7 {
-            width: 23px;
-        }
         .auto-style18 {
-            width: 496px;
+            width: 1460px;
+        }
+        .auto-style20 {
+            width: 23px;
+        }
+        .auto-style21 {
+            width: 23px;
+            height: 23px;
+        }
+        .auto-style22 {
+            width: 1460px;
+            height: 23px;
         }
         </style>
 </head>
@@ -76,36 +76,170 @@
             </table>
         <table class="auto-style1">
             <tr>
-                <td class="auto-style8"></td>
-                <td class="auto-style19"></td>
+                <td class="auto-style21"></td>
+                <td class="auto-style22"></td>
             </tr>
             <tr>
-                <td class="auto-style7">&nbsp;</td>
+                <td class="auto-style20">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:ListView ID="lvModificacionPacientes" runat="server" DataSourceID="SQLAccesoBD">
-                    </asp:ListView>
+                    <asp:GridView ID="gvModificacionPacientes" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Legajo" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvModificacionPacientes_PageIndexChanging" OnRowCancelingEdit="gvModificacionPacientes_RowCancelingEdit" OnRowDataBound="gvModificacionPacientes_RowDataBound" OnRowEditing="gvModificacionPacientes_RowEditing" OnRowUpdating="gvModificacionPacientes_RowUpdating" PageSize="5">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <Columns>
+                            <asp:TemplateField ShowHeader="False">
+                                <EditItemTemplate>
+                                    <asp:LinkButton ID="btnActualizar" runat="server" CommandName="Update" ValidationGroup="GrupoModificarPaciente">Actualizar</asp:LinkButton>
+                                    <asp:LinkButton ID="btnCancelar" runat="server" CausesValidation="False" CommandName="Cancel">Cancelar</asp:LinkButton>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Edit">Editar</asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Legajo">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Apellido">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtApellido" runat="server" ControlToValidate="txt_et_Apellido" Display="Dynamic" ErrorMessage="No puede dejar el campo Apellido vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtApellido" runat="server" ControlToValidate="txt_et_Apellido" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Apellido" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Nombre">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtNombre" runat="server" ControlToValidate="txt_et_Nombre" Display="Dynamic" ErrorMessage="No puede dejar el campo Nombre vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtNombre" runat="server" ControlToValidate="txt_et_Nombre" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Nombre" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="DNI">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Sexo">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_Sexo" runat="server" Text='<%# Bind("Sexo") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Sexo" runat="server" Text='<%# Bind("Sexo") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Fecha de Nacimiento">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Nacionalidad">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtNacionalidad" runat="server" ControlToValidate="txt_et_Nacionalidad" Display="Dynamic" ErrorMessage="No puede dejar el campo Nacionalidad vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtNacionalidad" runat="server" ControlToValidate="txt_et_Nacionalidad" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Nacionalidad" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Provincia">
+                                <EditItemTemplate>
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server">
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddl_et_Provincias" Display="Dynamic" ErrorMessage="No puede dejar el campo Provincia vacío" InitialValue="0" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Provincia" runat="server" Text='<%# Bind("Provincia") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Localidad">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtLocalidad" runat="server" ControlToValidate="txt_et_Localidad" Display="Dynamic" ErrorMessage="No puede dejar el campo Localidad vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtLocalidad" runat="server" ControlToValidate="txt_et_Localidad" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Localidad" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Dirección">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtDireccion" runat="server" ControlToValidate="txt_et_Direccion" Display="Dynamic" ErrorMessage="No puede dejar el campo Dirección vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtDireccion" runat="server" ControlToValidate="txt_et_Direccion" Display="Dynamic" ErrorMessage="No ingresó un formato válido en el campo Dirección" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Teléfono">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No puede dejar el campo Télefono vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No ingresó un formato de Teléfono válido" ValidationExpression="^\d{1,16}$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Correo">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Correo" runat="server" Text='<%# Bind("Correo") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtCorreo" runat="server" ControlToValidate="txt_et_Correo" Display="Dynamic" ErrorMessage="No puede dejar el campo Correo vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtCorreo" runat="server" ControlToValidate="txt_et_Correo" Display="Dynamic" ErrorMessage="No ingresó un formato de Correo válido" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Correo" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
                 </td>
             </tr>
             <tr>
-                <td class="auto-style7">&nbsp;</td>
-                <td class="auto-style18">
-                    <asp:SqlDataSource ID="SQLAccesoBD" runat="server"></asp:SqlDataSource>
+                <td class="auto-style21"></td>
+                <td class="auto-style22">
                 </td>
             </tr>
             <tr>
-                <td class="auto-style8"></td>
-                <td class="auto-style19">
+                <td class="auto-style21"></td>
+                <td class="auto-style22">
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="GrupoModificarPaciente" />
                 </td>
             </tr>
             <tr>
-                <td class="auto-style8">&nbsp;</td>
-                <td class="auto-style19">
+                <td class="auto-style21">&nbsp;</td>
+                <td class="auto-style22">
                     &nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style8">&nbsp;</td>
-                <td class="auto-style19">
+                <td class="auto-style21">&nbsp;</td>
+                <td class="auto-style22">
                         <asp:HyperLink ID="hlMenuGestionPacientes" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/MenuGestionPacientes.aspx">Regresar a Menú de Gestión de Pacientes...</asp:HyperLink>
                     </td>
             </tr>

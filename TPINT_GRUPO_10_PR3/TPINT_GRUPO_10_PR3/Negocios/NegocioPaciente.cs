@@ -53,9 +53,9 @@ namespace Negocios
         }
         // ------------------------------------------------------------------------
 
-        public bool BajaLogicaPacientePorDNI(string dni)
+        public bool BajaLogicaPacientePorLegajo(string legajo)
         {
-            return daoP.BajaLogicaPacientePorDNI(dni) == 1;
+            return daoP.BajaLogicaPacientePorLegajo(legajo) == 1;
         }
 
         public DataTable ObtenerPacientes()
@@ -67,7 +67,18 @@ namespace Negocios
         {
             return daoP.ObtenerPacientes_Filtrados(paciente, FiltrosAvanzados, filtros);
         }
+
+        //Modificar Paciente----------------------------------------
+        public bool ModificarPaciente(Paciente paciente)
+        {
+            if (daoP.ModificacionPaciente(paciente) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
-
-

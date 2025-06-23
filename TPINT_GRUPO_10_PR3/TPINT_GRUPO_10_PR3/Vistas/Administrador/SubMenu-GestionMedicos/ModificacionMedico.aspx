@@ -23,7 +23,7 @@
             height: 23px;
         }
         .auto-style19 {
-            width: 496px;
+            width: 644px;
             height: 23px;
         }
         .auto-style17 {
@@ -34,7 +34,7 @@
             width: 23px;
         }
         .auto-style18 {
-            width: 496px;
+            width: 644px;
         }
         .auto-style15 {
             width: 212px;
@@ -94,7 +94,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionMedicos_RowDataBound" AutoGenerateColumns="False"  DataKeyNames="Legajo">
+                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionMedicos_RowDataBound" AutoGenerateColumns="False"  DataKeyNames="Legajo">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                              <asp:TemplateField ShowHeader="False">
@@ -122,7 +122,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nombre">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Nombre" runat="server" Text='<%# Bind("Nombre") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txt_et_Nombre" ErrorMessage="Debe ingresar un nombre." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
@@ -130,7 +131,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Apellido">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txt_et_Apellido" ErrorMessage="Debe ingresar un apellido." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
@@ -162,7 +164,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nacionalidad">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RequiredFieldValidator ID="rfvNacionaldiad" runat="server" ControlToValidate="txt_et_Nacionalidad" ErrorMessage="Debe ingresar una nacionalidad." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:Label>
@@ -170,8 +173,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Provincia">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server">
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" ValidationGroup="Modificacion">
                                     </asp:DropDownList>
+                                    &nbsp;<asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddl_et_Provincias" ErrorMessage="Debe seleccionar una provincia." InitialValue="0" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Provincia" runat="server" Text='<%# Bind("Provincia") %>'></asp:Label>
@@ -179,7 +183,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Localidad">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Localidad" runat="server" Text='<%# Bind("Localidad") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="txt_et_Localidad" ErrorMessage="Debe ingresar una localidad." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:Label>
@@ -187,9 +192,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Direccion">
                                 <EditItemTemplate>
-                                    <br />
                                     <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>' ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Debe ingresar calle y numero (no se permite ningun tipo de caracter especial) ." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Ingrese la direccion." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
@@ -197,9 +202,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Telefono">
                                 <EditItemTemplate>
-                                    <br />
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion"></asp:TextBox>
-                                    &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^\d{1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^(?:\s*\d\s*){1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
@@ -208,7 +213,8 @@
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px" Text='<%# Bind("Correo") %>' ValidationGroup="Modificacion"></asp:TextBox>
-                                    &nbsp;<asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    &nbsp;<br /> <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar el correo electronico." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Correo" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
@@ -274,15 +280,7 @@
                     &nbsp;</td>
                 <td class="auto-style17">&nbsp;</td>
             </tr>
-            <tr>
-                <td class="auto-style7"></td>
-                <td class="auto-style18">
-                    &nbsp;</td>
-                <td class="auto-style15">
-                </td>
-                <td class="auto-style15"></td>
-            </tr>
-        </table>
+            </table>
             <br />
         </div>
     </form>

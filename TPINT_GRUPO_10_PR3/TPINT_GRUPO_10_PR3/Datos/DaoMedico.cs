@@ -15,7 +15,7 @@ namespace Datos
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
 
         private AccesoDatos datos;
-        private string ConsultaBase = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME, 'dd/MM/yyyy') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo',(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad', M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1";
+        private string ConsultaBase = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME, 'dd/MM/yyyy') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo',(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad', M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1 ORDER BY Apellido";
         private SqlCommand sqlCommand;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
@@ -51,7 +51,8 @@ namespace Datos
                 "FROM (Medico INNER JOIN Provincia " +
                 "ON CodProvincia_ME = CodProvincia_PR) INNER JOIN Especialidad " +
                 "ON CodigoEspecialidad_ME = CodEspecialidad_ES " +
-                "WHERE Estado_ME = 1 ";
+                "WHERE Estado_ME = 1 " +
+                "ORDER BY Apellido";
             
             DataTable dataTable = datos.ObtenerTabla("Medico", consulta);
             
@@ -81,6 +82,8 @@ namespace Datos
                 {
                     consulta += " AND Legajo_ME = @Legajo_ME";
                 }
+
+                consulta += " ORDER BY Apellido";
 
                 sqlCommand = new SqlCommand(consulta);
                 ArmarParametro_FiltroMedico(ref sqlCommand, medico);
@@ -155,6 +158,8 @@ namespace Datos
                 }
             }
 
+            consulta += " ORDER BY Apellido";
+            
             sqlCommand.CommandText = consulta;
 
             return sqlCommand;
@@ -233,22 +238,22 @@ namespace Datos
                 if ((int)cmdExiste.ExecuteScalar() == 0)
                 {
                     string crearProc = @"
-                    CREATE PROCEDURE ModificarMedico_Grupo10
-                        @Legajo_ME INT, @DNI_ME CHAR(8), @Nombre_ME VARCHAR(50), @Apellido_ME VARCHAR(50),
-                        @Sexo_ME CHAR(1), @Nacionalidad_ME VARCHAR(50), @FechaNacimiento_ME DATE,
-                        @Direccion_ME VARCHAR(100), @Localidad_ME VARCHAR(50), @CodProvincia_ME INT,
-                        @CodigoEspecialidad_ME INT, @Correo_ME VARCHAR(100), @Telefono_ME CHAR(12)
-                    AS
-                    BEGIN
-                        UPDATE Medico SET 
-                            DNI_ME = @DNI_ME, Nombre_ME = @Nombre_ME, Apellido_ME = @Apellido_ME, Sexo_ME = @Sexo_ME, 
-                            Nacionalidad_ME = @Nacionalidad_ME, FechaNacimiento_ME = @FechaNacimiento_ME, 
-                            Direccion_ME = @Direccion_ME, Localidad_ME = @Localidad_ME, 
-                            CodProvincia_ME = @CodProvincia_ME, 
-                            CodigoEspecialidad_ME = @CodigoEspecialidad_ME, 
-                            Correo_ME = @Correo_ME, Telefono_ME = @Telefono_ME
-                        WHERE Legajo_ME = @Legajo_ME;
-                    END";
+                        CREATE PROCEDURE ModificarMedico_Grupo10
+                            @Legajo_ME INT, @DNI_ME CHAR(8), @Nombre_ME VARCHAR(50), @Apellido_ME VARCHAR(50),
+                            @Sexo_ME CHAR(1), @Nacionalidad_ME VARCHAR(50), @FechaNacimiento_ME DATE,
+                            @Direccion_ME VARCHAR(100), @Localidad_ME VARCHAR(50), @CodProvincia_ME INT,
+                            @CodigoEspecialidad_ME INT, @Correo_ME VARCHAR(100), @Telefono_ME CHAR(12)
+                        AS
+                        BEGIN
+                            UPDATE Medico SET 
+                                DNI_ME = @DNI_ME, Nombre_ME = @Nombre_ME, Apellido_ME = @Apellido_ME, Sexo_ME = @Sexo_ME, 
+                                Nacionalidad_ME = @Nacionalidad_ME, FechaNacimiento_ME = @FechaNacimiento_ME, 
+                                Direccion_ME = @Direccion_ME, Localidad_ME = @Localidad_ME, 
+                                CodProvincia_ME = @CodProvincia_ME, 
+                                CodigoEspecialidad_ME = @CodigoEspecialidad_ME, 
+                                Correo_ME = @Correo_ME, Telefono_ME = @Telefono_ME
+                            WHERE Legajo_ME = @Legajo_ME;
+                        END";
                     SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
                     cmdCrear.ExecuteNonQuery();
                 }
@@ -263,8 +268,34 @@ namespace Datos
             return datos.EjecutarProcedimientoAlmacenado("ModificarMedico_Grupo10", sqlCommand);
         }
 
+        public int BajaLogicaMedicoPorLegajo(string legajo)
+        {
+            try
+            {
+                using (SqlConnection conexion = datos.ObtenerConexion())
+                {
+                    string consulta = "UPDATE Turno SET Estado_TU = 0 WHERE LegajoMedico_TU = @LegajoMedico_TU AND Estado_TU = 1";
+                    SqlCommand comandoTurnos = new SqlCommand(consulta, conexion);
+                    comandoTurnos.Parameters.AddWithValue("@LegajoMedico_TU", legajo);
+                    comandoTurnos.ExecuteNonQuery();
 
+                    consulta = "UPDATE Disponibilidad SET Estado_DIS = 0 WHERE LegajoMedico_DIS = @LegajoMedico_DIS AND Estado_DIS = 1";
+                    SqlCommand comandoMedico = new SqlCommand(consulta, conexion);
+                    comandoTurnos.Parameters.AddWithValue("@LegajoMedico_TU", legajo);
+                    comandoTurnos.ExecuteNonQuery();
 
+                    consulta = "UPDATE Medico SET Estado_ME = 0 WHERE Legajo_ME = @Legajo_ME AND Estado_ME = 1";
+                    SqlCommand comandoPaciente = new SqlCommand(consulta, conexion);
+                    comandoPaciente.Parameters.AddWithValue("@Legajo_ME", legajo);
+                    int filasAfectadas = comandoPaciente.ExecuteNonQuery();
 
+                    return filasAfectadas;
+                }
+            }
+            catch
+            {
+                return -1;
+            }
+        }
     }
 }

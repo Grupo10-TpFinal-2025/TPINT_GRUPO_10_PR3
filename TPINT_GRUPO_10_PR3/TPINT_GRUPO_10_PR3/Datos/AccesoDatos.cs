@@ -120,6 +120,7 @@ namespace Datos
                 return null;
             }
         }
+
         public int EjecutarProcedimientoAlmacenado(string nombreProcedimiento, SqlCommand command)
         {
             filasAfectadas = 0;

@@ -13,7 +13,8 @@ namespace Datos
     {
         private AccesoDatos datos;
         private SqlCommand sqlCommand;
-        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo Paciente', P.DNI_PA AS 'DNI Paciente', P.Nombre_PA AS 'Nombre', P.Apellido_PA AS 'Apellido', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', P.FechaNacimiento_PA AS 'Fecha Nacimiento', P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', P.Correo_PA AS 'Correo Electronico', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
+
+        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo', P.DNI_PA AS 'DNI', P.Apellido_PA AS 'Apellido', P.Nombre_PA AS 'Nombre', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', FORMAT(P.FechaNacimiento_PA, 'dd/MM/yyyy') AS 'Fecha de Nacimiento', P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', Pr.CodProvincia_Pr AS 'CodProvincia', P.Correo_PA AS 'Correo', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
 
         public DaoPaciente()
         {
@@ -27,33 +28,33 @@ namespace Datos
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
                 string consultaExiste = @"
-            SELECT COUNT(*) 
-            FROM sys.objects 
-            WHERE type = 'P' AND name = 'AltaPaciente_Grupo10'";
+                    SELECT COUNT(*) 
+                    FROM sys.objects 
+                    WHERE type = 'P' AND name = 'AltaPaciente_Grupo10'";
                 SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
                 int cantidad = (int)cmdExiste.ExecuteScalar();
                 if (cantidad == 0)
                 {
                     string crearProc = @"
-                CREATE PROCEDURE AltaPaciente_Grupo10
-                    @DNI_PA CHAR(8),
-                    @Nombre_PA NVARCHAR(50),
-                    @Apellido_PA NVARCHAR(50),
-                    @Sexo_PA CHAR(1),
-                    @Nacionalidad_PA NVARCHAR(50),
-                    @FechaNacimiento_PA DATE,
-                    @Direccion_PA NVARCHAR(100),
-                    @Localidad_PA NVARCHAR(50),
-                    @CodProvincia_PA INT,
-                    @Correo_PA NVARCHAR(100),
-                    @Telefono_PA NVARCHAR(15),
-                    @Estado_PA BIT
+                        CREATE PROCEDURE AltaPaciente_Grupo10
+                            @DNI_PA CHAR(8),
+                            @Nombre_PA NVARCHAR(50),
+                            @Apellido_PA NVARCHAR(50),
+                            @Sexo_PA CHAR(1),
+                            @Nacionalidad_PA NVARCHAR(50),
+                            @FechaNacimiento_PA DATE,
+                            @Direccion_PA NVARCHAR(100),
+                            @Localidad_PA NVARCHAR(50),
+                            @CodProvincia_PA INT,
+                            @Correo_PA NVARCHAR(100),
+                            @Telefono_PA NVARCHAR(15),
+                            @Estado_PA BIT
 
-                AS
-                BEGIN
-                    INSERT INTO Paciente (DNI_PA, Nombre_PA, Apellido_PA, Sexo_PA, Nacionalidad_PA, FechaNacimiento_PA, Direccion_PA, Localidad_PA, CodProvincia_PA, Correo_PA, Telefono_PA, Estado_PA)
-                    VALUES (@DNI_PA, @Nombre_PA, @Apellido_PA, @Sexo_PA, @Nacionalidad_PA, @FechaNacimiento_PA, @Direccion_PA, @Localidad_PA, @CodProvincia_PA, @Correo_PA, @Telefono_PA, @Estado_PA);
-                END";
+                        AS
+                        BEGIN
+                            INSERT INTO Paciente (DNI_PA, Nombre_PA, Apellido_PA, Sexo_PA, Nacionalidad_PA, FechaNacimiento_PA, Direccion_PA, Localidad_PA, CodProvincia_PA, Correo_PA, Telefono_PA, Estado_PA)
+                            VALUES (@DNI_PA, @Nombre_PA, @Apellido_PA, @Sexo_PA, @Nacionalidad_PA, @FechaNacimiento_PA, @Direccion_PA, @Localidad_PA, @CodProvincia_PA, @Correo_PA, @Telefono_PA, @Estado_PA);
+                        END";
                     SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
                     cmdCrear.ExecuteNonQuery();
                 }
@@ -118,17 +119,28 @@ namespace Datos
 
         // -----------------------------------------------------------------------------------------------------------------------------
 
-        public int BajaLogicaPacientePorDNI(string dni)
+        public int BajaLogicaPacientePorLegajo(string legajo)
         {
-            using (SqlConnection conexion = datos.ObtenerConexion())
+            try
             {
-                string consulta = "UPDATE Paciente SET Estado_PA = 0 WHERE DNI_PA = @DNI_PA AND Estado_PA = 1";
+                using (SqlConnection conexion = datos.ObtenerConexion())
+                {
+                    string consultaTurnos = "UPDATE Turno SET Estado_TU = 0 WHERE LegajoPaciente_TU = @LegajoPaciente_TU AND Estado_TU = 1";
+                    SqlCommand comandoTurnos = new SqlCommand(consultaTurnos, conexion);
+                    comandoTurnos.Parameters.AddWithValue("@LegajoPaciente_TU", legajo);
+                    comandoTurnos.ExecuteNonQuery();
 
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@DNI_PA", dni);
+                    string consultaPaciente = "UPDATE Paciente SET Estado_PA = 0 WHERE Legajo_PA = @Legajo_PA AND Estado_PA = 1";
+                    SqlCommand comandoPaciente = new SqlCommand(consultaPaciente, conexion);
+                    comandoPaciente.Parameters.AddWithValue("@Legajo_PA", legajo);
+                    int filasAfectadas = comandoPaciente.ExecuteNonQuery();
 
-                int filasAfectadas = comando.ExecuteNonQuery();
-                return filasAfectadas;
+                    return filasAfectadas;
+                }
+            }
+            catch
+            {
+                return -1;
             }
         }
 
@@ -203,7 +215,6 @@ namespace Datos
 
                 sqlCommand.Parameters.Add("@DNI_PA", SqlDbType.Char, 8).Value = paciente.Dni;
             }
-
             if (paciente.Nombre.Trim().Length > 0)
             {
                 if (filtros[1, 0]) // Contiene
@@ -222,7 +233,6 @@ namespace Datos
                     sqlCommand.Parameters.Add("@Nombre_PA", SqlDbType.NVarChar, 50).Value = "%" + paciente.Nombre;
                 }
             }
-
             if (paciente.Telefono.Trim().Length > 0)
             {
                 if (filtros[2, 0]) // Contiene
@@ -245,6 +255,68 @@ namespace Datos
             sqlCommand.CommandText = consulta;
 
             return sqlCommand;
+        }
+
+        //Modificacion Paciente ------------------------------------------------------------------------
+        public void ValidarOCrearProcedimientoModificacionPaciente()
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consultaExiste = "SELECT COUNT(*) FROM sys.objects WHERE type = 'P' AND name = 'ModificarPaciente_Grupo10'";
+                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
+                if ((int)cmdExiste.ExecuteScalar() == 0)
+                {
+                    string crearProc = @"
+                        CREATE PROCEDURE ModificarPaciente_Grupo10
+                            @Legajo_PA INT, @DNI_PA CHAR(8), @Nombre_PA VARCHAR(50), @Apellido_PA VARCHAR(50),
+                            @Sexo_PA CHAR(1), @Nacionalidad_PA NVARCHAR(50), @FechaNacimiento_PA DATE,
+                            @Direccion_PA NVARCHAR(100), @Localidad_PA NVARCHAR(50), @CodProvincia_PA INT,
+                            @Correo_PA VARCHAR(100), @Telefono_PA VARCHAR(16)
+                        AS
+                        BEGIN
+                            UPDATE Paciente SET 
+                                DNI_PA = @DNI_PA, Nombre_PA = @Nombre_PA, Apellido_PA = @Apellido_PA, Sexo_PA = @Sexo_PA, 
+                                Nacionalidad_PA = @Nacionalidad_PA, FechaNacimiento_PA = @FechaNacimiento_PA, 
+                                Direccion_PA = @Direccion_PA, Localidad_PA = @Localidad_PA, 
+                                CodProvincia_PA = @CodProvincia_PA, 
+                                Correo_PA = @Correo_PA, Telefono_PA = @Telefono_PA
+                            WHERE Legajo_PA = @Legajo_PA;
+                        END";
+                    SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
+                    cmdCrear.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void CargarParametros(ref SqlCommand cmd, Paciente paciente)
+        {
+            if (paciente.Legajo != 0)
+            {
+                cmd.Parameters.Add("@Legajo_PA", SqlDbType.Int).Value = paciente.Legajo;
+            }
+            else
+            {
+                cmd.Parameters.Add("@Estado_PA", SqlDbType.Bit).Value = paciente.Estado;
+            }
+            cmd.Parameters.Add("@DNI_PA", SqlDbType.Char, 8).Value = paciente.Dni;
+            cmd.Parameters.Add("@Nombre_PA", SqlDbType.VarChar, 50).Value = paciente.Nombre;
+            cmd.Parameters.Add("@Apellido_PA", SqlDbType.VarChar, 50).Value = paciente.Apellido;
+            cmd.Parameters.Add("@Sexo_PA", SqlDbType.Char).Value = paciente.Sexo;
+            cmd.Parameters.Add("@Nacionalidad_PA", SqlDbType.NVarChar, 50).Value = paciente.Nacionalidad;
+            cmd.Parameters.Add("@FechaNacimiento_PA", SqlDbType.Date).Value = paciente.FechaNacimiento;
+            cmd.Parameters.Add("@Direccion_PA", SqlDbType.NVarChar, 100).Value = paciente.Direccion;
+            cmd.Parameters.Add("@Localidad_PA", SqlDbType.NVarChar, 50).Value = paciente.Localidad;
+            cmd.Parameters.Add("@CodProvincia_PA", SqlDbType.Int).Value = paciente.CodProvincia;
+            cmd.Parameters.Add("@Correo_PA", SqlDbType.VarChar, 100).Value = paciente.CorreoElectronico;
+            cmd.Parameters.Add("@Telefono_PA", SqlDbType.VarChar, 16).Value = paciente.Telefono;
+        }
+
+        public int ModificacionPaciente(Paciente paciente)
+        {
+            sqlCommand = new SqlCommand();
+            CargarParametros(ref sqlCommand, paciente);
+            ValidarOCrearProcedimientoModificacionPaciente();
+            return datos.EjecutarProcedimientoAlmacenado("ModificarPaciente_Grupo10", sqlCommand);
         }
     }
 }

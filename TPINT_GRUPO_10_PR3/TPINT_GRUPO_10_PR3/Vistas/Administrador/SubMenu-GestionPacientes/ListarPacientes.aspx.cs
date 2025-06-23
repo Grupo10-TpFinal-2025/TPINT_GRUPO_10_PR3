@@ -19,11 +19,11 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
-
+/*
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }
+            }*/
 
             if (!IsPostBack)
             {
@@ -263,10 +263,10 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             if (e.CommandName == "FiltroProvincias")
             {
                 paciente.CodProvincia = Convert.ToInt32(e.CommandArgument);
-                Session["TablaFiltrada"] = negocioPaciente.ObtenerPacientes_Filtrados(paciente, false, filtros);
-                gvListadoPacientes.DataSource = Session["TablaFiltrada"];
+                DataTable tabla = negocioPaciente.ObtenerPacientes_Filtrados(paciente, false, filtros);
+                gvListadoPacientes.DataSource = tabla;
                 gvListadoPacientes.DataBind();
-                if (Session["TablaFiltrada"] == null)
+                if (tabla.Rows.Count <= 0)
                 {
                     lblMensaje.Text = "No se encontraron resultados para la provincia seleccionada.";
                 }

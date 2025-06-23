@@ -123,8 +123,10 @@
                                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                                         </asp:GridView>
+                                        <br />
                                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                                         <asp:ValidationSummary ID="vsFiltroDNI" runat="server" ValidationGroup="GrupoListarPacientes" />
+                                        <br />
                                         <br />
                                         <asp:Button ID="btnMenuFiltrosAvanzados" runat="server" Height="29px" OnClick="btnMenuFiltrosAvanzados_Click" Text="Aplicar Filtros Avanzados" Width="234px" />
                                     </td>

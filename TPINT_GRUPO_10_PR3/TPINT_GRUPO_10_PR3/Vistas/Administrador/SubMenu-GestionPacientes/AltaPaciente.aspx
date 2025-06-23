@@ -78,18 +78,25 @@
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp; Fecha Nacimiento:
+&nbsp;<asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDniPaciente" ErrorMessage="Debe ingresar un dni valido." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDniPaciente" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;&nbsp;&nbsp; Fecha Nacimiento:
                         <asp:TextBox ID="txtFechaNacimientoPaciente" runat="server" Font-Size="Small" TextMode="Date"></asp:TextBox>
+                    &nbsp;<asp:RequiredFieldValidator ID="rfvFeechaNacimiento" runat="server" ControlToValidate="txtFechaNacimientoPaciente" ErrorMessage="Ingrese una fecha." ValidationGroup="alta">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">Nombre: <asp:TextBox ID="txtNombrePaciente" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;<asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombrePaciente" ErrorMessage="Debe ingresar un nombre." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
                         <asp:TextBox ID="txtApellidoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                    &nbsp;<asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellidoPaciente" ErrorMessage="Debe ingresar un apellido." ValidationGroup="alta">*</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style5" style="font-size: small; text-decoration: blink">Sexo: <asp:RadioButtonList ID="rblSexoPaciente" runat="server" Font-Size="Small">
+                    <td class="auto-style5" style="font-size: small; text-decoration: blink">Sexo:  
+                        <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="rblSexoPaciente" ErrorMessage="Debe indicar el sexo del medico." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+&nbsp;<asp:RadioButtonList ID="rblSexoPaciente" runat="server" Font-Size="Small">
                             <asp:ListItem Value="F">Femenino</asp:ListItem>
                             <asp:ListItem Value="M">Masculino</asp:ListItem>
                         </asp:RadioButtonList>
@@ -101,16 +108,21 @@
                 <tr>
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">Nacionalidad:
                         <asp:TextBox ID="txtNacionalidadPaciente" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Provincia:
+&nbsp;<asp:RequiredFieldValidator ID="rfvNacionaldiad" runat="server" ControlToValidate="txtNacionalidadPaciente" ErrorMessage="Debe ingresar una nacionalidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        &nbsp;&nbsp;&nbsp; Provincia:
                         <asp:DropDownList ID="ddlProvinciaPaciente" runat="server" Font-Size="Small">
                         </asp:DropDownList>
-&nbsp; </td>
+&nbsp;<asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvinciaPaciente" ErrorMessage="Debe seleccionar una provincia." InitialValue="0" ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                    &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">&nbsp;&nbsp; Localidad:&nbsp;&nbsp;
                         <asp:TextBox ID="txtLocalidadPaciente" runat="server" Font-Size="Small"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dirección:
+                        &nbsp;<asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="txtLocalidadMedico" ErrorMessage="Debe ingresar una localidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        &nbsp;&nbsp;&nbsp; Dirección:
                         <asp:TextBox ID="txtDireccionPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                    &nbsp;<asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccionPaciente" ErrorMessage="Ingrese la direccion." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txtDireccionPaciente" ErrorMessage="Debe ingresar calle y numero." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -121,23 +133,28 @@
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">Correo Electrónico:
                         <asp:TextBox ID="txtCorreoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                    &nbsp;<asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreoPaciente" ErrorMessage="Debe ingresar el correo electronico." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txtCorreoPaciente" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtTelefonoPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                    &nbsp;<asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefonoPaciente" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefonoPaciente" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^\d{1,10}$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
                         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnRegistrarPaciente" runat="server" Height="30px" Text="Agregar" Width="100px" OnClick="btnRegistrarPaciente_Click1" />
+                        <asp:Button ID="btnRegistrarPaciente" runat="server" Height="30px" Text="Agregar" Width="100px" OnClick="btnRegistrarPaciente_Click1" ValidationGroup="alta" />
 &nbsp;
                         <asp:Button ID="btnAux" runat="server" OnClick="btnAux_Click1" Text="aux" Style="display:none;" UseSubmitBehavior="false"  />
                         <br />
                         <br />
                         <asp:Label ID="lblMensaje" runat="server" Font-Size="Small"></asp:Label>
+            <asp:ValidationSummary ID="vsAltaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="alta" />
                     </td>
                 </tr>
                 <tr>

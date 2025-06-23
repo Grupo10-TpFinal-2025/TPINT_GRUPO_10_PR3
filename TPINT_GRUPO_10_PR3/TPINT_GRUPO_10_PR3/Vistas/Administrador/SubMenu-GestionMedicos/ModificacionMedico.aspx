@@ -189,7 +189,7 @@
                                 <EditItemTemplate>
                                     <br />
                                     <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>' ValidationGroup="Modificacion"></asp:TextBox>
-                                    &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Debe ingresar calle y numero." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Debe ingresar calle y numero (no se permite ningun tipo de caracter especial) ." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
@@ -251,7 +251,7 @@
                 <td class="auto-style19">
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     <br />
-            <asp:ValidationSummary ID="vsModificacionMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="Modificacion" />
+            <asp:ValidationSummary ID="vsModificacionMedico" runat="server" ValidationGroup="Modificacion" />
                 </td>
                 <td class="auto-style17">
                     &nbsp;</td>

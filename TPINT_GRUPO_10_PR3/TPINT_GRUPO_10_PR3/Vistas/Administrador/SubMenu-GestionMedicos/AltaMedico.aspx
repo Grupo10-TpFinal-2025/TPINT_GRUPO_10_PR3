@@ -140,7 +140,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp; Dirección:
                         <asp:TextBox ID="txtDireccionMedico" runat="server" Font-Size="Small" ValidationGroup="alta"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Ingrese la direccion." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Debe ingresar calle y numero." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Debe ingresar calle y numero (sin caracteres especiales)." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>

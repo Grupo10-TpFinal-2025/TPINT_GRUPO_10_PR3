@@ -13,7 +13,7 @@ namespace Datos
     {
         private AccesoDatos datos;
         private SqlCommand sqlCommand;
-        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo Paciente', P.DNI_PA AS 'DNI Paciente', P.Nombre_PA AS 'Nombre', P.Apellido_PA AS 'Apellido', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', P.FechaNacimiento_PA AS 'Fecha Nacimiento', P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', P.Correo_PA, P.Telefono_PA AS 'Telefono', P.Estado_PA FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
+        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo Paciente', P.DNI_PA AS 'DNI Paciente', P.Nombre_PA AS 'Nombre', P.Apellido_PA AS 'Apellido', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', P.FechaNacimiento_PA AS 'Fecha Nacimiento', P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', P.Correo_PA AS 'Correo Electronico', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
 
         public DaoPaciente()
         {
@@ -141,7 +141,7 @@ namespace Datos
 
         public void ArmarParametro_FiltroPaciente(ref SqlCommand command, Paciente paciente)
         {
-            if(paciente.Dni.Length > 0)
+            if(!string.IsNullOrEmpty(paciente.Dni) && paciente.Dni.Length > 0)
             {
                 command.Parameters.AddWithValue("@DNI_PA", paciente.Dni);
             }
@@ -154,15 +154,15 @@ namespace Datos
         public DataTable ObtenerPacientes_Filtrados(Paciente paciente, bool FiltrosAvanzados, bool[,] filtros)
         {
             string consulta =
-                "SELECT Legajo_PA AS Legajo, Apellido_PA AS Apellido, Nombre_PA  AS Nombre, Sexo_PA AS Sexo, Nacionalidad_PA AS Nacionalidad, " +
-                "FORMAT(FechaNacimiento_PA, 'dd/MM/yyyy') AS [Fecha de Nacimiento], Direccion_PA AS Dirección, Localidad_PA AS Localidad, " +
-                "Descripcion_PR AS Provincia, Correo_PA AS Correo, Telefono_PA AS Teléfono" + "DNI_PA AS DNI " +
+                "SELECT Legajo_PA AS 'Legajo', Apellido_PA AS 'Apellido', Nombre_PA  AS 'Nombre', Sexo_PA AS 'Sexo', Nacionalidad_PA AS 'Nacionalidad', " +
+                "FORMAT(FechaNacimiento_PA, 'dd/MM/yyyy') AS 'Fecha Nacimiento', Direccion_PA AS 'Dirección', Localidad_PA AS 'Localidad', " +
+                "Descripcion_PR AS 'Provincia', Correo_PA AS 'Correo', Telefono_PA AS 'Teléfono'," + "DNI_PA AS 'DNI' " +
                 "FROM (Paciente INNER JOIN Provincia " + "ON CodProvincia_PA = CodProvincia_PR)" +
                 "WHERE Estado_PA = 1";
 
             if (!FiltrosAvanzados)
             {
-                if (paciente.Dni.Trim().Length > 0)
+                if (!string.IsNullOrEmpty(paciente.Dni) && paciente.Dni.Trim().Length > 0)
                 {
                     consulta += " AND DNI_PA = @DNI_PA";
                 }

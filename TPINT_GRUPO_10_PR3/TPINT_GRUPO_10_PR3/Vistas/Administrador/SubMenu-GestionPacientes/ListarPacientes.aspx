@@ -116,7 +116,7 @@
                                 <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
                                 <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
                             </asp:DropDownList>
-                            &nbsp;<asp:TextBox ID="txtIDniPaciente" runat="server" Width="54px"></asp:TextBox>
+                            &nbsp;<asp:TextBox ID="txtDniPaciente" runat="server" Width="140px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;
                             <asp:Label ID="lblNombrePaciente" runat="server" Text="Nombre:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsNombre" runat="server" Height="20px" style="margin-bottom: 0px">
@@ -124,7 +124,7 @@
                                 <asp:ListItem Value="empieza con">Empieza con:</asp:ListItem>
                                 <asp:ListItem Value="termina con">Termina con:</asp:ListItem>
                             </asp:DropDownList>
-                            <asp:TextBox ID="txtNombrePaciente" runat="server" Width="145px"></asp:TextBox>
+                            &nbsp;<asp:TextBox ID="txtNombrePaciente" runat="server" Width="145px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;
                             <asp:Label ID="lblCorreoMedico" runat="server" Text="Teléfono:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsTelefono" runat="server" Height="20px" style="margin-bottom: 0px">

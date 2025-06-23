@@ -177,13 +177,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.DropDownList ddlOperatorsDni;
 
         /// <summary>
-        /// Control txtIDniPaciente.
+        /// Control txtDniPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIDniPaciente;
+        protected global::System.Web.UI.WebControls.TextBox txtDniPaciente;
 
         /// <summary>
         /// Control lblNombrePaciente.

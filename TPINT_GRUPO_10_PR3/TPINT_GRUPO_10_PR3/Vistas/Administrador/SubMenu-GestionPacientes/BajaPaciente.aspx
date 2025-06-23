@@ -71,12 +71,15 @@
             <table class="auto-style9">
                 <tr>
                     <td class="auto-style7">
-                        DNI Paciente:&nbsp;<asp:TextBox ID="txtDNIBaja" runat="server"></asp:TextBox>
-&nbsp;&nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" OnClick="btnBaja_Click" />
+                        Legajo Paciente:&nbsp;<asp:TextBox ID="txtLegajoBaja" runat="server" ValidationGroup="Baja"></asp:TextBox>
+&nbsp;&nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" OnClick="btnBaja_Click" ValidationGroup="Baja" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style7">
+                        &nbsp;<br />
+                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDniMedico" ErrorMessage="Solo se permite el ingreso de números enteros sin espacios en el legajo." ValidationExpression="^\d+$" ValidationGroup="Baja">*</asp:RegularExpressionValidator>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <br />
                         <asp:Label ID="lblResultadoBaja" runat="server"></asp:Label>
                         <br />

@@ -26,17 +26,17 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-            string dni = txtDNIBaja.Text.Trim();
+            string legajo = txtLegajoBaja.Text.Trim();
 
-            if (!string.IsNullOrEmpty(dni))
+            if (!string.IsNullOrEmpty(legajo))
             {
                 NegocioPaciente negocioPaciente = new NegocioPaciente();
-                bool exito = negocioPaciente.BajaLogicaPacientePorDNI(dni);
+                bool exito = negocioPaciente.BajaLogicaPacientePorLegajo(legajo);
 
                 if (exito)
                 {
                     lblResultadoBaja.Text = "Paciente dado de baja exitosamente.";
-                    txtDNIBaja.Text = string.Empty;
+                    txtLegajoBaja.Text = string.Empty;
                 }
                 else
                 {
@@ -45,7 +45,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
             else
             {
-                lblResultadoBaja.Text = "Por favor, ingresá un DNI válido.";
+                lblResultadoBaja.Text = "Por favor, ingresá un legajo válido.";
             }
         }
 

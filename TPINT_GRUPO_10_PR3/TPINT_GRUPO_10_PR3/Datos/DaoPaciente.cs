@@ -118,19 +118,30 @@ namespace Datos
 
         // -----------------------------------------------------------------------------------------------------------------------------
 
-        public int BajaLogicaPacientePorDNI(string dni)
-        {
-            using (SqlConnection conexion = datos.ObtenerConexion())
-            {
-                string consulta = "UPDATE Paciente SET Estado_PA = 0 WHERE DNI_PA = @DNI_PA AND Estado_PA = 1";
+                    public int BajaLogicaPacientePorLegajo(string legajo)
+                    {
+                        try
+                        {
+                            using (SqlConnection conexion = datos.ObtenerConexion())
+                            {
+                                string consultaTurnos = "UPDATE Turno SET Estado_TU = 0 WHERE LegajoPaciente_TU = @LegajoPaciente_TU AND Estado_TU = 1";
+                                SqlCommand comandoTurnos = new SqlCommand(consultaTurnos, conexion);
+                                comandoTurnos.Parameters.AddWithValue("@LegajoPaciente_TU", legajo);
+                                comandoTurnos.ExecuteNonQuery();
 
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@DNI_PA", dni);
+                                string consultaPaciente = "UPDATE Paciente SET Estado_PA = 0 WHERE Legajo_PA = @Legajo_PA AND Estado_PA = 1";
+                                SqlCommand comandoPaciente = new SqlCommand(consultaPaciente, conexion);
+                                comandoPaciente.Parameters.AddWithValue("@Legajo_PA", legajo);
+                                int filasAfectadas = comandoPaciente.ExecuteNonQuery();
 
-                int filasAfectadas = comando.ExecuteNonQuery();
-                return filasAfectadas;
-            }
-        }
+                                return filasAfectadas;
+                            }
+                        }
+                        catch
+                        {
+                            return -1;
+                        }
+                    }
 
         public DataTable ObtenerPacientes()
         {

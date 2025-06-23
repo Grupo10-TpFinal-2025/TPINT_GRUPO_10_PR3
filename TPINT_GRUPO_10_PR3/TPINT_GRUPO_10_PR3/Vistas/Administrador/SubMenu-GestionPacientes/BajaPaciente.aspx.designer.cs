@@ -78,13 +78,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.Label lblTituloBaja;
 
         /// <summary>
-        /// Control txtDNIBaja.
+        /// Control txtLegajoBaja.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDNIBaja;
+        protected global::System.Web.UI.WebControls.TextBox txtLegajoBaja;
 
         /// <summary>
         /// Control btnBaja.
@@ -94,6 +94,15 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBaja;
+
+        /// <summary>
+        /// Control revDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revDNI;
 
         /// <summary>
         /// Control lblResultadoBaja.

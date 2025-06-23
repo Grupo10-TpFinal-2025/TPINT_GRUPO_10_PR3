@@ -71,5 +71,11 @@ namespace Negocios
                 return false;
             }
         }
+
+        public bool BajaLogicaMedicoPorLegajo(string legajo)
+        {
+            return daoMedico.BajaLogicaMedicoPorLegajo(legajo) == 1;
+        }
+
     }
 }

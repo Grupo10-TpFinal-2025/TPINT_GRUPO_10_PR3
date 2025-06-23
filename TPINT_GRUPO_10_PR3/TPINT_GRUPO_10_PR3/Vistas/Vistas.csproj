@@ -84,11 +84,22 @@
     <Content Include="Administrador\SubMenu-GestionTurnos\ListarTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\MenuGestionTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\ModificacionTurno.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Administrador\MenuAdministrador.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx" />
     <Content Include="Medico\CambioDeTurno.aspx" />
     <Content Include="Medico\ListarPacientesSeleccionados.aspx" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
     <Content Include="Medico\MenuMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx" />
@@ -234,6 +245,9 @@
     <Compile Include="Administrador\SubMenu-GestionTurnos\ModificacionTurno.aspx.designer.cs">
       <DependentUpon>ModificacionTurno.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -287,6 +301,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

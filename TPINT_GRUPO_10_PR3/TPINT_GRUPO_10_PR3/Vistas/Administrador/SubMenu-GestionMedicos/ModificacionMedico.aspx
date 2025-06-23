@@ -23,7 +23,7 @@
             height: 23px;
         }
         .auto-style19 {
-            width: 496px;
+            width: 644px;
             height: 23px;
         }
         .auto-style17 {
@@ -34,7 +34,7 @@
             width: 23px;
         }
         .auto-style18 {
-            width: 496px;
+            width: 644px;
         }
         .auto-style15 {
             width: 212px;
@@ -94,7 +94,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionMedicos_RowDataBound" AutoGenerateColumns="False"  DataKeyNames="Legajo">
+                    <asp:GridView ID="gvModificacionMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvModificacionMedicos_PageIndexChanging" OnRowCancelingEdit="gvModificacionMedicos_RowCancelingEdit" OnRowEditing="gvModificacionMedicos_RowEditing" OnRowUpdating="gvModificacionMedicos_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionMedicos_RowDataBound" AutoGenerateColumns="False"  DataKeyNames="Legajo">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                              <asp:TemplateField ShowHeader="False">
@@ -280,15 +280,7 @@
                     &nbsp;</td>
                 <td class="auto-style17">&nbsp;</td>
             </tr>
-            <tr>
-                <td class="auto-style7"></td>
-                <td class="auto-style18">
-                    &nbsp;</td>
-                <td class="auto-style15">
-                </td>
-                <td class="auto-style15"></td>
-            </tr>
-        </table>
+            </table>
             <br />
         </div>
     </form>

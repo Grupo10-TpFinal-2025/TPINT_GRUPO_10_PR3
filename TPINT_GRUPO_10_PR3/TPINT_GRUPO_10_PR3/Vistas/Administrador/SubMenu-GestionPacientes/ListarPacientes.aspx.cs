@@ -19,11 +19,11 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
-/*
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }*/
+            }
 
             if (!IsPostBack)
             {

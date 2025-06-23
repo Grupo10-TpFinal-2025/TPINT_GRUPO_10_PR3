@@ -154,10 +154,10 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fecha Nacimiento">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_FechaNacimiento" runat="server" Text='<%# Bind("Fecha de Nacimiento") %>'></asp:Label>
+                                    <asp:Label ID="lbl_et_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_FechaNacimiento" runat="server" Text='<%# Bind("Fecha de Nacimiento") %>'></asp:Label>
+                                    <asp:Label ID="lbl_it_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nacionalidad">

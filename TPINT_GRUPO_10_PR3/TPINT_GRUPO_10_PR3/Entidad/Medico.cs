@@ -23,6 +23,7 @@ namespace Entidades
         private int _CodigoEspecialidad;
         private string _DNI = "";
         private bool _Estado;
+        private int _DiaDisponible;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
         public Medico() //Constructor vacio
@@ -115,7 +116,13 @@ namespace Entidades
             set {_Estado = value;}
         }
 
+        public int DiaDisponible
+        {
+            get {return _DiaDisponible;}
+            set {_DiaDisponible = value;}
+        }
+
         ///------------------------------------------------------ Metodos ---------------------------------------------------------------------------------
-        
+
     }
 }

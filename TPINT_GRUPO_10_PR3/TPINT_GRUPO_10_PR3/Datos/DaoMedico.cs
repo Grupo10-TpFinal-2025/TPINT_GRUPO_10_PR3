@@ -65,17 +65,25 @@ namespace Datos
                 "FORMAT(FechaNacimiento_ME, 'dd/MM/yyyy') AS [Fecha de Nacimiento], Direccion_ME AS Dirección, Localidad_ME AS Localidad, " +
                 "Descripcion_PR AS Provincia, Correo_ME AS Correo, Telefono_ME AS Teléfono, Descripcion_ES AS Especialidad, " +
                 "DNI_ME AS DNI " +
-                "FROM (Medico INNER JOIN Provincia " +
+                "FROM ((Medico INNER JOIN Provincia " +
                 "ON CodProvincia_ME = CodProvincia_PR) INNER JOIN Especialidad " +
-                "ON CodigoEspecialidad_ME = CodEspecialidad_ES " +
+                "ON CodigoEspecialidad_ME = CodEspecialidad_ES) INNER JOIN Disponibilidad " +
+                "ON Legajo_ME = LegajoMedico_DIS " +
                 "WHERE Estado_ME = 1";
 
             if (!aplicarFiltroAvanzado)
             {
-                consulta += " AND Legajo_ME = @Legajo_ME";
+                if (medico.DiaDisponible > 0)
+                {
+                    consulta += " AND NumDia_DIS = @NumDia_DIS";
+                }
+                else
+                {
+                    consulta += " AND Legajo_ME = @Legajo_ME";
+                }
 
                 sqlCommand = new SqlCommand(consulta);
-                ArmarParametro_LegajoMedico(ref sqlCommand, medico);
+                ArmarParametro_FiltroMedico(ref sqlCommand, medico);
 
                 return datos.ObtenerTablaFiltrada("Medico", sqlCommand);
             }
@@ -152,6 +160,11 @@ namespace Datos
             return sqlCommand;
         }
 
+        public DataTable getDias()
+        {
+            return datos.ObtenerTabla("Dia", "SELECT NumDia_DI, Descripcion_DI FROM Dia");
+        }
+
         //Carga los parametros en el SQL command
         private void CargarParametros(ref SqlCommand cmd, Medico medico)
         {
@@ -177,9 +190,16 @@ namespace Datos
             cmd.Parameters.Add("@DNI_ME", SqlDbType.Char, 8).Value = medico.DNI;
         }
 
-        public void ArmarParametro_LegajoMedico(ref SqlCommand command, Medico medico)
+        public void ArmarParametro_FiltroMedico(ref SqlCommand command, Medico medico)
         {
-            command.Parameters.Add("@Legajo_ME", SqlDbType.Int).Value = medico.Legajo;
+            if (medico.DiaDisponible > 0)
+            {
+                command.Parameters.Add("@NumDia_DIS", SqlDbType.Int).Value = medico.DiaDisponible;
+            }
+            else
+            {
+                command.Parameters.Add("@Legajo_ME", SqlDbType.Int).Value = medico.Legajo;
+            }
         }
 
         //Agregar Medico

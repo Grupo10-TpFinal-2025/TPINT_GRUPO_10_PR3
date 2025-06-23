@@ -18,7 +18,8 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         private bool[,] filtros = new bool[3, 3];
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -48,15 +49,15 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
         {
 
-            if (btnMenuFiltrosAvanzados.Text == "Aplicar filtros avanzados")
+            if (btnMenuFiltrosAvanzados.Text == "Aplicar Filtros Avanzados")
             {
                 pnlFiltrosAvanzados.Visible = true;
-                btnMenuFiltrosAvanzados.Text = "Ocultar filtros avanzados";
+                btnMenuFiltrosAvanzados.Text = "Ocultar Filtros Avanzados";
             }
             else
             {
                 pnlFiltrosAvanzados.Visible = false;
-                btnMenuFiltrosAvanzados.Text = "Aplicar filtros avanzados";
+                btnMenuFiltrosAvanzados.Text = "Aplicar Filtros Avanzados";
             }
         }
 
@@ -167,13 +168,12 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                     lblFiltrosAvanzadosVacios.Text = "No se encontraron resultados con los filtros aplicados.";
                 }
 
+                gvListadoPacientes.PageIndex = 0;
                 gvListadoPacientes.DataSource = tablaFiltrada;
                 gvListadoPacientes.DataBind();
-                gvListadoPacientes.PageIndex = 0; 
                 paciente = new Paciente();
             }
         }
-
 
         public void LimpiarFiltrosAvanzados()
         {
@@ -278,7 +278,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 gvListadoPacientes.PageIndex = 0;
                 paciente.CodProvincia = 0;
             }
-
         }
     }
 }

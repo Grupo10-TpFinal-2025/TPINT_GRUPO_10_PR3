@@ -114,7 +114,6 @@ namespace Datos
         public DataTable getProvincias()
         {
             return  datos.ObtenerTabla("Provincias", "SELECT CodProvincia_PR, Descripcion_PR FROM Provincia ORDER BY Descripcion_PR");
-          
         }
 
         // -----------------------------------------------------------------------------------------------------------------------------

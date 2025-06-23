@@ -114,15 +114,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         protected global::System.Web.UI.WebControls.Label lblDNInoEncontrado;
 
         /// <summary>
-        /// Control gvProvincias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProvincias;
-
-        /// <summary>
         /// Control rfvTxtFiltroDNI.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,24 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revTxtFiltro_Dni;
+
+        /// <summary>
+        /// Control gvProvincias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvProvincias;
+
+        /// <summary>
+        /// Control Panel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
         /// Control gvListadoPacientes.

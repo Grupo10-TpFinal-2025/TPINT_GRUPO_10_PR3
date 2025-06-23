@@ -49,6 +49,11 @@ namespace Negocios
             return daoMedico.AgregarMedico(medico);
         }
 
+        public DataTable getDias()
+        {
+            return daoMedico.getDias();
+        }
+
         //Modificar Medico----------------------------------------
         public DataTable ObtenerMedicos()
         {

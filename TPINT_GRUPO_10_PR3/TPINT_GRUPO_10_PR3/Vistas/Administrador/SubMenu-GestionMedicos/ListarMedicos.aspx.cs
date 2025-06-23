@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Negocios;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -31,7 +33,14 @@ namespace Vistas
                 lblUsuarioAdministrador.Text = "Administrador";
 
                 CargarTablaMedicos();
+                CargarDias();
             }
+        }
+
+        public void CargarDias()
+        {
+            gvDisponibilidad.DataSource = negocioMedico.getDias();
+            gvDisponibilidad.DataBind();
         }
 
         private void CargarTablaMedicos()
@@ -126,6 +135,7 @@ namespace Vistas
 
                 DataTable tablaFiltrada = negocioMedico.getTablaMedicosFiltrada(medico, aplicarFiltroAvanzado, filtros);
 
+                gvListaMedicos.PageIndex = 0;
                 gvListaMedicos.DataSource = tablaFiltrada;
                 gvListaMedicos.DataBind();
             }
@@ -245,6 +255,27 @@ namespace Vistas
                 {
                     filtros[i, j] = false;
                 }
+            }
+        }
+
+        protected void btnDia_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "FiltroDias")
+            {
+                medico.DiaDisponible = Convert.ToInt32(e.CommandArgument);
+                gvListaMedicos.DataSource = negocioMedico.getTablaMedicosFiltrada(medico, false, filtros);
+                gvListaMedicos.DataBind();
+                if (gvDisponibilidad == null)
+                {
+                    lblMensaje.Text = "No se encontraron resultados para la provincia seleccionada.";
+                }
+                else
+                {
+                    lblMensaje.Text = string.Empty;
+                }
+
+                gvListaMedicos.PageIndex = 0;
+                medico.DiaDisponible = 0;
             }
         }
     }

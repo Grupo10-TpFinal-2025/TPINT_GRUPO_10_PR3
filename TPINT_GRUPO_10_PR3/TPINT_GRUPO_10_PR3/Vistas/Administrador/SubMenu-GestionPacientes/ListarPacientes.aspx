@@ -23,7 +23,7 @@
             height: 100%;
         }
         .auto-style4 {
-            width: 281px;
+            width: 306px;
         }
     </style>
 </head>
@@ -73,7 +73,7 @@
             </table>
             <br />
             Búsqueda por DNI del paciente: <asp:TextBox ID="txtFiltroDNIPaciente" runat="server" Width="162px" TextMode="Number"></asp:TextBox>
-                            &nbsp;<asp:Button ID="btnFiltrarPacienteDNI" runat="server" Text="Filtrar" OnClick="btnFiltrarPacienteDNI_Click" />
+                            &nbsp;&nbsp;<asp:Button ID="btnFiltrarPacienteDNI" runat="server" Text="Filtrar" OnClick="btnFiltrarPacienteDNI_Click" ValidationGroup="GrupoListarPacientes" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnMostrarTodosPacientes" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodosPacientes_Click" />
                             &nbsp;&nbsp;
@@ -82,22 +82,39 @@
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
-                        <asp:GridView ID="gvProvincias" runat="server" AutoGenerateColumns="False">
+                        <asp:GridView ID="gvProvincias" runat="server" AutoGenerateColumns="False" GridLines="None">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <asp:Button ID="btnProvincia" runat="server" CommandArgument='<%# Bind("CodProvincia_PR") %>' CommandName="FiltroProvincias" OnCommand="btnProvincia_Command1" Text='<%# Bind("Descripcion_PR") %>' />
+                                        <br />
+                                        <br />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                     </td>
                     <td>
+                        <asp:RequiredFieldValidator ID="rfvTxtFiltroDNI" runat="server" ControlToValidate="txtFiltroDNIPaciente" Display="Dynamic" ErrorMessage="Debe ingresar un valor antes de filtrar." ValidationGroup="GrupoListarPacientes">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revTxtFiltro_Dni" runat="server" ControlToValidate="txtFiltroDNIPaciente" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números naturales en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoListarPacientes">*</asp:RegularExpressionValidator>
                         <br />
-                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                        <asp:GridView ID="gvListadoPacientes" runat="server" OnPageIndexChanging="gvListadoPacientes_PageIndexChanging">
+                        <asp:GridView ID="gvListadoPacientes" runat="server" OnPageIndexChanging="gvListadoPacientes_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" PageSize="10" >
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <EditRowStyle BackColor="#999999" />
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
                         <br />
+                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                        <br />
+                        <asp:ValidationSummary ID="vsFiltroDNI" runat="server" ValidationGroup="GrupoListarPacientes" />
                         <br />
                         <asp:Button ID="btnMenuFiltrosAvanzados" runat="server" Height="29px" Text="Aplicar Filtros Avanzados" Width="234px" OnClick="btnMenuFiltrosAvanzados_Click" />
                         <br />
@@ -117,7 +134,8 @@
                                 <asp:ListItem Value="3">Menor a:</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;<asp:TextBox ID="txtDniPaciente" runat="server" Width="140px"></asp:TextBox>
-                            &nbsp;&nbsp;&nbsp;
+                            &nbsp;<asp:RegularExpressionValidator ID="revTxtFiltroDni" runat="server" ControlToValidate="txtDniPaciente" ErrorMessage="Solo se permite el ingreso de números naturales en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
+                            &nbsp;&nbsp;
                             <asp:Label ID="lblNombrePaciente" runat="server" Text="Nombre:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsNombre" runat="server" Height="20px" style="margin-bottom: 0px">
                                 <asp:ListItem Value="1">Contiene:</asp:ListItem>
@@ -125,7 +143,8 @@
                                 <asp:ListItem Value="3">Termina con:</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;<asp:TextBox ID="txtNombrePaciente" runat="server" Width="145px"></asp:TextBox>
-                            &nbsp;&nbsp;&nbsp;
+                            &nbsp;<asp:RegularExpressionValidator ID="revTxtFiltroNombre" runat="server" ControlToValidate="txtNombrePaciente" ErrorMessage="Solo se permite el ingreso de letras y espacios." ValidationExpression="^[A-ZÁÉÍÓÚÑa-záéíóúñ\s]+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
+                            &nbsp;&nbsp;
                             <asp:Label ID="lblCorreoMedico" runat="server" Text="Teléfono:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsTelefono" runat="server" Height="20px" style="margin-bottom: 0px">
                                 <asp:ListItem Value="1">Contiene:</asp:ListItem>
@@ -133,7 +152,7 @@
                                 <asp:ListItem Value="3">Termina con:</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;<asp:TextBox ID="txtTelefonoPaciente" runat="server" Width="145px"></asp:TextBox>
-                        </td>
+                            &nbsp;</td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -150,7 +169,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:ValidationSummary ID="vsFiltrosAvanzados" runat="server" ValidationGroup="GrupoFiltrarAvanzado" />
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>

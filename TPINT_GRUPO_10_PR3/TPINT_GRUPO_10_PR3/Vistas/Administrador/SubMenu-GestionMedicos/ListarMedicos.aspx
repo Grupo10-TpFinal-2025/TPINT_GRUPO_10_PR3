@@ -129,13 +129,13 @@
                         </asp:GridView>
                         <br />
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="GrupoListarMedico" />
                         </td>
                     <td class="auto-style8"></td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
-                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="GrupoListarMedico" />
-                    </td>
+                        &nbsp;</td>
                     <td class="auto-style5">
                         &nbsp;</td>
                     <td>&nbsp;</td>

@@ -19,10 +19,10 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            /*if (Session["usuario"] == null)
+            if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }*/
+            }
 
             if (!IsPostBack)
             {

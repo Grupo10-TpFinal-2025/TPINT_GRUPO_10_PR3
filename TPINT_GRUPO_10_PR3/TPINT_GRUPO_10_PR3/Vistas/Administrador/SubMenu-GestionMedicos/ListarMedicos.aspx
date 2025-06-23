@@ -93,7 +93,7 @@
                         &nbsp;</td>
                     <td class="auto-style10">
                         <asp:RequiredFieldValidator ID="rfvTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Debe ingresar un valor antes de filtrar" ValidationGroup="GrupoListarMedico">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números naturales en el Legajo" ValidationExpression="^\d+$" ValidationGroup="GrupoListarMedico">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números en el Legajo" ValidationExpression="^\d+$" ValidationGroup="GrupoListarMedico">*</asp:RegularExpressionValidator>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -170,7 +170,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <asp:RegularExpressionValidator ID="revTxtFiltroDni" runat="server" ControlToValidate="txtIDniMedico" ErrorMessage="Solo se permite el ingreso de números naturales en el Legajo" ValidationExpression="^\d+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
+                                                        <asp:RegularExpressionValidator ID="revTxtFiltroDni" runat="server" ControlToValidate="txtIDniMedico" ErrorMessage="Solo se permite el ingreso de números en el DNI" ValidationExpression="^\d+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <asp:RegularExpressionValidator ID="revTxtFiltroApellido" runat="server" ControlToValidate="txtApellidoMedico" ErrorMessage="Solo se permite el ingreso de letras y espacios" ValidationExpression="^[A-ZÁÉÍÓÚÑa-záéíóúñ\s]+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>

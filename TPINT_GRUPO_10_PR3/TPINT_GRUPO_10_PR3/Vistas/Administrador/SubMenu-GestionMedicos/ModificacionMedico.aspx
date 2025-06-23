@@ -106,9 +106,6 @@
                                     <asp:LinkButton ID="btnActualizar" runat="server" CausesValidation="True" 
                                         CommandName="Update" Text="Actualizar" 
                                         ValidationGroup="Modificacion"></asp:LinkButton>
-                                    &nbsp;
-                                    <br />
-                                    <br />
                                     <asp:LinkButton ID="btnCancelar" runat="server" CausesValidation="False" 
                                         CommandName="Cancel" Text="Cancelar"></asp:LinkButton>
                                 </EditItemTemplate>
@@ -195,7 +192,6 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Direccion">
                                 <EditItemTemplate>
-                                    <br />
                                     <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>' ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Debe ingresar calle y numero (no se permite ningun tipo de caracter especial) ." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Ingrese la direccion." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
@@ -206,7 +202,6 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Telefono">
                                 <EditItemTemplate>
-                                    <br />
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^\d{1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
@@ -218,7 +213,7 @@
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px" Text='<%# Bind("Correo") %>' ValidationGroup="Modificacion"></asp:TextBox>
-                                    &nbsp;<asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    &nbsp;<br /> <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar el correo electronico." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>

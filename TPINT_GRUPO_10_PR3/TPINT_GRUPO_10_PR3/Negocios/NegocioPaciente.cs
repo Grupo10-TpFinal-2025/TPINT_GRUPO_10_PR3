@@ -53,9 +53,9 @@ namespace Negocios
         }
         // ------------------------------------------------------------------------
 
-        public bool BajaLogicaPacientePorLegajo(string legajo)
+        public int BajaLogicaPacientePorLegajo(string legajo)
         {
-            return daoP.BajaLogicaPacientePorLegajo(legajo) == 1;
+            return daoP.BajaLogicaPacientePorLegajo(legajo);
         }
 
         public DataTable ObtenerPacientes()

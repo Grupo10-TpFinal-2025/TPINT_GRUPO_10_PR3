@@ -31,16 +31,20 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             if (!string.IsNullOrEmpty(legajo))
             {
                 NegocioPaciente negocioPaciente = new NegocioPaciente();
-                bool exito = negocioPaciente.BajaLogicaPacientePorLegajo(legajo);
+                int exito = negocioPaciente.BajaLogicaPacientePorLegajo(legajo);
 
-                if (exito)
+                if (exito == 1)
                 {
                     lblResultadoBaja.Text = "Paciente dado de baja exitosamente.";
                     txtLegajoBaja.Text = string.Empty;
                 }
-                else
+                else if (exito == 0)
                 {
                     lblResultadoBaja.Text = "No se encontró el paciente o ya estaba dado de baja.";
+                }
+                else
+                {
+                    lblResultadoBaja.Text = "Ocurrió un error al intentar dar de baja al paciente. Por favor, intentá nuevamente más tarde.";
                 }
             }
             else

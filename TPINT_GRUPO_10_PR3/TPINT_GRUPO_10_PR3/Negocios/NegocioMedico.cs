@@ -72,9 +72,10 @@ namespace Negocios
             }
         }
 
-        public bool BajaLogicaMedicoPorLegajo(string legajo)
+        public int BajaLogicaMedicoPorLegajo(string legajo)
         {
-            return daoMedico.BajaLogicaMedicoPorLegajo(legajo) == 1;
+            return daoMedico.BajaLogicaMedicoPorLegajo(legajo);
+
         }
 
     }

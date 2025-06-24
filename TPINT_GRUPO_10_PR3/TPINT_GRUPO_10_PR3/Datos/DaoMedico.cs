@@ -281,8 +281,8 @@ namespace Datos
 
                     consulta = "UPDATE Disponibilidad SET Estado_DIS = 0 WHERE LegajoMedico_DIS = @LegajoMedico_DIS AND Estado_DIS = 1";
                     SqlCommand comandoMedico = new SqlCommand(consulta, conexion);
-                    comandoTurnos.Parameters.AddWithValue("@LegajoMedico_TU", legajo);
-                    comandoTurnos.ExecuteNonQuery();
+                    comandoMedico.Parameters.AddWithValue("@LegajoMedico_DIS", legajo);
+                    comandoMedico.ExecuteNonQuery();
 
                     consulta = "UPDATE Medico SET Estado_ME = 0 WHERE Legajo_ME = @Legajo_ME AND Estado_ME = 1";
                     SqlCommand comandoPaciente = new SqlCommand(consulta, conexion);

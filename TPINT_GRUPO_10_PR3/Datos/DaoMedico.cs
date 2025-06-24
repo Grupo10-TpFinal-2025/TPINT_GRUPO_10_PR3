@@ -35,7 +35,7 @@ namespace Datos
             return datos.ObtenerLista("SELECT * FROM Especialidad");
         }
 
-        public SqlDataReader ObtenerTablaMedicoPorEspecialidad(string cod)
+        public SqlDataReader ObtenerListaMedicoPorEspecialidad(string cod)
         {
             SqlDataReader reader;
             SqlConnection conexion;
@@ -51,9 +51,9 @@ namespace Datos
 
                 reader = comando.ExecuteReader(CommandBehavior.CloseConnection);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
             return reader;

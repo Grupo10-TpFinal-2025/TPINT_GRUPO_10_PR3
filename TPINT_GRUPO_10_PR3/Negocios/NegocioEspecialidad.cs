@@ -19,9 +19,9 @@ namespace Negocios
             DaoE = new DaoEspecialidad();
         }
 
-        public SqlDataReader readerEspecialidad()
+        public SqlDataReader ObtenerListaEspecialidad()
         {
-            return DaoE.readerEspecialidad();
+            return DaoE.ObtenerListaEspecialidad();
         }
     }
 }

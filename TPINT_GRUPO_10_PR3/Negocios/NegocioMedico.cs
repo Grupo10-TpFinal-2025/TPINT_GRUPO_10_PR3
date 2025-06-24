@@ -13,12 +13,12 @@ namespace Negocios
     public class NegocioMedico
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
-        private DaoMedico daoMedico;
+        private DaoMedico daoM;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
         public NegocioMedico()
         {
-            daoMedico = new DaoMedico();
+            daoM = new DaoMedico();
         }
 
         ///-------------------------------------------------- Getters y Setters ---------------------------------------------------------------------------------
@@ -26,21 +26,22 @@ namespace Negocios
         ///------------------------------------------------------ Metodos ---------------------------------------------------------------------------------
         public SqlDataReader readerProvincias()
         {
-            return daoMedico.readerProvincias();
+            return daoM.readerProvincias();
         }
 
         public SqlDataReader readerEspecialidad()
         {
-            return daoMedico.readerEspecialidad();
+            return daoM.readerEspecialidad();
         }
 
-        public SqlDataReader ObtenerTablaMedicoPorEspecialidad(string cod)
+        public SqlDataReader ObtenerListaMedicoPorEspecialidad(string cod)
         {
-            return daoMedico.ObtenerTablaMedicoPorEspecialidad(cod);
+            return daoM.ObtenerListaMedicoPorEspecialidad(cod);
         }
+
         public bool AgregarMedico(Medico medico)
         {
-            return daoMedico.AgregarMedico(medico);
+            return daoM.AgregarMedico(medico);
         }
 
     }

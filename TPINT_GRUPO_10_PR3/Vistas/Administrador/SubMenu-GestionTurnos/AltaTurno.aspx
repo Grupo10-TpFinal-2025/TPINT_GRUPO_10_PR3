@@ -80,24 +80,26 @@
                     <td class="auto-style6" style="font-size: medium; text-decoration: underline overline">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Especialidad:&nbsp;
+                    <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Especialidad:&nbsp; &nbsp;
                         <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged1" Width="202px">
                         </asp:DropDownList>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Médico:&nbsp;
                         <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" Width="202px" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
                             
                         </asp:DropDownList>
-                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                        &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI Paciente:
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp; &nbsp; &nbsp; DNI Paciente:&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fecha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlFechaTurno" runat="server" Height="20px" Width="202px">
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">Turno disponible:&nbsp; <asp:DropDownList ID="ddlFechaTurno" runat="server" Height="20px" Width="202px">
                         </asp:DropDownList>
+                    &nbsp;&nbsp;&nbsp;
+                        <asp:Label ID="lblError" runat="server" Visible="False"></asp:Label>
                     </td>
                 </tr>
                 <tr>

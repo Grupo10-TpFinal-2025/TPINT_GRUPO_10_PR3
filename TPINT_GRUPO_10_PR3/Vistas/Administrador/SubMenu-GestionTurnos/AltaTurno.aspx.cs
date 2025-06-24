@@ -28,8 +28,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 lblUsuarioAdministrador.Text = "Administrador";
                 CargarDDLEspecialidad();
 
-                lblMensaje.Text = (string)Session["NombreDia"];
-
                 ddlMedico.Items.Clear();
                 ddlMedico.Items.Add(new ListItem("--Seleccione un médico--", "0"));
             }
@@ -37,48 +35,63 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         private void CargarDDLEspecialidad()
         {
-            NegocioEspecialidad negocio = new NegocioEspecialidad();
-            SqlDataReader reader = negocio.readerEspecialidad();
+            try
+            {
+                NegocioEspecialidad negocio = new NegocioEspecialidad();
+                SqlDataReader reader = negocio.ObtenerListaEspecialidad();
 
-            ddlEspecialidad.DataSource = reader;
-            ddlEspecialidad.DataTextField = "Descripcion_ES";
-            ddlEspecialidad.DataValueField = "CodEspecialidad_ES";
-            ddlEspecialidad.DataBind();
+                ddlEspecialidad.DataSource = reader;
+                ddlEspecialidad.DataTextField = "Descripcion_ES";
+                ddlEspecialidad.DataValueField = "CodEspecialidad_ES";
+                ddlEspecialidad.DataBind();                
 
-            reader.Close();
+                ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccione--", "0"));
 
-            ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccione--", "0"));
+                reader.Close();
+
+                lblError.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = "Error al cargar especialidades.";                
+            }            
         }
 
         private void CargarDDLMedico(string cod)
         {
-            NegocioMedico negocio = new NegocioMedico();
-
-            ddlMedico.DataSource = negocio.ObtenerTablaMedicoPorEspecialidad(cod);
-            ddlMedico.DataTextField = "Medico";
-            ddlMedico.DataValueField = "Legajo_ME";
-            ddlMedico.DataBind();
-
-            ddlMedico.Items.Insert(0, new ListItem("-- Seleccione un médico --", "0"));
-
-            //Restaurar selección si hay una guardada en Session
-            if (Session["LegajoMedico"] != null)
+            try
             {
-                string legajo = Session["LegajoMedico"].ToString();
-                if (ddlMedico.Items.FindByValue(legajo) != null)
-                {
-                    ddlMedico.SelectedValue = legajo;
-                }
+                NegocioMedico negocio = new NegocioMedico();
+                SqlDataReader reader = negocio.ObtenerListaMedicoPorEspecialidad(cod);
+
+                ddlMedico.DataSource = reader;
+                ddlMedico.DataTextField = "Medico";
+                ddlMedico.DataValueField = "Legajo_ME";
+                ddlMedico.DataBind();
+
+                ddlMedico.Items.Insert(0, new ListItem("-- Seleccione un médico --", "0"));
+
+                reader.Close();
+
+                lblError.Visible = false;         
             }
+
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = "Error al cargar médicos.";
+            }            
         }
 
         private void CargarDDLFechaTurno()
         {
-            NegocioDisponibilidad negocio = new NegocioDisponibilidad();
+            NegocioTurno negocio = new NegocioTurno();
 
             int legajoMedico = Convert.ToInt32(Session["LegajoMedico"]);
+            string nombreDia = Session["NombreDia"].ToString();
 
-            SqlDataReader reader = negocio.MostrarDisponibilidad(legajoMedico, (string)Session["NombreDia"]);
+            SqlDataReader reader = negocio.ObtenerListaTurnos(legajoMedico, nombreDia);
 
             ddlFechaTurno.DataSource = reader;
             ddlFechaTurno.DataValueField = "NumeroDia";
@@ -107,7 +120,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             //Cargar médicos y restaurar selección si corresponde
             CargarDDLMedico(cod);
-
         }
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)

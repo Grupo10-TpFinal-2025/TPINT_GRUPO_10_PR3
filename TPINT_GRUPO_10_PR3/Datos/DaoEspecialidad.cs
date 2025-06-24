@@ -16,7 +16,7 @@ namespace Datos
             datos = new AccesoDatos();
         }
 
-        public SqlDataReader readerEspecialidad()
+        public SqlDataReader ObtenerListaEspecialidad()
         {
             return datos.ObtenerLista("SELECT * FROM Especialidad");            
         }

@@ -19,10 +19,7 @@ namespace Negocios
             daoD = new DaoDisponibilidad();
         }
 
-        public SqlDataReader MostrarDisponibilidad(int legajoMedico, string nombreDia)
-        {
-            return daoD.MostrarDisponibilidad(legajoMedico, nombreDia);
-        }
+
     }
 }
 

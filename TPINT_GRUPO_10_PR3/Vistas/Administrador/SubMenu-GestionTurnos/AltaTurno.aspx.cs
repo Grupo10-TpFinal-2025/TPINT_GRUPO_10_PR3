@@ -1,10 +1,12 @@
-﻿using Negocios;
+﻿using Entidades;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.EnterpriseServices;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
@@ -16,7 +18,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["NombreDia"] = DateTime.Now.ToString("dddd");
+            Session["Fecha"] = DateTime.Now.Date;
 
             if (Session["usuario"] == null)
             {
@@ -62,8 +64,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
             try
             {
-                NegocioMedico negocio = new NegocioMedico();
-                SqlDataReader reader = negocio.ObtenerListaMedicoPorEspecialidad(cod);
+                NegocioMedico negocioM = new NegocioMedico();
+                SqlDataReader reader = negocioM.ObtenerListaMedicoPorEspecialidad(cod);
 
                 ddlMedico.DataSource = reader;
                 ddlMedico.DataTextField = "Medico";
@@ -73,6 +75,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 ddlMedico.Items.Insert(0, new ListItem("-- Seleccione un médico --", "0"));
 
                 reader.Close();
+                
 
                 lblError.Visible = false;         
             }
@@ -88,18 +91,16 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
             NegocioTurno negocio = new NegocioTurno();
 
-            int legajoMedico = Convert.ToInt32(Session["LegajoMedico"]);
-            string nombreDia = Session["NombreDia"].ToString();
+            //int legajoMedico = Convert.ToInt32(Session["LegajoMedico"]);
+            //string nombreDia = Session["NombreDia"].ToString();
 
-            SqlDataReader reader = negocio.ObtenerListaTurnos(legajoMedico, nombreDia);
-
-            ddlFechaTurno.DataSource = reader;
-            ddlFechaTurno.DataValueField = "NumeroDia";
-            ddlFechaTurno.DataTextField = "NombreDia";
-            ddlFechaTurno.DataBind();
-
-            reader.Close();
-
+            if (Session["ListaTurnosMedico"] != null)
+            {
+                ddlFechaTurno.DataSource = (List<Turno>)(Session["ListaTurnosMedico"]);
+                ddlFechaTurno.DataValueField = "Fecha";
+                ddlFechaTurno.DataTextField = "Fecha";
+                ddlFechaTurno.DataBind();
+            }                       
         }
 
         protected void ddlEspecialidad_SelectedIndexChanged1(object sender, EventArgs e)
@@ -131,8 +132,31 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
 
             //Guardar selección en Session
-            Session["NombreMedico"] = ddlMedico.SelectedItem.Text;
-            Session["LegajoMedico"] = ddlMedico.SelectedValue;
+            //Session["NombreMedico"] = ddlMedico.SelectedItem.Text;
+            //Session["LegajoMedico"] = ddlMedico.SelectedValue;
+
+            int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
+            DateTime fechaActual = (DateTime) Session["Fecha"];
+
+            NegocioDisponibilidad negocioD = new NegocioDisponibilidad();
+            
+            if(Session["ListaDisponibilidadMedico"] != null)
+            {
+                Session["ListaDisponibilidadMedico"] = null;
+            }
+
+            Session["ListaDisponibilidadMedico"] = negocioD.ObtenerListaDisponibilidadMedico(legajoMedico);
+
+            //-----------------------------------------
+
+            NegocioTurno negocioT = new NegocioTurno();
+
+            if (Session["ListaTurnosMedico"] != null)
+            {
+                Session["ListaTurnosMedico"] = null;
+            }
+
+            Session["ListaTurnosMedico"] = negocioT.ObtenerListaTurnos(legajoMedico);
 
             CargarDDLFechaTurno();
 

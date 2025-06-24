@@ -19,9 +19,11 @@ namespace Negocios
             daoT = new DaoTurno();
         }
         
-        public SqlDataReader ObtenerListaTurnos(int legajoMedico, string nombreDia)
+        public List<Turno> ObtenerListaTurnos(int legajoMedico)
         {
-            return daoT.ObtenerListaTurnos(legajoMedico, nombreDia);
+            List<Turno> listaTurnosMedico;
+
+            return daoT.ObtenerListaTurnos(legajoMedico);
         }
     }
 }

@@ -52,6 +52,9 @@ namespace Entidades
             set { _horarioFin = value; }
         }
 
+        public string FranjaHoraria 
+        { get { return _horarioInicio + " - " + _horarioFin; } } 
+        
         public bool Estado
         {
             get { return _estado; }

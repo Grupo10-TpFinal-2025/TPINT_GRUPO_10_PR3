@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -55,30 +56,51 @@ namespace Datos
             }
         }
 
-        public SqlDataReader ObtenerListaTurnos(int legajoMedico, string nombreDia)
+        public List<Turno> ObtenerListaTurnos(int legajoMedico)
         {
-            SqlDataReader reader;
-            SqlConnection conexion;
+            List<Turno> listaTurnosMedico = new List<Turno>();
+
+            SqlConnection conexion = null;
+            SqlCommand comando;
+            SqlDataReader lector;
 
             try
             {
-                ValidarOCrearProcedimientoMostrarTurno();
-
+                string consulta = "SELECT Fecha_TU, Estado_UM FROM Turno WHERE LegajoMedico_TU = @LegajoMedico AND Fecha_TU > GETDATE() AND Fecha_TU <= DATEADD(Day, 30, GETDATE())";
                 conexion = datos.ObtenerConexion();
-                SqlCommand comando = new SqlCommand("SP_MostrarTurnosDisponibles", conexion);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando = new SqlCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("LegajoMedico", legajoMedico);                
+                lector = comando.ExecuteReader();
 
-                comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
-                comando.Parameters.AddWithValue("@NombreDia", nombreDia);
+                using (lector)
+                {
+                    while (lector.Read())
+                    {
+                        if ((bool)lector["Estado_UM"] == false)
+                        {
+                            Turno turno = new Turno();
+                            turno.Fecha = (DateTime)lector["Fecha_TU"];
 
-                reader = comando.ExecuteReader(CommandBehavior.CloseConnection);
+                            listaTurnosMedico.Add(turno);
+                        }
+                    }
+                }
             }
+
             catch (Exception)
             {
                 throw;
             }
 
-            return reader;
+            finally
+            {
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+
+            return listaTurnosMedico;
         }
 
         public void AgendarTurno()

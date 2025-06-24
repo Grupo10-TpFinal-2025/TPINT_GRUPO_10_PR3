@@ -18,7 +18,13 @@ namespace Negocios
         {
             daoD = new DaoDisponibilidad();
         }
-
+        
+        public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)
+        {
+            List<Disponibilidad> listaDisponibilidadMedico;
+            
+            return listaDisponibilidadMedico = daoD.ObtenerListaDisponibilidadMedico(legajoMedico);            
+        }
 
     }
 }

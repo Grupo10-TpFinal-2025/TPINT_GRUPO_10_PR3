@@ -91,8 +91,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style7" aria-checked="undefined">
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style7">

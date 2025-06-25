@@ -45,10 +45,10 @@
                         <asp:HyperLink ID="hlBajaDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/BajaDisponibilidad.aspx">Baja Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large">Modificación Disponibilidad</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/ModificacionDisponibilidad.aspx">Modificación Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlListarDisponibilidad" runat="server" Font-Size="Large">Listar Disponibilidades</asp:HyperLink>
+                        <asp:HyperLink ID="hlListarDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionDisponibilidad/ListarDisponibilidad.aspx">Listar Disponibilidades</asp:HyperLink>
                     </td>
                 </tr>
             </table>
@@ -71,12 +71,20 @@
             <table class="auto-style9">
                 <tr>
                     <td class="auto-style7">
-                        Legajo:&nbsp;&nbsp;&nbsp; &nbsp;<asp:TextBox ID="txtLegajoBaja" runat="server"></asp:TextBox>
-&nbsp;&nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" />
+                        &nbsp;&nbsp; Legajo:&nbsp;&nbsp;<asp:TextBox ID="txtLegajoBaja" runat="server" OnTextChanged="txtLegajoBaja_TextChanged" AutoPostBack="True"></asp:TextBox>
+&nbsp;&nbsp; <asp:Button ID="btnFiltrar" runat="server" Text="Dar de Baja" Width="120px" OnClick="btnFiltrar_Click" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style7">
+                        <br />
+&nbsp;&nbsp;
+                        <asp:Panel ID="pnlDias" runat="server" Visible="False">
+                            &nbsp; Días de Atencion Semanal:
+                            <asp:DropDownList ID="ddlDisponibilidad" runat="server">
+                            </asp:DropDownList>
+                        </asp:Panel>
+                        <br />
                         <br />
                         <asp:Label ID="lblResultadoBaja" runat="server"></asp:Label>
                         <br />
@@ -85,9 +93,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style7">
-                        <asp:ListView ID="lvBajaDisponibilidad" runat="server">
-                        </asp:ListView>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style7" aria-checked="undefined">

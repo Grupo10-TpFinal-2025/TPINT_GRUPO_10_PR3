@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,16 @@ namespace Negocios
        public NegocioDisponibilidad()
         {
             daoD = new DaoDisponibilidad();
+        }
+
+       public DataTable ObtenerDisponibilidad(Disponibilidad disponibilidad)
+        {
+            return daoD.Obtener_Disponibilidad(disponibilidad);
+        }
+
+        public int BajaLogicaDisponibilidad(Disponibilidad disponibilidad)
+        {
+            return daoD.BajaLogicaDisponibilidad(disponibilidad);
         }
     }
 }

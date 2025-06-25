@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Entidades;
+using Negocios;
 
 namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 {
@@ -22,5 +24,77 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             }
         }
 
+        protected void txtLegajoBaja_TextChanged(object sender, EventArgs e)
+        { 
+            string legajo = txtLegajoBaja.Text.Trim();
+
+            if (!string.IsNullOrEmpty(legajo))
+            {
+                if (int.TryParse(legajo, out int legajoInt) && legajoInt > 0)
+                {
+                    lblResultadoBaja.Text = string.Empty;
+                    pnlDias.Visible = true; 
+                    NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+                    Disponibilidad disponibilidad = new Disponibilidad();
+                    disponibilidad.LegajoMedico = legajoInt;
+                    CargarDDL(disponibilidad);
+                }
+                else
+                {
+                    pnlDias.Visible = false;
+                    lblResultadoBaja.Text = "Por favor, ingresá un legajo medico válido.";
+                }
+            }
+            else
+            {
+                pnlDias.Visible = false;
+                lblResultadoBaja.Text = "Por favor, ingresá un legajo medico.";
+            }
+        }
+
+        public void CargarDDL(Disponibilidad disponibilidad)
+        {
+            NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+            ddlDisponibilidad.DataSource = negocioDisponibilidad.ObtenerDisponibilidad(disponibilidad);
+            ddlDisponibilidad.DataTextField = "Día Semana";
+            ddlDisponibilidad.DataValueField = "Numero Día Semana";
+            ddlDisponibilidad.DataBind();
+            ddlDisponibilidad.Items.Insert(0, new ListItem("Seleccione un día", "0"));
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string legajo = txtLegajoBaja.Text.Trim();
+            if (pnlDias.Visible == true)
+            {
+                if(ddlDisponibilidad.SelectedIndex != 0)
+                {
+                    Disponibilidad disponibilidad = new Disponibilidad();
+                    disponibilidad.LegajoMedico = int.Parse(legajo);
+                    disponibilidad.NumDia = int.Parse(ddlDisponibilidad.SelectedValue);
+                    NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+                    int filasAfectadas = negocioDisponibilidad.BajaLogicaDisponibilidad(disponibilidad);
+                    if (filasAfectadas == 1)
+                    {
+                        lblResultadoBaja.Text = "La baja de disponibilidad se realizó correctamente.";
+                        pnlDias.Visible = false;
+                    }
+                    else
+                    {
+                        lblResultadoBaja.Text = "No se pudo realizar la baja de disponibilidad. Verifique los datos ingresados.";
+                    }
+                    txtLegajoBaja.Text = string.Empty;
+                }
+                else
+                {
+                    lblResultadoBaja.Text = "Por favor, seleccione un día de la semana.";
+                }
+            }
+            else
+            {
+                lblResultadoBaja.Text = "Por favor, ingresá un legajo medico.";
+            }
+
+        }
     }
 }

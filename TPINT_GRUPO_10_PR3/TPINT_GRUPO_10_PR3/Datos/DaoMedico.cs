@@ -280,14 +280,14 @@ namespace Datos
                     comandoTurnos.ExecuteNonQuery();
 
                     consulta = "UPDATE Disponibilidad SET Estado_DIS = 0 WHERE LegajoMedico_DIS = @LegajoMedico_DIS AND Estado_DIS = 1";
-                    SqlCommand comandoMedico = new SqlCommand(consulta, conexion);
-                    comandoMedico.Parameters.AddWithValue("@LegajoMedico_DIS", legajo);
-                    comandoMedico.ExecuteNonQuery();
+                    SqlCommand comandoDisponibilidad = new SqlCommand(consulta, conexion);
+                    comandoDisponibilidad.Parameters.AddWithValue("@LegajoMedico_DIS", legajo);
+                    comandoDisponibilidad.ExecuteNonQuery();
 
                     consulta = "UPDATE Medico SET Estado_ME = 0 WHERE Legajo_ME = @Legajo_ME AND Estado_ME = 1";
-                    SqlCommand comandoPaciente = new SqlCommand(consulta, conexion);
-                    comandoPaciente.Parameters.AddWithValue("@Legajo_ME", legajo);
-                    int filasAfectadas = comandoPaciente.ExecuteNonQuery();
+                    SqlCommand comandoMedico = new SqlCommand(consulta, conexion);
+                    comandoMedico.Parameters.AddWithValue("@Legajo_ME", legajo);
+                    int filasAfectadas = comandoMedico.ExecuteNonQuery();
 
                     return filasAfectadas;
                 }

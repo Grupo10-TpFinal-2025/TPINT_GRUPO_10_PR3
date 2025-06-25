@@ -87,13 +87,31 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.TextBox txtLegajoBaja;
 
         /// <summary>
-        /// Control btnBaja.
+        /// Control btnFiltrar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBaja;
+        protected global::System.Web.UI.WebControls.Button btnFiltrar;
+
+        /// <summary>
+        /// Control pnlDias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDias;
+
+        /// <summary>
+        /// Control ddlDisponibilidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDisponibilidad;
 
         /// <summary>
         /// Control lblResultadoBaja.
@@ -103,15 +121,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblResultadoBaja;
-
-        /// <summary>
-        /// Control lvBajaDisponibilidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvBajaDisponibilidad;
 
         /// <summary>
         /// Control hlMenuDisponibilidad.

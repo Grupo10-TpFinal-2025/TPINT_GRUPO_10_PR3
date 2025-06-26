@@ -13,10 +13,10 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+           /* if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }
+            }*/
 
             if (!IsPostBack)
             {
@@ -38,6 +38,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                     Disponibilidad disponibilidad = new Disponibilidad();
                     disponibilidad.LegajoMedico = legajoInt;
                     CargarDDL(disponibilidad);
+                    if(ddlDisponibilidad.Items.Count == 1)
+                    {
+                        pnlDias.Visible = false;
+                        lblResultadoBaja.Text = "No se encontraron disponibilidades para el legajo médico ingresado.";
+                    }
+                    else
+                    {
+                        lblResultadoBaja.Text = "Seleccione un día de la semana para realizar la baja de disponibilidad.";
+                    }
                 }
                 else
                 {

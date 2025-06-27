@@ -150,6 +150,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.TextBox txtFiltroFecha;
 
         /// <summary>
+        /// Control revFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revFecha;
+
+        /// <summary>
         /// Control ddlDniPaciente.
         /// </summary>
         /// <remarks>
@@ -166,6 +175,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFiltroDni;
+
+        /// <summary>
+        /// Control revDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revDNI;
 
         /// <summary>
         /// Control lblResultadoFiltroAvanzado.
@@ -202,5 +220,14 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary vsFiltrarPorCodigo;
+
+        /// <summary>
+        /// Control vsFiltroAvanzado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsFiltroAvanzado;
     }
 }

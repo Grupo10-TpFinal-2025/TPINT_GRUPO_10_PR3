@@ -106,7 +106,8 @@
                         <asp:Panel ID="panelListarTurnos" runat="server" Visible="False">
                             <table class="auto-style1">
                                 <tr>
-                                    <td class="auto-style6">Fecha: <asp:TextBox ID="txtFiltroFecha" runat="server" Width="105px" TextMode="Date"></asp:TextBox>
+                                    <td class="auto-style6">Fecha: <asp:TextBox ID="txtFiltroFecha" runat="server" Width="105px" TextMode="DateTime"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="revFecha" runat="server" ControlToValidate="txtFiltroFecha" ErrorMessage="Ingrese DD/MM/AAAA HH/MM" ValidationExpression="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4} ([01][0-9]|2[0-3]):[0-5][0-9]$" ValidationGroup="FiltroAvanzado">*</asp:RegularExpressionValidator>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DNI:
                                         <asp:DropDownList ID="ddlDniPaciente" runat="server" Height="20px" Width="120px">
                                             <asp:ListItem Value="0" Selected="True">-- Seleccione --</asp:ListItem>
@@ -114,7 +115,8 @@
                                             <asp:ListItem Value="2">Paciente</asp:ListItem>
                                         </asp:DropDownList>
                                         &nbsp;<asp:TextBox ID="txtFiltroDni" runat="server" Width="105px" TextMode="Number"></asp:TextBox>
-                                        &nbsp;&nbsp;</td>
+                                        &nbsp;&nbsp;<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtFiltroDni" ErrorMessage="Ingrese solo numeros" ValidationExpression="^\d+$" ValidationGroup="FiltroAvanzado">*</asp:RegularExpressionValidator>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style8">
@@ -122,7 +124,7 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltroAvanzado" runat="server" Height="27px" Text="Aplicar" Width="129px" OnClick="btnAplicarFiltroAvanzado_Click" />
+                                    <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltroAvanzado" runat="server" Height="27px" Text="Aplicar" Width="129px" OnClick="btnAplicarFiltroAvanzado_Click" ValidationGroup="FiltroAvanzado" />
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </td>
                                 </tr>
@@ -144,6 +146,7 @@
             </table>
         </div>
         <asp:ValidationSummary ID="vsFiltrarPorCodigo" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="FiltroTurno" />
+        <asp:ValidationSummary ID="vsFiltroAvanzado" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="FiltroAvanzado" />
     </form>
 </body>
 </html>

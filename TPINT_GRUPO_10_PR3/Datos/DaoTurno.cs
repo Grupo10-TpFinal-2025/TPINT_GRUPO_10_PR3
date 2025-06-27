@@ -60,6 +60,7 @@ namespace Datos
 
         }
 
+        //Consigue la tabla
         public DataTable getTabla()
         {
             DataTable table = datos.ObtenerTabla("Turnos", "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
@@ -71,6 +72,7 @@ namespace Datos
             return table;
         }
 
+        //Consigue la tabla por codigo de turno
         public DataTable getTablaPorCodigoTurno(int numero)
         {
             string consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
@@ -84,8 +86,115 @@ namespace Datos
             sqlComand.Parameters.AddWithValue("@CodTurno_TU", numero);
 
             //Devuelvo
-            return datos.ObtenerTablaFiltrada("Sucursales", sqlComand);
+            return datos.ObtenerTablaFiltrada("Turnos", sqlComand);
         }
 
+        //Consige la consulta de la tabla filtrada
+        private SqlCommand ObtenerConsultaFiltrada(int caso, string dni, DateTime? fecha)
+        {
+            //Variable
+            string consulta = "";
+
+            //Pregunto que caso es
+            if (caso == 1)
+            {
+                //Establesco la consulta
+                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
+                "WHERE DNI_ME = @DNI_ME AND Fecha_TU = @Fecha_TU";
+
+                //Creo el sqlCommand y lo cargo
+                SqlCommand sqlComand = new SqlCommand(consulta);
+                sqlComand.Parameters.AddWithValue("@DNI_ME", Convert.ToInt32(dni));
+                sqlComand.Parameters.AddWithValue("@Fecha_TU", fecha);
+
+                //Devuelvo el sqlCommand
+                return sqlComand;
+
+            }else if(caso == 2)
+            {
+                //Establesco la consulta
+                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
+                "WHERE DNI_PA = @DNI_PA AND Fecha_TU = @Fecha_TU";
+
+                //Creo el sqlCommand y lo cargo
+                SqlCommand sqlComand = new SqlCommand(consulta);
+                sqlComand.Parameters.AddWithValue("@DNI_PA", Convert.ToInt32(dni));
+                sqlComand.Parameters.AddWithValue("@Fecha_TU", fecha);
+
+                //Devuelvo el sqlCommand
+                return sqlComand;
+
+            }else if (caso == 3)
+            {
+                //Establesco la consulta
+                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
+                "WHERE DNI_ME = @DNI_ME";
+
+                //Creo el sqlCommand y lo cargo
+                SqlCommand sqlComand = new SqlCommand(consulta);
+                sqlComand.Parameters.AddWithValue("@DNI_ME", Convert.ToInt32(dni));
+
+                //Devuelvo el sqlCommand
+                return sqlComand;
+
+            }else if(caso == 4) {
+
+                //Establesco la consulta
+                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
+                "WHERE DNI_PA = @DNI_PA";
+
+                //Creo el sqlCommand y lo cargo
+                SqlCommand sqlComand = new SqlCommand(consulta);
+                sqlComand.Parameters.AddWithValue("@DNI_PA", Convert.ToInt32(dni));
+
+                //Devuelvo el sqlCommand
+                return sqlComand;
+
+            }else if (caso == 5)
+            {
+                //Establesco la consulta
+                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
+                "WHERE Fecha_TU = @Fecha_TU";
+
+                //Creo el sqlCommand y lo cargo
+                SqlCommand sqlComand = new SqlCommand(consulta);
+                sqlComand.Parameters.AddWithValue("@Fecha_TU", fecha);
+
+                //Devuelvo el sqlCommand
+                return sqlComand;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        //Consigue la tabla filtrada
+        public DataTable getTablaFiltrada(int caso, string dni, DateTime? fecha)
+        {
+            SqlCommand sql = ObtenerConsultaFiltrada(caso, dni, fecha);
+
+            return datos.ObtenerTablaFiltrada("Turnos", sql);
+        }
     }
 }

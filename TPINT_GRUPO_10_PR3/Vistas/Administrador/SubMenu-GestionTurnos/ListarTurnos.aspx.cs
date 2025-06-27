@@ -14,6 +14,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         //Variable del form
         NegocioTurno turno = new NegocioTurno();
 
+        //page load
         protected void Page_Load(object sender, EventArgs e)
         {
             //Codigo para que anden las validaciones
@@ -33,7 +34,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
         }
 
-        //No se
+        //No se, estaba cuando empece
         protected void txtListarTurno_TextChanged(object sender, EventArgs e)
         {
 
@@ -70,6 +71,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             cargarGV();
         }
 
+        //boton de filtro principal
         protected void btnFiltarTurno_Click(object sender, EventArgs e)
         {
             //Relleno el dataTable y lo bindeo
@@ -99,22 +101,50 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             //Cargo la gv normal
             cargarGV();
 
-            //Limpio el txt
+            //Limpio los filtros
             txtListarTurno.Text = "";
+            txtFiltroDni.Text = "";
+            txtFiltroFecha.Text = "";
+            ddlDniPaciente.SelectedValue = "0";
+
         }
 
         //Evento click filtro avanzado
         protected void btnAplicarFiltroAvanzado_Click(object sender, EventArgs e)
         {
             //Me fijo si hay algun campo seleccionado
-            if(txtFiltroFecha.Text == string.Empty || txtFiltroDni.Text == string.Empty || ddlDniPaciente.SelectedValue == "0")
+            if( (string.IsNullOrEmpty(txtFiltroFecha.Text) && txtFiltroDni.Text == string.Empty) || (ddlDniPaciente.SelectedValue == "0" && (string.IsNullOrEmpty(txtFiltroFecha.Text))))
             {
                 //Mensaje
                 lblResultadoFiltroAvanzado.Text = "*Se deben ingresar campos para poder usar los filtros avanzados.";
             }
             else
             {
+                //Variable
+                DateTime? fecha;
+                try
+                {
+                    fecha = Convert.ToDateTime(txtFiltroFecha.Text);
+                }
+                catch
+                {
+                    fecha = null;
+                }
+                DataTable dt = turno.getTablaFiltrada(fecha, txtFiltroDni.Text, ddlDniPaciente.SelectedValue);
+                gvTablaTurnos.DataSource = dt;
+                gvTablaTurnos.DataBind();
 
+                //Mensaje si no encontro nada
+                if(dt.Rows.Count == 0)
+                {
+                    lblResultadoFiltroAvanzado.Text = "*No se encontraron resultados con esos filtros.";
+                }
+
+                //Limpio los filtros
+                txtListarTurno.Text = "";
+                txtFiltroDni.Text = "";
+                txtFiltroFecha.Text = "";
+                ddlDniPaciente.SelectedValue = "0";
             }
         }
     }

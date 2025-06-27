@@ -96,15 +96,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">Turno disponible:&nbsp; <asp:DropDownList ID="ddlFechaTurno" runat="server" Height="20px" Width="202px">
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semana:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <asp:DropDownList ID="ddlSemana" runat="server" Height="20px" Width="100px" OnSelectedIndexChanged="ddlSemana_SelectedIndexChanged">
                         </asp:DropDownList>
-                    &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dia: <asp:DropDownList ID="ddlDia" runat="server" Height="20px" Width="100px">
+                        </asp:DropDownList>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Horario:&nbsp; <asp:DropDownList ID="ddlHorario" runat="server" Height="20px" Width="100px">
+                        </asp:DropDownList>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="lblError" runat="server" Visible="False"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                    </td>
+                    <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style5" style="font-size: small; text-decoration: blink">

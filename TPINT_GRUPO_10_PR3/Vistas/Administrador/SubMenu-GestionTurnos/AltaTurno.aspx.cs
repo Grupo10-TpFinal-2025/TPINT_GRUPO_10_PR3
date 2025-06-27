@@ -18,7 +18,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["Fecha"] = DateTime.Now.Date;
+            Session["NumeroDia"] = DateTime.Now.DayOfWeek + 1;
 
             if (Session["usuario"] == null)
             {
@@ -87,26 +87,88 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }            
         }
 
-        private void CargarDDLFechaTurno()
+        private void CargarDDLSemana()
         {
-            NegocioTurno negocio = new NegocioTurno();
-
-            //int legajoMedico = Convert.ToInt32(Session["LegajoMedico"]);
-            //string nombreDia = Session["NombreDia"].ToString();
-
-            if (Session["ListaTurnosMedico"] != null)
+            //CARGADOS:
+            //Turnos para el medico seleccionado:  Session["ListaTurnosMedico"]
+            //Disponibilidad semanal del medico seleccionado: Session["ListaDisponibilidadMedico"
+            
+            if (Session["ListaDisponibilidadMedico"] == null)
             {
-                ddlFechaTurno.DataSource = (List<Turno>)(Session["ListaTurnosMedico"]);
-                ddlFechaTurno.DataValueField = "Fecha";
-                ddlFechaTurno.DataTextField = "Fecha";
-                ddlFechaTurno.DataBind();
-            }                       
+                ddlSemana.Text = "No hay horarios disponibles";
+                return;
+            }
+
+            int i = 0;
+            string semana;
+
+            DateTime fechaActual = DateTime.Now;
+            int diaSemana = Convert.ToInt32(DateTime.Now.DayOfWeek + 6) % 7;
+
+            while (i < 7)
+            {
+                if(i > 0)
+                {
+                    fechaActual = fechaActual.AddDays(7);
+                }
+
+                semana = (fechaActual.AddDays(-diaSemana)).ToString("dd-MM") + " al " +
+                         (fechaActual.AddDays(6 - diaSemana)).ToString("dd-MM");
+
+                ddlSemana.Items.Add(new ListItem(semana, fechaActual.ToString("MM")));
+                i++;
+            }
+                        
+            //Session["LegajoMedico"] = Convert.ToInt32(ddlMedico.SelectedValue);                                                                                               
+          }
+
+            
+        private void CargarDDLDia(int mes)
+        {
+            int numDia;
+            int i;
+
+            List<Disponibilidad> listaDisponibilidadMedico = (List<Disponibilidad>)Session["ListaDisponibilidadMedico"];
+
+            
+        }
+
+        private void CargarDDLHorario()
+        {
+            int i;
+
+            List<DateTime> horariosDisponibles = new List<DateTime>();
+            List<Disponibilidad> listaDisponibilidadMedico = (List<Disponibilidad>)Session["ListaDisponibilidadMedico"];
+            List<string> listaHora = new List<string>();
+
+
+            int horaInicio = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioInicio);
+            int horaFin = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioFin);
+
+            int hora = horaFin - horaInicio;
+
+            for (i = 0; i < hora; i++)
+            {
+                listaHora.Add((hora + i).ToString());
+            }
+
+            for (i = 0; i < listaDisponibilidadMedico.Count; i++)
+            {
+                ddlDia.Items.Add(listaDisponibilidadMedico[i].NombreDia);
+            }
+
+
+            ddlDia.DataSource = listaDisponibilidadMedico;
+            ddlDia.DataBind();
+
+            ddlHorario.DataSource = listaHora;
+            ddlHorario.DataBind();
         }
 
         protected void ddlEspecialidad_SelectedIndexChanged1(object sender, EventArgs e)
         {
             string cod = ddlEspecialidad.SelectedValue;
-            ddlFechaTurno.Items.Clear();
+            ddlSemana.Items.Clear();
 
 
             if (cod == "0")
@@ -127,7 +189,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
             if (ddlMedico.SelectedIndex == 0)
             {
-                ddlFechaTurno.Items.Clear();
+                ddlSemana.Items.Clear();
                 return;
             }
 
@@ -136,7 +198,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             //Session["LegajoMedico"] = ddlMedico.SelectedValue;
 
             int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
-            DateTime fechaActual = (DateTime) Session["Fecha"];
+            //DateTime fechaActual = (DateTime) Session["DiaSemana"];
 
             NegocioDisponibilidad negocioD = new NegocioDisponibilidad();
             
@@ -158,18 +220,25 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             Session["ListaTurnosMedico"] = negocioT.ObtenerListaTurnos(legajoMedico);
 
-            CargarDDLFechaTurno();
+            CargarDDLSemana();
 
-            if(ddlFechaTurno.Items.Count == 0)
+            if(ddlSemana.Items.Count == 0)
             {                 
-                ddlFechaTurno.Items.Add("No hay turnos disponibles para esta semana...");
+                ddlSemana.Items.Add("No hay turnos disponibles para esta semana...");
                 return;
             }
             else
             {
-                ddlFechaTurno.Items.Insert(0, new ListItem("-Seleccione una opcion-", "0"));
+                ddlSemana.Items.Insert(0, new ListItem("-Seleccione una opcion-", "0"));
             }
 
-        }        
+        }
+
+        protected void ddlSemana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int mes = Convert.ToInt32(ddlSemana.SelectedValue);
+
+            CargarDDLDia(mes);
+        }
     }
 }

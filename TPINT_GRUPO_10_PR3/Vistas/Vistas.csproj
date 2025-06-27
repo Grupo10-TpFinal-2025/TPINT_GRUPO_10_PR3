@@ -84,7 +84,6 @@
     <Content Include="Administrador\SubMenu-GestionTurnos\ListarTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\MenuGestionTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\ModificacionTurno.aspx" />
-    <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Administrador\MenuAdministrador.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx" />
@@ -234,9 +233,6 @@
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionTurnos\ModificacionTurno.aspx.designer.cs">
       <DependentUpon>ModificacionTurno.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

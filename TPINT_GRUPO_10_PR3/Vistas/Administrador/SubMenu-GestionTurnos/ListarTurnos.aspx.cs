@@ -107,9 +107,14 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected void btnAplicarFiltroAvanzado_Click(object sender, EventArgs e)
         {
             //Me fijo si hay algun campo seleccionado
-            if(txtFiltroFecha.Text == string.Empty || txtFiltroDni.Text == string.Empty)
+            if(txtFiltroFecha.Text == string.Empty || txtFiltroDni.Text == string.Empty || ddlDniPaciente.SelectedValue == "0")
             {
-                lblResultadoFiltroAvanzado.Text = "Se deben ingresar campos para poder usar los filtros avanzados.";
+                //Mensaje
+                lblResultadoFiltroAvanzado.Text = "*Se deben ingresar campos para poder usar los filtros avanzados.";
+            }
+            else
+            {
+
             }
         }
     }

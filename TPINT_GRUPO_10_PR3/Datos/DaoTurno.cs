@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -57,6 +58,17 @@ namespace Datos
         public void AgendarTurno()
         {
 
+        }
+
+        public DataTable getTabla()
+        {
+            DataTable table = datos.ObtenerTabla("Turnos", "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA"
+            );
+            return table;
         }
 
     }

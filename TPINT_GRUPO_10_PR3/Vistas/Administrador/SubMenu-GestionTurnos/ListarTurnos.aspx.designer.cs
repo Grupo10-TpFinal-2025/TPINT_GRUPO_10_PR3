@@ -87,22 +87,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.Button btnFiltarTurno;
 
         /// <summary>
-        /// Control ListViewDeTurnos.
+        /// Control gvTablaTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewDeTurnos;
-
-        /// <summary>
-        /// Control SqlDataSourceTurno.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceTurno;
+        protected global::System.Web.UI.WebControls.GridView gvTablaTurnos;
 
         /// <summary>
         /// Control btnMostrarFiltrosAvanzado0.

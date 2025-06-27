@@ -110,7 +110,7 @@
                             <table class="auto-style5">
                                 <tr>
                                     <td style="vertical-align: top;">
-                                        <asp:GridView ID="gvListadoPacientes" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvListadoPacientes_PageIndexChanging" PageSize="10">
+                                        <asp:GridView ID="gvListadoPacientes" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvListadoPacientes_PageIndexChanging" PageSize="10" OnSelectedIndexChanged="gvListadoPacientes_SelectedIndexChanged">
                                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                             <EditRowStyle BackColor="#999999" />
                                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

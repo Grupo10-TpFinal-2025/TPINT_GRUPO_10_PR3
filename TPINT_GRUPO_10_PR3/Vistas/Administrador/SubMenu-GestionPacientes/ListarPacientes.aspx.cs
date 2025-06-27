@@ -279,5 +279,10 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 paciente.CodProvincia = 0;
             }
         }
+
+        protected void gvListadoPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

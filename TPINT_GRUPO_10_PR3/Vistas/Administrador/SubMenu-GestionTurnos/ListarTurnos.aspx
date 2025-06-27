@@ -67,9 +67,11 @@
                     <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style9">Código de turno: <asp:TextBox ID="txtListarTurno" runat="server" OnTextChanged="txtListarTurno_TextChanged" Width="135px"></asp:TextBox>
-&nbsp;
-                        <asp:Button ID="btnFiltarTurno" runat="server" Text="Buscar" />
+                    <td class="auto-style9">Código de turno: <asp:TextBox ID="txtListarTurno" runat="server" OnTextChanged="txtListarTurno_TextChanged" Width="135px" TextMode="Number"></asp:TextBox>
+&nbsp;<asp:RequiredFieldValidator ID="rfvCodigoTurno" runat="server" ControlToValidate="txtListarTurno" ErrorMessage="Ingrese un numero valido" ValidationGroup="FiltroTurno">*</asp:RequiredFieldValidator>
+&nbsp;<asp:Button ID="btnFiltarTurno" runat="server" Text="Buscar" OnClick="btnFiltarTurno_Click" ValidationGroup="FiltroTurno" Width="101px" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:Button ID="btnLimpiarFiltrosAvanzados" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" OnClick="btnLimpiarFiltrosAvanzados_Click" />
                     </td>
                     <td class="auto-style3">&nbsp;</td>
                 </tr>
@@ -88,6 +90,8 @@
                             <SortedDescendingCellStyle BackColor="#E9EBEF" />
                             <SortedDescendingHeaderStyle BackColor="#4870BE" />
                         </asp:GridView>
+                        <br />
+                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     </td>
                     <td class="auto-style3">&nbsp;</td>
                 </tr>
@@ -102,21 +106,15 @@
                         <asp:Panel ID="panelListarTurnos" runat="server" Visible="False">
                             <table class="auto-style1">
                                 <tr>
-                                    <td class="auto-style6">Edad:
-                                        <asp:DropDownList ID="ddlRangoEtario" runat="server" Height="20px" Width="120px">
-                                            <asp:ListItem Value="igual a">Igual a:</asp:ListItem>
-                                            <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
-                                            <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
-                                        </asp:DropDownList>
-                                        &nbsp;<asp:TextBox ID="txtRangoEtario" runat="server" Width="105px"></asp:TextBox>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DNI:
+                                    <td class="auto-style6">Fecha: <asp:TextBox ID="txtFiltroFecha" runat="server" Width="105px" TextMode="Date"></asp:TextBox>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DNI:
                                         <asp:DropDownList ID="ddlDniPaciente" runat="server" Height="20px" Width="120px">
-                                            <asp:ListItem Value="igual a">Igual a:</asp:ListItem>
-                                            <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
-                                            <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True">-- Seleccione --</asp:ListItem>
+                                            <asp:ListItem Value="1">Medico</asp:ListItem>
+                                            <asp:ListItem Value="2">Paciente</asp:ListItem>
                                         </asp:DropDownList>
-                                        &nbsp;<asp:TextBox ID="txtDniPaciente" runat="server" Width="105px"></asp:TextBox>
-                                        &nbsp;&nbsp; </td>
+                                        &nbsp;<asp:TextBox ID="txtFiltroDni" runat="server" Width="105px" TextMode="Number"></asp:TextBox>
+                                        &nbsp;&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style8">
@@ -124,10 +122,9 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btnAplicarFiltroAvanzado" runat="server" Height="27px" Text="Aplicar" Width="129px" />
+                                    <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btnAplicarFiltroAvanzado" runat="server" Height="27px" Text="Aplicar" Width="129px" OnClick="btnAplicarFiltroAvanzado_Click" />
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <asp:Button ID="btnLimpiarFiltrosAvanzados" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" />
-                                    </td>
+                                        </td>
                                 </tr>
                             </table>
                         </asp:Panel>
@@ -146,6 +143,7 @@
                 </tr>
             </table>
         </div>
+        <asp:ValidationSummary ID="vsFiltrarPorCodigo" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="FiltroTurno" />
     </form>
 </body>
 </html>

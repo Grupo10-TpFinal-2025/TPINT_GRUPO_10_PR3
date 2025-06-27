@@ -78,6 +78,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.TextBox txtListarTurno;
 
         /// <summary>
+        /// Control rfvCodigoTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCodigoTurno;
+
+        /// <summary>
         /// Control btnFiltarTurno.
         /// </summary>
         /// <remarks>
@@ -87,6 +96,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.Button btnFiltarTurno;
 
         /// <summary>
+        /// Control btnLimpiarFiltrosAvanzados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLimpiarFiltrosAvanzados;
+
+        /// <summary>
         /// Control gvTablaTurnos.
         /// </summary>
         /// <remarks>
@@ -94,6 +112,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTablaTurnos;
+
+        /// <summary>
+        /// Control lblMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
         /// Control btnMostrarFiltrosAvanzado0.
@@ -114,22 +141,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.Panel panelListarTurnos;
 
         /// <summary>
-        /// Control ddlRangoEtario.
+        /// Control txtFiltroFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRangoEtario;
-
-        /// <summary>
-        /// Control txtRangoEtario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRangoEtario;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecha;
 
         /// <summary>
         /// Control ddlDniPaciente.
@@ -141,13 +159,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.DropDownList ddlDniPaciente;
 
         /// <summary>
-        /// Control txtDniPaciente.
+        /// Control txtFiltroDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDniPaciente;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroDni;
 
         /// <summary>
         /// Control lblResultadoFiltroAvanzado.
@@ -168,15 +186,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.Button btnAplicarFiltroAvanzado;
 
         /// <summary>
-        /// Control btnLimpiarFiltrosAvanzados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpiarFiltrosAvanzados;
-
-        /// <summary>
         /// Control hlGestionTurnos.
         /// </summary>
         /// <remarks>
@@ -184,5 +193,14 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlGestionTurnos;
+
+        /// <summary>
+        /// Control vsFiltrarPorCodigo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsFiltrarPorCodigo;
     }
 }

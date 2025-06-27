@@ -69,5 +69,48 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             gvTablaTurnos.PageIndex = e.NewPageIndex;
             cargarGV();
         }
+
+        protected void btnFiltarTurno_Click(object sender, EventArgs e)
+        {
+            //Relleno el dataTable y lo bindeo
+            
+            DataTable tabla = turno.getTablaPorCodigoTurno(Convert.ToInt32(txtListarTurno.Text.Trim()));
+            gvTablaTurnos.DataSource = tabla;
+            gvTablaTurnos.DataBind();
+
+            //Si la tabla tiene 0 filas pongo un mensaje diciendo que no se pudo encontrar nada
+            if (tabla.Rows.Count <= 0)
+            {
+                lblMensaje.Text = "No se ha encontrado ninguna sucursal " + txtListarTurno.Text.Trim() + ".";
+            }
+            else
+            {
+                lblMensaje.Text = "";
+            }
+
+            //Limpio el txt
+            txtListarTurno.Text = "";
+            
+        }
+
+        //Limpio filtros
+        protected void btnLimpiarFiltrosAvanzados_Click(object sender, EventArgs e)
+        {
+            //Cargo la gv normal
+            cargarGV();
+
+            //Limpio el txt
+            txtListarTurno.Text = "";
+        }
+
+        //Evento click filtro avanzado
+        protected void btnAplicarFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            //Me fijo si hay algun campo seleccionado
+            if(txtFiltroFecha.Text == string.Empty || txtFiltroDni.Text == string.Empty)
+            {
+                lblResultadoFiltroAvanzado.Text = "Se deben ingresar campos para poder usar los filtros avanzados.";
+            }
+        }
     }
 }

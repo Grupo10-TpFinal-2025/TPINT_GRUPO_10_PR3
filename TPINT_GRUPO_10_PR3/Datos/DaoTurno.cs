@@ -71,5 +71,21 @@ namespace Datos
             return table;
         }
 
+        public DataTable getTablaPorCodigoTurno(int numero)
+        {
+            string consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA WHERE CodTurno_TU = @CodTurno_TU";
+
+            //Creo el sqlCommand y lo cargo
+            SqlCommand sqlComand = new SqlCommand(consulta);
+            sqlComand.Parameters.AddWithValue("@CodTurno_TU", numero);
+
+            //Devuelvo
+            return datos.ObtenerTablaFiltrada("Sucursales", sqlComand);
+        }
+
     }
 }

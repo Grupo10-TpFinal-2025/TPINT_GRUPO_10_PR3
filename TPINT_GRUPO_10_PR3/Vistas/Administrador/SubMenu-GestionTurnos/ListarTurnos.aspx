@@ -75,8 +75,195 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:ListView ID="lvListarTurnos" runat="server">
+                        <asp:ListView ID="lvListarTurnos" runat="server" DataKeyNames="CodTurno_TU" DataSourceID="SqlDataSourceTurno">
+                            <AlternatingItemTemplate>
+                                <tr style="background-color:#FFF8DC;">
+                                    <td>
+                                        <asp:Label ID="CodTurno_TULabel" runat="server" Text='<%# Eval("CodTurno_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="LegajoMedico_TULabel" runat="server" Text='<%# Eval("LegajoMedico_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="LegajoPaciente_TULabel" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Fecha_TULabel" runat="server" Text='<%# Eval("Fecha_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Pendiente_TUCheckBox" runat="server" Checked='<%# Eval("Pendiente_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Asistencia_TUCheckBox" runat="server" Checked='<%# Eval("Asistencia_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Estado_TUCheckBox" runat="server" Checked='<%# Eval("Estado_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Descripcion_TULabel" runat="server" Text='<%# Eval("Descripcion_TU") %>' />
+                                    </td>
+                                </tr>
+                            </AlternatingItemTemplate>
+                            <EditItemTemplate>
+                                <tr style="background-color:#008A8C;color: #FFFFFF;">
+                                    <td>
+                                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Actualizar" />
+                                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancelar" />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="CodTurno_TULabel1" runat="server" Text='<%# Eval("CodTurno_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="LegajoMedico_TUTextBox" runat="server" Text='<%# Bind("LegajoMedico_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="LegajoPaciente_TUTextBox" runat="server" Text='<%# Bind("LegajoPaciente_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="Fecha_TUTextBox" runat="server" Text='<%# Bind("Fecha_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Pendiente_TUCheckBox" runat="server" Checked='<%# Bind("Pendiente_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Asistencia_TUCheckBox" runat="server" Checked='<%# Bind("Asistencia_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Estado_TUCheckBox" runat="server" Checked='<%# Bind("Estado_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="Descripcion_TUTextBox" runat="server" Text='<%# Bind("Descripcion_TU") %>' />
+                                    </td>
+                                </tr>
+                            </EditItemTemplate>
+                            <EmptyDataTemplate>
+                                <table runat="server" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;">
+                                    <tr>
+                                        <td>No se han devuelto datos.</td>
+                                    </tr>
+                                </table>
+                            </EmptyDataTemplate>
+                            <InsertItemTemplate>
+                                <tr style="">
+                                    <td>
+                                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insertar" />
+                                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Borrar" />
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <asp:TextBox ID="LegajoMedico_TUTextBox" runat="server" Text='<%# Bind("LegajoMedico_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="LegajoPaciente_TUTextBox" runat="server" Text='<%# Bind("LegajoPaciente_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="Fecha_TUTextBox" runat="server" Text='<%# Bind("Fecha_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Pendiente_TUCheckBox" runat="server" Checked='<%# Bind("Pendiente_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Asistencia_TUCheckBox" runat="server" Checked='<%# Bind("Asistencia_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Estado_TUCheckBox" runat="server" Checked='<%# Bind("Estado_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="Descripcion_TUTextBox" runat="server" Text='<%# Bind("Descripcion_TU") %>' />
+                                    </td>
+                                </tr>
+                            </InsertItemTemplate>
+                            <ItemTemplate>
+                                <tr style="background-color:#DCDCDC;color: #000000;">
+                                    <td>
+                                        <asp:Label ID="CodTurno_TULabel" runat="server" Text='<%# Eval("CodTurno_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="LegajoMedico_TULabel" runat="server" Text='<%# Eval("LegajoMedico_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="LegajoPaciente_TULabel" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Fecha_TULabel" runat="server" Text='<%# Eval("Fecha_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Pendiente_TUCheckBox" runat="server" Checked='<%# Eval("Pendiente_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Asistencia_TUCheckBox" runat="server" Checked='<%# Eval("Asistencia_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Estado_TUCheckBox" runat="server" Checked='<%# Eval("Estado_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Descripcion_TULabel" runat="server" Text='<%# Eval("Descripcion_TU") %>' />
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                            <LayoutTemplate>
+                                <table runat="server">
+                                    <tr runat="server">
+                                        <td runat="server">
+                                            <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
+                                                <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
+                                                    <th runat="server">CodTurno_TU</th>
+                                                    <th runat="server">LegajoMedico_TU</th>
+                                                    <th runat="server">LegajoPaciente_TU</th>
+                                                    <th runat="server">Fecha_TU</th>
+                                                    <th runat="server">Pendiente_TU</th>
+                                                    <th runat="server">Asistencia_TU</th>
+                                                    <th runat="server">Estado_TU</th>
+                                                    <th runat="server">Descripcion_TU</th>
+                                                </tr>
+                                                <tr id="itemPlaceholder" runat="server">
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr runat="server">
+                                        <td runat="server" style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;">
+                                            <asp:DataPager ID="DataPager1" runat="server">
+                                                <Fields>
+                                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                                    <asp:NumericPagerField />
+                                                    <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                                </Fields>
+                                            </asp:DataPager>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </LayoutTemplate>
+                            <SelectedItemTemplate>
+                                <tr style="background-color:#008A8C;font-weight: bold;color: #FFFFFF;">
+                                    <td>
+                                        <asp:Label ID="CodTurno_TULabel" runat="server" Text='<%# Eval("CodTurno_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="LegajoMedico_TULabel" runat="server" Text='<%# Eval("LegajoMedico_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="LegajoPaciente_TULabel" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Fecha_TULabel" runat="server" Text='<%# Eval("Fecha_TU") %>' />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Pendiente_TUCheckBox" runat="server" Checked='<%# Eval("Pendiente_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Asistencia_TUCheckBox" runat="server" Checked='<%# Eval("Asistencia_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="Estado_TUCheckBox" runat="server" Checked='<%# Eval("Estado_TU") %>' Enabled="false" />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Descripcion_TULabel" runat="server" Text='<%# Eval("Descripcion_TU") %>' />
+                                    </td>
+                                </tr>
+                            </SelectedItemTemplate>
                         </asp:ListView>
+                        <asp:SqlDataSource ID="SqlDataSourceTurno" runat="server" ConnectionString="<%$ ConnectionStrings:TPI-Grupo10Conexion %>" SelectCommand="SELECT [CodTurno_TU], [LegajoMedico_TU], [LegajoPaciente_TU], [Fecha_TU], [Pendiente_TU], [Asistencia_TU], [Estado_TU], [Descripcion_TU] FROM [Turno]"></asp:SqlDataSource>
                     </td>
                     <td class="auto-style3">&nbsp;</td>
                 </tr>

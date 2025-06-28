@@ -20,7 +20,6 @@ namespace Datos
 
         public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)
         {
-
             List<Disponibilidad> listaDisponibilidadMedico = new List<Disponibilidad>();
 
             SqlConnection conexion = null;
@@ -29,17 +28,17 @@ namespace Datos
 
             try
             {
-                string consulta = "SELECT NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_UM, Descripcion_DI FROM Disponibilidad DIS INNER JOIN Dia DIA ON DIA.NumDia_DI = DIS.NumDia_DIS WHERE LegajoMedico_DIS = 1 ORDER BY NumDia_DIS ASC\r\n";
+                string consulta = "SELECT NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_DIS, Descripcion_DI FROM Disponibilidad INNER JOIN Dia ON NumDia_DI = NumDia_DIS WHERE @LegajoMedico = LegajoMedico_DIS ORDER BY NumDia_DIS ASC";
                 conexion = datos.ObtenerConexion();
                 comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("legajoMedico", legajoMedico);
+                comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
                 lector = comando.ExecuteReader();
 
                 using (lector)
                 {
                     while (lector.Read())
                     {
-                        if ((bool)lector["Estado_UM"])
+                        if ((bool)lector["Estado_DIS"])
                         {
                             Disponibilidad disponibilidad = new Disponibilidad();
                             disponibilidad.NumDia = (int)lector["NumDia_DIS"];
@@ -51,14 +50,12 @@ namespace Datos
                             listaDisponibilidadMedico.Add(disponibilidad);
                         }
                     }
-                }                                    
+                }
             }
-
             catch (Exception)
             {
                 throw;
             }
-
             finally
             {
                 if (conexion != null && conexion.State == ConnectionState.Open)
@@ -66,9 +63,8 @@ namespace Datos
                     conexion.Close();
                 }
             }
-            
+
             return listaDisponibilidadMedico;
         }
-        
     }
 }

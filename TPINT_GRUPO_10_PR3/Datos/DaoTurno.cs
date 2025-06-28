@@ -45,7 +45,7 @@ namespace Datos
                         BEGIN
                             INSERT INTO Turno 
                             (LegajoMedico_TU, LegajoPaciente_TU, Fecha_TU, Pendiente_TU, 
-                            Asistencia_TU, Descripcion_TU, Estado_UM) 
+                            Asistencia_TU, Descripcion_TU, Estado_TU) 
                             VALUES 
                             (@LegajoMedico, @LegajoPaciente, @Fecha, 1, NULL, NULL, 1)                                                        
                         END";
@@ -66,7 +66,7 @@ namespace Datos
 
             try
             {
-                string consulta = "SELECT Fecha_TU, Estado_UM FROM Turno WHERE LegajoMedico_TU = @LegajoMedico AND Fecha_TU > GETDATE() AND Fecha_TU <= DATEADD(Day, 30, GETDATE())";
+                string consulta = "SELECT Fecha_TU, Estado_TU FROM Turno WHERE LegajoMedico_TU = @LegajoMedico AND Fecha_TU > GETDATE() AND Fecha_TU <= DATEADD(Day, 30, GETDATE())";
                 conexion = datos.ObtenerConexion();
                 comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("LegajoMedico", legajoMedico);                
@@ -76,7 +76,7 @@ namespace Datos
                 {
                     while (lector.Read())
                     {
-                        if ((bool)lector["Estado_UM"] == false)
+                        if ((bool)lector["Estado_TU"])
                         {
                             Turno turno = new Turno();
                             turno.Fecha = (DateTime)lector["Fecha_TU"];
@@ -86,12 +86,10 @@ namespace Datos
                     }
                 }
             }
-
             catch (Exception)
             {
                 throw;
             }
-
             finally
             {
                 if (conexion != null && conexion.State == ConnectionState.Open)
@@ -151,6 +149,5 @@ namespace Datos
                 }
             }
         }
-
     }
 }

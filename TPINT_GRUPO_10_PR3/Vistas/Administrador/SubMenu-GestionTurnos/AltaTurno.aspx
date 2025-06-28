@@ -77,11 +77,11 @@
                     <td class="auto-style12">
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style6" style="font-size: medium; text-decoration: underline overline">&nbsp;</td>
+                    <td class="auto-style6" style="font-size: medium; text-decoration: underline overline"></td>
                 </tr>
                 <tr>
                     <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Especialidad:&nbsp; &nbsp;
-                        <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged1" Width="202px">
+                        <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" Width="202px">
                         </asp:DropDownList>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Médico:&nbsp;
                         <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" Width="202px" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
@@ -96,9 +96,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semana:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <asp:DropDownList ID="ddlSemana" runat="server" Height="20px" Width="100px" OnSelectedIndexChanged="ddlSemana_SelectedIndexChanged">
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semana:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <asp:DropDownList ID="ddlSemana" runat="server" Height="20px" Width="100px" OnSelectedIndexChanged="ddlSemana_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dia: <asp:DropDownList ID="ddlDia" runat="server" Height="20px" Width="100px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dia: <asp:DropDownList ID="ddlDia" runat="server" Height="20px" Width="100px" AutoPostBack="True" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged">
                         </asp:DropDownList>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Horario:&nbsp; <asp:DropDownList ID="ddlHorario" runat="server" Height="20px" Width="100px">
                         </asp:DropDownList>

@@ -109,7 +109,6 @@ namespace Datos
         }
         public SqlDataAdapter ObtenerDataAdapter(string consulta, SqlConnection sqlConnection)
         {
-
             try
             {
                 dataAdapter = new SqlDataAdapter(consulta, sqlConnection);
@@ -216,6 +215,5 @@ namespace Datos
             estadoConexion = false;
             return dataSet.Tables[nombreTabla];
         }
-
     }
 }

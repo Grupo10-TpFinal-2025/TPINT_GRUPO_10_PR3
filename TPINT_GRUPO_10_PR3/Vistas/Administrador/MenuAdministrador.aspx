@@ -40,6 +40,27 @@
         font-size: 14px;
     }
 
+        .auto-style9 {
+            width: 33px;
+            height: 34px;
+        }
+        .auto-style10 {
+            width: 111px;
+            height: 34px;
+        }
+        .auto-style11 {
+            height: 34px;
+        }
+        .auto-style12 {
+            width: 41px;
+        }
+        .auto-style13 {
+            width: 101px;
+        }
+        .auto-style14 {
+            font-size: 14px;
+        }
+
     </style>
 </head>
 <body>
@@ -144,18 +165,37 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td class="auto-style5">&nbsp;</td>
-                <td>
+                <td class="auto-style9"></td>
+                <td class="auto-style10"></td>
+                <td class="auto-style11">
                     <asp:Button ID="btnReportes" runat="server" Text="Reportes e Informes" CssClass="boton-estandar" OnClick="btnReportes_Click" />
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style11"></td>
+                <td class="auto-style11"></td>
+                <td class="auto-style11"></td>
+                <td class="auto-style11"></td>
             </tr>
         </table>
         <div>
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style12">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style12">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td>
+                    <asp:Button ID="btnMenuDisponibilidad" runat="server" Text="Ir al Menu Disponibilidad" CssClass="auto-style14" OnClick="btnReportes_Click" Height="36px" Width="194px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style12">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

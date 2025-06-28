@@ -47,6 +47,17 @@
         .auto-style11 {
             height: 31px;
         }
+        .auto-style12 {
+            width: 33px;
+            height: 24px;
+        }
+        .auto-style13 {
+            width: 111px;
+            height: 24px;
+        }
+        .auto-style14 {
+            height: 24px;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +67,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style8">
-                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
+                    <asp:HyperLink ID="hlMenuAdministrador" runat="server" NavigateUrl="~/Administrador/MenuAdministrador.aspx">Regresar a Menú Administrador</asp:HyperLink>
                 </td>
                 <td>
                     Usuario:
@@ -103,13 +114,13 @@
                 <td class="auto-style4"></td>
             </tr>
             <tr>
-                <td class="auto-style9"></td>
-                <td class="auto-style10"></td>
-                <td class="auto-style11"></td>
-                <td class="auto-style11"></td>
-                <td class="auto-style11"></td>
-                <td class="auto-style11"></td>
-                <td class="auto-style11"></td>
+                <td class="auto-style12"></td>
+                <td class="auto-style13"></td>
+                <td class="auto-style14"></td>
+                <td class="auto-style14"></td>
+                <td class="auto-style14"></td>
+                <td class="auto-style14"></td>
+                <td class="auto-style14"></td>
             </tr>
             <tr>
                 <td class="auto-style2">&nbsp;</td>
@@ -135,7 +146,7 @@
                 <td class="auto-style9"></td>
                 <td class="auto-style10"></td>
                 <td class="auto-style11">
-                    <asp:Button ID="btnModificacionDisponibilidad" runat="server" Text="Modificación Disponibilidad" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnModificacionDisponibilidad" runat="server" Text="Modificación Disponibilidad" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnModificacionDisponibilidad_Click" />
                 </td>
                 <td class="auto-style11"></td>
                 <td class="auto-style11"></td>
@@ -155,7 +166,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style5">&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnListadoDisponibilidad" runat="server" Text="Listar Disponibilidades" CssClass="boton-estandar" Height="30px" Width="200px" />
+                    <asp:Button ID="btnListadoDisponibilidad" runat="server" Text="Listar Disponibilidades" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnListarDisponibilidad_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

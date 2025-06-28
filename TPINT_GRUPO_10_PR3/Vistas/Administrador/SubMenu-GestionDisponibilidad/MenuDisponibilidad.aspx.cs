@@ -32,5 +32,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         {
             Response.Redirect("BajaDisponibilidad.aspx");
         }
+
+        protected void btnListarDisponibilidad_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListarDisponibilidad.aspx");
+        }
+
+        protected void btnModificacionDisponibilidad_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificacionDisponibilidad.aspx");
+        }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.EnterpriseServices;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -23,8 +24,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["NumeroDia"] = DateTime.Now.DayOfWeek + 1;
-
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -80,83 +79,99 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }            
         }
 
-        private void CargarDDLSemana()
+        private void CargarDDLSemana(int legajoMedico)
         {
-            //CARGADOS:
-            //Turnos para el medico seleccionado:  Session["ListaTurnosMedico"]
-            //Disponibilidad semanal del medico seleccionado: Session["ListaDisponibilidadMedico"
-            
-            if (Session["ListaDisponibilidadMedico"] == null)
+            List<Disponibilidad> listaDisponibilidadMedico = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
+            List<Turno> listaTurnos = negocioTurno.ObtenerListaTurnos(legajoMedico);
+
+            ddlSemana.Items.Clear();
+
+            if (listaDisponibilidadMedico == null || listaDisponibilidadMedico.Count == 0 ||
+                listaTurnos == null)
             {
-                ddlSemana.Text = "No hay horarios disponibles";
+                ddlSemana.Items.Add(new ListItem("No hay horarios disponibles", "0"));
                 return;
             }
 
-            int i = 0;
             DateTime fechaActual = DateTime.Now;
-            int diaSemana = (int)(DateTime.Now.DayOfWeek + 6) % 7; // Lunes = 0, Domingo = 6
+            int diaSemana = (int)(DateTime.Now.DayOfWeek + 6) % 7; // lunes = 0
 
-            while (i < 7)
+            for (int i = 0; i < 7; i++)
             {
                 if (i > 0)
-                {
                     fechaActual = fechaActual.AddDays(7);
-                }
 
                 DateTime inicioSemana = fechaActual.AddDays(-diaSemana);
-                DateTime finSemana = fechaActual.AddDays(6 - diaSemana);
+                DateTime finSemana = inicioSemana.AddDays(6);
+                int disponiblesEnSemana = 0;
 
-                string texto = $"{inicioSemana:dd-MM} al {finSemana:dd-MM}";
-                string valor = inicioSemana.ToString("yyyy-MM-dd"); // valor único
+                foreach (var d in listaDisponibilidadMedico)
+                {
+                    DateTime fechaDelDia = inicioSemana.AddDays(d.NumDia - 1);
 
-                ddlSemana.Items.Add(new ListItem(texto, valor));
-                i++;
+                    int cantidadTurnos = 0;
+                    foreach (var turno in listaTurnos)
+                    {
+                        if (turno.Fecha.Date == fechaDelDia.Date)
+                            cantidadTurnos++;
+                    }
+
+                    int maxTurnos = (int)(d.HorarioFin - d.HorarioInicio).TotalHours;
+                    int disponibles = maxTurnos - cantidadTurnos;
+
+                    if (disponibles > 0)
+                        disponiblesEnSemana += disponibles;
+                }
+
+                if (disponiblesEnSemana > 0)
+                {
+                    string texto = $"{inicioSemana:dd-MM} al {finSemana:dd-MM} ({disponiblesEnSemana} disponibles)";
+                    string valor = inicioSemana.ToString("yyyy-MM-dd");
+                    ddlSemana.Items.Add(new ListItem(texto, valor));
+                }
             }
 
-            //Session["LegajoMedico"] = Convert.ToInt32(ddlMedico.SelectedValue);
+            if (ddlSemana.Items.Count == 0)
+            {
+                ddlSemana.Items.Add(new ListItem("No hay semanas con turnos disponibles", "0"));
+            }
         }
 
         private void CargarDDLDia(int legajoMedico)
         {
             List<Disponibilidad> listaDisponibilidadMedico = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
+            List<Turno> listaTurnos = negocioTurno.ObtenerListaTurnos(legajoMedico);
+
+            DateTime fechaInicioSemana = DateTime.ParseExact(ddlSemana.SelectedValue, "yyyy-MM-dd", null);
 
             ddlDia.Items.Clear();
-            ddlDia.DataSource = listaDisponibilidadMedico;
-            ddlDia.DataTextField = "NombreDia";
-            ddlDia.DataValueField = "NumDia";
-            ddlDia.DataBind();
+
+            foreach (var d in listaDisponibilidadMedico)
+            {
+                // Calcular fecha exacta de ese día en la semana seleccionada
+                DateTime fechaDelDia = fechaInicioSemana.AddDays(d.NumDia - 1);
+
+
+                // Contar cuántos turnos ya hay cargados para ese día
+                int cantidadTurnos = 0;
+                foreach (var turno in listaTurnos)
+                {
+                    if (turno.Fecha.Date == fechaDelDia.Date)
+                        cantidadTurnos++;
+                }
+
+                int maxTurnos = (int)(d.HorarioFin - d.HorarioInicio).TotalHours;
+                int disponibles = maxTurnos - cantidadTurnos;
+
+                if (disponibles > 0)
+                {
+                    string texto = $"{d.NombreDia} ({disponibles} disponibles)";
+                    ddlDia.Items.Add(new ListItem(texto, d.NumDia.ToString()));
+                }
+            }
+
             ddlDia.Items.Insert(0, new ListItem("-- Seleccione un día --", "0"));
         }
-
-        /*private void CargarDDLHorario()
-        {
-            int i = 0;
-
-            List<DateTime> horariosDisponibles = new List<DateTime>();
-            List<Disponibilidad> listaDisponibilidadMedico = (List<Disponibilidad>)Session["ListaDisponibilidadMedico"];
-            List<string> listaHora = new List<string>();
-
-            int horaInicio = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioInicio);
-            int horaFin = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioFin);
-
-            int hora = horaFin - horaInicio;
-
-            for (i = 0; i < hora; i++)
-            {
-                listaHora.Add((hora + i).ToString());
-            }
-
-            for (i = 0; i < listaDisponibilidadMedico.Count; i++)
-            {
-                ddlDia.Items.Add(listaDisponibilidadMedico[i].NombreDia);
-            }
-
-            ddlDia.DataSource = listaDisponibilidadMedico;
-            ddlDia.DataBind();
-
-            ddlHorario.DataSource = listaHora;
-            ddlHorario.DataBind();
-        }*/
 
         public void CargarDDLHorario(int legajoMedico, int numDiaSeleccionado)
         {
@@ -241,9 +256,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlSemana.Items.Clear();
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
-
-            //Guardar la especialidad seleccionada en Session
-            Session["CodigoEspecialidad"] = cod;
+            lblInfoTurnos.Text = string.Empty;
 
             //Cargar médicos y restaurar selección si corresponde
             CargarDDLMedico(cod);
@@ -254,37 +267,30 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlSemana.Items.Clear();
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
-
-            //Guardar selección en Session
-            //Session["NombreMedico"] = ddlMedico.SelectedItem.Text;
-            //Session["LegajoMedico"] = ddlMedico.SelectedValue;
+            lblInfoTurnos.Text = string.Empty;
 
             int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
-            //DateTime fechaActual = (DateTime) Session["DiaSemana"];
 
-            NegocioDisponibilidad negocioD = new NegocioDisponibilidad();
+            List<Disponibilidad> listaDisponibilidadMedico = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
+            List<Turno> listaTurnos = negocioTurno.ObtenerListaTurnos(legajoMedico);
             
-            if(Session["ListaDisponibilidadMedico"] != null)
+            if (listaTurnos != null)
             {
-                Session["ListaDisponibilidadMedico"] = null;
+                int cantidadDisponibles = CalcularTurnosDisponibles(listaDisponibilidadMedico, listaTurnos);
+
+                if (cantidadDisponibles > 0)
+                    lblInfoTurnos.Text = $"Este médico tiene {cantidadDisponibles} turnos disponibles en las próximas semanas.";
+                else if (ddlMedico.SelectedValue != "0")
+                    lblInfoTurnos.Text = "Este médico no tiene turnos próximos disponibles.";
             }
-
-            Session["ListaDisponibilidadMedico"] = negocioD.ObtenerListaDisponibilidadMedico(legajoMedico);
-
-            //-----------------------------------------
-
-            NegocioTurno negocioT = new NegocioTurno();
-
-            if (Session["ListaTurnosMedico"] != null)
+            else
             {
-                Session["ListaTurnosMedico"] = null;
+                lblInfoTurnos.Text = "No se encontraron datos de turnos para este médico.";
             }
-
-            Session["ListaTurnosMedico"] = negocioT.ObtenerListaTurnos(legajoMedico);
 
             if (legajoMedico != 0)
             {
-                CargarDDLSemana();
+                CargarDDLSemana(legajoMedico);
             }
 
             if (legajoMedico != 0)
@@ -296,9 +302,52 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 }
                 else
                 {
-                    ddlSemana.Items.Insert(0, new ListItem("-Seleccione una opcion-", "0"));
+                    ddlSemana.Items.Insert(0, new ListItem("-Seleccione una opción-", "0"));
                 }
             }
+        }
+
+        public int CalcularTurnosDisponibles(List<Disponibilidad> listaDisponibilidad, List<Turno> listaTurnos)
+        {
+            int disponibles = 0;
+            DateTime hoy = DateTime.Now.Date;
+            DateTime fin = hoy.AddDays(49); // 7 semanas completas
+
+            while (hoy <= fin)
+            {
+                int numDia = (int)(hoy.DayOfWeek + 6) % 7 + 1; // Lunes = 1, Domingo = 7
+
+                foreach (var disp in listaDisponibilidad)
+                {
+                    if (disp.NumDia != numDia)
+                        continue;
+
+                    TimeSpan hora = disp.HorarioInicio;
+                    while (hora < disp.HorarioFin)
+                    {
+                        DateTime posibleTurno = hoy.Add(hora);
+
+                        bool ocupado = false;
+                        foreach (var turno in listaTurnos)
+                        {
+                            if (turno.Estado && turno.Fecha == posibleTurno)
+                            {
+                                ocupado = true;
+                                break;
+                            }
+                        }
+
+                        if (!ocupado)
+                            disponibles++;
+
+                        hora = hora.Add(TimeSpan.FromHours(1));
+                    }
+                }
+
+                hoy = hoy.AddDays(1);
+            }
+
+            return disponibles;
         }
 
         protected void ddlSemana_SelectedIndexChanged(object sender, EventArgs e)

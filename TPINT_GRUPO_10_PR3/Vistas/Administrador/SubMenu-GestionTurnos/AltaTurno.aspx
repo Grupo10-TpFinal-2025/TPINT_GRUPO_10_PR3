@@ -45,6 +45,9 @@
             width: 1770px;
             height: 17px;
         }
+        .auto-style16 {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -142,7 +145,54 @@
                 </tr>
                 </table>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <table class="auto-style16">
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lblInfoTurnos" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
             <br />

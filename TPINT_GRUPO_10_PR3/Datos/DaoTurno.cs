@@ -80,6 +80,7 @@ namespace Datos
                         {
                             Turno turno = new Turno();
                             turno.Fecha = (DateTime)lector["Fecha_TU"];
+                            turno.Estado = (bool)lector["Estado_TU"];
 
                             listaTurnosMedico.Add(turno);
                         }

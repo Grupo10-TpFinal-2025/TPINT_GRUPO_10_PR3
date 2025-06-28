@@ -126,35 +126,35 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlDia.Items.Insert(0, new ListItem("-- Seleccione un día --", "0"));
         }
 
-        //private void CargarDDLHorario()
-        //{
-        //    int i = 0;
+        /*private void CargarDDLHorario()
+        {
+            int i = 0;
 
-        //    List<DateTime> horariosDisponibles = new List<DateTime>();
-        //    List<Disponibilidad> listaDisponibilidadMedico = (List<Disponibilidad>)Session["ListaDisponibilidadMedico"];
-        //    List<string> listaHora = new List<string>();
+            List<DateTime> horariosDisponibles = new List<DateTime>();
+            List<Disponibilidad> listaDisponibilidadMedico = (List<Disponibilidad>)Session["ListaDisponibilidadMedico"];
+            List<string> listaHora = new List<string>();
 
-        //    int horaInicio = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioInicio);
-        //    int horaFin = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioFin);
+            int horaInicio = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioInicio);
+            int horaFin = Convert.ToInt32(listaDisponibilidadMedico[i].HorarioFin);
 
-        //    int hora = horaFin - horaInicio;
+            int hora = horaFin - horaInicio;
 
-        //    for (i = 0; i < hora; i++)
-        //    {
-        //        listaHora.Add((hora + i).ToString());
-        //    }
+            for (i = 0; i < hora; i++)
+            {
+                listaHora.Add((hora + i).ToString());
+            }
 
-        //    for (i = 0; i < listaDisponibilidadMedico.Count; i++)
-        //    {
-        //        ddlDia.Items.Add(listaDisponibilidadMedico[i].NombreDia);
-        //    }
+            for (i = 0; i < listaDisponibilidadMedico.Count; i++)
+            {
+                ddlDia.Items.Add(listaDisponibilidadMedico[i].NombreDia);
+            }
 
-        //    ddlDia.DataSource = listaDisponibilidadMedico;
-        //    ddlDia.DataBind();
+            ddlDia.DataSource = listaDisponibilidadMedico;
+            ddlDia.DataBind();
 
-        //    ddlHorario.DataSource = listaHora;
-        //    ddlHorario.DataBind();
-        //}
+            ddlHorario.DataSource = listaHora;
+            ddlHorario.DataBind();
+        }*/
 
         public void CargarDDLHorario(int legajoMedico, int numDiaSeleccionado)
         {

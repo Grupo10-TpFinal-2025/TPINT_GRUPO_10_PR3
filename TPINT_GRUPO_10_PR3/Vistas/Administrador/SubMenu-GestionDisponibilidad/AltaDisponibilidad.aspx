@@ -101,7 +101,7 @@
                     <td class="auto-style4">
                         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnAgrergarDisponibilidad" runat="server" Height="30px" Text="Agregar" Width="100px" />
+                        <asp:Button ID="btnAgregarDisponibilidad" runat="server" Height="30px" Text="Agregar" Width="100px" OnClick="btnAgregarDisponibilidad_Click" />
 &nbsp;
                         <br />
                         <br />

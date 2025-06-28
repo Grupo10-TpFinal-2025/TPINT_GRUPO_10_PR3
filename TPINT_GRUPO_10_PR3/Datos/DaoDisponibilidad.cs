@@ -79,5 +79,57 @@ namespace Datos
             }
             return tablaDias;
         }
+
+        public int AgregarDisponibilidad(Disponibilidad disponibilidad)
+        {
+            try
+            {
+                using (SqlConnection conexion = datos.ObtenerConexion())
+                {
+                    string consulta = "INSERT INTO Disponibilidad (NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_DIS) VALUES (@NumDia, @LegajoMedico, @HorarioInicio, @HorarioFin, @Estado)";
+                    SqlCommand comando = new SqlCommand(consulta, conexion);
+                    comando.Parameters.AddWithValue("@NumDia", disponibilidad.NumDia);
+                    comando.Parameters.AddWithValue("@LegajoMedico", disponibilidad.LegajoMedico);
+                    comando.Parameters.AddWithValue("@HorarioInicio", disponibilidad.HorarioInicio);
+                    comando.Parameters.AddWithValue("@HorarioFin", disponibilidad.HorarioFin);
+                    comando.Parameters.AddWithValue("@Estado", disponibilidad.Estado);
+
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    return filasAfectadas; // Devuelve 1 si insertó correctamente
+                }
+            }
+            catch
+            {
+                return -1; // Devuelve -1 si hubo error
+            }
+        }
+
+        public bool ExisteDisponibilidad(int legajoMedico, int numDia, TimeSpan inicio, TimeSpan fin)
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = @"SELECT COUNT(*) FROM Disponibilidad 
+                            WHERE LegajoMedico_DIS = @LegajoMedico 
+                            AND NumDia_DIS = @NumDia 
+                            AND Estado_DIS = 1 
+                            AND (
+                                (@Inicio >= HorarioInicio_DIS AND @Inicio < HorarioFin_DIS) OR
+                                (@Fin > HorarioInicio_DIS AND @Fin <= HorarioFin_DIS) OR
+                                (@Inicio <= HorarioInicio_DIS AND @Fin >= HorarioFin_DIS)
+                            )";
+
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
+                    comando.Parameters.AddWithValue("@NumDia", numDia);
+                    comando.Parameters.AddWithValue("@Inicio", inicio);
+                    comando.Parameters.AddWithValue("@Fin", fin);
+
+                    int count = (int)comando.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
     }
 }

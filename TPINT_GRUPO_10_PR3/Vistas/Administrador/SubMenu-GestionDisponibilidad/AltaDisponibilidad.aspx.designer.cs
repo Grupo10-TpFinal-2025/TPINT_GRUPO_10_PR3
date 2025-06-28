@@ -114,13 +114,13 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.DropDownList ddlHorarioFinDis;
 
         /// <summary>
-        /// Control btnAgrergarDisponibilidad.
+        /// Control btnAgregarDisponibilidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgrergarDisponibilidad;
+        protected global::System.Web.UI.WebControls.Button btnAgregarDisponibilidad;
 
         /// <summary>
         /// Control lblMensaje.

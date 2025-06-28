@@ -19,6 +19,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         private NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
         private NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
         private NegocioMedico negocioMedico = new NegocioMedico();
+        private NegocioTurno negocioTurno = new NegocioTurno();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,9 +34,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             {
                 lblUsuarioAdministrador.Text = "Administrador";
                 CargarDDLEspecialidad();
-
-                ddlMedico.Items.Clear();
-                ddlMedico.Items.Add(new ListItem("--Seleccione un médico--", "0"));
             }
         }
 
@@ -68,7 +66,10 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 ddlMedico.DataValueField = "Legajo_ME";
                 ddlMedico.DataBind();
 
-                ddlMedico.Items.Insert(0, new ListItem("--Seleccione un médico--", "0"));
+                if (cod != "0")
+                {
+                    ddlMedico.Items.Insert(0, new ListItem("--Seleccione un médico--", "0"));
+                }
 
                 lblError.Visible = false;         
             }
@@ -92,28 +93,29 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
 
             int i = 0;
-            string semana;
-
             DateTime fechaActual = DateTime.Now;
-            int diaSemana = Convert.ToInt32(DateTime.Now.DayOfWeek + 6) % 7;
+            int diaSemana = (int)(DateTime.Now.DayOfWeek + 6) % 7; // Lunes = 0, Domingo = 6
 
             while (i < 7)
             {
-                if(i > 0)
+                if (i > 0)
                 {
                     fechaActual = fechaActual.AddDays(7);
                 }
 
-                semana = (fechaActual.AddDays(-diaSemana)).ToString("dd-MM") + " al " +
-                         (fechaActual.AddDays(6 - diaSemana)).ToString("dd-MM");
+                DateTime inicioSemana = fechaActual.AddDays(-diaSemana);
+                DateTime finSemana = fechaActual.AddDays(6 - diaSemana);
 
-                ddlSemana.Items.Add(new ListItem(semana, fechaActual.ToString("MM")));
+                string texto = $"{inicioSemana:dd-MM} al {finSemana:dd-MM}";
+                string valor = inicioSemana.ToString("yyyy-MM-dd"); // valor único
+
+                ddlSemana.Items.Add(new ListItem(texto, valor));
                 i++;
             }
-            
-            //Session["LegajoMedico"] = Convert.ToInt32(ddlMedico.SelectedValue);                                                                                               
+
+            //Session["LegajoMedico"] = Convert.ToInt32(ddlMedico.SelectedValue);
         }
-        
+
         private void CargarDDLDia(int legajoMedico)
         {
             List<Disponibilidad> listaDisponibilidadMedico = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
@@ -161,6 +163,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlHorario.Items.Clear();
 
             List<Disponibilidad> listaDisponibilidadMedico = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
+            List<Turno> listaTurnos = negocioTurno.ObtenerListaTurnos(legajoMedico);
+            DateTime fechaSeleccionada = ObtenerFechaSeleccionada();
 
             // Buscar la disponibilidad correspondiente al día seleccionado
             Disponibilidad disponibilidad = null;
@@ -174,43 +178,76 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 }
             }
 
+            // Si no tiene disponibilidad ese día, mostramos un mensaje
             if (disponibilidad == null)
             {
                 ddlHorario.Items.Add(new ListItem("No hay horarios disponibles", "0"));
                 return;
             }
 
+            // Obtener todas las horas ya ocupadas del médico en esa fecha
+            List<TimeSpan> horasOcupadas = new List<TimeSpan>();
+            
+            foreach (Turno turno in listaTurnos)
+            {
+                if (turno.Fecha.Date == fechaSeleccionada.Date)
+                {
+                    horasOcupadas.Add(turno.Fecha.TimeOfDay);
+                }
+            }
+
+            // Generar las franjas horarias disponibles de 1 hora
             TimeSpan horaInicio = disponibilidad.HorarioInicio;
             TimeSpan horaFin = disponibilidad.HorarioFin;
 
             while (horaInicio < horaFin)
             {
-                TimeSpan siguiente = horaInicio.Add(TimeSpan.FromHours(1));
-                if (siguiente > horaFin)
-                    break;
+                TimeSpan siguienteHora = horaInicio.Add(TimeSpan.FromHours(1));
+                
+                if (!horasOcupadas.Contains(horaInicio))
+                {
+                    string franja = $"{horaInicio:hh\\:mm} a {siguienteHora:hh\\:mm}";
+                    ddlHorario.Items.Add(new ListItem(franja, horaInicio.ToString(@"hh\:mm")));
+                }
 
-                string franja = $"{horaInicio:hh\\:mm} a {siguiente:hh\\:mm}";
-                ddlHorario.Items.Add(new ListItem(franja, horaInicio.ToString(@"hh\:mm")));
-
-                horaInicio = siguiente;
+                horaInicio = siguienteHora;
             }
 
             ddlHorario.Items.Insert(0, new ListItem("-- Seleccione un horario --", "0"));
         }
 
+        private DateTime ObtenerFechaSeleccionada()
+        {
+            if (ddlSemana.SelectedIndex <= 0 || ddlDia.SelectedIndex <= 0)
+                throw new Exception("Debe seleccionar una semana y un día.");
+
+            // Extraer el texto de la semana (ej. "23-06 al 29-06")
+            string textoSemana = ddlSemana.SelectedItem.Text;
+
+            // Separar los rangos de fecha
+            string[] partes = textoSemana.Split(new string[] { " al " }, StringSplitOptions.None);
+
+            // Parsear el primer día de la semana seleccionada (asumiendo año actual)
+            string fechaInicialTexto = partes[0] + "-" + DateTime.Now.Year;
+            DateTime fechaInicioSemana = DateTime.ParseExact(fechaInicialTexto, "dd-MM-yyyy", null);
+
+            // Obtener el número del día seleccionado (1 = Lunes, ..., 7 = Domingo)
+            int numDia = int.Parse(ddlDia.SelectedValue);
+
+            // Ajustar para que AddDays(0) sea lunes, AddDays(6) sea domingo
+            DateTime fechaSeleccionada = fechaInicioSemana.AddDays(numDia - 1);
+
+            return fechaSeleccionada;
+        }
+
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             string cod = ddlEspecialidad.SelectedValue;
+
+            ddlMedico.Items.Clear();
             ddlSemana.Items.Clear();
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
-
-            if (cod == "0")
-            {
-                ddlMedico.Items.Clear();
-                ddlMedico.Items.Add(new ListItem("--Seleccione una especialidad--", "0"));
-                return;
-            }
 
             //Guardar la especialidad seleccionada en Session
             Session["CodigoEspecialidad"] = cod;
@@ -221,13 +258,9 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlMedico.SelectedIndex == 0)
-            {
-                ddlSemana.Items.Clear();
-                ddlDia.Items.Clear();
-                ddlHorario.Items.Clear();
-                return;
-            }
+            ddlSemana.Items.Clear();
+            ddlDia.Items.Clear();
+            ddlHorario.Items.Clear();
 
             //Guardar selección en Session
             //Session["NombreMedico"] = ddlMedico.SelectedItem.Text;
@@ -256,44 +289,49 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             Session["ListaTurnosMedico"] = negocioT.ObtenerListaTurnos(legajoMedico);
 
-            CargarDDLSemana();
-
-            if (ddlSemana.Items.Count == 0)
-            {                 
-                ddlSemana.Items.Add("No hay turnos disponibles para esta semana...");
-                return;
-            }
-            else
+            if (legajoMedico != 0)
             {
-                ddlSemana.Items.Insert(0, new ListItem("-Seleccione una opcion-", "0"));
+                CargarDDLSemana();
+            }
+
+            if (legajoMedico != 0)
+            {
+                if (ddlSemana.Items.Count == 0)
+                {
+                    ddlSemana.Items.Add("No hay turnos disponibles para esta semana...");
+                    return;
+                }
+                else
+                {
+                    ddlSemana.Items.Insert(0, new ListItem("-Seleccione una opcion-", "0"));
+                }
             }
         }
 
         protected void ddlSemana_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlSemana.SelectedIndex == 0)
+            ddlDia.Items.Clear();
+            ddlHorario.Items.Clear();
+
+            if (ddlSemana.SelectedValue != "0")
             {
-                ddlDia.Items.Clear();
-                ddlHorario.Items.Clear();
-                return;
+                int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
+
+                CargarDDLDia(legajoMedico);
             }
-
-            int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
-
-            CargarDDLDia(legajoMedico);
         }
 
         protected void ddlDia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlDia.SelectedIndex <= 0)
-            {
-                ddlHorario.Items.Clear();
-                return;
-            }
+            ddlHorario.Items.Clear();
 
-            int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
-            int diaSeleccionado = int.Parse(ddlDia.SelectedValue);
-            CargarDDLHorario(legajoMedico, diaSeleccionado);
+            if (ddlDia.SelectedValue != "0")
+            {
+                int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
+                int diaSeleccionado = int.Parse(ddlDia.SelectedValue);
+
+                CargarDDLHorario(legajoMedico, diaSeleccionado);
+            }
         }
     }
 }

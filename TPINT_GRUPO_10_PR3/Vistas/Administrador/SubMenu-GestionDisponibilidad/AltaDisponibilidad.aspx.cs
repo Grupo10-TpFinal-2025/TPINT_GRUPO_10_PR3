@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocios;
+using Entidades;
+using System.Data;
 
 namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 {
@@ -19,7 +22,21 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             if (!IsPostBack)
             {
                 lblUsuarioAdministrador.Text = "Administrador";
+                CargarDias();
             }
+        }
+
+        private void CargarDias()
+        {
+            NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+            DataTable tablaDias = negocioDisponibilidad.ObtenerDias();
+
+            ddlDiasDis.DataSource = tablaDias;
+            ddlDiasDis.DataTextField = "Descripcion_DI";
+            ddlDiasDis.DataValueField = "NumDia_DI";
+            ddlDiasDis.DataBind();
+
+            ddlDiasDis.Items.Insert(0, new ListItem("-- Seleccione un día --", "0"));
         }
 
     }

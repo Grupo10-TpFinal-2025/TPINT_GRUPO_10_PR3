@@ -62,5 +62,22 @@ namespace Datos
                 return -1;
             }
         }
+
+        public DataTable ObtenerDias()
+        {
+            DataTable tablaDias = new DataTable();
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = "SELECT NumDia_DI, Descripcion_DI FROM Dia";
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        tablaDias.Load(reader);
+                    }
+                }
+            }
+            return tablaDias;
+        }
     }
 }

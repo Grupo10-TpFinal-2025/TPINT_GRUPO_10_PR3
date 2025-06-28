@@ -28,6 +28,11 @@ namespace Negocios
         {
             return daoD.BajaLogicaDisponibilidad(disponibilidad);
         }
+
+        public DataTable ObtenerDias()
+        {
+            return daoD.ObtenerDias();
+        }
     }
 }
 

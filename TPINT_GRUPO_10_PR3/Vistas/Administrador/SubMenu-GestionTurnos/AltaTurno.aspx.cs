@@ -221,20 +221,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             if (ddlSemana.SelectedIndex <= 0 || ddlDia.SelectedIndex <= 0)
                 throw new Exception("Debe seleccionar una semana y un día.");
 
-            // Extraer el texto de la semana (ej. "23-06 al 29-06")
-            string textoSemana = ddlSemana.SelectedItem.Text;
+            // Recuperar la fecha de inicio de la semana desde el Value del ddlSemana
+            DateTime fechaInicioSemana = DateTime.ParseExact(ddlSemana.SelectedValue, "yyyy-MM-dd", null);
 
-            // Separar los rangos de fecha
-            string[] partes = textoSemana.Split(new string[] { " al " }, StringSplitOptions.None);
-
-            // Parsear el primer día de la semana seleccionada (asumiendo año actual)
-            string fechaInicialTexto = partes[0] + "-" + DateTime.Now.Year;
-            DateTime fechaInicioSemana = DateTime.ParseExact(fechaInicialTexto, "dd-MM-yyyy", null);
-
-            // Obtener el número del día seleccionado (1 = Lunes, ..., 7 = Domingo)
+            // Obtener el número del día (1 = lunes ... 7 = domingo)
             int numDia = int.Parse(ddlDia.SelectedValue);
 
-            // Ajustar para que AddDays(0) sea lunes, AddDays(6) sea domingo
+            // Calcular la fecha exacta del día dentro de esa semana
             DateTime fechaSeleccionada = fechaInicioSemana.AddDays(numDia - 1);
 
             return fechaSeleccionada;

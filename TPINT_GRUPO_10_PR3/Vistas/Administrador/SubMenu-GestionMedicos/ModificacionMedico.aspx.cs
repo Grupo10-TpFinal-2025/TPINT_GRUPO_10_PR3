@@ -21,10 +21,10 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         {
             System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
-            if (Session["usuario"] == null)
+            i/*f (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }
+            }*/
 
             if (!IsPostBack)
             {

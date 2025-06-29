@@ -55,21 +55,9 @@ namespace Datos
         public int BajaLogicaDisponibilidad(Disponibilidad disponibilidad)
         {
             // Usar variables distintas para las consultas mejora la legibilidad.
-            string consultaTurnos = @"
-        SET DATEFIRST 1; 
-        UPDATE Turno 
-        SET Estado_TU = 0 
-        WHERE LegajoMedico_TU = @LegajoMedico 
-          AND DATEPART(weekday, Fecha_TU) = @NumDia 
-          AND Fecha_TU >= GETDATE() 
-          AND Estado_TU = 1;";
+            string consultaTurnos = @" SET DATEFIRST 1 UPDATE Turno SET Estado_TU = 0 WHERE LegajoMedico_TU = @LegajoMedico AND DATEPART(weekday, Fecha_TU) = @NumDia AND Fecha_TU >= GETDATE() AND Estado_TU = 1;";
 
-            string consultaDisponibilidad = @"
-        UPDATE Disponibilidad 
-        SET Estado_DIS = 0 
-        WHERE LegajoMedico_DIS = @LegajoMedico 
-          AND NumDia_DIS = @NumDia
-          AND Estado_DIS = 1;";
+            string consultaDisponibilidad = @" UPDATE Disponibilidad SET Estado_DIS = 0 WHERE LegajoMedico_DIS = @LegajoMedico  AND NumDia_DIS = @NumDia AND Estado_DIS = 1;";
 
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
@@ -105,8 +93,8 @@ namespace Datos
 
                         return -1;
                     }
-                } // La transacción se cierra/dispone aquí.
-            } // La conexión se cierra/dispone aquí.
+                } 
+            } 
         }
         public DataTable ObtenerDias()
         {

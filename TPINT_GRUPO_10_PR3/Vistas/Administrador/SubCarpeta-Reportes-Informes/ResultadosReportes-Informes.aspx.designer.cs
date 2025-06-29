@@ -42,13 +42,22 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
         protected global::System.Web.UI.WebControls.Label lblTituloAltaPaciente;
 
         /// <summary>
-        /// Control gvResultadosReportesInfo.
+        /// Control lblTituloInforme.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvResultadosReportesInfo;
+        protected global::System.Web.UI.WebControls.Label lblTituloInforme;
+
+        /// <summary>
+        /// Control gvResultados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResultados;
 
         /// <summary>
         /// Control lblMensaje.

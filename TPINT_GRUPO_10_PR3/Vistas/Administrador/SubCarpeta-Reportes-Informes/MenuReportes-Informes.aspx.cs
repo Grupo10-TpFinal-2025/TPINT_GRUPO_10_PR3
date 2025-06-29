@@ -4,14 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using Negocios;
+using Entidades;
+
 
 namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
 {
 	public partial class MenuReportes_Informes : System.Web.UI.Page
 	{
+        NegocioMedico negocioMedico;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+           if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
             }
@@ -19,6 +24,8 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
             if (!IsPostBack)
             {
                 lblUsuarioAdministrador.Text = "Administrador";
+                Session["TablaRedultados"] = null;
+                Session["TituloInforme"] = null;
             }
         }
 
@@ -30,14 +37,11 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
 
         protected void btnbtnPromedioMEspecialidad_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ResultadosReportes-Informes.aspx");
-
             negocioMedico = new NegocioMedico();
             DataTable tablaCompleta = negocioMedico.ObtenerMedicosXEspecialidad();
             Session["TablaRedultados"] = tablaCompleta;
-            Session["Titulo"] = "Medicos por Especialidad";
-
-
+            Session["TituloInforme"] = "Medicos por Especialidad";
+            Response.Redirect("ResultadosReportes-Informes.aspx");
         }
 
         protected void btnPorcentajePresencialidadT_Click(object sender, EventArgs e)

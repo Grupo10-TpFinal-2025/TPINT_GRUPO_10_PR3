@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblTituloAltaPaciente" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Resultados Reportes de Información"></asp:Label>
+                        <asp:Label ID="lblTituloAltaPaciente" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Resultados Reportes de Información:"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -59,19 +59,31 @@
                 <td class="auto-style19"></td>
             </tr>
             <tr>
+                <td class="auto-style8">
+                    <asp:Label ID="lblTituloInforme" runat="server" Font-Italic="True" Font-Size="X-Large"></asp:Label>
+                </td>
+                <td class="auto-style19">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style19">&nbsp;</td>
+            </tr>
+            <tr>
                 <td class="auto-style7">
-                    <asp:GridView ID="gvResultadosReportesInfo" runat="server">
+                    <asp:GridView ID="gvResultados" runat="server">
                     </asp:GridView>
                 </td>
             </tr>
             <tr>
-                <td class="auto-style8"></td>
+                <td class="auto-style8">
+                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                </td>
                 <td class="auto-style19">
                     &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                    <asp:HyperLink ID="hlRegresarMenuReportes" runat="server" NavigateUrl="~/Administrador/SubCarpeta-Reportes-Informes/MenuReportes-Informes.aspx">Regresar a Menú de Reportes de Información...</asp:HyperLink>
                 </td>
                 <td class="auto-style19">
                     &nbsp;</td>
@@ -83,8 +95,7 @@
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:HyperLink ID="hlRegresarMenuReportes" runat="server" NavigateUrl="~/Administrador/SubCarpeta-Reportes-Informes/MenuReportes-Informes.aspx">Regresar a Menú de Reportes de Información...</asp:HyperLink>
-                </td>
+                    &nbsp;</td>
                 <td class="auto-style19">
                         &nbsp;</td>
             </tr>

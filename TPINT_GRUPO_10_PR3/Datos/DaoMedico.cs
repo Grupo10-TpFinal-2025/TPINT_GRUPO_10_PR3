@@ -300,11 +300,11 @@ namespace Datos
 
         public DataTable ObtenerMedicosXEspecialidad()
         {
-            string consulta = "SELECT E.Descripcion_ES AS 'Especialidad', COUNT(M.Legajo_ME) AS 'Cantidad de Médicos' FROM Medico AS M"
-                            + "INNER JOIN Especialidad AS E ON M.CodigoEspecialidad_ME = E.CodEspecialidad_ES"
+            string consulta = "SELECT E.Descripcion_ES AS 'Especialidad', COUNT(M.Legajo_ME) AS 'Cantidad de Médicos' FROM Medico AS M "
+                            + "INNER JOIN Especialidad AS E ON M.CodigoEspecialidad_ME = E.CodEspecialidad_ES "
                             + "WHERE M.Estado_ME = 1 GROUP BY E.Descripcion_ES";
 
-            return datos.ObtenerTabla("PromedioMedicoEspecialidad", consulta);
+            return datos.ObtenerTabla("MedicosXEspecialidad", consulta);
         }
     }
 }

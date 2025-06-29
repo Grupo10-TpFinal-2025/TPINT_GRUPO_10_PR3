@@ -20,21 +20,37 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
                 {
                     lblUsuarioAdministrador.Text = "Administrador";
                 }
+                if (Session["TituloInforme"] != null)
+                {
+                    lblTituloInforme.Text = Session["TituloInforme"].ToString();
+                }
 
                 if (Session["TablaRedultados"] != null)
                 {
                     gvResultados.DataSource = Session["TablaRedultados"];
                     gvResultados.DataBind();
                 }
-                else if (Session["Titulo"] != null)
-                {
-                    lblTitulo.Text = Session["Titulo"].ToString();
-                }
+
                 else
                 {
+                    gvResultados.DataSource = null;
+                    gvResultados.DataBind();
+                    lblTituloInforme.Text = null;
+
                     lblMensaje.Text = "No hay resultados disponibles para realizar el informe espesificado.";
                 }
             }
+            protected void gvResultados_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                gvResultados.PageIndex = e.NewPageIndex;
+                if (Session["TablaRedultados"] != null)
+                {
+                    gvResultados.DataSource = Session["TablaRedultados"];
+                    gvResultados.DataBind();
+                }
+            }
+
+
 
 
         }

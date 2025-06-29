@@ -60,13 +60,13 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
         protected global::System.Web.UI.WebControls.Button btnMedicoMasSolicitado;
 
         /// <summary>
-        /// Control btnbtnPromedioMEspecialidad.
+        /// Control btnMedicosXEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnbtnPromedioMEspecialidad;
+        protected global::System.Web.UI.WebControls.Button btnMedicosXEspecialidad;
 
         /// <summary>
         /// Control btnPorcentajePresencialidadT.

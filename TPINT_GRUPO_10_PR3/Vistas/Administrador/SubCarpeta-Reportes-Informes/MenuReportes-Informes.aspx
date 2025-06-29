@@ -147,7 +147,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnbtnPromedioMEspecialidad" runat="server" Text="Porcentaje Médicos X Especialidad" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnbtnPromedioMEspecialidad_Click" />
+                    <asp:Button ID="btnMedicosXEspecialidad" runat="server" Text="Médico X Especialidad" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnbtnPromedioMEspecialidad_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

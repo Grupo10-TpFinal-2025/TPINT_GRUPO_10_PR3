@@ -7,20 +7,35 @@ using System.Web.UI.WebControls;
 
 namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
 {
-	public partial class ResultadosReportes : System.Web.UI.Page
-	{
-        protected void Page_Load(object sender, EventArgs e)
+        public partial class ResultadosReportes : System.Web.UI.Page
         {
-            if (Session["usuario"] == null)
+            protected void Page_Load(object sender, EventArgs e)
             {
-                Response.Redirect("~/Login.aspx");
+                if (Session["usuario"] == null)
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
+
+                if (!IsPostBack)
+                {
+                    lblUsuarioAdministrador.Text = "Administrador";
+                }
+
+                if (Session["TablaRedultados"] != null)
+                {
+                    gvResultados.DataSource = Session["TablaRedultados"];
+                    gvResultados.DataBind();
+                }
+                else if (Session["Titulo"] != null)
+                {
+                    lblTitulo.Text = Session["Titulo"].ToString();
+                }
+                else
+                {
+                    lblMensaje.Text = "No hay resultados disponibles para realizar el informe espesificado.";
+                }
             }
 
-            if (!IsPostBack)
-            {
-                lblUsuarioAdministrador.Text = "Administrador";
-            }
+
         }
-
     }
-}

@@ -33,7 +33,7 @@
             height: 100%;
         }
         .auto-style4 {
-            width: 281px;
+            width: 120px;
         }
     </style>
 </head>
@@ -96,13 +96,23 @@
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
-                        <asp:SqlDataSource ID="SQLdsAccesoDB" runat="server"></asp:SqlDataSource>
-                        <asp:DataList ID="dlFiltroDiasDisponibilidad" runat="server" DataSourceID="SQLdsAccesoDB">
-                        </asp:DataList>
+                        <asp:GridView ID="gvEspecialidades" runat="server" AutoGenerateColumns="False" GridLines="None">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnEspecialidad" runat="server" CommandArgument='<%# Bind("CodEspecialidad_ES") %>' Text='<%# Bind("Descripcion_ES") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
                     </td>
                     <td>
-                        <asp:ListView ID="lvListaroDisponibilidadM" runat="server">
-                        </asp:ListView>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <asp:GridView ID="gvDisponibilidades" runat="server">
+                        </asp:GridView>
                         <br />
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                         <br />

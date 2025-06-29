@@ -34,7 +34,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
         }
 
-        public void CargarProvincias()
+        private void CargarProvincias()
         {
             gvProvincias.DataSource = negocioPaciente.getRegistrosProvincias();
             gvProvincias.DataBind();

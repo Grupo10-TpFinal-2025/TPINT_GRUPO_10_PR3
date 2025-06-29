@@ -12,10 +12,26 @@ namespace Datos
     public class DaoDisponibilidad
     {
         private AccesoDatos datos;
+        private string consultaBase = @"SELECT E.Descripcion_ES AS 'Especialidad', 
+                                M.Apellido_ME + ' ' + 
+                                M.Nombre_ME AS 'Medico', 
+                                DIA.Descripcion_DI AS 'Dia', 
+                                CONVERT(VARCHAR(5), HorarioInicio_DIS, 108) + ' - ' + CONVERT(VARCHAR(5), 
+                                HorarioFin_DIS, 108) AS 'Horario' 
+                                FROM Disponibilidad DIS 
+                                INNER JOIN Dia DIA ON DIA.NumDia_DI = DIS.NumDia_DIS 
+                                INNER JOIN Medico M ON M.Legajo_ME = DIS.LegajoMedico_DIS 
+                                INNER JOIN Especialidad E ON E.CodEspecialidad_ES = M.CodigoEspecialidad_ME 
+                                ORDER BY [Especialidad] ASC";
 
         public DaoDisponibilidad()
         {
             datos = new AccesoDatos();
+        }
+
+        public DataTable ObtenerTablaDisponibilidades()
+        {
+            return datos.ObtenerTabla("Disponibilidad", consultaBase);
         }
 
         public DataTable Obtener_Disponibilidad(Disponibilidad disponibilidad)

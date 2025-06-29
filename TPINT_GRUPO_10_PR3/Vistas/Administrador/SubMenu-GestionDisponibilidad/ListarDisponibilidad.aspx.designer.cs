@@ -114,31 +114,22 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.Label lblLegajoNoEncontrado;
 
         /// <summary>
-        /// Control SQLdsAccesoDB.
+        /// Control gvEspecialidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SQLdsAccesoDB;
+        protected global::System.Web.UI.WebControls.GridView gvEspecialidades;
 
         /// <summary>
-        /// Control dlFiltroDiasDisponibilidad.
+        /// Control gvDisponibilidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlFiltroDiasDisponibilidad;
-
-        /// <summary>
-        /// Control lvListaroDisponibilidadM.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvListaroDisponibilidadM;
+        protected global::System.Web.UI.WebControls.GridView gvDisponibilidades;
 
         /// <summary>
         /// Control lblMensaje.

@@ -19,7 +19,12 @@ namespace Negocios
             daoD = new DaoDisponibilidad();
         }
 
-       public DataTable ObtenerDisponibilidad(Disponibilidad disponibilidad)
+        public DataTable ObtenerTablaDisponibilidades()
+        {
+            return daoD.ObtenerTablaDisponibilidades();
+        }
+
+        public DataTable ObtenerDisponibilidad(Disponibilidad disponibilidad)
         {
             return daoD.Obtener_Disponibilidad(disponibilidad);
         }

@@ -152,7 +152,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_DNI" runat="server" ValidationGroup="Modificacion"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_DNI" runat="server" ValidationGroup="Modificacion" Text='<%# Eval("DNI") %>'></asp:TextBox>
                                     <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txt_et_DNI" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txt_et_DNI" ErrorMessage="Debe ingresar un dni valido." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>

@@ -21,10 +21,10 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         {
             System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
-            i/*f (Session["usuario"] == null)
+            if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
-            }*/
+            }
 
             if (!IsPostBack)
             {
@@ -113,87 +113,92 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         {
             negocioMedico = new NegocioMedico(); 
             Entidades.Medico medico = new Entidades.Medico();
-            // Nos aseguramos de que es una fila de datos
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Verifico si la fila está en modo de edición
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
-                    //Encuentro los controles DropDownList dentro de la fila
                     DropDownList ddlProvincias = (DropDownList)e.Row.FindControl("ddl_et_Provincias");
                     DropDownList ddlEspecialidades = (DropDownList)e.Row.FindControl("ddl_et_Especialidades");
-
-                    // Encuentro el control RadioButtonList para el sexo
                     RadioButtonList rblSexo = (RadioButtonList)e.Row.FindControl("rbl_et_Sexo");
-
-                    //Llamo al metodo para cargar los datos en los DropDownList
-                    CargarDDL(ddlProvincias, ddlEspecialidades);
-
-                    //Selecciono la provincia y especialidad actual obteniendo los ID en la fila seleccionada.
-                    string IDProvincia = DataBinder.Eval(e.Row.DataItem, "CodProvincia").ToString();
-                    string IDEspecialidad = DataBinder.Eval(e.Row.DataItem, "CodEspecialidad").ToString();
-
-                    // Selecciono el sexo del médico
-                    char sexo = Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "Sexo").ToString()[0]);
-
-                    // Encuentra el TextBox de la fecha de nacimiento
                     TextBox txtFechaNacimiento = (TextBox)e.Row.FindControl("txt_et_FechaNacimiento");
 
+                    CargarDDL(ddlProvincias, ddlEspecialidades);
 
-                    // Busco y selecciono los items en los DropDownList
-                    ListItem itemProvincia = ddlProvincias.Items.FindByValue(IDProvincia.ToString());
-                    if (itemProvincia != null)
-                    {
-                        ddlProvincias.SelectedValue = IDProvincia.ToString();
-                    }
-
-                    ListItem itemEspecialidad = ddlEspecialidades.Items.FindByValue(IDEspecialidad.ToString());
-                    if (itemEspecialidad != null)
-                    {
-                        ddlEspecialidades.SelectedValue = IDEspecialidad.ToString();
-                    }
-
-                    if (itemProvincia == null && itemEspecialidad == null)
-                    {
-                        // Si no se encuentra se seleccionan los primeros items
-                        ddlProvincias.SelectedIndex = 0;
-                        ddlEspecialidades.SelectedIndex = 0;
-                    }
-
-                    // Selecciono el sexo del médico
-                    if (sexo == 'M')
-                    {
-                        rblSexo.SelectedValue = "M";
-                    }
-                    else if (sexo == 'F')
-                    {
-                        rblSexo.SelectedValue = "F";
-                    }
-                    else
-                    {
-                        rblSexo.SelectedValue = null;
-                    }
-
-                    if (txtFechaNacimiento != null)
-                    {
-                        // Obtiene la fecha en formato string desde el DataItem
-                        string fechaStr = DataBinder.Eval(e.Row.DataItem, "Fecha de Nacimiento").ToString();
-                        DateTime fecha;
-                        // Intenta parsear la fecha desde el formato dd/MM/yyyy
-                        if (DateTime.TryParseExact(fechaStr, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fecha))
-                        {
-                            // Asigna la fecha en formato yyyy-MM-dd (requerido por input type="date")
-                            txtFechaNacimiento.Text = fecha.ToString("yyyy-MM-dd");
-                        }
-                        else
-                        {
-                            // Si falla el parseo, deja el campo vacío o maneja el error según tu lógica
-                            txtFechaNacimiento.Text = "";
-                        }
-                    }
+                    string IDProvincia = DataBinder.Eval(e.Row.DataItem, "CodProvincia").ToString();
+                    string IDEspecialidad = DataBinder.Eval(e.Row.DataItem, "CodEspecialidad").ToString();
+                    char sexo = Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "Sexo").ToString()[0]);
+                    string fechaStr = DataBinder.Eval(e.Row.DataItem, "Fecha de Nacimiento").ToString();
+                    SeleccionarProvincia(ddlProvincias, IDProvincia);
+                    SeleccionarEspecialidad(ddlEspecialidades, IDEspecialidad);
+                    SeleccionarSexo(rblSexo, sexo);
+                    SeleccionarFechaNacimiento(txtFechaNacimiento, fechaStr);
 
                 }
             }
         }
+        private void SeleccionarProvincia(DropDownList ddlProvincias, string IDProvincia)
+        {
+            ListItem itemProvincia = ddlProvincias.Items.FindByValue(IDProvincia);
+            if (itemProvincia != null)
+            {
+                ddlProvincias.SelectedValue = IDProvincia;
+            }
+            else
+            {
+                ddlProvincias.SelectedIndex = 0;
+            }
+        }
+
+        private void SeleccionarEspecialidad(DropDownList ddlEspecialidades, string IDEspecialidad)
+        {
+            ListItem itemEspecialidad = ddlEspecialidades.Items.FindByValue(IDEspecialidad);
+            if (itemEspecialidad != null)
+            {
+                ddlEspecialidades.SelectedValue = IDEspecialidad;
+            }
+            else
+            {
+                ddlEspecialidades.SelectedIndex = 0;
+            }
+        }
+
+        private void SeleccionarSexo(RadioButtonList rblSexo, char sexo)
+        {
+            if (sexo == 'M')
+            {
+                rblSexo.SelectedValue = "M";
+            }
+            else if (sexo == 'F')
+            {
+                rblSexo.SelectedValue = "F";
+            }
+            else
+            {
+                rblSexo.SelectedValue = null;
+            }
+        }
+
+        private void SeleccionarFechaNacimiento(TextBox txtFechaNacimiento, string fechaStr)
+        {
+            if (txtFechaNacimiento != null)
+            {
+                DateTime fecha;
+                if (DateTime.TryParseExact(fechaStr, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out fecha))
+                {
+                    txtFechaNacimiento.Text = fecha.ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    txtFechaNacimiento.Text = "";
+                }
+            }
+            else
+            {
+                txtFechaNacimiento.Text = "";
+            }
+        }
+
+
     }
 }

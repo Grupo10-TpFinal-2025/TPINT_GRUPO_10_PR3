@@ -78,5 +78,9 @@ namespace Negocios
 
         }
 
+        public DataTable ObtenerMedicosXEspecialidad()
+        {
+            return daoMedico.ObtenerMedicosXEspecialidad();
+        }
     }
 }

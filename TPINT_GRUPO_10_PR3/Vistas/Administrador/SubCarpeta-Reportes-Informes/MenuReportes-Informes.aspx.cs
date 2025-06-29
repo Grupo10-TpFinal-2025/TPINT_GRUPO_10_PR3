@@ -31,6 +31,13 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
         protected void btnbtnPromedioMEspecialidad_Click(object sender, EventArgs e)
         {
             Response.Redirect("ResultadosReportes-Informes.aspx");
+
+            negocioMedico = new NegocioMedico();
+            DataTable tablaCompleta = negocioMedico.ObtenerMedicosXEspecialidad();
+            Session["TablaRedultados"] = tablaCompleta;
+            Session["Titulo"] = "Medicos por Especialidad";
+
+
         }
 
         protected void btnPorcentajePresencialidadT_Click(object sender, EventArgs e)

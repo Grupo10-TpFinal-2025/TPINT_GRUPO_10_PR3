@@ -12,8 +12,11 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 	{
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None; //Para solucionar el error que dispara
+
             if (Session["usuario"] == null)
             {
+                
                 Response.Redirect("~/Login.aspx");
             }
 

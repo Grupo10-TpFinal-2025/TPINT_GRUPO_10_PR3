@@ -84,7 +84,9 @@
     <Content Include="Administrador\SubMenu-GestionTurnos\ListarTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\MenuGestionTurnos.aspx" />
     <Content Include="Administrador\SubMenu-GestionTurnos\ModificacionTurno.aspx" />
-    <Content Include="Login.aspx" />
+    <Content Include="Login.aspx">
+      <BrowseToURL>~/Vistas/Login.aspx</BrowseToURL>
+    </Content>
     <Content Include="Administrador\MenuAdministrador.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx" />
     <Content Include="Medico\CambioDeTurno.aspx" />

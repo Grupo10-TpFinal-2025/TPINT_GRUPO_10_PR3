@@ -61,6 +61,13 @@
             font-size: 14px;
         }
 
+        .auto-style15 {
+            width: 164px;
+            height: 30px;
+            font-size: 14px;
+            margin-top: 0px;
+        }
+
     </style>
 </head>
 <body>
@@ -168,7 +175,7 @@
                 <td class="auto-style9"></td>
                 <td class="auto-style10"></td>
                 <td class="auto-style11">
-                    <asp:Button ID="btnReportes" runat="server" Text="Reportes e Informes" CssClass="boton-estandar" OnClick="btnReportes_Click" />
+                    <asp:Button ID="btnReportes" runat="server" Text="Reportes e Informes" CssClass="auto-style15" OnClick="btnReportes_Click" />
                 </td>
                 <td class="auto-style11"></td>
                 <td class="auto-style11"></td>

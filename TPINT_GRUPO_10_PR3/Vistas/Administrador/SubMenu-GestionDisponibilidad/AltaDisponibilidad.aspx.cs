@@ -50,11 +50,11 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
             TimeSpan hora = new TimeSpan(8, 0, 0); // 08:00
             TimeSpan horaFin = new TimeSpan(20, 0, 0); // 20:00
-            TimeSpan intervalo = new TimeSpan(0, 30, 0); // 30 minutos
+            TimeSpan intervalo = new TimeSpan(1, 0, 0); // 1 hora en lugar de 30 minutos
 
             while (hora <= horaFin)
             {
-                string horaStr = hora.ToString(@"hh\:mm"); // Formato 08:00
+                string horaStr = hora.ToString(@"hh\:mm");
                 ddlHorarioInicioDis.Items.Add(new ListItem(horaStr, horaStr));
                 ddlHorarioFinDis.Items.Add(new ListItem(horaStr, horaStr));
                 hora = hora.Add(intervalo);

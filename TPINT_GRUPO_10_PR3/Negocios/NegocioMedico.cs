@@ -82,5 +82,12 @@ namespace Negocios
         {
             return daoMedico.ObtenerMedicosXEspecialidad();
         }
+
+        public DataTable ObtenerMedicoMasSolicitado()
+        {
+            DaoMedico daoMedico = new DaoMedico();
+            return daoMedico.ObtenerMedicoMasSolicitado();
+        }
+
     }
 }

@@ -34,16 +34,16 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
                 if (exito == 1)
                 {
-                    lblResultadoBajaMedico.Text = "Paciente dado de baja exitosamente.";
+                    lblResultadoBajaMedico.Text = "Médico dado de baja exitosamente.";
                     txtLegajoBajaMedico.Text = string.Empty;
                 }
                 else if (exito == 0)
                 {
-                    lblResultadoBajaMedico.Text = "No se encontró el paciente o el este ya estaba dado de baja.";
+                    lblResultadoBajaMedico.Text = "No se encontró el médico o el este ya estaba dado de baja.";
                 }
                 else if (exito == -1)
                 {
-                    lblResultadoBajaMedico.Text = "Error al intentar dar de baja al paciente. Por favor, intente nuevamente.";
+                    lblResultadoBajaMedico.Text = "Error al intentar dar de baja al médico. Por favor, intente nuevamente.";
                 }
             }
             else

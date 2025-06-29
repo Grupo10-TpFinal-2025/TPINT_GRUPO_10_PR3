@@ -33,7 +33,7 @@
             height: 100%;
         }
         .auto-style4 {
-            width: 281px;
+            width: 212px;
         }
     </style>
 </head>
@@ -96,9 +96,8 @@
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
-                        <asp:SqlDataSource ID="SQLdsAccesoDB" runat="server"></asp:SqlDataSource>
-                        <asp:DataList ID="dlFiltroDiasDisponibilidad" runat="server" DataSourceID="SQLdsAccesoDB">
-                        </asp:DataList>
+                        <asp:GridView ID="gvEspecialidades" runat="server">
+                        </asp:GridView>
                     </td>
                     <td>
                         <asp:ListView ID="lvListaroDisponibilidadM" runat="server">

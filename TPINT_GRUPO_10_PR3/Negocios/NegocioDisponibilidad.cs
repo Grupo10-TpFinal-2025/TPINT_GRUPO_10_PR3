@@ -20,6 +20,10 @@ namespace Negocios
             daoD = new DaoDisponibilidad();
         }
         
+        public DataTable ObtenerTablaDisponibilidades()
+        {
+            return daoD.ObtenerTablaDisponibilidades();
+        }
         public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)
         {
             List<Disponibilidad> listaDisponibilidadMedico;

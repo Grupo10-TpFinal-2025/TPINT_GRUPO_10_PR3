@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             if (!IsPostBack)
             {
                 lblUsuarioAdministrador.Text = "Administrador";
+                CargarDisponibilidades();
             }
         }
 
@@ -35,6 +37,12 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 pnlFiltrosAvanzados.Visible = false;
                 btnMenuFiltrosAvanzados.Text = "Aplicar filtros avanzados";
             }
+        }
+
+        private void CargarDisponibilidades()
+        {
+            NegocioDisponibilidad negocio = new NegocioDisponibilidad();
+            lvListaroDisponibilidadM.DataSource = negocio.ObtenerTablaDisponibilidades();
         }
     }
 }

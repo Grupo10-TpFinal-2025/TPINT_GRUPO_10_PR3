@@ -83,7 +83,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 NegocioDisponibilidad negocio = new NegocioDisponibilidad();
 
                 // Verificar superposición
-                bool existe = negocio.VerificarDisponibilidad(legajoMedico, numDia, horarioInicio, horarioFin);
+                bool existe = negocio.VerificarDisponibilidad(legajoMedico, numDia);
 
                 if (existe)
                 {

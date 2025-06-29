@@ -120,32 +120,26 @@ namespace Datos
             }
         }
 
-        public bool ExisteDisponibilidad(int legajoMedico, int numDia, TimeSpan inicio, TimeSpan fin)
+        public bool ExisteDisponibilidad(int legajoMedico, int numDia)
         {
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
                 string consulta = @"SELECT COUNT(*) FROM Disponibilidad 
                             WHERE LegajoMedico_DIS = @LegajoMedico 
                             AND NumDia_DIS = @NumDia 
-                            AND Estado_DIS = 1 
-                            AND (
-                                (@Inicio >= HorarioInicio_DIS AND @Inicio < HorarioFin_DIS) OR
-                                (@Fin > HorarioInicio_DIS AND @Fin <= HorarioFin_DIS) OR
-                                (@Inicio <= HorarioInicio_DIS AND @Fin >= HorarioFin_DIS)
-                            )";
+                            AND Estado_DIS = 1";
 
                 using (SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
                     comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
                     comando.Parameters.AddWithValue("@NumDia", numDia);
-                    comando.Parameters.AddWithValue("@Inicio", inicio);
-                    comando.Parameters.AddWithValue("@Fin", fin);
 
                     int count = (int)comando.ExecuteScalar();
                     return count > 0;
                 }
             }
         }
+
 
     }
 }

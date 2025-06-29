@@ -44,9 +44,9 @@ namespace Negocios
             return daoD.AgregarDisponibilidad(disponibilidad);
         }
 
-        public bool VerificarDisponibilidad(int legajoMedico, int numDia, TimeSpan inicio, TimeSpan fin)
+        public bool VerificarDisponibilidad(int legajoMedico, int numDia)
         {
-            return daoD.ExisteDisponibilidad(legajoMedico, numDia, inicio, fin);
+            return daoD.ExisteDisponibilidad(legajoMedico, numDia);
         }
     }
 }

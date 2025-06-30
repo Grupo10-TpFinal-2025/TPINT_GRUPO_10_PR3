@@ -40,7 +40,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         //Funcion cargar gv
         void cargarGV()
         {
-            DataTable tabla = disponibilidad.EspecialidadParaModificacion();
+            DataTable tabla = disponibilidad.TablaDisponibilidad();
             gvModificacionDisponibilidad.DataSource = tabla;
             gvModificacionDisponibilidad.DataBind();
         }
@@ -70,54 +70,65 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         //Actualizar edicion
         protected void gvModificacionDisponibilidad_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            //Legajo guardado y escondido.
-            HiddenField hfLegajo = (HiddenField)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("hf_Legajo");
-            int legajo = Convert.ToInt32(hfLegajo.Value);
-
             //Me guardo el nombre del dia
             string numeroDia = ((Label)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("lbl_eit_Dia")).Text;
+
+            //Creo un obj disponibilidad
+            Disponibilidad disp = new Disponibilidad();
 
             //Lo paso a numero
             switch (numeroDia)
             {
                 case "Lunes":
-                    numeroDia = "1";
+                    disp.NumDia = 1;
                     break;
 
                 case "Martes":
-                    numeroDia = "2";
+                    disp.NumDia = 2;
                     break;
 
                 case "Miércoles":
-                    numeroDia = "3";
+                    disp.NumDia = 3;
                     break;
 
                 case "Jueves":
-                    numeroDia = "4";
+                    disp.NumDia = 4;
                     break;
 
                 case "Viernes":
-                    numeroDia = "5";
+                    disp.NumDia = 5;
                     break;
 
                 case "Sábado":
-                    numeroDia = "6";
+                    disp.NumDia = 6;
                     break;
 
                 case "Domingo":
-                    numeroDia = "1";
+                    disp.NumDia = 7;
                     break;
             }
 
-            //Creo un obj disponibilidad
-            Disponibilidad disp = new Disponibilidad();
-
-            //Seteo los parametros en un objeto disponibilidad
-            disp.NumDia = Convert.ToInt32(numeroDia);
-            disp.LegajoMedico = legajo;
+            //Seteo el resto de parametros en un objeto disponibilidad 
+            disp.LegajoMedico = Convert.ToInt32(((Label)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("lbl_eit_Legajo")).Text);
             disp.Estado = ((CheckBox)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("cb_eit_Estado")).Checked;
-            disp.HorarioInicio = TimeSpan.Parse(((TextBox)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("lbl_eit_Inicio")).Text);
-            disp.HorarioFin = TimeSpan.Parse(((TextBox)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("lbl_eit_Fin")).Text);
+            disp.HorarioInicio = TimeSpan.Parse(((TextBox)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("txt_eit_Inicio")).Text);
+            disp.HorarioFin = TimeSpan.Parse(((TextBox)gvModificacionDisponibilidad.Rows[e.RowIndex].FindControl("txt_eit_Fin")).Text);
+
+            //Ejecuto el update
+            if (disponibilidad.ModificarDisponibilidad(disp))
+            {
+                //Muestro mensaje
+                lblMensaje.Text = "Se modifico la base de datos.";
+            }
+            else
+            {
+                //Muestro mensaje
+                lblMensaje.Text = "No se pudo modificar la base de datos.";
+            }
+
+            //Termino la actualizacion
+            gvModificacionDisponibilidad.EditIndex = -1;
+            cargarGV();
 
         }
     }

@@ -86,14 +86,6 @@
                     <asp:GridView ID="gvModificacionDisponibilidad" runat="server" AllowPaging="True" AutoGenerateColumns="False" AutoGenerateEditButton="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionDisponibilidad_PageIndexChanging" OnRowCancelingEdit="gvModificacionDisponibilidad_RowCancelingEdit" OnRowEditing="gvModificacionDisponibilidad_RowEditing" OnRowUpdating="gvModificacionDisponibilidad_RowUpdating" PageSize="5">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
-                            <asp:TemplateField HeaderText="Legajo" Visible="False">
-                                <ItemTemplate>
-                                    <asp:HiddenField ID="hf_Legajo" runat="server" Value='<%# Eval("Legajo") %>' />
-                                </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:HiddenField ID="hf_Legajo" runat="server" Value='<%# Bind("Legajo") %>' />
-                                </EditItemTemplate>
-                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Medico">
                                 <EditItemTemplate>
                                     <asp:Label ID="lbl_eit_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
@@ -132,6 +124,14 @@
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:CheckBox ID="cb_it_Estado" runat="server" Checked='<%# Bind("Estado") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Legajo" ShowHeader="False" Visible="False">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_eit_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

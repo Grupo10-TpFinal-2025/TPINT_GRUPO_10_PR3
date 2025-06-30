@@ -26,12 +26,12 @@ namespace Datos
 
         private string ordenamiento = " ORDER BY [Especialidad] ASC";
 
-        private string consultaModificacionDisponibilidad = @"SELECT Descripcion_DI AS Dia, Nombre_ME + ' ' + Apellido_ME AS Nombre,
-                                HorarioInicio_DIS AS Inicio, HorarioFin_DIS AS Fin, Estado_DIS AS Estado FROM Disponibilidad 
+        private string consultaModificacionDisponibilidad = @"SELECT Descripcion_DI AS Dia, Nombre_ME + ' ' + Apellido_ME AS Nombre, 
+                                LegajoMedico_DIS AS Legajo, HorarioInicio_DIS AS Inicio, HorarioFin_DIS AS Fin, Estado_DIS AS Estado FROM Disponibilidad 
                                 INNER JOIN Medico ON LegajoMedico_DIS = Legajo_ME
-                                INNER JOIN Dia ON NumDia_DIS = NumDia_DI ";
+                                INNER JOIN Dia ON NumDia_DIS = NumDia_DI";
 
-        private string ordenamientoPorDia = "ORDER BY NumDia_DI";
+        private string ordenamientoPorDia = " ORDER BY NumDia_DI";
 
         public DaoDisponibilidad()
         {
@@ -262,6 +262,75 @@ namespace Datos
             }
         }
 
+        //Valido si el procedimiento ya esta creado
+        public void ValidarOCrearProcedimiento_ModificacionDisponibilidad()
+        {
+            //Conecto a la bd
+            SqlConnection conexion = datos.ObtenerConexion();
+            using (conexion)
+            {
+                //Intento
+                try
+                {
+                    // Verificar si existe el procedimiento
+                    string consultaExiste = @"
+                    SELECT COUNT(*) 
+                    FROM sys.objects 
+                    WHERE type = 'P' AND name = 'SP_ModificacionDisponibilidad'";
+                    SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
+                    int cantidad = (int)cmdExiste.ExecuteScalar();
 
+                    //Si no existe
+                    if (cantidad == 0)
+                    {
+                        // Crear el procedimiento si no existe
+                        string crearProcedimiento = @"
+                        CREATE PROCEDURE SP_ModificacionDisponibilidad
+                            @NumDia_DIS INT,  
+                            @LegajoMedico_DIS INT,           
+                            @HorarioInicio_DIS TIME,
+                            @HorarioFin_DIS TIME,
+                            @Estado_DIS BIT
+                        AS
+                        BEGIN
+                            UPDATE Disponibilidad
+                            SET 
+                                NumDia_DIS = @NumDia_DIS,
+                                LegajoMedico_DIS = @LegajoMedico_DIS,    
+                                HorarioInicio_DIS = @HorarioInicio_DIS, 
+                                HorarioFin_DIS = @HorarioFin_DIS, 
+                                Estado_DIS = @Estado_DIS 
+                            WHERE NumDia_DIS = @NumDia_DIS AND LegajoMedico_DIS = @LegajoMedico_DIS;                                                        
+                        END";
+                        SqlCommand cmdCrear = new SqlCommand(crearProcedimiento, conexion);
+                        cmdCrear.ExecuteNonQuery();
+                    }
+                } //SI no puedo
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al crear el procedimiento almacenado: " + ex.Message);
+                }
+            }
+        }
+
+        //Cargar los parametros
+        public SqlCommand CargarParametros_ModificacionDsiponibilidad(Disponibilidad disp)
+        {
+            SqlCommand sqlComand = new SqlCommand("SP_ModificacionDisponibilidad");
+            sqlComand.CommandType = CommandType.StoredProcedure;
+            sqlComand.Parameters.AddWithValue("@NumDia_DIS", disp.NumDia);
+            sqlComand.Parameters.AddWithValue("@LegajoMedico_DIS", disp.LegajoMedico);
+            sqlComand.Parameters.AddWithValue("@HorarioInicio_DIS", disp.HorarioInicio);
+            sqlComand.Parameters.AddWithValue("@HorarioFin_DIS", disp.HorarioFin);
+            sqlComand.Parameters.AddWithValue("@Estado_DIS", disp.Estado);
+            return sqlComand;
+        }
+
+        public int ModificarDisponibilidad(Disponibilidad disp)
+        {
+            ValidarOCrearProcedimiento_ModificacionDisponibilidad();
+            SqlCommand sqlComand = CargarParametros_ModificacionDsiponibilidad(disp);
+            return datos.EjecutarProcedimientoAlmacenado("SP_ModificacionDisponibilidad", sqlComand);
+        }
     }
 }

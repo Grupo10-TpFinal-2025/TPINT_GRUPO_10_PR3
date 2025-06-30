@@ -24,7 +24,6 @@ namespace Negocios
             return daoD.ObtenerTablaDisponibilidad();
         }
 
-
         public DataTable ObtenerTablaDisponibilidad(int codEspecialidad, int diaSeleccionado)
         {
 
@@ -56,9 +55,22 @@ namespace Negocios
             return daoD.ExisteDisponibilidad(legajoMedico, numDia);
         }
 
-        public DataTable EspecialidadParaModificacion()
+        public DataTable TablaDisponibilidad()
         {
             return daoD.ObtenerTablaDisponibilidadParaModificacion();
+        }
+
+        //Funcion que modifica la disponibilidad en base a un procedimiento almacenado
+        public bool ModificarDisponibilidad(Disponibilidad disp)
+        {
+            if (daoD.ModificarDisponibilidad(disp) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -124,7 +124,7 @@
                             <table class="auto-style20">
                                 <tr>
                                     <td class="auto-style21">
-                                        <asp:GridView ID="gvDias" runat="server" AutoGenerateColumns="False" GridLines="None" OnSelectedIndexChanged="gvDias_SelectedIndexChanged">
+                                        <asp:GridView ID="gvDias" runat="server" AutoGenerateColumns="False" GridLines="None" >
                                             <Columns>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>

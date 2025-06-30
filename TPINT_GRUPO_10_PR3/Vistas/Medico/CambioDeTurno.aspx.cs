@@ -66,7 +66,7 @@ namespace Vistas.Medico
             turno.CodTurno = Convert.ToInt32(((Label)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("lbl_et_IDTurno")).Text);
             turno.Fecha = DateTime.Parse(((Label)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("lbl_et_Fecha")).Text);
             turno.LegajoPaciente = Convert.ToInt32(((Label)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("lbl_et_LegajoPaciente")).Text);
-            if( ((CheckBoxList)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("cbl_et_Asistencia")).SelectedValue != null)
+            if (((CheckBoxList)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("cbl_et_Asistencia")).SelectedValue != null)
             {
 
                 turno.Asistencia = ((CheckBoxList)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("cbl_et_Asistencia")).SelectedValue;
@@ -88,5 +88,6 @@ namespace Vistas.Medico
             {
                 lblMensaje.Text = "Error al actualizar el turno. Verifique los datos ingresados.";
             }
+        }
     }
 }

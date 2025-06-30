@@ -92,7 +92,7 @@ namespace Vistas.Medico
 
         protected void gvActualizacionTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            turno = new Turno();
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 if ((e.Row.RowState & DataControlRowState.Edit) == 0)

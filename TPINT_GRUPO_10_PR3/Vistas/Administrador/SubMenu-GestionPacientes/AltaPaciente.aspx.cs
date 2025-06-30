@@ -10,7 +10,7 @@ using Negocios;
 
 namespace Vistas.Administrador.SubMenu_GestionPacientes
 {
-	public partial class AltaPaciente : System.Web.UI.Page
+	public partial class AltaPaciente : System.Web.UI.Page 
 	{
 
         Paciente paciente;
@@ -25,6 +25,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
             if (!IsPostBack)
             {
+                System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
                 CargarProvincias();
                 lblUsuarioAdministrador.Text = "Administrador";
             }

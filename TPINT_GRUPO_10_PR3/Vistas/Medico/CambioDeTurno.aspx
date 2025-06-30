@@ -84,7 +84,7 @@
                 <td class="auto-style8"></td>
                 <td class="auto-style19">
                     <br />
-                    <asp:GridView ID="gvActualizacionTurnos" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvActualizacionTurnos_PageIndexChanging" OnRowCancelingEdit="gvActualizacionTurnos_RowCancelingEdit" OnRowEditing="gvActualizacionTurnos_RowEditing" OnRowUpdating="gvActualizacionTurnos_RowUpdating" PageSize="5">
+                    <asp:GridView ID="gvActualizacionTurnos" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvActualizacionTurnos_PageIndexChanging" OnRowCancelingEdit="gvActualizacionTurnos_RowCancelingEdit" OnRowEditing="gvActualizacionTurnos_RowEditing" OnRowUpdating="gvActualizacionTurnos_RowUpdating" PageSize="5" OnRowDataBound="gvActualizacionTurnos_RowDataBound">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:TemplateField>
@@ -93,7 +93,7 @@
                                     <asp:LinkButton ID="btnCancelar" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar"></asp:LinkButton>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar"></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtn_it_Editar" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar" Enabled="False"></asp:LinkButton>
                                     &nbsp;<br />
                                     <asp:LinkButton ID="btnSeleccionar" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar"></asp:LinkButton>
                                 </ItemTemplate>
@@ -110,7 +110,6 @@
                                 <EditItemTemplate>
                                     <asp:Label ID="lbl_et_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
                                     <br />
-                                    <asp:Label ID="lbl_et_LegajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>' Visible="False"></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
@@ -126,10 +125,12 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Asistencia">
                                 <EditItemTemplate>
-                                    <asp:CheckBoxList ID="cbl_et_Pendiente" runat="server">
+                                    <asp:RadioButtonList ID="rbl_et_Asistencia" runat="server">
+                                        <asp:ListItem Value="NULL">Sin registrar</asp:ListItem>
                                         <asp:ListItem Value="0">Ausente</asp:ListItem>
                                         <asp:ListItem Value="1">Presente</asp:ListItem>
-                                    </asp:CheckBoxList>
+                                    </asp:RadioButtonList>
+                                    <br />
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Asistencia" runat="server" Text='<%# Eval("Asistencia") %>'></asp:Label>
@@ -140,7 +141,7 @@
                                     <asp:TextBox ID="txt_et_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Descripcion" runat="server" Enabled='<%# Eval("Descripcion") %>' Text='<%# Eval("Descripcion") %>'></asp:Label>
+                                    <asp:Label ID="lbl_it_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

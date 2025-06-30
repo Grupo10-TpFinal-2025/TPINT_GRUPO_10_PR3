@@ -177,7 +177,7 @@ namespace Datos
 
         public DataTable getTurnosXMedico(int legajoMedico)
         {
-            string consultaTurnosM = ConsultaBase + " AND LegajoMedico_TU = @LegajoMedico_TU AND Pendiente_TU = 0 ORDER BY Fecha_TU";
+            string consultaTurnosM = ConsultaBase + " AND LegajoMedico_TU = @LegajoMedico_TU ORDER BY Fecha_TU";
 
             SqlCommand sqlComand = new SqlCommand(consultaTurnosM);
             sqlComand.Parameters.AddWithValue("@LegajoMedico_TU", legajoMedico);
@@ -195,18 +195,16 @@ namespace Datos
                     string consultaExiste = @"
                     SELECT COUNT(*) 
                     FROM sys.objects 
-                    WHERE type = 'P' AND name = 'SP_ModificacionTurno'";
+                    WHERE type = 'P' AND name = 'SP_ModificacionTurno_Grupo10'";
                     SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
                     int cantidad = (int)cmdExiste.ExecuteScalar();
                     if (cantidad == 0)
                     {
                         // Crear el procedimiento si no existe
                         string crearProcedimiento = @"
-                        CREATE PROCEDURE SP_ModificacionTurno
-                            @LegajoPaciente_TU INT,  
+                        CREATE PROCEDURE SP_ModificacionTurno_Grupo10 
                             @Fecha_TU DateTime,           
                             @CodTurno_TU INT,
-                            @Pendiente_TU BIT,
                             @Asistencia_TU BIT,
                             @Descripcion_TU NVARCHAR(300),
                             @Estado_TU BIT
@@ -214,9 +212,7 @@ namespace Datos
                         BEGIN
                             UPDATE Turno 
                             SET 
-                                LegajoPaciente_TU = @LegajoPaciente_TU,
-                                Fecha_TU = @Fecha_TU,   
-                                Pendiente_TU = @Pendiente_TU, 
+                                Fecha_TU = @Fecha_TU,    
                                 Asistencia_TU = @Asistencia_TU, 
                                 Descripcion_TU = @Descripcion_TU, 
                                 Estado_TU = @Estado_TU 
@@ -236,22 +232,30 @@ namespace Datos
 
         public SqlCommand CargarParametros_ModificacionTurno(Turno turno)
         {
-            SqlCommand sqlComand = new SqlCommand("SP_ModificacionTurno");
+            SqlCommand sqlComand = new SqlCommand("SP_ModificacionTurno_Grupo10");
             sqlComand.CommandType = CommandType.StoredProcedure;
-            sqlComand.Parameters.AddWithValue("@LegajoPaciente_TU", turno.LegajoPaciente);
             sqlComand.Parameters.AddWithValue("@Fecha_TU", turno.Fecha);
             sqlComand.Parameters.AddWithValue("@CodTurno_TU", turno.CodTurno);
-            sqlComand.Parameters.AddWithValue("@Pendiente_TU", turno.Pendiente);
-            sqlComand.Parameters.AddWithValue("@Asistencia_TU", turno.Asistencia);
+            object asistenciaParametro;
+            if (turno.Asistencia == "NULL")
+            {
+                asistenciaParametro = (object)DBNull.Value;
+            }
+            else
+            {
+                asistenciaParametro = Convert.ToInt32(turno.Asistencia);
+            }
+            sqlComand.Parameters.AddWithValue("@Asistencia_TU", asistenciaParametro);
             sqlComand.Parameters.AddWithValue("@Descripcion_TU", turno.Descripcion);
-            sqlComand.Parameters.AddWithValue("@Estado_TU", turno.Estado);
+            sqlComand.Parameters.AddWithValue("@Estado_TU", 1);
             return sqlComand;
         }
 
         public int ModificarTurno(Turno turno)
         {
+            ValidarOCrearProcedimiento_ModificacionTurno();
             SqlCommand sqlComand = CargarParametros_ModificacionTurno(turno);
-            return datos.EjecutarProcedimientoAlmacenado("SP_ModificacionTurno", sqlComand);
+            return datos.EjecutarProcedimientoAlmacenado("SP_ModificacionTurno_Grupo10 ", sqlComand);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,7 +43,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
             DataRow filaTodos = tablaDias.NewRow();
             filaTodos["Descripcion_DI"] = "Todos";
-            filaTodos["NumDia_DI"] = 0; // un valor especial que no venga de la BD
+            filaTodos["NumDia_DI"] = 0; // Value = '0'
 
             tablaDias.Rows.InsertAt(filaTodos, 0); // lo agrega en la posición 0 (principio)
 
@@ -71,13 +72,44 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             }
         }
 
+        private void ResetearColoresBotonesEspecialidad()
+        {
+            // Especialidades
+            foreach (GridViewRow fila in gvEspecialidades.Rows)
+            {
+                Button btn = (Button)fila.FindControl("btnEspecialidad");
+                if (btn != null)
+                {
+                    btn.BackColor = System.Drawing.Color.Empty;
+                }
+            }
+        }
+        private void ResetearColoresBotonesDia() 
+        { 
+            foreach (GridViewRow fila in gvDias.Rows)
+            {
+                Button btn = (Button)fila.FindControl("btnDia");
+                if (btn != null)
+                {
+                    btn.BackColor = System.Drawing.Color.Empty;
+                }
+            }
+        }
+
         protected void btnEspecialidad_Command(object sender, CommandEventArgs e)
         {
+            ResetearColoresBotonesDia();
+
             int codEspecialidad = Convert.ToInt32(e.CommandArgument);
 
             if (e.CommandName == "FiltroEspecialidad")
             {
+                ResetearColoresBotonesEspecialidad();
+
                 Session["EspecialidadSeleccionada"] = codEspecialidad;
+
+                Button btnEspecialidadSeleccionada = (Button)sender;
+                btnEspecialidadSeleccionada.BackColor = Color.DarkGray;
                                 
                 gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0);
                 gvDisponibilidades.DataBind();
@@ -86,21 +118,27 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
+            ResetearColoresBotonesEspecialidad();
+            ResetearColoresBotonesDia();
+
             Session["EspecialidadSeleccionada"] = null;           
+
 
             gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0);
             gvDisponibilidades.DataBind();
-        }
 
-        protected void gvDias_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
+
 
         protected void btnDia_Command(object sender, CommandEventArgs e)
         {
+            ResetearColoresBotonesDia();
+
             int diaSeleccionado  = Convert.ToInt32(e.CommandArgument);
-           
+            
+            Button btnDiaSeleccionado = (Button)sender;
+            btnDiaSeleccionado.BackColor = Color.DarkGray;
 
             if(Session["EspecialidadSeleccionada"] != null)
             {
@@ -108,6 +146,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
                 if (diaSeleccionado > 0)
                 {
+
                     gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado);
                 }
                else

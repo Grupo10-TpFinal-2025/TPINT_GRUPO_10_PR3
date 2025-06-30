@@ -144,6 +144,7 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
                     <asp:TextBox ID="txtNuevaContraseña2" runat="server" Height="20px" Width="126px" TextMode="Password"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtNuevaContraseña2" ErrorMessage="Debe ingresar algún valor"></asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToCompare="txtNuevaContraseña" ControlToValidate="txtNuevaContraseña2" EnableClientScript="False" ErrorMessage="Las contreñas deben coincidir"></asp:CompareValidator>

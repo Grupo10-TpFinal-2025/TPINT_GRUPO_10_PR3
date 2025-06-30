@@ -17,7 +17,10 @@ namespace Vistas
 
         protected void btnAgregarUsuarioMedico_Click(object sender, EventArgs e)
         {
-            lblContraseña.Text = "Contraseña agregada con éxito!";
+            if (Page.IsValid)
+            {
+                lblContraseña.Text = "Contraseña agregada con éxito!";
+            }        
         }
     }
 }

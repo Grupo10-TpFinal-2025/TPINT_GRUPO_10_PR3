@@ -149,6 +149,7 @@ namespace Vistas.Medico
                 {
                     RadioButtonList cblAsistencia = (RadioButtonList)e.Row.FindControl("rbl_et_Asistencia");
                     string asistencia = DataBinder.Eval(e.Row.DataItem, "Asistencia").ToString();
+
                     if (!string.IsNullOrEmpty(asistencia))
                     {
                         if (asistencia.ToLower() == "true")

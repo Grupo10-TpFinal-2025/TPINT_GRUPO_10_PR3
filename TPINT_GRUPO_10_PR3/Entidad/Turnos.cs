@@ -13,15 +13,15 @@ namespace Entidades
         private int _legajoMedico;
         private int _legajoPaciente;
         private DateTime _fecha;
-        private bool _pendiente;
-        private bool _asistencia;
+        private int _pendiente;
+        private string _asistencia;
         private string _descripcion;
-        private bool _estado;
+        private int _estado;
 
         // ------------------------- Constructores -------------------------
         public Turno() { } //Uno vacío obligatorio.
 
-        public Turno(int codTurno, int legajoMedico, DateTime fecha, bool pendiente, bool asistencia, string descripcion, bool estado)
+        public Turno(int codTurno, int legajoMedico, DateTime fecha, int pendiente, string asistencia, string descripcion, int estado)
         {
             _codTurno = codTurno;
             _legajoMedico = legajoMedico;
@@ -45,19 +45,25 @@ namespace Entidades
             set { _legajoMedico = value; }
         }
 
+        public int LegajoPaciente
+        {
+            get { return _legajoPaciente; }
+            set { _legajoPaciente = value; }
+        }
+
         public DateTime Fecha
         {
             get { return _fecha; }
             set { _fecha = value; }
         }
 
-        public bool Pendiente
+        public int Pendiente
         {
             get { return _pendiente; }
             set { _pendiente = value; }
         }
 
-        public bool Asistencia
+        public string Asistencia
         {
             get { return _asistencia; }
             set { _asistencia = value; }
@@ -69,7 +75,7 @@ namespace Entidades
             set { _descripcion = value; }
         }
 
-        public bool Estado
+        public int Estado
         {
             get { return _estado; }
             set { _estado = value; }

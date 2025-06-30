@@ -78,13 +78,14 @@
                 <td class="auto-style15">&nbsp;</td>
                 <td class="auto-style15">&nbsp;</td>
                 <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">LegajoMedico_TU, LegajoPaciente_TU, Fecha_TU, Pendiente_TU, Asistencia_TU, Descripcion_TU, Estado_TU</td>
+                <td class="auto-style15">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style8"></td>
                 <td class="auto-style19">
                     <br />
-                    <asp:GridView ID="gvActualizacionTurnos" runat="server" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvActualizacionTurnos" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvActualizacionTurnos_PageIndexChanging" OnRowCancelingEdit="gvActualizacionTurnos_RowCancelingEdit" OnRowEditing="gvActualizacionTurnos_RowEditing" OnRowUpdating="gvActualizacionTurnos_RowUpdating" PageSize="5">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:TemplateField>
                                 <EditItemTemplate>
@@ -93,31 +94,67 @@
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar"></asp:LinkButton>
+                                    &nbsp;<br />
+                                    <asp:LinkButton ID="btnSeleccionar" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Legajo Paciente">
+                            <asp:TemplateField HeaderText="ID Turno">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_legajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>'></asp:Label>
+                                    <asp:Label ID="lbl_et_IDTurno" runat="server" Text='<%# Eval("ID Consulta") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_legajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>'></asp:Label>
+                                    <asp:Label ID="lbl_it_IDTurno" runat="server" Text='<%# Eval("ID Consulta") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Paciente">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
+                                    <br />
+                                    <asp:Label ID="lbl_et_LegajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>' Visible="False"></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fecha">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_legajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>'></asp:Label>
+                                    <asp:Label ID="lbl_et_Fecha" runat="server" Text='<%# Eval("Turno") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Fecha" runat="server" Text='<%# Eval("Fecha_TU") %>'></asp:Label>
+                                    <asp:Label ID="lbl_it_Fecha" runat="server" Text='<%# Eval("Turno") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField HeaderText="Legajo Paciente" />
-                            <asp:BoundField HeaderText="Asistencia" />
-                            <asp:BoundField HeaderText="Descripcion" />
+                            <asp:TemplateField HeaderText="Asistencia">
+                                <EditItemTemplate>
+                                    <asp:CheckBoxList ID="cbl_et_Pendiente" runat="server">
+                                        <asp:ListItem Value="0">Ausente</asp:ListItem>
+                                        <asp:ListItem Value="1">Presente</asp:ListItem>
+                                    </asp:CheckBoxList>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Asistencia" runat="server" Text='<%# Eval("Asistencia") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Observaciones Medicas">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_et_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>'></asp:TextBox>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Descripcion" runat="server" Enabled='<%# Eval("Descripcion") %>' Text='<%# Eval("Descripcion") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
-                    <br />
-                    <br />
                     <br />
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 </td>

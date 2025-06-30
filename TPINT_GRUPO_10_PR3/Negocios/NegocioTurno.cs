@@ -76,5 +76,10 @@ namespace Negocios
         {
              return daoTurno.getTurnosXMedico(legajoMedico);
         }
+
+        public int ModificarTurno(Turno turno)
+        {
+            return daoTurno.ModificarTurno(turno);
+        }
     }
 }

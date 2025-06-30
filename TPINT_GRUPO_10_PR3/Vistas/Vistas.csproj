@@ -91,6 +91,7 @@
     <Content Include="Administrador\SubMenu-GestionMedicos\MenuGestionMedicos.aspx" />
     <Content Include="Medico\CambioDeTurno.aspx" />
     <Content Include="Medico\ListarPacientesSeleccionados.aspx" />
+    <Content Include="NuevoUsuario.aspx" />
     <Content Include="Web.config" />
     <Content Include="Medico\MenuMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx" />
@@ -270,6 +271,13 @@
     </Compile>
     <Compile Include="Medico\ListarPacientesSeleccionados.aspx.designer.cs">
       <DependentUpon>ListarPacientesSeleccionados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoUsuario.aspx.cs">
+      <DependentUpon>NuevoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevoUsuario.aspx.designer.cs">
+      <DependentUpon>NuevoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Medico\MenuMedico.aspx.cs">

@@ -14,7 +14,7 @@
             width: 49px;
         }
         .auto-style3 {
-            width: 440px;
+            width: 375px;
         }
         .auto-style4 {
             height: 30px;
@@ -24,7 +24,7 @@
             height: 30px;
         }
         .auto-style6 {
-            width: 440px;
+            width: 375px;
             height: 30px;
         }
         .auto-style7 {
@@ -106,7 +106,9 @@
                     <td class="auto-style3">
                         <asp:Button ID="btnIngresar" runat="server" Font-Bold="True" Text="Ingresar" OnClick="btnIngresar_Click" />
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:HyperLink ID="hlNuevoUsuario" runat="server" NavigateUrl="~/NuevoUsuario.aspx">Crear Nuevo Usuario</asp:HyperLink>
+                    </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

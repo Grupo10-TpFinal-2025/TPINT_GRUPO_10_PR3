@@ -51,7 +51,8 @@
         .auto-style11 {
             height: 31px;
         }
-    </style>
+        
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -165,6 +166,27 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style3"></td>
+                <td class="auto-style6"></td>
+                <td class="auto-style4">
+                </td>
+                <td class="auto-style4"></td>
+                <td class="auto-style4"></td>
+                <td class="auto-style4"></td>
+                <td class="auto-style4"></td>
+            </tr>
+            <tr>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style6">&nbsp;</td>
+                <td class="auto-style4">
+                    <asp:Button ID="btnGestionarTurnosMedicos" runat="server" Text="Gestionar Turnos Medicos" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnGestionarTurnosMedicos_Click"/>
+                </td>
+                <td class="auto-style4">&nbsp;</td>
+                <td class="auto-style4">&nbsp;</td>
+                <td class="auto-style4">&nbsp;</td>
+                <td class="auto-style4">&nbsp;</td>
             </tr>
         </table>
         </div>

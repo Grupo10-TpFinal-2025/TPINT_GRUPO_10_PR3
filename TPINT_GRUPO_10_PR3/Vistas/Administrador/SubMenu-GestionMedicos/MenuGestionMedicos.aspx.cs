@@ -42,5 +42,10 @@ namespace Vistas
         {
             Response.Redirect("ModificacionMedico.aspx");
         }
+
+        protected void btnGestionarTurnosMedicos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx");
+        }
     }
 }

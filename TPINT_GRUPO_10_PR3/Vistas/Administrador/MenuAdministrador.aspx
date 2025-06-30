@@ -175,7 +175,7 @@
                 <td class="auto-style9"></td>
                 <td class="auto-style10"></td>
                 <td class="auto-style11">
-                    <asp:Button ID="btnMenuDisponibilidad0" runat="server" CssClass="auto-style14" Height="30px" OnClick="btnReportes_Click" Text="Gestionar disponibilidad" Width="161px" />
+                    <asp:Button ID="btnReportes" runat="server" Text="Reportes e Informes" CssClass="auto-style15" OnClick="btnReportes_Click" />
                 </td>
                 <td class="auto-style11"></td>
                 <td class="auto-style11"></td>
@@ -194,8 +194,7 @@
                     <td class="auto-style12">&nbsp;</td>
                     <td class="auto-style13">&nbsp;</td>
                     <td>
-                    <asp:Button ID="btnReportes" runat="server" Text="Reportes e Informes" CssClass="auto-style15" OnClick="btnReportes_Click" />
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style12">&nbsp;</td>

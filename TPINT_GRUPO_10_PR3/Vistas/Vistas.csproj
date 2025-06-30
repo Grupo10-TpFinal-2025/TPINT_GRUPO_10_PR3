@@ -66,11 +66,11 @@
   <ItemGroup>
     <Content Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx" />
     <Content Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx" />
-    <Content Include="Administrador\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx" />
-    <Content Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx" />
-    <Content Include="Administrador\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx" />
-    <Content Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx" />
-    <Content Include="Administrador\SubMenu-GestionDisponibilidad\ModificacionDisponibilidad.aspx" />
+    <Content Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx" />
+    <Content Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx" />
+    <Content Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx" />
+    <Content Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx" />
+    <Content Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\ModificacionDisponibilidad.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\BajaMedico.aspx" />
     <Content Include="Administrador\SubMenu-GestionMedicos\ModificacionMedico.aspx" />
@@ -97,18 +97,18 @@
     <Content Include="Administrador\SubMenu-GestionPacientes\MenuGestionPacientes.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx.cs">
       <DependentUpon>AltaDisponibilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\AltaDisponibilidad.aspx.designer.cs">
       <DependentUpon>AltaDisponibilidad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx.cs">
       <DependentUpon>BajaDisponibilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\BajaDisponibilidad.aspx.designer.cs">
       <DependentUpon>BajaDisponibilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubCarpeta-Reportes-Informes\MenuReportes-Informes.aspx.cs">
@@ -125,25 +125,25 @@
     <Compile Include="Administrador\SubCarpeta-Reportes-Informes\ResultadosReportes-Informes.aspx.designer.cs">
       <DependentUpon>ResultadosReportes-Informes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx.cs">
       <DependentUpon>ListarDisponibilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\ListarDisponibilidad.aspx.designer.cs">
       <DependentUpon>ListarDisponibilidad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.cs">
       <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\MenuDisponibilidad.aspx.designer.cs">
       <DependentUpon>MenuDisponibilidad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\ModificacionDisponibilidad.aspx.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\ModificacionDisponibilidad.aspx.cs">
       <DependentUpon>ModificacionDisponibilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrador\SubMenu-GestionDisponibilidad\ModificacionDisponibilidad.aspx.designer.cs">
+    <Compile Include="Administrador\SubMenu-GestionMedicos\SubMenu-GestionDisponibilidad\ModificacionDisponibilidad.aspx.designer.cs">
       <DependentUpon>ModificacionDisponibilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrador\SubMenu-GestionMedicos\AltaMedico.aspx.cs">

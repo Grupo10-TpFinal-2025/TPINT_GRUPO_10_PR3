@@ -83,15 +83,14 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:ListView ID="lvModificacionDisponibilidad" runat="server" DataSourceID="SQLAccesoBD">
-                    </asp:ListView>
+                    <asp:GridView ID="gvModificacionDisponibilidad" runat="server">
+                    </asp:GridView>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:SqlDataSource ID="SQLAccesoBD" runat="server"></asp:SqlDataSource>
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style8"></td>

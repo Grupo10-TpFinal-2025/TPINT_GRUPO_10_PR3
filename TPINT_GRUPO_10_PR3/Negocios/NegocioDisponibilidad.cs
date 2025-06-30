@@ -30,9 +30,6 @@ namespace Negocios
 
             return daoD.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado);
         }
- 
-
-       
 
         public DataTable ObtenerDisponibilidad(Disponibilidad disponibilidad)
         {

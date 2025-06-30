@@ -39,7 +39,7 @@ namespace Vistas
 
         protected void btnReportes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx");
+            Response.Redirect("SubCarpeta-Reportes-Informes/MenuReportes-Informes.aspx");
         }
     }
 }

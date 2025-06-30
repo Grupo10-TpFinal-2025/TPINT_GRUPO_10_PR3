@@ -29,12 +29,6 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
             }
         }
 
-
-        protected void btnMedicoMasSolicitado_Click(object sender, EventArgs e)
-        {
-			Response.Redirect("ResultadosReportes-Informes.aspx");
-        }
-
         protected void btnbtnPromedioMEspecialidad_Click(object sender, EventArgs e)
         {
             negocioMedico = new NegocioMedico();
@@ -51,6 +45,17 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
 
         protected void btnListarPaciente_Click(object sender, EventArgs e)
         {
+            Response.Redirect("ResultadosReportes-Informes.aspx");
+        }
+
+        protected void btnMedicoMasSolicitado_Click(object sender, EventArgs e)
+        {
+            negocioMedico = new NegocioMedico();
+            DataTable tabla = negocioMedico.ObtenerMedicoMasSolicitado();
+
+            Session["TablaRedultados"] = tabla;
+            Session["TituloInforme"] = "Médico Más Solicitado";
+
             Response.Redirect("ResultadosReportes-Informes.aspx");
         }
     }

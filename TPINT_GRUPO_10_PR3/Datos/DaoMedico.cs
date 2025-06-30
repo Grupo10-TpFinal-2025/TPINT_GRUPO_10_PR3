@@ -306,5 +306,28 @@ namespace Datos
 
             return datos.ObtenerTabla("MedicosXEspecialidad", consulta);
         }
+
+        public DataTable ObtenerMedicoMasSolicitado()
+        {
+            string consulta = @"
+        SELECT TOP 1 
+            M.Legajo_ME AS 'Legajo',
+            M.Nombre_ME AS 'Nombre',
+            M.Apellido_ME AS 'Apellido',
+            COUNT(T.CodTurno_TU) AS 'Cantidad de Turnos'
+        FROM 
+            Turno T
+        INNER JOIN 
+            Medico M ON T.LegajoMedico_TU = M.Legajo_ME
+        WHERE 
+            T.Estado_TU = 1
+        GROUP BY 
+            M.Legajo_ME, M.Nombre_ME, M.Apellido_ME
+        ORDER BY 
+            COUNT(T.CodTurno_TU) DESC;";
+
+            return datos.ObtenerTabla("MedicoMasSolicitado", consulta);
+        }
+
     }
 }

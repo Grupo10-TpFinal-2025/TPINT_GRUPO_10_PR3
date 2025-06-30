@@ -103,31 +103,48 @@ namespace Datos
 
         public int BajaLogicaDisponibilidad(Disponibilidad disponibilidad)
         {
-            try
+            // Usar variables distintas para las consultas mejora la legibilidad.
+            string consultaTurnos = @" SET DATEFIRST 1 UPDATE Turno SET Estado_TU = 0 WHERE LegajoMedico_TU = @LegajoMedico AND DATEPART(weekday, Fecha_TU) = @NumDia AND Fecha_TU >= GETDATE() AND Estado_TU = 1;";
+
+            string consultaDisponibilidad = @" UPDATE Disponibilidad SET Estado_DIS = 0 WHERE LegajoMedico_DIS = @LegajoMedico  AND NumDia_DIS = @NumDia AND Estado_DIS = 1;";
+
+            using (SqlConnection conexion = datos.ObtenerConexion())
             {
-                using (SqlConnection conexion = datos.ObtenerConexion())
+                using (SqlTransaction transaccion = conexion.BeginTransaction())
                 {
-                    string consulta = "SET DATEFIRST 1 UPDATE Turno SET Estado_TU = 0 WHERE LegajoMedico_TU = @LegajoMedico_TU AND DATEPART(weekday, Fecha_TU) = @NumDia_DIS AND YEAR(Fecha_TU) = @Anio_DIS AND Estado_TU = 1";
-                    SqlCommand comandoTurnos = new SqlCommand(consulta, conexion);
-                    comandoTurnos.Parameters.AddWithValue("@LegajoMedico_TU", disponibilidad.LegajoMedico);
-                    comandoTurnos.Parameters.AddWithValue("@NumDia_DIS", disponibilidad.NumDia);
-                    comandoTurnos.Parameters.AddWithValue("@Anio_DIS", DateTime.Now.Year);
-                    comandoTurnos.ExecuteNonQuery();
+                    try
+                    {
+                        // Comando para actualizar los turnos
+                        using (SqlCommand comandoTurnos = new SqlCommand(consultaTurnos, conexion, transaccion))
+                        {
+                            comandoTurnos.Parameters.AddWithValue("@LegajoMedico", disponibilidad.LegajoMedico);
+                            comandoTurnos.Parameters.AddWithValue("@NumDia", disponibilidad.NumDia);
+                            comandoTurnos.ExecuteNonQuery();
+                        }
 
-                    consulta = "UPDATE Disponibilidad SET Estado_DIS = 0 WHERE LegajoMedico_DIS = @LegajoMedico_DIS AND Estado_DIS = 1";
-                    SqlCommand comandoDisponibilidad = new SqlCommand(consulta, conexion);
-                    comandoDisponibilidad.Parameters.AddWithValue("@LegajoMedico_DIS", disponibilidad.LegajoMedico);
-                   int filasAfectadas = comandoDisponibilidad.ExecuteNonQuery();
+                        // Comando para actualizar la disponibilidad
+                        int filasAfectadas;
+                        using (SqlCommand comandoDisponibilidad = new SqlCommand(consultaDisponibilidad, conexion, transaccion))
+                        {
+                            comandoDisponibilidad.Parameters.AddWithValue("@LegajoMedico", disponibilidad.LegajoMedico);
+                            comandoDisponibilidad.Parameters.AddWithValue("@NumDia", disponibilidad.NumDia);
+                            filasAfectadas = comandoDisponibilidad.ExecuteNonQuery();
+                        }
 
-                    return filasAfectadas;
-                }
-            }
-            catch
-            {
-                return -1;
-            }
+                        // Si todo fue exitoso, confirma la transacción.
+                        transaccion.Commit();
+                        return filasAfectadas;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaccion.Rollback();
+                        Console.WriteLine("Error al realizar la baja lógica de disponibilidad: " + ex.Message);
+
+                        return -1;
+                    }
+                } 
+            } 
         }
-
         public DataTable ObtenerDias()
         {
             DataTable tablaDias = new DataTable();
@@ -151,21 +168,64 @@ namespace Datos
             {
                 using (SqlConnection conexion = datos.ObtenerConexion())
                 {
-                    string consulta = "INSERT INTO Disponibilidad (NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_DIS) VALUES (@NumDia, @LegajoMedico, @HorarioInicio, @HorarioFin, @Estado)";
-                    SqlCommand comando = new SqlCommand(consulta, conexion);
-                    comando.Parameters.AddWithValue("@NumDia", disponibilidad.NumDia);
-                    comando.Parameters.AddWithValue("@LegajoMedico", disponibilidad.LegajoMedico);
-                    comando.Parameters.AddWithValue("@HorarioInicio", disponibilidad.HorarioInicio);
-                    comando.Parameters.AddWithValue("@HorarioFin", disponibilidad.HorarioFin);
-                    comando.Parameters.AddWithValue("@Estado", disponibilidad.Estado);
+                    // Verificar si existe dado de baja
+                    string consultaVerificar = @"SELECT COUNT(*) FROM Disponibilidad 
+                                         WHERE LegajoMedico_DIS = @LegajoMedico 
+                                         AND NumDia_DIS = @NumDia 
+                                         AND Estado_DIS = 0";
 
-                    int filasAfectadas = comando.ExecuteNonQuery();
-                    return filasAfectadas; // Devuelve 1 si insertó correctamente
+                    using (SqlCommand comandoVerificar = new SqlCommand(consultaVerificar, conexion))
+                    {
+                        comandoVerificar.Parameters.AddWithValue("@LegajoMedico", disponibilidad.LegajoMedico);
+                        comandoVerificar.Parameters.AddWithValue("@NumDia", disponibilidad.NumDia);
+
+                        int existe = (int)comandoVerificar.ExecuteScalar();
+
+                        if (existe > 0)
+                        {
+                            // Reactivar el registro dado de baja
+                            string consultaReactivar = @"UPDATE Disponibilidad 
+                                                 SET Estado_DIS = 1,
+                                                     HorarioInicio_DIS = @HorarioInicio,
+                                                     HorarioFin_DIS = @HorarioFin
+                                                 WHERE LegajoMedico_DIS = @LegajoMedico 
+                                                 AND NumDia_DIS = @NumDia 
+                                                 AND Estado_DIS = 0";
+
+                            using (SqlCommand comandoReactivar = new SqlCommand(consultaReactivar, conexion))
+                            {
+                                comandoReactivar.Parameters.AddWithValue("@LegajoMedico", disponibilidad.LegajoMedico);
+                                comandoReactivar.Parameters.AddWithValue("@NumDia", disponibilidad.NumDia);
+                                comandoReactivar.Parameters.AddWithValue("@HorarioInicio", disponibilidad.HorarioInicio);
+                                comandoReactivar.Parameters.AddWithValue("@HorarioFin", disponibilidad.HorarioFin);
+
+                                return comandoReactivar.ExecuteNonQuery(); // Devuelve 1 si se reactivó
+                            }
+                        }
+                        else
+                        {
+                            // Insertar nuevo registro
+                            string consultaInsertar = @"INSERT INTO Disponibilidad 
+                                                (NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_DIS) 
+                                                VALUES (@NumDia, @LegajoMedico, @HorarioInicio, @HorarioFin, @Estado)";
+
+                            using (SqlCommand comandoInsertar = new SqlCommand(consultaInsertar, conexion))
+                            {
+                                comandoInsertar.Parameters.AddWithValue("@NumDia", disponibilidad.NumDia);
+                                comandoInsertar.Parameters.AddWithValue("@LegajoMedico", disponibilidad.LegajoMedico);
+                                comandoInsertar.Parameters.AddWithValue("@HorarioInicio", disponibilidad.HorarioInicio);
+                                comandoInsertar.Parameters.AddWithValue("@HorarioFin", disponibilidad.HorarioFin);
+                                comandoInsertar.Parameters.AddWithValue("@Estado", disponibilidad.Estado);
+
+                                return comandoInsertar.ExecuteNonQuery(); // Devuelve 1 si se insertó
+                            }
+                        }
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return -1; // Devuelve -1 si hubo error
+                throw new Exception("Error en AgregarDisponibilidad: " + ex.Message);
             }
         }
 

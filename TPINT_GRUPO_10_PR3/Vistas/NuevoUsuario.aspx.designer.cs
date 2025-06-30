@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class Login
+    public partial class NuevoUsuario
     {
 
         /// <summary>
@@ -24,48 +24,57 @@ namespace Vistas
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control txtUsuario.
+        /// Control hlVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
+        protected global::System.Web.UI.WebControls.HyperLink hlVolver;
 
         /// <summary>
-        /// Control txtContraseña.
+        /// Control txtNuevoUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraseña;
+        protected global::System.Web.UI.WebControls.TextBox txtNuevoUsuario;
 
         /// <summary>
-        /// Control lblMensaje.
+        /// Control txtNuevaContraseña.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.TextBox txtNuevaContraseña;
 
         /// <summary>
-        /// Control btnIngresar.
+        /// Control txtNuevaContraseña2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresar;
+        protected global::System.Web.UI.WebControls.TextBox txtNuevaContraseña2;
 
         /// <summary>
-        /// Control hlNuevoUsuario.
+        /// Control btnAgregarUsuarioMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlNuevoUsuario;
+        protected global::System.Web.UI.WebControls.Button btnAgregarUsuarioMedico;
+
+        /// <summary>
+        /// Control lblContraseña.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblContraseña;
     }
 }

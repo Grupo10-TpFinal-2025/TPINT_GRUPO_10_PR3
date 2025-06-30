@@ -78,63 +78,56 @@
                 <td class="auto-style15">&nbsp;</td>
                 <td class="auto-style15">&nbsp;</td>
                 <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style8"></td>
-                <td class="auto-style19"></td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-            </tr>
-            <tr>
-                <td class="auto-style7">&nbsp;</td>
-                <td class="auto-style18">
-                    <asp:ListView ID="lvUpdateTurnos" runat="server" DataSourceID="SQLConeccionBD">
-                    </asp:ListView>
-                </td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style7">&nbsp;</td>
-                <td class="auto-style18">
-                    <asp:SqlDataSource ID="SQLConeccionBD" runat="server"></asp:SqlDataSource>
-                </td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style15">LegajoMedico_TU, LegajoPaciente_TU, Fecha_TU, Pendiente_TU, Asistencia_TU, Descripcion_TU, Estado_TU</td>
             </tr>
             <tr>
                 <td class="auto-style8"></td>
                 <td class="auto-style19">
-                    <asp:Button ID="btnActualizar" runat="server" Text="Modificar" />
-                </td>
-                <td class="auto-style17">
+                    <br />
+                    <asp:GridView ID="gvActualizacionTurnos" runat="server" AutoGenerateColumns="False">
+                        <Columns>
+                            <asp:TemplateField>
+                                <EditItemTemplate>
+                                    <asp:LinkButton ID="btnActualizar" runat="server" CausesValidation="True" CommandName="Update" Text="Actualizar" ValidationGroup="Modificacion"></asp:LinkButton>
+                                    <asp:LinkButton ID="btnCancelar" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar"></asp:LinkButton>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Legajo Paciente">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_legajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_legajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Fecha">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_legajoPaciente" runat="server" Text='<%# Eval("LegajoPaciente_TU") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Fecha" runat="server" Text='<%# Eval("Fecha_TU") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField HeaderText="Legajo Paciente" />
+                            <asp:BoundField HeaderText="Asistencia" />
+                            <asp:BoundField HeaderText="Descripcion" />
+                        </Columns>
+                    </asp:GridView>
+                    <br />
+                    <br />
+                    <br />
                     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 </td>
+                <td class="auto-style17">&nbsp;</td>
                 <td class="auto-style17"></td>
                 <td class="auto-style17"></td>
                 <td class="auto-style17"></td>
                 <td class="auto-style17"></td>
             </tr>
-            <tr>
-                <td class="auto-style7">&nbsp;</td>
-                <td class="auto-style18">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style15">&nbsp;</td>
-            </tr>
-        </table>
+            </table>
     </form>
 </body>
 </html>

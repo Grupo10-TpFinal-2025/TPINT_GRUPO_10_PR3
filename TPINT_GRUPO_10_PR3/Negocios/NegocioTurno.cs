@@ -71,5 +71,10 @@ namespace Negocios
             //Devuelvo
             return daoTurno.getTablaFiltrada(numero, dni, fecha);
         }
+
+        public DataTable getTurnosXMedico(int legajoMedico)
+        {
+             return daoTurno.getTurnosXMedico(legajoMedico);
+        }
     }
 }

@@ -11,8 +11,14 @@ namespace Datos
 {
     public class DaoTurno
     {
+        private const string ConsultaBase = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
+                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA WHERE Estado_TU = 1";
+
         private AccesoDatos datos;
-        
+
         public DaoTurno()
         {
             datos = new AccesoDatos();
@@ -29,7 +35,7 @@ namespace Datos
                     FROM sys.objects 
                     WHERE type = 'P' AND name = 'SP_AgendarTurno'";
 
-                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);        
+                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
                 int cantidad = (int)cmdExiste.ExecuteScalar();
 
                 if (cantidad == 0)
@@ -63,23 +69,14 @@ namespace Datos
         //Consigue la tabla
         public DataTable getTabla()
         {
-            DataTable table = datos.ObtenerTabla("Turnos", "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA"
-            );
+            DataTable table = datos.ObtenerTabla("Turnos", ConsultaBase);
             return table;
         }
 
         //Consigue la tabla por codigo de turno
         public DataTable getTablaPorCodigoTurno(int numero)
         {
-            string consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA WHERE CodTurno_TU = @CodTurno_TU";
+            string consulta = ConsultaBase + " AND CodTurno_TU = @CodTurno_TU";
 
             //Creo el sqlCommand y lo cargo
             SqlCommand sqlComand = new SqlCommand(consulta);
@@ -99,12 +96,7 @@ namespace Datos
             if (caso == 1)
             {
                 //Establesco la consulta
-                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
-                "WHERE DNI_ME = @DNI_ME AND Fecha_TU = @Fecha_TU";
+                consulta = ConsultaBase + " AND DNI_ME = @DNI_ME AND Fecha_TU = @Fecha_TU";
 
                 //Creo el sqlCommand y lo cargo
                 SqlCommand sqlComand = new SqlCommand(consulta);
@@ -114,15 +106,11 @@ namespace Datos
                 //Devuelvo el sqlCommand
                 return sqlComand;
 
-            }else if(caso == 2)
+            }
+            else if (caso == 2)
             {
                 //Establesco la consulta
-                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
-                "WHERE DNI_PA = @DNI_PA AND Fecha_TU = @Fecha_TU";
+                consulta = ConsultaBase + " AND DNI_PA = @DNI_PA AND Fecha_TU = @Fecha_TU";
 
                 //Creo el sqlCommand y lo cargo
                 SqlCommand sqlComand = new SqlCommand(consulta);
@@ -132,15 +120,11 @@ namespace Datos
                 //Devuelvo el sqlCommand
                 return sqlComand;
 
-            }else if (caso == 3)
+            }
+            else if (caso == 3)
             {
                 //Establesco la consulta
-                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
-                "WHERE DNI_ME = @DNI_ME";
+                consulta = ConsultaBase + " AND DNI_ME = @DNI_ME";
 
                 //Creo el sqlCommand y lo cargo
                 SqlCommand sqlComand = new SqlCommand(consulta);
@@ -149,15 +133,12 @@ namespace Datos
                 //Devuelvo el sqlCommand
                 return sqlComand;
 
-            }else if(caso == 4) {
+            }
+            else if (caso == 4)
+            {
 
                 //Establesco la consulta
-                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
-                "WHERE DNI_PA = @DNI_PA";
+                consulta = ConsultaBase + " AND DNI_PA = @DNI_PA";
 
                 //Creo el sqlCommand y lo cargo
                 SqlCommand sqlComand = new SqlCommand(consulta);
@@ -166,15 +147,11 @@ namespace Datos
                 //Devuelvo el sqlCommand
                 return sqlComand;
 
-            }else if (caso == 5)
+            }
+            else if (caso == 5)
             {
                 //Establesco la consulta
-                consulta = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA " +
-                "WHERE Fecha_TU = @Fecha_TU";
+                consulta = ConsultaBase + " AND Fecha_TU = @Fecha_TU";
 
                 //Creo el sqlCommand y lo cargo
                 SqlCommand sqlComand = new SqlCommand(consulta);
@@ -195,6 +172,15 @@ namespace Datos
             SqlCommand sql = ObtenerConsultaFiltrada(caso, dni, fecha);
 
             return datos.ObtenerTablaFiltrada("Turnos", sql);
+        }
+
+        public DataTable getTurnosXMedico(int legajoMedico)
+        {
+           string consultaTurnosM = ConsultaBase + " AND LegajoMedico_TU = @LegajoMedico_TU AND Pendiente_TU = 0";
+
+            SqlCommand sqlComand = new SqlCommand(consultaTurnosM);
+            sqlComand.Parameters.AddWithValue("@LegajoMedico_TU", legajoMedico);
+            return datos.ObtenerTablaFiltrada("Turnos", sqlComand);
         }
     }
 }

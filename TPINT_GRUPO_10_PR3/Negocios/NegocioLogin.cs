@@ -41,5 +41,17 @@ namespace Negocios
 
             return string.Empty;
         }
+
+        public string ObtenerLegajo(string usuario, string contrasena)
+        {
+            DataTable RegistroMedico = dao.ObtenerMedico(usuario, contrasena);
+            if (RegistroMedico.Rows.Count > 0)
+            {
+                string legajo = RegistroMedico.Rows[0]["LegajoMedico_UM"].ToString();
+                return legajo;
+
+            }
+            return null;
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Clear();
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -34,6 +35,7 @@ namespace Vistas
             {
                 string nombreCompleto = negocioLogin.ObtenerNombreCompletoMedico(usuario, contrasena);
                 Session["usuario"] = nombreCompleto;
+                Session["legajo"] = negocioLogin.ObtenerLegajo(usuario, contrasena);
                 Response.Redirect("~/Medico/MenuMedico.aspx");
             }
             else

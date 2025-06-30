@@ -19,7 +19,7 @@ namespace Vistas
         {
             if (Page.IsValid)
             {
-                lblContraseña.Text = "Contraseña agregada con éxito!";
+                lblContraseña.Text = "Nuevo Usuario agregado con éxito!";
             }        
         }
     }

@@ -65,6 +65,21 @@
         .auto-style17 {
             height: 45px;
         }
+        .auto-style18 {
+            height: 23px;
+            width: 1040px;
+        }
+        .auto-style19 {
+            width: 1040px;
+        }
+        .auto-style20 {
+            height: 45px;
+            width: 1040px;
+        }
+        .auto-style21 {
+            height: 56px;
+            width: 1040px;
+        }
     </style>
 </head>
 <body>
@@ -73,7 +88,7 @@
             <tr>
                 <td class="auto-style5"></td>
                 <td class="auto-style8"></td>
-                <td class="auto-style7">
+                <td class="auto-style18">
                     <asp:HyperLink ID="hlVolver" runat="server" NavigateUrl="~/Login.aspx">Volver al Login</asp:HyperLink>
                 </td>
                 <td class="auto-style7"></td>
@@ -85,7 +100,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style4"><span class="auto-style9">Ingrese el nuevo </span><strong><span class="auto-style9">usuario médico</span></strong>:</td>
-                <td>&nbsp;</td>
+                <td class="auto-style19">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -98,7 +113,9 @@
                     <asp:TextBox ID="txtNuevoUsuario" runat="server" Height="20px" Width="126px" MaxLength="16"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvUsuarioNuevo" runat="server" ControlToValidate="txtNuevoUsuario" ErrorMessage="Ingrese nombre de Usuario"></asp:RequiredFieldValidator>
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style19">
+                    <asp:RegularExpressionValidator ID="revNuevoUsuario" runat="server" ControlToValidate="txtNuevoUsuario" ErrorMessage="No ingrese espacios en blanco" ValidationExpression="^\S+$"></asp:RegularExpressionValidator>
+                </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -108,7 +125,7 @@
             <tr>
                 <td class="auto-style5"></td>
                 <td class="auto-style6">Ingrese la contraseña:</td>
-                <td class="auto-style7"></td>
+                <td class="auto-style18"></td>
                 <td class="auto-style7"></td>
                 <td class="auto-style7"></td>
                 <td class="auto-style7"></td>
@@ -121,8 +138,8 @@
                     <asp:TextBox ID="txtNuevaContraseña" runat="server" Height="20px" Width="126px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ErrorMessage="Ingrese una contraseña"></asp:RequiredFieldValidator>
                 </td>
-                <td class="auto-style17">
-                    <asp:RegularExpressionValidator ID="revContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ErrorMessage="La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial." ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+$"></asp:RegularExpressionValidator>
+                <td class="auto-style20">
+                    <asp:RegularExpressionValidator ID="revContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ErrorMessage="La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial y NO contener espacios en blanco." ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s]+$"></asp:RegularExpressionValidator>
                 </td>
                 <td class="auto-style17"></td>
                 <td class="auto-style17"></td>
@@ -133,7 +150,7 @@
             <tr>
                 <td class="auto-style12"></td>
                 <td class="auto-style10">Reingrese la contraseña:</td>
-                <td class="auto-style13">&nbsp;</td>
+                <td class="auto-style21">&nbsp;</td>
                 <td class="auto-style13"></td>
                 <td class="auto-style13"></td>
                 <td class="auto-style13"></td>
@@ -146,7 +163,7 @@
                     <asp:TextBox ID="txtNuevaContraseña2" runat="server" Height="20px" Width="126px" TextMode="Password"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtNuevaContraseña2" ErrorMessage="Debe ingresar algún valor"></asp:RequiredFieldValidator>
                 </td>
-                <td>
+                <td class="auto-style19">
                     <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToCompare="txtNuevaContraseña" ControlToValidate="txtNuevaContraseña2" EnableClientScript="False" ErrorMessage="Las contreñas deben coincidir"></asp:CompareValidator>
                 </td>
                 <td>&nbsp;</td>
@@ -171,7 +188,7 @@
                         </tr>
                     </table>
                 </td>
-                <td>
+                <td class="auto-style19">
                     <asp:Label ID="lblContraseña" runat="server"></asp:Label>
                 </td>
                 <td>&nbsp;</td>

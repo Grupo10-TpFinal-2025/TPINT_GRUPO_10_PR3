@@ -55,6 +55,11 @@ namespace Negocios
         {
             return daoD.ExisteDisponibilidad(legajoMedico, numDia);
         }
+
+        public DataTable EspecialidadParaModificacion()
+        {
+            return daoD.ObtenerTablaDisponibilidadParaModificacion();
+        }
     }
 }
 

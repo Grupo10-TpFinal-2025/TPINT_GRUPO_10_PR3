@@ -26,6 +26,13 @@ namespace Datos
 
         private string ordenamiento = " ORDER BY [Especialidad] ASC";
 
+        private string consultaModificacionDisponibilidad = @"SELECT NumDia_DI AS Dia, Nombre_ME + ' ' + Apellido_ME AS Nombre,
+                                HorarioInicio_DIS AS Inicio, HorarioFin_DIS AS Fin, Estado_DIS AS Estado FROM Disponibilidad 
+                                INNER JOIN Medico ON LegajoMedico_DIS = Legajo_ME
+                                INNER JOIN Dia ON NumDia_DIS = NumDia_DI ";
+
+        private string ordenamientoPorDia = "ORDER BY NumDia_DI";
+
         public DaoDisponibilidad()
         {
             datos = new AccesoDatos();
@@ -34,6 +41,11 @@ namespace Datos
         public DataTable ObtenerTablaDisponibilidad()
         {
             return datos.ObtenerTabla("Disponibilidad", consultaBase + ordenamiento);
+        }
+
+        public DataTable ObtenerTablaDisponibilidadParaModificacion()
+        {
+            return datos.ObtenerTabla("Disponibilidad", consultaModificacionDisponibilidad + ordenamientoPorDia);
         }
 
         //PRUEBA
@@ -145,6 +157,7 @@ namespace Datos
                 } 
             } 
         }
+
         public DataTable ObtenerDias()
         {
             DataTable tablaDias = new DataTable();

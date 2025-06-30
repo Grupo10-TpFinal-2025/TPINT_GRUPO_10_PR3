@@ -88,15 +88,19 @@
                         <Columns>
                             <asp:TemplateField HeaderText="Medico">
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Medico") %>'></asp:Label>
+                                    <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Dia">
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Dia" runat="server"></asp:Label>
+                                    <asp:Label ID="lbl_it_Dia" runat="server" Text='<%# Bind("Dia") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Inicio Turno"></asp:TemplateField>
+                            <asp:TemplateField HeaderText="Inicio Turno">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Inicio" runat="server" Text='<%# Bind("Inicio") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fin Del Turno"></asp:TemplateField>
                             <asp:TemplateField HeaderText="Estado"></asp:TemplateField>
                         </Columns>

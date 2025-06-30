@@ -14,7 +14,7 @@
             width: 49px;
         }
         .auto-style3 {
-            width: 375px;
+            width: 440px;
         }
         .auto-style4 {
             height: 30px;
@@ -24,7 +24,7 @@
             height: 30px;
         }
         .auto-style6 {
-            width: 375px;
+            width: 440px;
             height: 30px;
         }
         .auto-style7 {

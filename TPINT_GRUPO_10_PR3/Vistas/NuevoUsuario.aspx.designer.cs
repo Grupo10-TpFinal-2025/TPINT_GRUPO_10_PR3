@@ -51,6 +51,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtNuevaContraseña;
 
         /// <summary>
+        /// Control revContraseña.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revContraseña;
+
+        /// <summary>
         /// Control txtNuevaContraseña2.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNuevaContraseña2;
+
+        /// <summary>
+        /// Control cvContraseñas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvContraseñas;
 
         /// <summary>
         /// Control btnAgregarUsuarioMedico.

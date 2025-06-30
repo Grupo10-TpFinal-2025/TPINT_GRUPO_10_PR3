@@ -9,9 +9,15 @@ namespace Vistas
 {
     public partial class NuevoUsuario : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnAgregarUsuarioMedico_Click(object sender, EventArgs e)
+        {
+            lblContraseña.Text = "Contraseña agregada con éxito!";
         }
     }
 }

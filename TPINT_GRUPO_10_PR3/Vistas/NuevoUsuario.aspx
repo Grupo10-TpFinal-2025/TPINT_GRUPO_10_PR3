@@ -203,10 +203,10 @@
                         <tr>
                             <td class="auto-style26">
                                 <asp:TextBox ID="txtLegajoMedico" runat="server" Height="27px" TextMode="Number" Width="59px"></asp:TextBox>
-                            </td>
-                            <td>
                                 <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ErrorMessage="Ingrese un legajo" ControlToValidate="txtLegajoMedico"></asp:RequiredFieldValidator>
                             </td>
+                            <td>
+                                &nbsp;</td>
                         </tr>
                     </table>
                 </td>

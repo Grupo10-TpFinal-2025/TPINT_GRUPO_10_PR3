@@ -96,10 +96,9 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
                     <asp:TextBox ID="txtNuevoUsuario" runat="server" Height="20px" Width="126px" MaxLength="16"></asp:TextBox>
-                </td>
-                <td>
                     <asp:RequiredFieldValidator ID="rfvUsuarioNuevo" runat="server" ControlToValidate="txtNuevoUsuario" ErrorMessage="Ingrese nombre de Usuario"></asp:RequiredFieldValidator>
                 </td>
+                <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

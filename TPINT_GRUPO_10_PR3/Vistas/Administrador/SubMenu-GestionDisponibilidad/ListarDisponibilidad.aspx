@@ -35,6 +35,15 @@
         .auto-style4 {
             width: 120px;
         }
+        .auto-style20 {
+            width: 100%;
+        }
+        .auto-style21 {
+            width: 124px;
+        }
+        .auto-style22 {
+            margin-left: 0px;
+        }
     </style>
 </head>
 <body>
@@ -89,18 +98,18 @@
                                 <asp:TextBox ID="txtFiltroLegajoMedico" runat="server" Width="162px" TextMode="Number"></asp:TextBox>
                             &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" />
+                                <asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
                             &nbsp;&nbsp;
                                 <asp:Label ID="lblLegajoNoEncontrado" runat="server"></asp:Label>
                             <br />
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
-                        <asp:GridView ID="gvEspecialidades" runat="server" AutoGenerateColumns="False" GridLines="None">
+                        <asp:GridView ID="gvEspecialidades" runat="server" AutoGenerateColumns="False" GridLines="None" Width="168px">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:Button ID="btnEspecialidad" runat="server" CommandArgument='<%# Bind("CodEspecialidad_ES") %>' Text='<%# Bind("Descripcion_ES") %>' />
+                                        <asp:Button ID="btnEspecialidad" runat="server" CommandArgument='<%# Bind("CodEspecialidad_ES") %>' Text='<%# Bind("Descripcion_ES") %>' CommandName="FiltroEspecialidad" OnCommand="btnEspecialidad_Command" Width="219px" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -111,8 +120,38 @@
                         <br />
                         <br />
                         <br />
-                        <asp:GridView ID="gvDisponibilidades" runat="server">
-                        </asp:GridView>
+                        <asp:Panel ID="Panel1" runat="server">
+                            <table class="auto-style20">
+                                <tr>
+                                    <td class="auto-style21">
+                                        <asp:GridView ID="gvDias" runat="server" AutoGenerateColumns="False" GridLines="None" OnSelectedIndexChanged="gvDias_SelectedIndexChanged">
+                                            <Columns>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDia" runat="server" CommandArgument='<%# bind("NumDia_DI") %>' CommandName="FiltroDia" OnCommand="btnDia_Command" Text='<%# bind("Descripcion_DI") %>' Width="146px" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </td>
+                                    <td>
+                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" ForeColor="#333333" GridLines="None">
+                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                        </asp:GridView>
+                                    </td>
+                                </tr>
+                            </table>
+                        </asp:Panel>
                         <br />
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                         <br />

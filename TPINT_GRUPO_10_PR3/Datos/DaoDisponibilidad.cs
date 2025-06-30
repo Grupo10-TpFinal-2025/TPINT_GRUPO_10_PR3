@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
+using System.Net.NetworkInformation;
 
 namespace Datos
 {
@@ -21,18 +22,66 @@ namespace Datos
                                 FROM Disponibilidad DIS 
                                 INNER JOIN Dia DIA ON DIA.NumDia_DI = DIS.NumDia_DIS 
                                 INNER JOIN Medico M ON M.Legajo_ME = DIS.LegajoMedico_DIS 
-                                INNER JOIN Especialidad E ON E.CodEspecialidad_ES = M.CodigoEspecialidad_ME 
-                                ORDER BY [Especialidad] ASC";
+                                INNER JOIN Especialidad E ON E.CodEspecialidad_ES = M.CodigoEspecialidad_ME";
+
+        private string ordenamiento = " ORDER BY [Especialidad] ASC";
 
         public DaoDisponibilidad()
         {
             datos = new AccesoDatos();
         }
 
-        public DataTable ObtenerTablaDisponibilidades()
+        public DataTable ObtenerTablaDisponibilidad()
         {
-            return datos.ObtenerTabla("Disponibilidad", consultaBase);
+            return datos.ObtenerTabla("Disponibilidad", consultaBase + ordenamiento);
         }
+
+        //PRUEBA
+        public DataTable ObtenerTablaDisponibilidad(int codEspecialidad = 0, int diaSeleccionado = 0)
+        {
+            DataTable tablaDisponibilidad = new DataTable();
+
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = consultaBase;
+                List<string> condiciones = new List<string>();
+
+                SqlCommand comando = new SqlCommand();
+                comando.Connection = conexion;
+                
+                if (codEspecialidad > 0)
+                {
+                    condiciones.Add("CodEspecialidad_ES = @CodEspecialidad");
+                    comando.Parameters.AddWithValue("@CodEspecialidad", codEspecialidad);
+
+                }
+
+                if(diaSeleccionado > 0)
+                {
+                    condiciones.Add("NumDia_Dis = @NumDia");
+                    comando.Parameters.AddWithValue("@NumDia", diaSeleccionado);
+                }
+                
+                if(condiciones.Count > 0)
+                {   
+                    //string.Join() concatena elementos de una lista, y entre medio, agrega en este caso "AND"
+                    consulta += " WHERE " + string.Join(" AND ", condiciones);
+                }
+
+                consulta += ordenamiento;
+
+                comando.CommandText = consulta;
+
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                   tablaDisponibilidad.Load(reader);
+                    }
+                
+            }
+
+            return tablaDisponibilidad;
+        }
+
 
         public DataTable Obtener_Disponibilidad(Disponibilidad disponibilidad)
         {

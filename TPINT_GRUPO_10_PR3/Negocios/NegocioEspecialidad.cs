@@ -22,5 +22,6 @@ namespace Negocios
         {
             return daoE.ObtenerTablaEspecialidad();
         }
+            
     }
 }

@@ -10,6 +10,8 @@ namespace Datos
     public class DaoEspecialidad
     {
         AccesoDatos datos;
+        string consultaBase = "SELECT * FROM Especialidad";
+        string consultaPorEspecialidad;
        
         public DaoEspecialidad()
         {
@@ -18,7 +20,13 @@ namespace Datos
 
         public DataTable ObtenerTablaEspecialidad()
         {
-            return datos.ObtenerTabla("Especialidad", "SELECT * FROM Especialidad");
+            return datos.ObtenerTabla("Especialidad", consultaBase);
+        }
+
+        public DataTable ObtenerTablaEspecialidadPorCod(int codEspecialidad)
+        {        
+            consultaPorEspecialidad = consultaBase + " WHERE CodEspecialidad_ES = " + codEspecialidad;
+            return datos.ObtenerTabla("Especialidad", consultaPorEspecialidad);
         }
     }
 }

@@ -27,7 +27,7 @@
         .auto-style6 {
             width: 384px;
             height: 23px;
-            font-size: x-large;
+            font-size: large;
         }
         .auto-style7 {
             height: 23px;
@@ -41,29 +41,22 @@
         }
         .auto-style10 {
             width: 384px;
-            font-size: x-large;
-            height: 56px;
+            font-size: large;
+            height: 35px;
         }
         .auto-style11 {
             text-align: center;
         }
-        .auto-style12 {
-            width: 30px;
-            height: 56px;
-        }
-        .auto-style13 {
-            height: 56px;
-        }
         .auto-style15 {
             width: 384px;
-            height: 45px;
+            height: 43px;
         }
         .auto-style16 {
             width: 30px;
-            height: 45px;
+            height: 43px;
         }
         .auto-style17 {
-            height: 45px;
+            height: 43px;
         }
         .auto-style18 {
             height: 23px;
@@ -73,12 +66,39 @@
             width: 1040px;
         }
         .auto-style20 {
-            height: 45px;
+            height: 43px;
             width: 1040px;
         }
         .auto-style21 {
-            height: 56px;
+            width: 30px;
+            height: 35px;
+        }
+        .auto-style22 {
+            height: 35px;
             width: 1040px;
+        }
+        .auto-style24 {
+            width: 475px;
+        }
+        .auto-style25 {
+            width: 29px;
+        }
+        .auto-style26 {
+            width: 193px;
+        }
+        .auto-style27 {
+            width: 193px;
+            font-size: large;
+            height: 37px;
+        }
+        .auto-style28 {
+            height: 37px;
+        }
+        .auto-style29 {
+            text-align: left;
+        }
+        .auto-style30 {
+            height: 35px;
         }
     </style>
 </head>
@@ -148,14 +168,14 @@
                 <td class="auto-style17"></td>
             </tr>
             <tr>
-                <td class="auto-style12"></td>
+                <td class="auto-style21"></td>
                 <td class="auto-style10">Reingrese la contraseña:</td>
-                <td class="auto-style21">&nbsp;</td>
-                <td class="auto-style13"></td>
-                <td class="auto-style13"></td>
-                <td class="auto-style13"></td>
-                <td class="auto-style13"></td>
-                <td class="auto-style13"></td>
+                <td class="auto-style22"></td>
+                <td class="auto-style30"></td>
+                <td class="auto-style30"></td>
+                <td class="auto-style30"></td>
+                <td class="auto-style30"></td>
+                <td class="auto-style30"></td>
             </tr>
             <tr>
                 <td class="auto-style2">&nbsp;</td>
@@ -177,20 +197,21 @@
                 <td class="auto-style3">
                     <table class="auto-style1">
                         <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td class="auto-style27">Ingrese el Legajo médico:</td>
+                            <td class="auto-style28"></td>
                         </tr>
                         <tr>
-                            <td>
-                                <asp:Button ID="btnAgregarUsuarioMedico" runat="server" Height="35px" Text="Agregar Usuario" Width="124px" OnClick="btnAgregarUsuarioMedico_Click" />
+                            <td class="auto-style26">
+                                <asp:TextBox ID="txtLegajoMedico" runat="server" Height="27px" TextMode="Number" Width="59px"></asp:TextBox>
                             </td>
-                            <td>&nbsp;</td>
+                            <td>
+                                <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ErrorMessage="Ingrese un legajo" ControlToValidate="txtLegajoMedico"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                     </table>
                 </td>
                 <td class="auto-style19">
-                    <asp:Label ID="lblContraseña" runat="server"></asp:Label>
-                </td>
+                    &nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -199,6 +220,36 @@
             </tr>
         </table>
         <div class="auto-style11">
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style24">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style24">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style24">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style25">&nbsp;</td>
+                    <td class="auto-style24">
+                                <asp:Button ID="btnAgregarUsuarioMedico" runat="server" Height="35px" Text="Agregar Usuario" Width="124px" OnClick="btnAgregarUsuarioMedico_Click" />
+                            </td>
+                    <td class="auto-style29">
+                    <asp:Label ID="lblContraseña" runat="server"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

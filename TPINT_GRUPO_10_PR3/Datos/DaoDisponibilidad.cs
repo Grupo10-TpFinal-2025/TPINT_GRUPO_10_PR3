@@ -26,7 +26,7 @@ namespace Datos
 
         private string ordenamiento = " ORDER BY [Especialidad] ASC";
 
-        private string consultaModificacionDisponibilidad = @"SELECT NumDia_DI AS Dia, Nombre_ME + ' ' + Apellido_ME AS Nombre,
+        private string consultaModificacionDisponibilidad = @"SELECT Descripcion_DI AS Dia, Nombre_ME + ' ' + Apellido_ME AS Nombre,
                                 HorarioInicio_DIS AS Inicio, HorarioFin_DIS AS Fin, Estado_DIS AS Estado FROM Disponibilidad 
                                 INNER JOIN Medico ON LegajoMedico_DIS = Legajo_ME
                                 INNER JOIN Dia ON NumDia_DIS = NumDia_DI ";

@@ -101,7 +101,11 @@
                                     <asp:Label ID="lbl_it_Inicio" runat="server" Text='<%# Bind("Inicio") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Fin Del Turno"></asp:TemplateField>
+                            <asp:TemplateField HeaderText="Fin Del Turno">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Fin" runat="server" Text='<%# Bind("Fin") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Estado"></asp:TemplateField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />

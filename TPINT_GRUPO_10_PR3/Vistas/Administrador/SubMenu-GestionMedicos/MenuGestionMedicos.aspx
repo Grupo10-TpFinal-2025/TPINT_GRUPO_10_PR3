@@ -181,7 +181,7 @@
                 <td class="auto-style3">&nbsp;</td>
                 <td class="auto-style6">&nbsp;</td>
                 <td class="auto-style4">
-                    <asp:Button ID="btnGestionarTurnosMedicos" runat="server" Text="Gestionar Turnos Medicos" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnGestionarTurnosMedicos_Click"/>
+                    <asp:Button ID="btnGestionarDisponibilidadMedicos" runat="server" Text="Gestionar Disponibilidad" CssClass="boton-estandar" Height="30px" Width="200px" OnClick="btnGestionarTurnosMedicos_Click"/>
                 </td>
                 <td class="auto-style4">&nbsp;</td>
                 <td class="auto-style4">&nbsp;</td>

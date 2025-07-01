@@ -12,7 +12,10 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 {
 	public partial class ListarDisponibilidad : System.Web.UI.Page
 	{
-        NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+        private NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+        private NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+        private NegocioDia negocioDia = new NegocioDia();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] == null)
@@ -31,15 +34,13 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         private void CargarEspecialidades()
         {
-            NegocioEspecialidad negocio = new NegocioEspecialidad();
-            gvEspecialidades.DataSource = negocio.ObtenerEspecialidades();
+            gvEspecialidades.DataSource = negocioEspecialidad.ObtenerEspecialidades();
             gvEspecialidades.DataBind();
         }
 
         private void CargarDia()
         {
-            NegocioDia negocio = new NegocioDia();
-            DataTable tablaDias = negocio.ObtenerTablaDia();
+            DataTable tablaDias = negocioDia.ObtenerTablaDia();
 
             DataRow filaTodos = tablaDias.NewRow();
             filaTodos["Descripcion_DI"] = "Todos";
@@ -53,8 +54,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         private void CargarDisponibilidad()
         {
-            NegocioDisponibilidad negocio = new NegocioDisponibilidad();
-            gvDisponibilidades.DataSource = negocio.ObtenerTablaDisponibilidad(0, 0);
+            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0);
             gvDisponibilidades.DataBind();
         }
 
@@ -130,7 +130,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         }
 
-
         protected void btnDia_Command(object sender, CommandEventArgs e)
         {
             ResetearColoresBotonesDia();
@@ -155,7 +154,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 }
                                 
             }
-
             else
             {
                 if(diaSeleccionado > 0)

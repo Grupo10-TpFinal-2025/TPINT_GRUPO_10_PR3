@@ -11,6 +11,7 @@ namespace Entidades
         // Parámetros
         private int _numDia;
         private int _legajoMedico;
+        private string _nombreDia;
         private TimeSpan _horarioInicio;
         private TimeSpan _horarioFin;
         private bool _estado;
@@ -38,6 +39,13 @@ namespace Entidades
         {
             get { return _legajoMedico; }
             set { _legajoMedico = value; }
+        }
+
+        public string NombreDia
+        {
+            get { return _nombreDia; }
+
+            set { _nombreDia = value; }
         }
 
         public TimeSpan HorarioInicio

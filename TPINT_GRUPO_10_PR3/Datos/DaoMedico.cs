@@ -14,8 +14,8 @@ namespace Datos
     {
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
 
-        private AccesoDatos datos;
-        private string ConsultaBase = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME, 'yyyy/MM/dd') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo',(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad', M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1 ORDER BY Apellido";
+        private readonly AccesoDatos datos;
+        private const string ConsultaBase = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME, 'yyyy/MM/dd') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo',(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad', M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1 ORDER BY Apellido";
         private SqlCommand sqlCommand;
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
@@ -165,6 +165,66 @@ namespace Datos
             return sqlCommand;
         }
 
+        public SqlDataReader ObtenerSqlDataReaderMedicoPorEspecialidad(string cod)
+        {
+            SqlDataReader reader;
+            SqlConnection conexion;
+
+            try
+            {
+                ValidarOCrearProcedimientoMedicoPorEspecialidad();
+
+                conexion = datos.ObtenerConexion();
+                SqlCommand comando = new SqlCommand("SP_ObtenerListaMedicosPorEspecialidad", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@CodigoEspecialidad_ME", cod);
+
+                reader = comando.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return reader;
+        }
+
+        public void ValidarOCrearProcedimientoMedicoPorEspecialidad()
+        {
+            SqlConnection conexion = datos.ObtenerConexion();
+            using (conexion)
+            {
+                // Verificar si existe el procedimiento
+                string consultaExiste = @"
+                    SELECT COUNT(*) 
+                    FROM sys.objects 
+                    WHERE type = 'P' AND name = 'SP_ObtenerListaMedicosPorEspecialidad'";
+
+                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
+                int cantidad = (int)cmdExiste.ExecuteScalar();
+
+                if (cantidad == 0)
+                {
+                    // Crear el procedimiento si no existe
+                    string crearProc = @"
+                        CREATE PROCEDURE SP_ObtenerListaMedicosPorEspecialidad(
+                        @CodigoEspecialidad_ME INT
+                        )
+                        AS
+                        BEGIN
+                        SELECT Legajo_ME,
+                               Apellido_ME + ' ' + Nombre_ME AS 'Medico', 
+                               CodigoEspecialidad_ME
+                        FROM Medico
+                        WHERE CodigoEspecialidad_ME = @CodigoEspecialidad_ME
+                        END";
+
+                    SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
+                    cmdCrear.ExecuteNonQuery();
+                }
+            }
+        }
+
         public DataTable getDias()
         {
             return datos.ObtenerTabla("Dia", "SELECT NumDia_DI, Descripcion_DI FROM Dia");
@@ -310,24 +370,23 @@ namespace Datos
         public DataTable ObtenerMedicoMasSolicitado()
         {
             string consulta = @"
-        SELECT TOP 1 
-            M.Legajo_ME AS 'Legajo',
-            M.Nombre_ME AS 'Nombre',
-            M.Apellido_ME AS 'Apellido',
-            COUNT(T.CodTurno_TU) AS 'Cantidad de Turnos'
-        FROM 
-            Turno T
-        INNER JOIN 
-            Medico M ON T.LegajoMedico_TU = M.Legajo_ME
-        WHERE 
-            T.Estado_TU = 1
-        GROUP BY 
-            M.Legajo_ME, M.Nombre_ME, M.Apellido_ME
-        ORDER BY 
-            COUNT(T.CodTurno_TU) DESC;";
+                SELECT TOP 1 
+                    M.Legajo_ME AS 'Legajo',
+                    M.Nombre_ME AS 'Nombre',
+                    M.Apellido_ME AS 'Apellido',
+                    COUNT(T.CodTurno_TU) AS 'Cantidad de Turnos'
+                FROM 
+                    Turno T
+                INNER JOIN 
+                    Medico M ON T.LegajoMedico_TU = M.Legajo_ME
+                WHERE 
+                    T.Estado_TU = 1
+                GROUP BY 
+                    M.Legajo_ME, M.Nombre_ME, M.Apellido_ME
+                ORDER BY 
+                    COUNT(T.CodTurno_TU) DESC;";
 
             return datos.ObtenerTabla("MedicoMasSolicitado", consulta);
         }
-
     }
 }

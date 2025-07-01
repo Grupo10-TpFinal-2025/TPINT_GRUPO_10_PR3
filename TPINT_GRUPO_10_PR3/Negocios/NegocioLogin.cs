@@ -7,7 +7,7 @@ namespace Negocios
 {
     public class NegocioLogin
     {
-        private DaoLogin dao;
+        private readonly DaoLogin dao;
 
         public NegocioLogin()
         {

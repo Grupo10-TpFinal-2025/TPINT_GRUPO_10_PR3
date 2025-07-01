@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,18 @@ namespace Datos
 {
     public class DaoEspecialidad
     {
-        AccesoDatos datos;
-        string consultaBase = "SELECT * FROM Especialidad";
-        string consultaPorEspecialidad;
+        private readonly AccesoDatos datos;
+        private const string consultaBase = "SELECT * FROM Especialidad";
+        private string consultaPorEspecialidad;
        
         public DaoEspecialidad()
         {
             datos = new AccesoDatos();
+        }
+
+        public SqlDataReader ObtenerSqlDataReaderEspecialidad()
+        {
+            return datos.ObtenerLista(consultaBase);
         }
 
         public DataTable ObtenerTablaEspecialidad()

@@ -10,7 +10,8 @@ namespace Negocios
 {
     public class NegocioDia
     {
-        DaoDia daoDia;
+        private readonly DaoDia daoDia;
+
         public NegocioDia()
         {
             daoDia = new DaoDia();

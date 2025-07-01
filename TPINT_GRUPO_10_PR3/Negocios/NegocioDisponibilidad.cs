@@ -10,11 +10,11 @@ using Entidades;
 
 namespace Negocios
 {
-   public class NegocioDisponibilidad
+    public class NegocioDisponibilidad
     {
-        DaoDisponibilidad daoD;
+        private readonly DaoDisponibilidad daoD;
 
-       public NegocioDisponibilidad()
+        public NegocioDisponibilidad()
         {
             daoD = new DaoDisponibilidad();
         }
@@ -24,11 +24,16 @@ namespace Negocios
             return daoD.ObtenerTablaDisponibilidad();
         }
 
-
         public DataTable ObtenerTablaDisponibilidad(int codEspecialidad, int diaSeleccionado)
         {
-
             return daoD.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado);
+        }
+
+        public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)
+        {
+            List<Disponibilidad> listaDisponibilidadMedico;
+
+            return listaDisponibilidadMedico = daoD.ObtenerListaDisponibilidadMedico(legajoMedico);
         }
 
         public DataTable ObtenerDisponibilidad(Disponibilidad disponibilidad)
@@ -57,4 +62,3 @@ namespace Negocios
         }
     }
 }
-

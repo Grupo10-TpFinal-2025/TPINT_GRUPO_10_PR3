@@ -22,7 +22,7 @@
         }
         .auto-style5 {
             width: 1770px;
-            height: 112px;
+            height: 65px;
         }
         .auto-style7 {
             height: 26px;
@@ -36,6 +36,17 @@
         }
         .auto-style13 {
             width: 959px;
+        }
+        .auto-style14 {
+            width: 1770px;
+            height: 27px;
+        }
+        .auto-style15 {
+            width: 1770px;
+            height: 17px;
+        }
+        .auto-style16 {
+            width: 100%;
         }
     </style>
 </head>
@@ -72,16 +83,39 @@
                     <td class="auto-style6" style="font-size: medium; text-decoration: underline overline"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Legajo:&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtLegajo" runat="server" Font-Size="Small" OnTextChanged="txtLegajo_TextChanged"></asp:TextBox>
-                        &nbsp;&nbsp;&nbsp;&nbsp; DNI Paciente:
-                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small"></asp:TextBox>
+                    <td class="auto-style14" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Especialidad:&nbsp; &nbsp;
+                        <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" Width="202px">
+                        </asp:DropDownList>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Médico:&nbsp;
+                        <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" Width="202px" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
+                            
+                        </asp:DropDownList>
+                        &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mes:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="ddlMesFechaT" runat="server">
-                        </asp:DropDownList>
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp; &nbsp; &nbsp;&nbsp; DNI Paciente:&nbsp;&nbsp;
+                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px"></asp:TextBox>
                     </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semana:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <asp:DropDownList ID="ddlSemana" runat="server" Height="20px" Width="100px" OnSelectedIndexChanged="ddlSemana_SelectedIndexChanged" AutoPostBack="True">
+                        </asp:DropDownList>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dia: <asp:DropDownList ID="ddlDia" runat="server" Height="20px" Width="100px" AutoPostBack="True" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Horario:&nbsp; <asp:DropDownList ID="ddlHorario" runat="server" Height="20px" Width="100px">
+                        </asp:DropDownList>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Label ID="lblError" runat="server" Visible="False"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style6" style="font-size: small; text-decoration: blink">
+                                    <asp:Label ID="lblInfoTurnos" runat="server" Font-Bold="True" Font-Size="12pt"></asp:Label>
+                                </td>
                 </tr>
                 <tr>
                     <td class="auto-style5" style="font-size: small; text-decoration: blink">
@@ -116,11 +150,59 @@
                 </tr>
                 </table>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <table class="auto-style16">
+                            <tr>
+                                <td>
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
-            <br />
-            <br />
             <br />
         </div>
     </form>

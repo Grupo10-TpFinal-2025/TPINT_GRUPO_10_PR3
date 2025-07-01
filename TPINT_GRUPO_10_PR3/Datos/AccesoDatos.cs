@@ -84,8 +84,7 @@ namespace Datos
             dataSet = ds;
         }
 
-       
-        //Subidos al FORO ----------------------------------->
+        ///---------------------------------------------------- Métodos -------------------------------------------------------------------------------
         public SqlConnection ObtenerConexion()
         {
             conexion = new SqlConnection(rutaConexion);
@@ -100,6 +99,7 @@ namespace Datos
                 return null;
             }
         }
+
         public void CerrarConexion()
         {
             if (estadoConexion)
@@ -108,6 +108,7 @@ namespace Datos
                 estadoConexion = false;
             }
         }
+
         public SqlDataAdapter ObtenerDataAdapter(string consulta, SqlConnection sqlConnection)
         {
             try
@@ -162,7 +163,6 @@ namespace Datos
             return true;
         }
 
-        //----------------------------------------------->
         public DataTable ObtenerTabla(string NombreTabla, string consulta)
         {
             conexion = ObtenerConexion();

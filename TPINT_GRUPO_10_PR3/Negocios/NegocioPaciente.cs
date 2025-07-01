@@ -11,11 +11,11 @@ using Entidades;
 
 namespace Negocios
 {   
-   public class NegocioPaciente
+    public class NegocioPaciente
     {
-        DaoPaciente daoP;
+        private readonly DaoPaciente daoP;
         private bool[,] filtros = new bool[3, 3];
-        Paciente paciente1 = new Paciente();
+        private Paciente paciente1 = new Paciente();
 
         public NegocioPaciente()
         {
@@ -34,6 +34,7 @@ namespace Negocios
                 return false;
             }
         }
+        
         public DataTable getRegistrosProvincias()
         {
             return daoP.getProvincias();

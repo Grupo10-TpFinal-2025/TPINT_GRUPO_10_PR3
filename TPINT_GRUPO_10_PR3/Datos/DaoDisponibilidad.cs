@@ -14,15 +14,15 @@ namespace Datos
     {
         private AccesoDatos datos;
         private string consultaBase = @"SELECT E.Descripcion_ES AS 'Especialidad', 
-                                M.Apellido_ME + ' ' + 
-                                M.Nombre_ME AS 'Medico', 
-                                DIA.Descripcion_DI AS 'Dia', 
-                                CONVERT(VARCHAR(5), HorarioInicio_DIS, 108) + ' - ' + CONVERT(VARCHAR(5), 
-                                HorarioFin_DIS, 108) AS 'Horario' 
-                                FROM Disponibilidad DIS 
-                                INNER JOIN Dia DIA ON DIA.NumDia_DI = DIS.NumDia_DIS 
-                                INNER JOIN Medico M ON M.Legajo_ME = DIS.LegajoMedico_DIS 
-                                INNER JOIN Especialidad E ON E.CodEspecialidad_ES = M.CodigoEspecialidad_ME";
+            M.Apellido_ME + ' ' + 
+            M.Nombre_ME AS 'Medico', 
+            DIA.Descripcion_DI AS 'Dia', 
+            CONVERT(VARCHAR(5), HorarioInicio_DIS, 108) + ' - ' + CONVERT(VARCHAR(5), 
+            HorarioFin_DIS, 108) AS 'Horario' 
+            FROM Disponibilidad DIS 
+            INNER JOIN Dia DIA ON DIA.NumDia_DI = DIS.NumDia_DIS 
+            INNER JOIN Medico M ON M.Legajo_ME = DIS.LegajoMedico_DIS 
+            INNER JOIN Especialidad E ON E.CodEspecialidad_ES = M.CodigoEspecialidad_ME";
 
         private string ordenamiento = " ORDER BY [Especialidad] ASC";
 
@@ -34,6 +34,55 @@ namespace Datos
         public DataTable ObtenerTablaDisponibilidad()
         {
             return datos.ObtenerTabla("Disponibilidad", consultaBase + ordenamiento);
+        }
+
+        public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)
+        {
+            List<Disponibilidad> listaDisponibilidadMedico = new List<Disponibilidad>();
+
+            SqlConnection conexion = null;
+            SqlCommand comando;
+            SqlDataReader lector;
+
+            try
+            {
+                string consulta = "SELECT NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_DIS, Descripcion_DI FROM Disponibilidad INNER JOIN Dia ON NumDia_DI = NumDia_DIS WHERE @LegajoMedico = LegajoMedico_DIS ORDER BY NumDia_DIS ASC";
+                conexion = datos.ObtenerConexion();
+                comando = new SqlCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
+                lector = comando.ExecuteReader();
+
+                using (lector)
+                {
+                    while (lector.Read())
+                    {
+                        if ((bool)lector["Estado_DIS"])
+                        {
+                            Disponibilidad disponibilidad = new Disponibilidad();
+                            disponibilidad.NumDia = (int)lector["NumDia_DIS"];
+                            disponibilidad.NombreDia = (string)lector["Descripcion_DI"];
+                            disponibilidad.LegajoMedico = (int)lector["LegajoMedico_DIS"];
+                            disponibilidad.HorarioInicio = (TimeSpan)lector["HorarioInicio_DIS"];
+                            disponibilidad.HorarioFin = (TimeSpan)lector["HorarioFin_DIS"];
+
+                            listaDisponibilidadMedico.Add(disponibilidad);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+
+            return listaDisponibilidadMedico;
         }
 
         //PRUEBA
@@ -53,7 +102,6 @@ namespace Datos
                 {
                     condiciones.Add("CodEspecialidad_ES = @CodEspecialidad");
                     comando.Parameters.AddWithValue("@CodEspecialidad", codEspecialidad);
-
                 }
 
                 if(diaSeleccionado > 0)
@@ -72,16 +120,14 @@ namespace Datos
 
                 comando.CommandText = consulta;
 
-                    using (SqlDataReader reader = comando.ExecuteReader())
-                    {
-                   tablaDisponibilidad.Load(reader);
-                    }
-                
+                using (SqlDataReader reader = comando.ExecuteReader())
+                {
+                    tablaDisponibilidad.Load(reader);
+                }
             }
 
             return tablaDisponibilidad;
         }
-
 
         public DataTable Obtener_Disponibilidad(Disponibilidad disponibilidad)
         {
@@ -145,6 +191,7 @@ namespace Datos
                 } 
             } 
         }
+
         public DataTable ObtenerDias()
         {
             DataTable tablaDias = new DataTable();
@@ -170,9 +217,9 @@ namespace Datos
                 {
                     // Verificar si existe dado de baja
                     string consultaVerificar = @"SELECT COUNT(*) FROM Disponibilidad 
-                                         WHERE LegajoMedico_DIS = @LegajoMedico 
-                                         AND NumDia_DIS = @NumDia 
-                                         AND Estado_DIS = 0";
+                        WHERE LegajoMedico_DIS = @LegajoMedico 
+                        AND NumDia_DIS = @NumDia 
+                        AND Estado_DIS = 0";
 
                     using (SqlCommand comandoVerificar = new SqlCommand(consultaVerificar, conexion))
                     {
@@ -185,12 +232,12 @@ namespace Datos
                         {
                             // Reactivar el registro dado de baja
                             string consultaReactivar = @"UPDATE Disponibilidad 
-                                                 SET Estado_DIS = 1,
-                                                     HorarioInicio_DIS = @HorarioInicio,
-                                                     HorarioFin_DIS = @HorarioFin
-                                                 WHERE LegajoMedico_DIS = @LegajoMedico 
-                                                 AND NumDia_DIS = @NumDia 
-                                                 AND Estado_DIS = 0";
+                                SET Estado_DIS = 1,
+                                    HorarioInicio_DIS = @HorarioInicio,
+                                    HorarioFin_DIS = @HorarioFin
+                                WHERE LegajoMedico_DIS = @LegajoMedico 
+                                AND NumDia_DIS = @NumDia 
+                                AND Estado_DIS = 0";
 
                             using (SqlCommand comandoReactivar = new SqlCommand(consultaReactivar, conexion))
                             {
@@ -206,8 +253,8 @@ namespace Datos
                         {
                             // Insertar nuevo registro
                             string consultaInsertar = @"INSERT INTO Disponibilidad 
-                                                (NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_DIS) 
-                                                VALUES (@NumDia, @LegajoMedico, @HorarioInicio, @HorarioFin, @Estado)";
+                                (NumDia_DIS, LegajoMedico_DIS, HorarioInicio_DIS, HorarioFin_DIS, Estado_DIS) 
+                                VALUES (@NumDia, @LegajoMedico, @HorarioInicio, @HorarioFin, @Estado)";
 
                             using (SqlCommand comandoInsertar = new SqlCommand(consultaInsertar, conexion))
                             {
@@ -234,9 +281,9 @@ namespace Datos
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
                 string consulta = @"SELECT COUNT(*) FROM Disponibilidad 
-                            WHERE LegajoMedico_DIS = @LegajoMedico 
-                            AND NumDia_DIS = @NumDia 
-                            AND Estado_DIS = 1";
+                    WHERE LegajoMedico_DIS = @LegajoMedico 
+                    AND NumDia_DIS = @NumDia 
+                    AND Estado_DIS = 1";
 
                 using (SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
@@ -248,7 +295,5 @@ namespace Datos
                 }
             }
         }
-
-
     }
 }

@@ -14,10 +14,10 @@ namespace Datos
     public class DaoTurno
     {
         private const string ConsultaBase = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-                "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
-                "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
-                "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
-                "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA WHERE Estado_TU = 1";
+            "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+            "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
+            "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
+            "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA WHERE Estado_TU = 1";
 
         private AccesoDatos datos;
 
@@ -63,9 +63,99 @@ namespace Datos
             }
         }
 
+        public List<Turno> ObtenerListaTurnos(int legajoMedico)
+        {
+            List<Turno> listaTurnosMedico = new List<Turno>();
+
+            SqlConnection conexion = null;
+            SqlCommand comando;
+            SqlDataReader lector;
+
+            try
+            {
+                string consulta = "SELECT Fecha_TU, Estado_TU FROM Turno WHERE LegajoMedico_TU = @LegajoMedico AND Fecha_TU > GETDATE() AND Fecha_TU <= DATEADD(Day, 30, GETDATE())";
+                conexion = datos.ObtenerConexion();
+                comando = new SqlCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("LegajoMedico", legajoMedico);
+                lector = comando.ExecuteReader();
+
+                using (lector)
+                {
+                    while (lector.Read())
+                    {
+                        if ((bool)lector["Estado_TU"])
+                        {
+                            Turno turno = new Turno();
+                            turno.Fecha = (DateTime)lector["Fecha_TU"];
+                            turno.Estado = (bool)lector["Estado_TU"];
+
+                            listaTurnosMedico.Add(turno);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+
+            return listaTurnosMedico;
+        }
+
         public void AgendarTurno()
         {
 
+        }
+
+        public void ValidarOCrearProcedimientoMostrarTurno()
+        {
+            SqlConnection conexion = datos.ObtenerConexion();
+            using (conexion)
+            {
+                // Verificar si existe el procedimiento
+                string consultaExiste = @"
+                    SELECT COUNT(*) 
+                    FROM sys.objects 
+                    WHERE type = 'P' AND name = 'SP_MostrarTurnosDisponibles'";
+
+                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
+                int cantidad = (int)cmdExiste.ExecuteScalar();
+
+                if (cantidad == 0)
+                {
+                    // Crear el procedimiento si no existe
+                    string crearProc = @"
+                        CREATE PROCEDURE SP_MostrarTurnosDisponibles(
+                            @LegajoMedico INT,
+                            @NombreDia VARCHAR (10)                           
+                        )
+                        AS
+                        BEGIN
+                            DECLARE @NumDia INT
+                            
+                            SELECT @NumDia = NumDia_DI
+                            FROM Dia
+                            WHERE LOWER(Descripcion_DI) = @NombreDia
+
+                            SELECT	NumDia_DIS AS 'NumeroDia',
+		                            DI.Descripcion_DI AS 'NombreDia'
+                            FROM Disponibilidad DIS
+                            INNER JOIN Dia DI ON DI.NumDia_DI = DIS.NumDia_DIS
+                            WHERE	DIS.LegajoMedico_DIS = @LegajoMedico AND
+		                            DIS.NumDia_DIS >= @NumDia                                                        
+                        END";
+
+                    SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
+                    cmdCrear.ExecuteNonQuery();
+                }
+            }
         }
 
         //Consigue la tabla
@@ -194,31 +284,31 @@ namespace Datos
                 {
                     // Verificar si existe el procedimiento
                     string consultaExiste = @"
-                    SELECT COUNT(*) 
-                    FROM sys.objects 
-                    WHERE type = 'P' AND name = 'SP_ModificacionTurno_Grupo10'";
+                        SELECT COUNT(*) 
+                        FROM sys.objects 
+                        WHERE type = 'P' AND name = 'SP_ModificacionTurno_Grupo10'";
                     SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
                     int cantidad = (int)cmdExiste.ExecuteScalar();
                     if (cantidad == 0)
                     {
                         // Crear el procedimiento si no existe
                         string crearProcedimiento = @"
-                        CREATE PROCEDURE SP_ModificacionTurno_Grupo10 
-                            @Fecha_TU DateTime,           
-                            @CodTurno_TU INT,
-                            @Asistencia_TU BIT,
-                            @Descripcion_TU NVARCHAR(300),
-                            @Estado_TU BIT
-                        AS
-                        BEGIN
-                            UPDATE Turno 
-                            SET 
-                                Fecha_TU = @Fecha_TU,    
-                                Asistencia_TU = @Asistencia_TU, 
-                                Descripcion_TU = @Descripcion_TU, 
-                                Estado_TU = @Estado_TU 
-                            WHERE CodTurno_TU = @CodTurno_TU;                                                        
-                        END";
+                            CREATE PROCEDURE SP_ModificacionTurno_Grupo10 
+                                @Fecha_TU DateTime,           
+                                @CodTurno_TU INT,
+                                @Asistencia_TU BIT,
+                                @Descripcion_TU NVARCHAR(300),
+                                @Estado_TU BIT
+                            AS
+                            BEGIN
+                                UPDATE Turno 
+                                SET 
+                                    Fecha_TU = @Fecha_TU,    
+                                    Asistencia_TU = @Asistencia_TU, 
+                                    Descripcion_TU = @Descripcion_TU, 
+                                    Estado_TU = @Estado_TU 
+                                WHERE CodTurno_TU = @CodTurno_TU;                                                        
+                            END";
                         SqlCommand cmdCrear = new SqlCommand(crearProcedimiento, conexion);
                         cmdCrear.ExecuteNonQuery();
                     }
@@ -228,7 +318,6 @@ namespace Datos
                     throw new Exception("Error al crear el procedimiento almacenado: " + ex.Message);
                 }
             }
-
         }
 
         public SqlCommand CargarParametros_ModificacionTurno(Turno turno)

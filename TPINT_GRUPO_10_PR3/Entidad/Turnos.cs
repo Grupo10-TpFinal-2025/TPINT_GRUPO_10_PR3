@@ -16,12 +16,12 @@ namespace Entidades
         private int _pendiente;
         private string _asistencia;
         private string _descripcion;
-        private int _estado;
+        private bool _estado;
 
         // ------------------------- Constructores -------------------------
         public Turno() { } //Uno vacío obligatorio.
 
-        public Turno(int codTurno, int legajoMedico, DateTime fecha, int pendiente, string asistencia, string descripcion, int estado)
+        public Turno(int codTurno, int legajoMedico, DateTime fecha, int pendiente, string asistencia, string descripcion, bool estado)
         {
             _codTurno = codTurno;
             _legajoMedico = legajoMedico;
@@ -75,7 +75,7 @@ namespace Entidades
             set { _descripcion = value; }
         }
 
-        public int Estado
+        public bool Estado
         {
             get { return _estado; }
             set { _estado = value; }

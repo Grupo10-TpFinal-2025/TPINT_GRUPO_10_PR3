@@ -84,7 +84,7 @@
                 <td class="auto-style8"></td>
                 <td class="auto-style19">
                     <br />
-                    <asp:GridView ID="gvActualizacionTurnos" runat="server" AutoGenerateColumns="False" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvActualizacionTurnos_PageIndexChanging" OnRowCancelingEdit="gvActualizacionTurnos_RowCancelingEdit" OnRowEditing="gvActualizacionTurnos_RowEditing" OnRowUpdating="gvActualizacionTurnos_RowUpdating" PageSize="5" OnRowDataBound="gvActualizacionTurnos_RowDataBound">
+                    <asp:GridView ID="gvActualizacionTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvActualizacionTurnos_PageIndexChanging" OnRowCancelingEdit="gvActualizacionTurnos_RowCancelingEdit" OnRowDataBound="gvActualizacionTurnos_RowDataBound" OnRowEditing="gvActualizacionTurnos_RowEditing" OnRowUpdating="gvActualizacionTurnos_RowUpdating" PageSize="5">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:TemplateField>
@@ -93,7 +93,7 @@
                                     <asp:LinkButton ID="btnCancelar" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar"></asp:LinkButton>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lbtn_it_Editar" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar" Enabled="False"></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtn_it_Editar" runat="server" CausesValidation="False" CommandName="Edit" Enabled="False" Text="Editar"></asp:LinkButton>
                                     &nbsp;<br />
                                     <asp:LinkButton ID="btnSeleccionar" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar"></asp:LinkButton>
                                 </ItemTemplate>

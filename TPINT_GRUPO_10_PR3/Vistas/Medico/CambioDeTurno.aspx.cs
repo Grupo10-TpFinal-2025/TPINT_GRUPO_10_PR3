@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Entidades;
 using Negocios;
 
+
 namespace Vistas.Medico
 {
     public partial class CambioDeTurno : System.Web.UI.Page
@@ -21,7 +22,7 @@ namespace Vistas.Medico
             {
                 Response.Redirect("~/Login.aspx");
             }
-            if (Session["legajo"]  == null)
+            if (Session["legajo"] == null)
             {
                 lblMensaje.Text = "No se ha logrado encontrar el registro de legajo médico. Por favor, inicie sesión nuevamente.";
             }
@@ -39,7 +40,7 @@ namespace Vistas.Medico
             DataTable TurnosMedico = negocioTurno.getTurnosXMedico(Convert.ToInt32(Session["legajo"]));
             gvActualizacionTurnos.DataSource = TurnosMedico;
             gvActualizacionTurnos.DataBind();
-            if(TurnosMedico.Rows.Count <= 0)
+            if (TurnosMedico.Rows.Count <= 0)
             {
                 lblMensaje.Text = "No se encontraron registros de turnos vigentes.";
             }
@@ -92,82 +93,103 @@ namespace Vistas.Medico
 
         protected void gvActualizacionTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 if ((e.Row.RowState & DataControlRowState.Edit) == 0)
                 {
-                    Label lblFecha = (Label)e.Row.FindControl("lbl_it_Fecha");
-                    DateTime fechaTurno = Convert.ToDateTime(lblFecha.Text);
-
-
-                    if (fechaTurno < DateTime.Now)
-                    {
-                        LinkButton btnEditar = (LinkButton)e.Row.FindControl("lbtn_it_Editar");
-                        btnEditar.Enabled = true;
-                    }
-                    else
-                    {
-                        LinkButton btnEditar = (LinkButton)e.Row.FindControl("lbtn_it_Editar");
-                        btnEditar.Enabled = false;
-                    }
-
-                    Label lblAsistencia = (Label)e.Row.FindControl("lbl_it_Asistencia");
-
-                    if (lblAsistencia.Text.Trim() != null)
-                    {
-                        if (lblAsistencia.Text.ToLower() == "false")
-                        {
-                            lblAsistencia.Text = "Ausente";
-                        }
-                        else if (lblAsistencia.Text.ToLower() == "true")
-                        {
-                            lblAsistencia.Text = "Presente";
-                        }
-                        else
-                        {
-                            lblAsistencia.Text = "Sin registrar";
-                        }
-                    }
-                    else
-                    {
-                        lblAsistencia.Text = "Sin registrar";
-
-                    }
-
-                    Label lblDescripcion = (Label)e.Row.FindControl("lbl_it_Descripcion");
-
-                    if (lblDescripcion == null)
-                    {
-                        if (string.IsNullOrEmpty(lblDescripcion.Text))
-                        {
-                            lblDescripcion.Text = "----------";
-                        }
-                    }
+                    ProcesarFilaVisualizacion(e.Row);
                 }
                 else
                 {
-                    RadioButtonList cblAsistencia = (RadioButtonList)e.Row.FindControl("rbl_et_Asistencia");
-                    string asistencia = DataBinder.Eval(e.Row.DataItem, "Asistencia").ToString();
-
-                    if (!string.IsNullOrEmpty(asistencia))
-                    {
-                        if (asistencia.ToLower() == "true")
-                        {
-                            cblAsistencia.Items[2].Selected = true;
-                        }
-                        else if (asistencia.ToLower() == "false")
-                        {
-                            cblAsistencia.Items[1].Selected = true; 
-                        }
-                    }
-                    else
-                    {
-                        cblAsistencia.Items[0].Selected = true; 
-                    }
-
+                    ProcesarFilaEdicion(e.Row, e.Row.DataItem);
                 }
             }
         }
+
+        private void ProcesarFilaVisualizacion(GridViewRow row)
+        {
+            Label lblFecha = (Label)row.FindControl("lbl_it_Fecha");
+            DateTime fechaTurno = Convert.ToDateTime(lblFecha.Text);
+
+            HabilitarBotonEditar(row, fechaTurno);
+
+            Label lblAsistencia = (Label)row.FindControl("lbl_it_Asistencia");
+            FormatearAsistencia(lblAsistencia);
+
+            Label lblDescripcion = (Label)row.FindControl("lbl_it_Descripcion");
+            MostrarDescripcionPorDefecto(lblDescripcion);
+        }
+
+        private void HabilitarBotonEditar(GridViewRow row, DateTime fechaTurno)
+        {
+            LinkButton btnEditar = (LinkButton)row.FindControl("lbtn_it_Editar");
+            btnEditar.Enabled = fechaTurno < DateTime.Now;
+        }
+
+        private void FormatearAsistencia(Label lblAsistencia)
+        {
+            if (lblAsistencia != null && lblAsistencia.Text != null)
+            {
+                string asistencia = lblAsistencia.Text.Trim().ToLower();
+                if (asistencia == "false")
+                {
+                    lblAsistencia.Text = "Ausente";
+                }
+                else if (asistencia == "true")
+                {
+                    lblAsistencia.Text = "Presente";
+                }
+                else
+                {
+                    lblAsistencia.Text = "Sin registrar";
+                }
+            }
+            else
+            {
+                lblAsistencia.Text = "Sin registrar";
+            }
+        }
+
+        private void MostrarDescripcionPorDefecto(Label lblDescripcion)
+        {
+            if (lblDescripcion != null && string.IsNullOrEmpty(lblDescripcion.Text))
+            {
+                lblDescripcion.Text = "----------";
+            }
+        }
+
+        private void ProcesarFilaEdicion(GridViewRow row, object dataItem)
+        {
+            RadioButtonList rblAsistencia = (RadioButtonList)row.FindControl("rbl_et_Asistencia");
+            string asistencia = DataBinder.Eval(dataItem, "Asistencia")?.ToString();
+
+            SeleccionarOpcionAsistencia(rblAsistencia, asistencia);
+
+            Label lblDescripcion = (Label)row.FindControl("lbl_et_Descripcion");
+            if (lblDescripcion != null && lblDescripcion.Text.Trim().Length == 0)
+            {
+                lblDescripcion.Text = "Sin Completar";
+            }
+        }
+
+        private void SeleccionarOpcionAsistencia(RadioButtonList rblAsistencia, string asistencia)
+        {
+            if (!string.IsNullOrEmpty(asistencia))
+            {
+                if (asistencia.ToLower() == "true" && rblAsistencia.Items.Count > 2)
+                {
+                    rblAsistencia.Items[2].Selected = true;
+                }
+                else if (asistencia.ToLower() == "false" && rblAsistencia.Items.Count > 1)
+                {
+                    rblAsistencia.Items[1].Selected = true;
+                }
+            }
+            else
+            {
+                rblAsistencia.Items[0].Selected = true;
+            }
+        }
+
     }
 }

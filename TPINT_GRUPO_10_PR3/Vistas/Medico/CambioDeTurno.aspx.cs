@@ -154,7 +154,7 @@ namespace Vistas.Medico
         {
             if (lblDescripcion != null && string.IsNullOrEmpty(lblDescripcion.Text))
             {
-                lblDescripcion.Text = "----------";
+                lblDescripcion.Text = "Sin Completar";
             }
         }
 
@@ -165,10 +165,10 @@ namespace Vistas.Medico
 
             SeleccionarOpcionAsistencia(rblAsistencia, asistencia);
 
-            Label lblDescripcion = (Label)row.FindControl("lbl_et_Descripcion");
-            if (lblDescripcion != null && lblDescripcion.Text.Trim().Length == 0)
+            TextBox txtDescripcion = (TextBox)row.FindControl("txt_et_Descripcion");
+            if (txtDescripcion != null && txtDescripcion.Text.Trim().Length == 0)
             {
-                lblDescripcion.Text = "Sin Completar";
+                txtDescripcion.Text = "Sin Completar";
             }
         }
 

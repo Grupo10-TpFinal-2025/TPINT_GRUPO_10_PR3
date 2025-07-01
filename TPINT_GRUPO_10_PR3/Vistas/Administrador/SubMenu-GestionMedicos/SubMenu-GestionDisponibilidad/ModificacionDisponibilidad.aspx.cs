@@ -19,6 +19,9 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         //Page load
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Codigo para que anden las validaciones
+            System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             //verifico que se haya iniciado como admin
             if (Session["usuario"] == null)
             {

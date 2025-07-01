@@ -47,16 +47,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="hlAltaDisponibilidad" runat="server" Font-Size="Large">Alta Disponibilidad</asp:HyperLink>
+                        <asp:HyperLink ID="hlAltaDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/SubMenu-GestionDisponibilidad/AltaDisponibilidad.aspx">Alta Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlBajaDisponibilidad" runat="server" Font-Size="Large">Baja Disponibilidad</asp:HyperLink>
+                        <asp:HyperLink ID="hlBajaDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/SubMenu-GestionDisponibilidad/BajaDisponibilidad.aspx">Baja Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large">Modificación Disponibilidad</asp:HyperLink>
+                        <asp:HyperLink ID="hlModificacionDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/SubMenu-GestionDisponibilidad/ModificacionDisponibilidad.aspx">Modificación Disponibilidad</asp:HyperLink>
                     </td>
                     <td>
-                        <asp:HyperLink ID="hlListarDisponibilidad" runat="server" Font-Size="Large">Listar Disponibilidad</asp:HyperLink>
+                        <asp:HyperLink ID="hlListarDisponibilidad" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/SubMenu-GestionDisponibilidad/ListarDisponibilidad.aspx">Listar Disponibilidad</asp:HyperLink>
                     </td>
                 </tr>
             </table>
@@ -104,7 +104,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Inicio Turno">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_eit_Inicio" runat="server" Text='<%# Bind("Inicio") %>' TextMode="Time"></asp:TextBox>
+                                    <asp:TextBox ID="txt_eit_Inicio" runat="server" Text='<%# Bind("Inicio") %>' TextMode="Time" ValidationGroup="Modificacion"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvInicioHorario" runat="server" ControlToValidate="txt_eit_Inicio" ErrorMessage="No se puede dejar en blanco" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Inicio" runat="server" Text='<%# Bind("Inicio") %>'></asp:Label>
@@ -112,7 +113,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fin Del Turno">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_eit_Fin" runat="server" Text='<%# Bind("Fin") %>' TextMode="Time"></asp:TextBox>
+                                    <asp:TextBox ID="txt_eit_Fin" runat="server" Text='<%# Bind("Fin") %>' TextMode="Time" ValidationGroup="Modificacion"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvHorarioFin" runat="server" ControlToValidate="txt_eit_Fin" ErrorMessage="No se puede dejar el campo vacio." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Fin" runat="server" Text='<%# Bind("Fin") %>'></asp:Label>
@@ -172,6 +174,7 @@
             </tr>
         </table>
         </div>
+        <asp:ValidationSummary ID="vsModificacionDisponibilidad" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="Modificacion" />
     </form>
 </body>
 </html>

@@ -24,7 +24,6 @@ namespace Negocios
             return daoD.ObtenerTablaDisponibilidad();
         }
 
-<<<<<<< HEAD
         public DataTable ObtenerTablaDisponibilidad(int codEspecialidad, int diaSeleccionado, int legajoMedico)
         {
             return daoD.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, legajoMedico);
@@ -34,12 +33,10 @@ namespace Negocios
         public DataTable ObtenerTablaDisponibilidadFiltroAvanzado()
         {
             return daoD.ObtenerTablaDisponibilidadFiltroAvanzado();
-=======
-        public DataTable ObtenerTablaDisponibilidad(int codEspecialidad, int diaSeleccionado)
->>>>>>> Modificacion-Disponibilidad
-        {
-
         }
+        public DataTable ObtenerTablaDisponibilidad(int codEspecialidad, int diaSeleccionado)
+        {
+            return daoD.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado);
         }
 
         public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)

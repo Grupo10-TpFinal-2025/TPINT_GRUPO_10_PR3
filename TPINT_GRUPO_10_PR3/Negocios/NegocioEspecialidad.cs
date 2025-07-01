@@ -23,14 +23,10 @@ namespace Negocios
         {
             return daoE.ObtenerTablaEspecialidad();
         }
-<<<<<<< HEAD
 
         public SqlDataReader ObtenerSqlDataReaderEspecialidad()
         {
             return daoE.ObtenerSqlDataReaderEspecialidad();
         }
-=======
-    
->>>>>>> Modificacion-Disponibilidad
     }
 }

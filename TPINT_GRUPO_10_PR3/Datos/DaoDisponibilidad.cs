@@ -43,7 +43,6 @@ namespace Datos
             return datos.ObtenerTabla("Disponibilidad", consultaBase + ordenamiento);
         }
 
-<<<<<<< HEAD
         public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)
         {
             List<Disponibilidad> listaDisponibilidadMedico = new List<Disponibilidad>();
@@ -91,11 +90,11 @@ namespace Datos
             }
 
             return listaDisponibilidadMedico;
-=======
+        }
+
         public DataTable ObtenerTablaDisponibilidadParaModificacion()
         {
             return datos.ObtenerTabla("Disponibilidad", consultaModificacionDisponibilidad + ordenamientoPorDia);
->>>>>>> Modificacion-Disponibilidad
         }
 
         //PRUEBA
@@ -110,27 +109,27 @@ namespace Datos
 
                 SqlCommand comando = new SqlCommand();
                 comando.Connection = conexion;
-                
+
                 if (codEspecialidad > 0)
                 {
                     condiciones.Add("CodEspecialidad_ES = @CodEspecialidad");
                     comando.Parameters.AddWithValue("@CodEspecialidad", codEspecialidad);
                 }
 
-                if(diaSeleccionado > 0)
+                if (diaSeleccionado > 0)
                 {
                     condiciones.Add("NumDia_Dis = @NumDia");
                     comando.Parameters.AddWithValue("@NumDia", diaSeleccionado);
                 }
 
-                if(legajoMedico > 0)
+                if (legajoMedico > 0)
                 {
                     condiciones.Add("LegajoMedico_DIS = @LegajoMedico");
                     comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
                 }
-                
-                if(condiciones.Count > 0)
-                {   
+
+                if (condiciones.Count > 0)
+                {
                     //string.Join() concatena elementos de una lista, y entre medio, agrega en este caso "AND"
                     consulta += " WHERE " + string.Join(" AND ", condiciones);
                 }
@@ -213,8 +212,8 @@ namespace Datos
 
                         return -1;
                     }
-                } 
-            } 
+                }
+            }
         }
 
         public DataTable ObtenerDias()
@@ -320,9 +319,7 @@ namespace Datos
                 }
             }
         }
-<<<<<<< HEAD
-=======
-
+    
         //Valido si el procedimiento ya esta creado
         public void ValidarOCrearProcedimiento_ModificacionDisponibilidad()
         {
@@ -393,6 +390,5 @@ namespace Datos
             SqlCommand sqlComand = CargarParametros_ModificacionDsiponibilidad(disp);
             return datos.EjecutarProcedimientoAlmacenado("SP_ModificacionDisponibilidad", sqlComand);
         }
->>>>>>> Modificacion-Disponibilidad
     }
 }

@@ -77,7 +77,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:GridView ID="gvTablaTurnos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvTablaTurnos_PageIndexChanging">
+                        <asp:GridView ID="gvTablaTurnos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvTablaTurnos_PageIndexChanging">
                             <AlternatingRowStyle BackColor="White" />
                             <EditRowStyle BackColor="#2461BF" />
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

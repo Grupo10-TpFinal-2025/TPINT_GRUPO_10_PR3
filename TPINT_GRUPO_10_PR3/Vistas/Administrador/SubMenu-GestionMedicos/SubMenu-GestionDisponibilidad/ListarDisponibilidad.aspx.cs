@@ -54,7 +54,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         private void CargarDisponibilidad()
         {
-            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0);
+            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
             gvDisponibilidades.DataBind();
         }
 
@@ -72,33 +72,25 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             }
         }
 
-        private void ResetearColoresBotonesEspecialidad()
+        protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
-            // Especialidades
-            foreach (GridViewRow fila in gvEspecialidades.Rows)
-            {
-                Button btn = (Button)fila.FindControl("btnEspecialidad");
-                if (btn != null)
-                {
-                    btn.BackColor = System.Drawing.Color.Empty;
-                }
-            }
-        }
-        private void ResetearColoresBotonesDia() 
-        { 
-            foreach (GridViewRow fila in gvDias.Rows)
-            {
-                Button btn = (Button)fila.FindControl("btnDia");
-                if (btn != null)
-                {
-                    btn.BackColor = System.Drawing.Color.Empty;
-                }
-            }
+            ResetearColoresBotonesEspecialidad();
+            ResetearColoresBotonesDia();
+            LimpiarFiltros();
+
+            Session["EspecialidadSeleccionada"] = null;
+
+
+            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
+            gvDisponibilidades.DataBind();
+
+            VerificarNumeroRegistros();
         }
 
         protected void btnEspecialidad_Command(object sender, CommandEventArgs e)
         {
             ResetearColoresBotonesDia();
+            LimpiarFiltros();
 
             int codEspecialidad = Convert.ToInt32(e.CommandArgument);
 
@@ -111,28 +103,18 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 Button btnEspecialidadSeleccionada = (Button)sender;
                 btnEspecialidadSeleccionada.BackColor = Color.DarkGray;
                                 
-                gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0);
+                gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
                 gvDisponibilidades.DataBind();
+
+                VerificarNumeroRegistros();
             }
         }
-
-        protected void btnMostrarTodos_Click(object sender, EventArgs e)
-        {
-            ResetearColoresBotonesEspecialidad();
-            ResetearColoresBotonesDia();
-
-            Session["EspecialidadSeleccionada"] = null;           
-
-
-            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0);
-            gvDisponibilidades.DataBind();
-
-
-        }
+        
 
         protected void btnDia_Command(object sender, CommandEventArgs e)
         {
             ResetearColoresBotonesDia();
+            LimpiarFiltros();
 
             int diaSeleccionado  = Convert.ToInt32(e.CommandArgument);
             
@@ -146,11 +128,11 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 if (diaSeleccionado > 0)
                 {
 
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado);
+                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, 0);
                 }
                else
                 {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0);
+                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
                 }
                                 
             }
@@ -158,15 +140,88 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             {
                 if(diaSeleccionado > 0)
                 {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, diaSeleccionado);
+                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, diaSeleccionado, 0);
                 }
                 else
                 {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0);
+                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
                 }
             }
 
             gvDisponibilidades.DataBind();
+
+            VerificarNumeroRegistros();
+            
+
+        }
+
+
+        protected void btnFiltrarMedicoLegajo_Click(object sender, EventArgs e)
+        {
+
+            ResetearColoresBotonesDia();
+            ResetearColoresBotonesEspecialidad();
+            
+
+            int legajoMedico = Convert.ToInt32(txtFiltroLegajoMedico.Text);
+
+            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, legajoMedico);
+            gvDisponibilidades.DataBind();
+
+            VerificarNumeroRegistros();
+            LimpiarFiltros();
+        }
+
+
+
+        private void ResetearColoresBotonesEspecialidad()
+        {
+            // Especialidades
+            foreach (GridViewRow fila in gvEspecialidades.Rows)
+            {
+                Button btn = (Button)fila.FindControl("btnEspecialidad");
+                if (btn != null)
+                {
+                    btn.BackColor = System.Drawing.Color.Empty;
+                }
+            }
+        }
+        private void ResetearColoresBotonesDia()
+        {
+            foreach (GridViewRow fila in gvDias.Rows)
+            {
+                Button btn = (Button)fila.FindControl("btnDia");
+                if (btn != null)
+                {
+                    btn.BackColor = System.Drawing.Color.Empty;
+                }
+            }
+        }
+
+        private void LimpiarFiltros()
+        {
+            txtFiltroLegajoMedico.Text = string.Empty;
+            txtEspecialidad.Text = string.Empty;
+
+        }
+
+        private void VerificarNumeroRegistros()
+        {
+            if (gvDisponibilidades.Rows.Count == 0)
+            {
+                lblSinRegistros.Visible = true;
+            }
+            else
+            {
+                lblSinRegistros.Visible = false;
+            }
+        }
+
+        protected void btnAplicarFiltrosAvanzados_Click(object sender, EventArgs e)
+        {
+
+            negocioDisponibilidad.ObtenerTablaDisponibilidadFiltroAvanzado();
         }
     }
+
 }

@@ -150,6 +150,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.GridView gvDisponibilidades;
 
         /// <summary>
+        /// Control lblSinRegistros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSinRegistros;
+
+        /// <summary>
         /// Control lblMensaje.
         /// </summary>
         /// <remarks>
@@ -195,13 +204,13 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.DropDownList ddOperatorsRangoHorario;
 
         /// <summary>
-        /// Control txtRangoHorario.
+        /// Control ddlSeleccionarHorario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRangoHorario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarHorario;
 
         /// <summary>
         /// Control lblEspecialidadMedico.

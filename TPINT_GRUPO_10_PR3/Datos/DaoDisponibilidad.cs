@@ -86,7 +86,7 @@ namespace Datos
         }
 
         //PRUEBA
-        public DataTable ObtenerTablaDisponibilidad(int codEspecialidad = 0, int diaSeleccionado = 0)
+        public DataTable ObtenerTablaDisponibilidad(int codEspecialidad = 0, int diaSeleccionado = 0, int legajoMedico = 0)
         {
             DataTable tablaDisponibilidad = new DataTable();
 
@@ -109,6 +109,12 @@ namespace Datos
                     condiciones.Add("NumDia_Dis = @NumDia");
                     comando.Parameters.AddWithValue("@NumDia", diaSeleccionado);
                 }
+
+                if(legajoMedico > 0)
+                {
+                    condiciones.Add("LegajoMedico_DIS = @LegajoMedico");
+                    comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
+                }
                 
                 if(condiciones.Count > 0)
                 {   
@@ -128,6 +134,12 @@ namespace Datos
 
             return tablaDisponibilidad;
         }
+
+        public DataTable ObtenerTablaDisponibilidadFiltroAvanzado()
+        {
+            return new DataTable();
+        }
+
 
         public DataTable Obtener_Disponibilidad(Disponibilidad disponibilidad)
         {

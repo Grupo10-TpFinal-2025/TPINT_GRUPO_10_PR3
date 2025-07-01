@@ -39,7 +39,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         //Funcion cargar gv
         void cargarGV()
         {
-            DataTable tabla = disponibilidad.ObtenerTablaDisponibilidad();
+            DataTable tabla = disponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
             gvModificacionDisponibilidad.DataSource = tabla;
             gvModificacionDisponibilidad.DataBind();
         }

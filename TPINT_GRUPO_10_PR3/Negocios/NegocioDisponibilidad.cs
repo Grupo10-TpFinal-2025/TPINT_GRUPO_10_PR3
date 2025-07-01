@@ -24,9 +24,18 @@ namespace Negocios
             return daoD.ObtenerTablaDisponibilidad();
         }
 
-        public DataTable ObtenerTablaDisponibilidad(int codEspecialidad, int diaSeleccionado)
+        public DataTable ObtenerTablaDisponibilidad(int codEspecialidad, int diaSeleccionado, int legajoMedico)
         {
-            return daoD.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado);
+            return daoD.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, legajoMedico);
+        }
+
+
+        public DataTable ObtenerTablaDisponibilidadFiltroAvanzado()
+        {
+            return daoD.ObtenerTablaDisponibilidadFiltroAvanzado();
+        {
+
+        }
         }
 
         public List<Disponibilidad> ObtenerListaDisponibilidadMedico(int legajoMedico)

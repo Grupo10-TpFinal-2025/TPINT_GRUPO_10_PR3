@@ -96,7 +96,7 @@
             <br />
             Búsqueda por legajo de médico:
                                 <asp:TextBox ID="txtFiltroLegajoMedico" runat="server" Width="162px" TextMode="Number"></asp:TextBox>
-                            &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" />
+                            &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" OnClick="btnFiltrarMedicoLegajo_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
                             &nbsp;&nbsp;
@@ -109,7 +109,7 @@
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:Button ID="btnEspecialidad" runat="server" CommandArgument='<%# Bind("CodEspecialidad_ES") %>' Text='<%# Bind("Descripcion_ES") %>' CommandName="FiltroEspecialidad" OnCommand="btnEspecialidad_Command" Width="219px" />
+                                        <asp:Button ID="btnEspecialidad" runat="server" CommandArgument='<%# Bind("CodEspecialidad_ES") %>' Text='<%# Bind("Descripcion_ES") %>' CommandName="FiltroEspecialidad" OnCommand="btnEspecialidad_Command" Width="175px" Height="35px" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -128,26 +128,25 @@
                                             <Columns>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btnDia" runat="server" CommandArgument='<%# bind("NumDia_DI") %>' CommandName="FiltroDia" OnCommand="btnDia_Command" Text='<%# bind("Descripcion_DI") %>' Width="146px" />
+                                                        <asp:Button ID="btnDia" runat="server" CommandArgument='<%# bind("NumDia_DI") %>' CommandName="FiltroDia" OnCommand="btnDia_Command" Text='<%# bind("Descripcion_DI") %>' Width="177px" Height="35px" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
                                     </td>
                                     <td>
-                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" ForeColor="#333333" GridLines="Vertical">
-                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                            <EditRowStyle BackColor="#999999" />
-                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+                                            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                                            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                                            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="White" ForeColor="#330099" />
+                                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                                            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                                            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                                            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                                            <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                         </asp:GridView>
+                                        <asp:Label ID="lblSinRegistros" runat="server" Text="No hay disponibilidad para la especialidad/dia seleccionados." Visible="False"></asp:Label>
                                     </td>
                                 </tr>
                             </table>
@@ -173,9 +172,23 @@
                                 <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
                                 <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
                             </asp:DropDownList>
-                            &nbsp;<asp:TextBox ID="txtRangoHorario" runat="server" Width="54px"></asp:TextBox>
-                            &nbsp;&nbsp;&nbsp;
-                            <asp:Label ID="lblEspecialidadMedico" runat="server" Text="Especialidad:"></asp:Label>
+                            &nbsp;<asp:DropDownList ID="ddlSeleccionarHorario" runat="server" Height="20px" Width="162px">
+                                <asp:ListItem Value="0">-Seleccione un horario-</asp:ListItem>
+                                <asp:ListItem>08:00</asp:ListItem>
+                                <asp:ListItem>09:00</asp:ListItem>
+                                <asp:ListItem>10:00</asp:ListItem>
+                                <asp:ListItem>11:00</asp:ListItem>
+                                <asp:ListItem>12:00</asp:ListItem>
+                                <asp:ListItem>13:00</asp:ListItem>
+                                <asp:ListItem>14:00</asp:ListItem>
+                                <asp:ListItem>15:00</asp:ListItem>
+                                <asp:ListItem>16:00</asp:ListItem>
+                                <asp:ListItem>17:00</asp:ListItem>
+                                <asp:ListItem>18:00</asp:ListItem>
+                                <asp:ListItem>19:00</asp:ListItem>
+                                <asp:ListItem>20:00</asp:ListItem>
+                            </asp:DropDownList>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblEspecialidadMedico" runat="server" Text="Especialidad:"></asp:Label>
                             &nbsp;<asp:DropDownList ID="ddlOperatorsEspecialidad" runat="server" Height="20px" style="margin-bottom: 0px">
                                 <asp:ListItem Value="contiene">Contiene:</asp:ListItem>
                                 <asp:ListItem Value="empieza con">Empieza con:</asp:ListItem>
@@ -190,7 +203,7 @@
                     </tr>
                     <tr>
                         <td>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" OnClick="btnAplicarFiltrosAvanzados_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Button ID="btnLimpiarFiltrosMedicos" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

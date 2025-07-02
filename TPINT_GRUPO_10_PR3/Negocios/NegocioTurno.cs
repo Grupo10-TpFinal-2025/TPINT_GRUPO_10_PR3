@@ -97,5 +97,10 @@ namespace Negocios
         {
             return daoTurno.ObtenerConcurrenciaTurnosXDia();
         }
+
+        public DataTable ObtenerTablaHorarioMasSolicitado()
+        {
+            return daoTurno.ObtenerTablaHorarioMasSolicitado();
+        }
     }
 }

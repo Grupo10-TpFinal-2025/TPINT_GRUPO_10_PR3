@@ -393,5 +393,27 @@ namespace Datos
 
             return datos.ObtenerTabla("ConcurrenciaTurnosPorDia", consulta);
         }
+
+        //Obtener horario mas solicitado
+        public DataTable ObtenerTablaHorarioMasSolicitado()
+        {
+            string consulta =
+            "WITH TurnosRedondeados AS (" +
+            " SELECT DATEPART(HOUR, DATEADD(MINUTE, 30, Fecha_TU)) AS Hora, COUNT(*) AS Cantidad " +
+            " FROM Turno " +
+            " GROUP BY DATEPART(HOUR, DATEADD(MINUTE, 30, Fecha_TU)) " +
+            "), " +
+            "TotalTurnos AS (" +
+            " SELECT COUNT(*) AS Total FROM Turno " +
+            ") " +
+            "SELECT " +
+            " CAST(t.Hora AS VARCHAR) + ':00 hs' AS Horario, " +
+            " t.Cantidad AS [Cantidad turnos], " +
+            " FORMAT(t.Cantidad * 100.0 / tt.Total, 'N2') + '%' AS Porcentaje " +
+            "FROM TurnosRedondeados t " +
+            "CROSS JOIN TotalTurnos tt;";
+
+            return datos.ObtenerTabla("ConcurrenciaTurnosPorDia", consulta);
+        }
     }
 }

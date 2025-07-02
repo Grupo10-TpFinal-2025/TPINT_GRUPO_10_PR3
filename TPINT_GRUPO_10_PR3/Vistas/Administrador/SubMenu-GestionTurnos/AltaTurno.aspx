@@ -96,6 +96,8 @@
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp; &nbsp; &nbsp;&nbsp; DNI Paciente:&nbsp;&nbsp;
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px"></asp:TextBox>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Descripción:&nbsp;&nbsp;&nbsp;
+                        <asp:TextBox ID="txtDescripcion" runat="server" Font-Size="Small" Height="17px" Width="217px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -110,6 +112,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;</td>
+                </tr>
+                <tr>
                     <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;</td>
                 </tr>
                 <tr>
@@ -119,7 +124,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style5" style="font-size: small; text-decoration: blink">
-                        <asp:Button ID="btnAgregarT" runat="server" Text="Agregar Turno" />
+                        <asp:Button ID="btnAgregarT" runat="server" Text="Agregar Turno" OnClick="btnAgregarT_Click" />
                     </td>
                 </tr>
                 <tr>

@@ -47,14 +47,15 @@ namespace Datos
                         CREATE PROCEDURE SP_AgendarTurno
                             @LegajoMedico INT,
                             @LegajoPaciente INT,
+                            @Descripcion VARCHAR (300),
                             @Fecha DATETIME
                         AS
                         BEGIN
                             INSERT INTO Turno 
                             (LegajoMedico_TU, LegajoPaciente_TU, Fecha_TU, Pendiente_TU, 
-                            Asistencia_TU, Descripcion_TU, Estado_UM) 
+                            Asistencia_TU, Descripcion_TU, Estado_TU) 
                             VALUES 
-                            (@LegajoMedico, @LegajoPaciente, @Fecha, 1, NULL, NULL, 1)                                                        
+                            (@LegajoMedico, @LegajoPaciente, @Fecha, 1, NULL, @Descripcion, 1)                                                        
                         END";
 
                     SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
@@ -107,11 +108,6 @@ namespace Datos
             }
 
             return listaTurnosMedico;
-        }
-
-        public void AgendarTurno()
-        {
-
         }
 
         public void ValidarOCrearProcedimientoMostrarTurno()
@@ -275,6 +271,24 @@ namespace Datos
             return datos.ObtenerTablaFiltrada("Turnos", sqlComand);
         }
 
+        public bool EjecutarAgendarTurno(int legajoMedico, int legajoPaciente, string descripcion, DateTime fecha)
+        {
+            ValidarOCrearProcedimientoAgendarTurno();
+
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                SqlCommand comando = new SqlCommand("SP_AgendarTurno", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
+                comando.Parameters.AddWithValue("@LegajoPaciente", legajoPaciente);
+                comando.Parameters.AddWithValue("@Descripcion", descripcion);
+                comando.Parameters.AddWithValue("@Fecha", fecha);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+                return filasAfectadas > 0;
+            }
+        }
+
         public void ValidarOCrearProcedimiento_ModificacionTurno()
         {
             SqlConnection conexion = datos.ObtenerConexion();
@@ -392,6 +406,58 @@ namespace Datos
                 ORDER BY NumeroDia_DS";
 
             return datos.ObtenerTabla("ConcurrenciaTurnosPorDia", consulta);
+        }
+
+        public int ObtenerLegajoPacientePorDNI(string dni)
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = "SELECT Legajo_PA FROM Paciente WHERE DNI_PA = @DNI";
+                SqlCommand cmd = new SqlCommand(consulta, conexion);
+                cmd.Parameters.AddWithValue("@DNI", dni);
+
+                object result = cmd.ExecuteScalar(); //ExecuteScalar() devuelve un solo valor -primera celda encontrada con 'x' valor-. Devuelve un "object"
+                
+                if (result != null)
+                    return Convert.ToInt32(result);
+                else
+                    throw new Exception("No se encontró un paciente con ese DNI.");
+            }
+        }
+
+        public bool ExisteTurnoMedicoFecha(int legajoMedico, DateTime fecha)
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = "SELECT COUNT(*) FROM Turno WHERE LegajoMedico_TU = @LegajoMedico AND Fecha_TU = @Fecha AND Estado_TU = 1";
+
+                SqlCommand cmd = new SqlCommand(consulta, conexion);
+                cmd.Parameters.AddWithValue("@LegajoMedico", legajoMedico);
+                cmd.Parameters.AddWithValue("@Fecha", fecha);
+
+                int cantidad = (int)cmd.ExecuteScalar();
+                return cantidad > 0;
+            }
+        }
+
+        public bool PacienteYaTieneTurnoElDia(int legajoPaciente, DateTime fecha)
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = @"
+            SELECT COUNT(*) 
+            FROM Turno 
+            WHERE LegajoPaciente_TU = @LegajoPaciente 
+              AND CONVERT(date, Fecha_TU) = @Fecha 
+              AND Estado_TU = 1";
+
+                SqlCommand cmd = new SqlCommand(consulta, conexion);
+                cmd.Parameters.AddWithValue("@LegajoPaciente", legajoPaciente);
+                cmd.Parameters.AddWithValue("@Fecha", fecha.Date); // Solo fecha, sin hora
+
+                int cantidad = (int)cmd.ExecuteScalar();
+                return cantidad > 0;
+            }
         }
     }
 }

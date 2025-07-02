@@ -83,6 +83,11 @@ namespace Negocios
              return daoTurno.getTurnosXMedico(legajoMedico);
         }
 
+        public bool AgendarTurno(int legajoMedico, int legajoPaciente, string descripcion, DateTime fecha)
+        {
+            return daoTurno.EjecutarAgendarTurno(legajoMedico, legajoPaciente, descripcion, fecha);
+        }
+
         public int ModificarTurno(Turno turno)
         {
             return daoTurno.ModificarTurno(turno);
@@ -97,5 +102,21 @@ namespace Negocios
         {
             return daoTurno.ObtenerConcurrenciaTurnosXDia();
         }
+
+        public int ObtenerLegajoPacientePorDNI(string dni)
+        {
+            return daoTurno.ObtenerLegajoPacientePorDNI(dni);
+        }
+
+        public bool ValidarTurnoMedicoOcupado(int legajoMedico, DateTime fecha)
+        {
+            return daoTurno.ExisteTurnoMedicoFecha(legajoMedico, fecha);
+        }
+
+        public bool ValidarTurnoPacienteDuplicado(int legajoPaciente, DateTime fecha)
+        {
+            return daoTurno.PacienteYaTieneTurnoElDia(legajoPaciente, fecha);
+        }
+
     }
 }

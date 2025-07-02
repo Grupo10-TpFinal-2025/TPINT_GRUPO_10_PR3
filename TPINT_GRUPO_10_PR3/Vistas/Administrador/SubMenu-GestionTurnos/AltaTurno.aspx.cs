@@ -455,5 +455,66 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 CargarDDLHorario(legajoMedico, diaSeleccionado);
             }
         }
-    }
+
+        protected void btnAgregarT_Click(object sender, EventArgs e)
+        {
+            if (ddlMedico.SelectedValue == "0" || ddlDia.SelectedValue == "0" || ddlSemana.SelectedValue == "0" || ddlHorario.SelectedValue == "0" || string.IsNullOrWhiteSpace(txtDniPaciente.Text))
+            {
+                lblResultadoAltaT.Text = "Debe completar todos los campos.";
+                lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            try
+            {
+                int legajoMedico = int.Parse(ddlMedico.SelectedValue);
+                string dniPaciente = txtDniPaciente.Text;
+                int legajoPaciente = negocioTurno.ObtenerLegajoPacientePorDNI(dniPaciente);
+                string descripcion = (string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? "" : txtDescripcion.Text;
+
+                if (legajoPaciente <= 0)
+                {
+                    lblResultadoAltaT.Text = "No se encontró un paciente con ese DNI.";
+                    lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                DateTime fechaTurno = ObtenerFechaSeleccionada();
+                TimeSpan horaSeleccionada = TimeSpan.Parse(ddlHorario.SelectedValue);
+                DateTime fechaYHoraTurno = fechaTurno.Add(horaSeleccionada);
+
+                if (negocioTurno.ValidarTurnoMedicoOcupado(legajoMedico, fechaYHoraTurno))
+                {
+                    lblResultadoAltaT.Text = "El médico ya tiene un turno asignado en ese horario.";
+                    lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                if (negocioTurno.ValidarTurnoPacienteDuplicado(legajoPaciente, fechaTurno))
+                {
+                    lblResultadoAltaT.Text = "El paciente ya tiene un turno asignado ese día.";
+                    lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                bool exito = negocioTurno.AgendarTurno(legajoMedico, legajoPaciente, descripcion ,fechaYHoraTurno);
+
+                if (exito)
+                {
+                    lblResultadoAltaT.Text = "Turno agendado correctamente.";
+                    lblResultadoAltaT.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lblResultadoAltaT.Text = "No se pudo agendar el turno.";
+                    lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblResultadoAltaT.Text = "Error al agendar el turno: " + ex.Message;
+                lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+    }    
 }

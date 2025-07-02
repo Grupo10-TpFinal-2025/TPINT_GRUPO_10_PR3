@@ -88,7 +88,7 @@
                         &nbsp;</td>
                     <td>
                         <asp:RequiredFieldValidator ID="rfvTxtFiltroDNI" runat="server" ControlToValidate="txtFiltroDNIPaciente" Display="Dynamic" ErrorMessage="Debe ingresar un valor antes de filtrar." ValidationGroup="GrupoListarPacientes">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revTxtFiltro_Dni" runat="server" ControlToValidate="txtFiltroDNIPaciente" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números naturales en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoListarPacientes">*</asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revTxtFiltro_Dni" runat="server" ControlToValidate="txtFiltroDNIPaciente" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoListarPacientes">*</asp:RegularExpressionValidator>
                         </td>
                 </tr>
                 <tr>

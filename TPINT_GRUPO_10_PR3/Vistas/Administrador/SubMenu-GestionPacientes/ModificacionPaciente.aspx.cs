@@ -11,8 +11,8 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 {
 	public partial class ModificacionPaciente : System.Web.UI.Page
 	{
-		private NegocioPaciente NegocioPaciente = new NegocioPaciente();
-        private Paciente paciente = new Paciente();
+		private readonly NegocioPaciente negocioPaciente = new NegocioPaciente();
+        private readonly Paciente paciente = new Paciente();
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,13 +32,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
         public void CargarPacientesTabla()
         {
-            gvModificacionPacientes.DataSource = NegocioPaciente.ObtenerPacientes();
+            gvModificacionPacientes.DataSource = negocioPaciente.ObtenerPacientes();
             gvModificacionPacientes.DataBind();
         }
 
-        public void ObtenerProvincias(DropDownList ddl)
+        public void CargarDDLProvincias(DropDownList ddl)
         {
-            ddl.DataSource = NegocioPaciente.getRegistrosProvincias();
+            ddl.DataSource = negocioPaciente.getRegistrosProvincias();
             ddl.DataTextField = "Descripcion_PR";
             ddl.DataValueField = "CodProvincia_PR";
             ddl.DataBind();
@@ -69,25 +69,25 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             paciente.Legajo = int.Parse(((Label)gvModificacionPacientes.Rows[e.RowIndex].FindControl("lbl_et_Legajo")).Text);
             paciente.Apellido = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Apellido")).Text;
             paciente.Nombre = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Nombre")).Text;
-            paciente.Dni = ((Label)gvModificacionPacientes.Rows[e.RowIndex].FindControl("lbl_et_DNI")).Text;
-            paciente.Sexo = ((Label)gvModificacionPacientes.Rows[e.RowIndex].FindControl("lbl_et_Sexo")).Text[0];
-            paciente.FechaNacimiento = DateTime.Parse(((Label)gvModificacionPacientes.Rows[e.RowIndex].FindControl("lbl_et_FechaNacimiento")).Text);
+            paciente.Dni = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_DNI")).Text;
+            paciente.Sexo = ((RadioButtonList)gvModificacionPacientes.Rows[e.RowIndex].FindControl("rbl_et_Sexo")).SelectedValue[0];
+            paciente.FechaNacimiento = DateTime.Parse(((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_FechaNacimiento")).Text);
             paciente.Nacionalidad = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Nacionalidad")).Text;
             paciente.CodProvincia = int.Parse(((DropDownList)gvModificacionPacientes.Rows[e.RowIndex].FindControl("ddl_et_Provincias")).SelectedValue);
             paciente.Localidad = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Localidad")).Text;
             paciente.Direccion = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Direccion")).Text;
-            paciente.CorreoElectronico = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Correo")).Text;
             paciente.Telefono = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Telefono")).Text;
+            paciente.CorreoElectronico = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Correo")).Text;
 
-            if (NegocioPaciente.ModificarPaciente(paciente))
+            if (negocioPaciente.ModificarPaciente(paciente))
             {
-                lblMensaje.Text = "Médico modificado correctamente.";
+                lblMensaje.Text = "Paciente modificado correctamente.";
                 gvModificacionPacientes.EditIndex = -1;
                 CargarPacientesTabla();
             }
             else
             {
-                lblMensaje.Text = "Error al modificar el médico. Verifique los datos ingresados.";
+                lblMensaje.Text = "Error al modificar el paciente. Verifique los datos ingresados.";
             }
         }
 
@@ -99,27 +99,72 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 // Verificamos si la fila está en modo de edición
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
-                    //Encontrar el control DropDownList dentro de la fila
+                    //Encontrar el control dentro de la fila
                     DropDownList ddlProvincias = (DropDownList)e.Row.FindControl("ddl_et_Provincias");
+                    RadioButtonList rblSexo = (RadioButtonList)e.Row.FindControl("rbl_et_Sexo");
+                    TextBox txtFechaNacimiento = (TextBox)e.Row.FindControl("txt_et_FechaNacimiento");
 
                     //Llamar al metodo para cargar los datos en el DropDownList
-                    ObtenerProvincias(ddlProvincias);
+                    CargarDDLProvincias(ddlProvincias);
 
-                    //Seleccionar la provincia actual obteniendo el ID de la provincia  de la fila seleccionada.
+                    //Seleccionar el valor actual obteniendo del campo seleccionado.
                     string IDProvincia = DataBinder.Eval(e.Row.DataItem, "CodProvincia").ToString();
+                    char sexo = Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "Sexo").ToString()[0]);
+                    string fechaStr = DataBinder.Eval(e.Row.DataItem, "Fecha de Nacimiento").ToString();
 
                     // Busco y selecciono el item en el DropDownList
-                    ListItem item = ddlProvincias.Items.FindByValue(IDProvincia);
-                    if (item != null)
-                    {
-                        ddlProvincias.SelectedValue = IDProvincia;
-                    }
-                    else
-                    {
-                        // Si no se encuentra se selecciona el primer item
-                        ddlProvincias.SelectedIndex = 0;
-                    }
+                    SeleccionarProvincia(ddlProvincias, IDProvincia);
+                    SeleccionarSexo(rblSexo, sexo);
+                    SeleccionarFechaNacimiento(txtFechaNacimiento, fechaStr);
                 }
+            }
+        }
+
+        private void SeleccionarProvincia(DropDownList ddlProvincias, string IDProvincia)
+        {
+            ListItem itemProvincia = ddlProvincias.Items.FindByValue(IDProvincia);
+            if (itemProvincia != null)
+            {
+                ddlProvincias.SelectedValue = IDProvincia;
+            }
+            else
+            {
+                ddlProvincias.SelectedIndex = 0;
+            }
+        }
+
+        private void SeleccionarSexo(RadioButtonList rblSexo, char sexo)
+        {
+            if (sexo == 'M')
+            {
+                rblSexo.SelectedValue = "M";
+            }
+            else if (sexo == 'F')
+            {
+                rblSexo.SelectedValue = "F";
+            }
+            else
+            {
+                rblSexo.SelectedValue = null;
+            }
+        }
+
+        private void SeleccionarFechaNacimiento(TextBox txtFechaNacimiento, string fechaStr)
+        {
+            if (txtFechaNacimiento != null)
+            {
+                if (DateTime.TryParse(fechaStr, out DateTime fecha))
+                {
+                    txtFechaNacimiento.Text = fecha.ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    txtFechaNacimiento.Text = "";
+                }
+            }
+            else
+            {
+                txtFechaNacimiento.Text = "";
             }
         }
     }

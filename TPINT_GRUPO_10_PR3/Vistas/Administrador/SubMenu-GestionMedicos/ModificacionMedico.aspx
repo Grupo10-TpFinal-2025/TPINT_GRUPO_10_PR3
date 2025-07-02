@@ -23,7 +23,7 @@
             height: 23px;
         }
         .auto-style19 {
-            width: 644px;
+            width: 719px;
             height: 23px;
         }
         .auto-style17 {
@@ -34,7 +34,7 @@
             width: 23px;
         }
         .auto-style18 {
-            width: 644px;
+            width: 719px;
         }
         .auto-style15 {
             width: 212px;
@@ -44,7 +44,7 @@
             height: 31px;
         }
         .auto-style21 {
-            width: 644px;
+            width: 719px;
             height: 31px;
         }
         .auto-style22 {
@@ -172,7 +172,7 @@
                                     <asp:Label ID="lbl_it_Sexo" runat="server" Text='<%# Bind("Sexo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Fecha Nacimiento">
+                            <asp:TemplateField HeaderText="Fecha de Nacimiento">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>' TextMode="Date" ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<asp:RequiredFieldValidator ID="rfvFeechaNacimiento" runat="server" ControlToValidate="txt_et_FechaNacimiento" ErrorMessage="Ingrese una fecha." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
@@ -209,7 +209,7 @@
                                     <asp:Label ID="lbl_it_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Direccion">
+                            <asp:TemplateField HeaderText="Dirección">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>' ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txt_et_Direccion" ErrorMessage="Debe ingresar calle y numero (no se permite ningun tipo de caracter especial) ." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
@@ -219,7 +219,7 @@
                                     <asp:Label ID="lbl_it_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Telefono">
+                            <asp:TemplateField HeaderText="Teléfono">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^(?:\s*\d\s*){1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
@@ -263,7 +263,7 @@
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
                 </td>
-                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style15"></td>
                 <td class="auto-style15">&nbsp;</td>
             </tr>
             <tr>

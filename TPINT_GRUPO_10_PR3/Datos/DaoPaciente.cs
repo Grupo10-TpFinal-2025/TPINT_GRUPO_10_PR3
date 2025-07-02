@@ -14,7 +14,7 @@ namespace Datos
         private AccesoDatos datos;
         private SqlCommand sqlCommand;
 
-        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo', P.DNI_PA AS 'DNI', P.Apellido_PA AS 'Apellido', P.Nombre_PA AS 'Nombre', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', FORMAT(P.FechaNacimiento_PA, 'dd/MM/yyyy') AS 'Fecha de Nacimiento', P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', Pr.CodProvincia_Pr AS 'CodProvincia', P.Correo_PA AS 'Correo', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
+        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo', P.DNI_PA AS 'DNI', P.Apellido_PA AS 'Apellido', P.Nombre_PA AS 'Nombre', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', FORMAT(P.FechaNacimiento_PA, 'dd/MM/yyyy') AS [Fecha de Nacimiento], P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', Pr.CodProvincia_Pr AS 'CodProvincia', P.Correo_PA AS 'Correo', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
 
         public DaoPaciente()
         {
@@ -166,7 +166,7 @@ namespace Datos
         {
             string consulta =
                 "SELECT Legajo_PA AS 'Legajo', Apellido_PA AS 'Apellido', Nombre_PA  AS 'Nombre', Sexo_PA AS 'Sexo', Nacionalidad_PA AS 'Nacionalidad', " +
-                "FORMAT(FechaNacimiento_PA, 'dd/MM/yyyy') AS 'Fecha Nacimiento', Direccion_PA AS 'Dirección', Localidad_PA AS 'Localidad', " +
+                "FORMAT(FechaNacimiento_PA, 'dd/MM/yyyy') AS [Fecha Nacimiento], Direccion_PA AS 'Dirección', Localidad_PA AS 'Localidad', " +
                 "Descripcion_PR AS 'Provincia', Correo_PA AS 'Correo', Telefono_PA AS 'Teléfono'," + "DNI_PA AS 'DNI' " +
                 "FROM (Paciente INNER JOIN Provincia " + "ON CodProvincia_PA = CodProvincia_PR)" +
                 "WHERE Estado_PA = 1";

@@ -80,7 +80,6 @@ namespace Negocios
         public int BajaLogicaMedicoPorLegajo(string legajo)
         {
             return daoMedico.BajaLogicaMedicoPorLegajo(legajo);
-
         }
 
         public DataTable ObtenerMedicosXEspecialidad()

@@ -12,9 +12,11 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 {
 	public partial class ListarDisponibilidad : System.Web.UI.Page
 	{
-        private NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
-        private NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-        private NegocioDia negocioDia = new NegocioDia();        
+
+        private readonly NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+        private readonly NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
+        private readonly NegocioDia negocioDia = new NegocioDia();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -61,7 +63,21 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
             gvDisponibilidades.DataBind();
         }
-       
+
+
+        protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
+        {
+            if (btnMenuFiltrosAvanzados.Text == "Aplicar Filtros Avanzados")
+            {
+                pnlFiltrosAvanzados.Visible = true;
+                btnMenuFiltrosAvanzados.Text = "Ocultar Filtros Avanzados";
+            }
+            else
+            {
+                pnlFiltrosAvanzados.Visible = false;
+                btnMenuFiltrosAvanzados.Text = "Aplicar Filtros Avanzados";
+            }
+        }
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
@@ -99,7 +115,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 VerificarNumeroRegistros();
             }
         }
-        
 
         protected void btnDia_Command(object sender, CommandEventArgs e)
         {
@@ -117,11 +132,21 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             {
                 int codEspecialidad = (int)Session["EspecialidadSeleccionada"];
 
+
                 tablaDisponibilidad = (diaSeleccionado > 0)
                 ? negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, 0)
                 : negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
                 
                                 
+
+                if (diaSeleccionado > 0)
+                {
+                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, 0);
+                }
+                else
+                {
+                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
+                }              
             }
             else
             {
@@ -137,8 +162,9 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             gvDisponibilidades.DataBind();
 
             VerificarNumeroRegistros();            
-        }
 
+            VerificarNumeroRegistros();
+        }
 
         protected void btnFiltrarMedicoLegajo_Click(object sender, EventArgs e)
         {
@@ -191,6 +217,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             LimpiarFiltros();
         }
 
+ 
 
         protected void gvDisponibilidades_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -258,6 +285,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
             return cadena;
         }
+
 
 
         private void ResetearColoresBotonesEspecialidad()

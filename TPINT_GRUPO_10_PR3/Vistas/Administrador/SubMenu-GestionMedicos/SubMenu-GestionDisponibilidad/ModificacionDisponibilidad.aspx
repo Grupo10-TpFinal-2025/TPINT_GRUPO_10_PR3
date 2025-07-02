@@ -83,7 +83,70 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:GridView ID="gvModificacionDisponibilidad" runat="server">
+                    <asp:GridView ID="gvModificacionDisponibilidad" runat="server" AllowPaging="True" AutoGenerateColumns="False" AutoGenerateEditButton="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionDisponibilidad_PageIndexChanging" OnRowCancelingEdit="gvModificacionDisponibilidad_RowCancelingEdit" OnRowEditing="gvModificacionDisponibilidad_RowEditing" OnRowUpdating="gvModificacionDisponibilidad_RowUpdating" PageSize="5">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="Medico">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_eit_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Dia">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_eit_Dia" runat="server" Text='<%# Bind("Dia") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Dia" runat="server" Text='<%# Bind("Dia") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Inicio Turno">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_eit_Inicio" runat="server" Text='<%# Bind("Inicio") %>' TextMode="Time" ValidationGroup="Modificacion"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvInicioHorario" runat="server" ControlToValidate="txt_eit_Inicio" ErrorMessage="No se puede dejar en blanco" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Inicio" runat="server" Text='<%# Bind("Inicio") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Fin Del Turno">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txt_eit_Fin" runat="server" Text='<%# Bind("Fin") %>' TextMode="Time" ValidationGroup="Modificacion"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvHorarioFin" runat="server" ControlToValidate="txt_eit_Fin" ErrorMessage="No se puede dejar el campo vacio." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Fin" runat="server" Text='<%# Bind("Fin") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Estado">
+                                <EditItemTemplate>
+                                    <asp:CheckBox ID="cb_eit_Estado" runat="server" Checked='<%# Bind("Estado") %>' />
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="cb_it_Estado" runat="server" Checked='<%# Bind("Estado") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Legajo" ShowHeader="False" Visible="False">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_eit_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
                 </td>
             </tr>
@@ -111,6 +174,7 @@
             </tr>
         </table>
         </div>
+        <asp:ValidationSummary ID="vsModificacionDisponibilidad" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="Modificacion" />
     </form>
 </body>
 </html>

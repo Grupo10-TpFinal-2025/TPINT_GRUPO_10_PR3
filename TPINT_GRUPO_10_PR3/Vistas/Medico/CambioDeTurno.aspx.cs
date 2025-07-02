@@ -123,12 +123,20 @@ namespace Vistas.Medico
         private void HabilitarBotonEditar(GridViewRow row, DateTime fechaTurno)
         {
             LinkButton btnEditar = (LinkButton)row.FindControl("lbtn_it_Editar");
-            btnEditar.Enabled = fechaTurno < DateTime.Now;
+            if(fechaTurno <= DateTime.Now)
+            {
+                btnEditar.Enabled = true;
+            }
+            else
+            {
+                btnEditar.Enabled = false;
+            }
+
         }
 
         private void FormatearAsistencia(Label lblAsistencia)
         {
-            if (lblAsistencia != null && lblAsistencia.Text != null)
+            if (lblAsistencia.Text != null)
             {
                 string asistencia = lblAsistencia.Text.Trim().ToLower();
                 if (asistencia == "false")
@@ -152,9 +160,9 @@ namespace Vistas.Medico
 
         private void MostrarDescripcionPorDefecto(Label lblDescripcion)
         {
-            if (lblDescripcion != null && string.IsNullOrEmpty(lblDescripcion.Text))
+            if (string.IsNullOrEmpty(lblDescripcion.Text))
             {
-                lblDescripcion.Text = "----------";
+                lblDescripcion.Text = "Sin Completar";
             }
         }
 
@@ -165,22 +173,23 @@ namespace Vistas.Medico
 
             SeleccionarOpcionAsistencia(rblAsistencia, asistencia);
 
-            Label lblDescripcion = (Label)row.FindControl("lbl_et_Descripcion");
-            if (lblDescripcion != null && lblDescripcion.Text.Trim().Length == 0)
+            TextBox txtDescripcion = (TextBox)row.FindControl("txt_et_Descripcion");
+            if(string.IsNullOrEmpty(txtDescripcion.Text))
             {
-                lblDescripcion.Text = "Sin Completar";
+                txtDescripcion.Text = "Sin Completar";
             }
+ 
         }
 
         private void SeleccionarOpcionAsistencia(RadioButtonList rblAsistencia, string asistencia)
         {
             if (!string.IsNullOrEmpty(asistencia))
             {
-                if (asistencia.ToLower() == "true" && rblAsistencia.Items.Count > 2)
+                if (asistencia.ToLower() == "true")
                 {
                     rblAsistencia.Items[2].Selected = true;
                 }
-                else if (asistencia.ToLower() == "false" && rblAsistencia.Items.Count > 1)
+                else if (asistencia.ToLower() == "false")
                 {
                     rblAsistencia.Items[1].Selected = true;
                 }

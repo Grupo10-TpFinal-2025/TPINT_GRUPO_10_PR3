@@ -445,11 +445,11 @@ namespace Datos
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
                 string consulta = @"
-            SELECT COUNT(*) 
-            FROM Turno 
-            WHERE LegajoPaciente_TU = @LegajoPaciente 
-              AND CONVERT(date, Fecha_TU) = @Fecha 
-              AND Estado_TU = 1";
+                    SELECT COUNT(*) 
+                    FROM Turno 
+                    WHERE LegajoPaciente_TU = @LegajoPaciente 
+                      AND CONVERT(date, Fecha_TU) = @Fecha 
+                      AND Estado_TU = 1";
 
                 SqlCommand cmd = new SqlCommand(consulta, conexion);
                 cmd.Parameters.AddWithValue("@LegajoPaciente", legajoPaciente);
@@ -458,6 +458,7 @@ namespace Datos
                 int cantidad = (int)cmd.ExecuteScalar();
                 return cantidad > 0;
             }
+        }
 
         //Obtener horario mas solicitado
         public DataTable ObtenerTablaHorarioMasSolicitado()

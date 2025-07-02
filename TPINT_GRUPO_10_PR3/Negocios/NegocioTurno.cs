@@ -103,6 +103,7 @@ namespace Negocios
             return daoTurno.ObtenerConcurrenciaTurnosXDia();
         }
 
+ 
         public int ObtenerLegajoPacientePorDNI(string dni)
         {
             return daoTurno.ObtenerLegajoPacientePorDNI(dni);
@@ -118,5 +119,9 @@ namespace Negocios
             return daoTurno.PacienteYaTieneTurnoElDia(legajoPaciente, fecha);
         }
 
+        public DataTable ObtenerTablaHorarioMasSolicitado()
+        {
+            return daoTurno.ObtenerTablaHorarioMasSolicitado();
+        }
     }
 }

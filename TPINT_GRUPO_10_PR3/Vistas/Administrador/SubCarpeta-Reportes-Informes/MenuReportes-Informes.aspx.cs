@@ -57,13 +57,19 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
 
         protected void btnPorcentajePresencialidadT_Click(object sender, EventArgs e)
         {
+            negocioTurno = new NegocioTurno();
+            dataTable = negocioTurno.ObtenerConcurrenciaTurnosXDia();
+
+            Session["TablaResultados"] = dataTable;
+            Session["TituloInforme"] = "Horario mas solicitado";
+
             Response.Redirect("ResultadosReportes-Informes.aspx");
         }
 
         protected void btnConcurrenciaTurnosXDia_Click(object sender, EventArgs e)
         {
             negocioTurno = new NegocioTurno();
-            dataTable = negocioTurno.ObtenerConcurrenciaTurnosXDia();
+            dataTable = negocioTurno.ObtenerTablaHorarioMasSolicitado();
 
             Session["TablaResultados"] = dataTable;
             Session["TituloInforme"] = "Concurrencia de Turnos por Día";

@@ -64,21 +64,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             gvDisponibilidades.DataBind();
         }
 
-
-        protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
-        {
-            if (btnMenuFiltrosAvanzados.Text == "Aplicar Filtros Avanzados")
-            {
-                pnlFiltrosAvanzados.Visible = true;
-                btnMenuFiltrosAvanzados.Text = "Ocultar Filtros Avanzados";
-            }
-            else
-            {
-                pnlFiltrosAvanzados.Visible = false;
-                btnMenuFiltrosAvanzados.Text = "Aplicar Filtros Avanzados";
-            }
-        }
-
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             ResetearColoresBotonesEspecialidad();

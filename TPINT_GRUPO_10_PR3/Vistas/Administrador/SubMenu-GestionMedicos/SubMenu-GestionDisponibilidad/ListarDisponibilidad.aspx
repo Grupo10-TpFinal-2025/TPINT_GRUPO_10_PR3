@@ -131,7 +131,7 @@
                                             <Columns>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btnDia" runat="server" CommandArgument='<%# bind("NumDia_DI") %>' CommandName="FiltroDia" OnCommand="btnDia_Command" Text='<%# bind("Descripcion_DI") %>' Width="177px" Height="35px" />
+                                                        <asp:Button ID="btnDia" runat="server" CommandArgument='<%# Bind("NumDia_DI") %>' CommandName="FiltroDia" OnCommand="btnDia_Command" Text='<%# Bind("Descripcion_DI") %>' Width="177px" Height="35px" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

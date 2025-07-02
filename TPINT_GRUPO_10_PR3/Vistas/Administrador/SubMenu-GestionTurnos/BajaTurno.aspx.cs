@@ -21,5 +21,10 @@ namespace Vistas
                 lblUsuarioAdministrador.Text = "Administrador";
             }
         }
+
+        protected void btnCancelarTurno_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

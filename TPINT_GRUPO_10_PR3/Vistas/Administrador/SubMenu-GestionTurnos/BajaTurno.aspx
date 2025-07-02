@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="lblBajaTurno" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Cancelacion de Turno"></asp:Label>
+                        <asp:Label ID="lblBajaTurno" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Cancelación de Turno"></asp:Label>
                     </td>
                     <td class="auto-style8">&nbsp;</td>
                 </tr>
@@ -60,7 +60,7 @@
                 <tr>
                     <td class="auto-style10">
                         Código de turno:&nbsp; <asp:TextBox ID="txtCodigoTurno" runat="server" Width="108px"></asp:TextBox>
-&nbsp;<asp:Button ID="btnCancelarTurno" runat="server" Text="Cancelar" Width="83px" />
+&nbsp;<asp:Button ID="btnCancelarTurno" runat="server" Text="Cancelar" Width="83px" OnClick="btnCancelarTurno_Click" />
                         <br />
                         <br />
                     </td>

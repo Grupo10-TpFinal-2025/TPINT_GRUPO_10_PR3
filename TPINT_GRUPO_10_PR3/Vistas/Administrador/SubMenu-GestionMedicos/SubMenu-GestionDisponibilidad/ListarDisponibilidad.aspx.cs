@@ -342,15 +342,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
         {
-            if (btnMenuFiltrosAvanzados.Text == "Aplicar filtros avanzados")
+            if (btnMenuFiltrosAvanzados.Text == "Aplicar Filtros Avanzados")
             {
                 pnlFiltrosAvanzados.Visible = true;
-                btnMenuFiltrosAvanzados.Text = "Ocultar filtros avanzados";
+                btnMenuFiltrosAvanzados.Text = "Ocultar Filtros Avanzados";
             }
             else
             {
                 pnlFiltrosAvanzados.Visible = false;
-                btnMenuFiltrosAvanzados.Text = "Aplicar filtros avanzados";
+                btnMenuFiltrosAvanzados.Text = "Aplicar Filtros Avanzados";
             }
         }
     }

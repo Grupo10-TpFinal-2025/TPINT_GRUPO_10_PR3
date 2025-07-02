@@ -34,6 +34,7 @@ namespace Vistas
 
                 CargarTablaMedicos();
                 CargarDias();
+                Session["TablaFiltrada"] = null;
             }
         }
 
@@ -52,7 +53,15 @@ namespace Vistas
         protected void gvListaMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvListaMedicos.PageIndex = e.NewPageIndex;
-            CargarTablaMedicos();
+            if (Session["TablaFiltrada"] != null)
+            {
+                DataTable tablaFiltrada = (DataTable)Session["TablaFiltrada"];
+                gvListaMedicos.DataSource = tablaFiltrada;
+            }
+            else
+            {
+                CargarTablaMedicos();
+            }
         }
 
         protected void btnFiltrarMedicoLegajo_Click(object sender, EventArgs e)
@@ -64,6 +73,7 @@ namespace Vistas
                 medico.Legajo = Convert.ToInt32(txtFiltroLegajoMedico.Text.Trim());
 
                 DataTable tablaFiltrada = negocioMedico.getTablaMedicosFiltrada(medico, aplicarFiltroAvanzado, filtros);
+                Session["TablaFiltrada"] = tablaFiltrada;
 
                 if (tablaFiltrada.Rows.Count == 0)
                 {
@@ -86,6 +96,7 @@ namespace Vistas
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             aplicarFiltroAvanzado = false;
+            Session["TablaFiltrada"] = null;
 
             gvListaMedicos.PageIndex = 0;
             CargarTablaMedicos();
@@ -134,6 +145,7 @@ namespace Vistas
                 filtros = VerificarFiltroAvanzado();
 
                 DataTable tablaFiltrada = negocioMedico.getTablaMedicosFiltrada(medico, aplicarFiltroAvanzado, filtros);
+                Session["TablaFiltrada"] = tablaFiltrada;
 
                 gvListaMedicos.PageIndex = 0;
                 gvListaMedicos.DataSource = tablaFiltrada;
@@ -152,7 +164,8 @@ namespace Vistas
             }
             else
             {
-                LimpiarTxtFiltrosAvanzados();
+                Session["TablaFiltrada"] = null;
+               LimpiarTxtFiltrosAvanzados();
                 LimpiarValoresFiltrosAvanzados();
                 gvListaMedicos.PageIndex = 0;
                 CargarTablaMedicos();
@@ -263,7 +276,9 @@ namespace Vistas
             if (e.CommandName == "FiltroDias")
             {
                 medico.DiaDisponible = Convert.ToInt32(e.CommandArgument);
-                gvListaMedicos.DataSource = negocioMedico.getTablaMedicosFiltrada(medico, false, filtros);
+                DataTable TablaFimtrada = negocioMedico.getTablaMedicosFiltrada(medico, false, filtros);
+                Session["TablaFiltrada"] = TablaFimtrada;
+                gvListaMedicos.DataSource = TablaFimtrada;
                 gvListaMedicos.DataBind();
                 if (gvDisponibilidad == null)
                 {

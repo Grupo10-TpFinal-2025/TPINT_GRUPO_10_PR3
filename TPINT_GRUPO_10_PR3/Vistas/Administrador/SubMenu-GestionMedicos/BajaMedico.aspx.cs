@@ -12,7 +12,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 	{
         protected void Page_Load(object sender, EventArgs e)
         {
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None; //Para solucionar el error que dispara
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
             if (Session["usuario"] == null)
             {
@@ -28,7 +28,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
         protected void btnBajaMedico_Click(object sender, EventArgs e)
         {
-            string legajo = txtLegajoBajaMedico.Text.Trim();
+            string legajo = txtLegajoBajaMedico.Text?.Trim();
 
             if (!string.IsNullOrEmpty(legajo))
             {

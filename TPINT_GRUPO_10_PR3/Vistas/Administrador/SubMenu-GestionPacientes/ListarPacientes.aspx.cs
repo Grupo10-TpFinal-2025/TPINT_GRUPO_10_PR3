@@ -68,7 +68,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 return filtros;
             }
 
-            if (txtDniPaciente.Text.Trim().Length > 0)
+            if (txtDniPaciente.Text?.Trim().Length > 0)
             {
                 string seleccion = ddlOperatorsDni.SelectedValue.Trim();    
                 switch (seleccion)
@@ -90,7 +90,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 }
             }
 
-            if (txtNombrePaciente.Text.Trim().Length > 0)
+            if (txtNombrePaciente.Text?.Trim().Length > 0)
             {
                 switch (ddlOperatorsNombre.SelectedValue.Trim())
                 {
@@ -108,7 +108,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 }
             }
 
-            if (txtTelefonoPaciente.Text.Trim().Length > 0)
+            if (txtTelefonoPaciente.Text?.Trim().Length > 0)
             {
                 switch (ddlOperatorsTelefono.SelectedValue.Trim())
                 {
@@ -144,9 +144,9 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             {
                 txtFiltroDNIPaciente.Text = string.Empty;
 
-                paciente.Dni = txtDniPaciente.Text.Trim();
-                paciente.Nombre = txtNombrePaciente.Text.Trim();
-                paciente.Telefono = txtTelefonoPaciente.Text.Trim();
+                paciente.Dni = txtDniPaciente.Text?.Trim();
+                paciente.Nombre = txtNombrePaciente.Text?.Trim();
+                paciente.Telefono = txtTelefonoPaciente.Text?.Trim();
 
                 if (IsFiltrosVacios())
                 {
@@ -248,14 +248,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             gvListadoPacientes.PageIndex = e.NewPageIndex;
             if (Session["TablaFiltrada"] != null)
             {
-                gvListadoPacientes.DataSource = Session["TablaFiltrada"];
+                gvListadoPacientes.DataSource = (DataTable)Session["TablaFiltrada"];
+                gvListadoPacientes.DataBind();
             }
             else
             {
-                gvListadoPacientes.DataSource = negocioPaciente.ObtenerPacientes();
+                CargarTablaPacientes();
             }
-
-            gvListadoPacientes.DataBind();
         }
 
         protected void btnProvincia_Command1(System.Object sender, System.Web.UI.WebControls.CommandEventArgs e)
@@ -278,11 +277,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 gvListadoPacientes.PageIndex = 0;
                 paciente.CodProvincia = 0;
             }
-        }
-
-        protected void gvListadoPacientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -138,7 +138,7 @@
                                         </asp:GridView>
                                     </td>
                                     <td>
-                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" AllowPaging="True" OnPageIndexChanging="gvDisponibilidades_PageIndexChanging" ForeColor="#333333" GridLines="None">
+                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" AllowPaging="True" OnPageIndexChanging="gvDisponibilidades_PageIndexChanging" ForeColor="#333333" GridLines="Vertical">
                                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                             <EditRowStyle BackColor="#999999" />
                                             <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />

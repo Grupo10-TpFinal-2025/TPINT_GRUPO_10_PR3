@@ -110,7 +110,7 @@
                         <asp:TextBox ID="txtNacionalidadPaciente" runat="server" Font-Size="Small"></asp:TextBox>
 &nbsp;<asp:RequiredFieldValidator ID="rfvNacionaldiad" runat="server" ControlToValidate="txtNacionalidadPaciente" ErrorMessage="Debe ingresar una nacionalidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
                         &nbsp;&nbsp;&nbsp; Provincia:
-                        <asp:DropDownList ID="ddlProvinciaPaciente" runat="server" Font-Size="Small">
+                        <asp:DropDownList ID="ddlProvinciaPaciente" runat="server" Font-Size="Small" OnSelectedIndexChanged="ddlProvinciaPaciente_SelectedIndexChanged">
                         </asp:DropDownList>
 &nbsp;<asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvinciaPaciente" ErrorMessage="Debe seleccionar una provincia." InitialValue="0" ValidationGroup="alta">*</asp:RequiredFieldValidator>
                     &nbsp;</td>

@@ -132,5 +132,15 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
 
         }
+
+        protected void ddlProvinciaPaciente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlProvinciaPaciente.SelectedIndex != 0)
+            {
+                ddlProvinciaPaciente.Items[0].Enabled = false;
+            }
+        }
+
+
     }
 }

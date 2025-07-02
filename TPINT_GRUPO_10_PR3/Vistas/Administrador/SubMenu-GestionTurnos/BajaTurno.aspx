@@ -59,8 +59,9 @@
                 </tr>
                 <tr>
                     <td class="auto-style10">
-                        Código de turno:&nbsp; <asp:TextBox ID="txtCodigoTurno" runat="server" Width="108px"></asp:TextBox>
-&nbsp;<asp:Button ID="btnCancelarTurno" runat="server" Text="Cancelar" Width="83px" OnClick="btnCancelarTurno_Click" />
+                        Código de turno:&nbsp; <asp:TextBox ID="txtCodigoTurno" runat="server" Width="108px" TextMode="Number" ValidationGroup="BajaTurno"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvTxtCodigoTurno" runat="server" ControlToValidate="txtCodigoTurno" Display="Dynamic" ErrorMessage="Debe ingresar un código de turno." ValidationGroup="BajaTurno">*</asp:RequiredFieldValidator>
+&nbsp;<asp:Button ID="btnCancelarTurno" runat="server" Text="Cancelar" Width="83px" OnClick="btnCancelarTurno_Click" ValidationGroup="BajaTurno" />
                         <br />
                         <br />
                     </td>
@@ -68,9 +69,15 @@
                 </tr>
                 <tr>
                     <td class="auto-style11">
-                        <asp:Label ID="lblResultadoBaja" runat="server"></asp:Label>
+                        <asp:Label ID="lblResultadoBaja" runat="server" Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style12"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style11">
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="BajaTurno" />
+                    </td>
+                    <td class="auto-style12">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style11">

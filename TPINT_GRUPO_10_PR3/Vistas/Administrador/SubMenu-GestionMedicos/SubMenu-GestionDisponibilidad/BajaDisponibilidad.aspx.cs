@@ -103,7 +103,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             {
                 lblResultadoBaja.Text = "Por favor, ingresá un legajo medico.";
             }
-
         }
     }
 }

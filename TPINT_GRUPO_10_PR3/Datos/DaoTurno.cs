@@ -19,7 +19,7 @@ namespace Datos
             "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
             "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA WHERE Estado_TU = 1";
 
-        private AccesoDatos datos;
+        private readonly AccesoDatos datos;
 
         public DaoTurno()
         {
@@ -346,6 +346,20 @@ namespace Datos
             ValidarOCrearProcedimiento_ModificacionTurno();
             SqlCommand sqlComand = CargarParametros_ModificacionTurno(turno);
             return datos.EjecutarProcedimientoAlmacenado("SP_ModificacionTurno_Grupo10 ", sqlComand);
+        }
+
+        public int BajaLogicaTurno(int codTurno)
+        {
+            string consulta = "UPDATE Turno SET Estado_TU = 0 WHERE CodTurno_TU = @CodTurno_TU AND Estado_TU = 1";
+
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@CodTurno_TU", codTurno);
+                    return comando.ExecuteNonQuery(); // Devuelve 1 si se actualizó
+                }
+            }
         }
     }
 }

@@ -87,5 +87,10 @@ namespace Negocios
         {
             return daoTurno.ModificarTurno(turno);
         }
+
+        public int BajaLogicaTurno(int codTurno)
+        {
+            return daoTurno.BajaLogicaTurno(codTurno);
+        }
     }
 }

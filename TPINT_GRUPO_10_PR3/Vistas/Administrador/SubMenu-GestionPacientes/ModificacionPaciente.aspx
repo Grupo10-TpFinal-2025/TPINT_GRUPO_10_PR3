@@ -124,7 +124,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
+                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Eval("DNI") %>' ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="No puede dejar el campo DNI vacío." ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
@@ -132,7 +134,11 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Sexo">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_Sexo" runat="server" Text='<%# Bind("Sexo") %>'></asp:Label>
+                                    <asp:RadioButtonList ID="rbl_et_Sexo" runat="server" Font-Size="Small" ValidationGroup="GrupoModificarPaciente">
+                                        <asp:ListItem Value="F">Femenino</asp:ListItem>
+                                        <asp:ListItem Value="M">Masculino</asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:RequiredFieldValidator ID="rfvRblSexo" runat="server" ControlToValidate="rbl_et_Sexo" Display="Dynamic" ErrorMessage="No puede dejar el campo Sexo vacío." ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Sexo" runat="server" Text='<%# Bind("Sexo") %>'></asp:Label>
@@ -140,7 +146,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fecha de Nacimiento">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>'></asp:Label>
+                                    <asp:TextBox ID="txt_et_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>' TextMode="Date" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvTxtFechaNacimiento" runat="server" ControlToValidate="txt_et_FechaNacimiento" Display="Dynamic" ErrorMessage="No puede dejar el campo Fecha de Nacimiento vacío." ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>'></asp:Label>

@@ -111,8 +111,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
         protected void gvModificacionMedicos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            negocioMedico = new NegocioMedico(); 
-            Entidades.Medico medico = new Entidades.Medico();
+            negocioMedico = new NegocioMedico();
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -133,10 +132,10 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
                     SeleccionarEspecialidad(ddlEspecialidades, IDEspecialidad);
                     SeleccionarSexo(rblSexo, sexo);
                     SeleccionarFechaNacimiento(txtFechaNacimiento, fechaStr);
-
                 }
             }
         }
+        
         private void SeleccionarProvincia(DropDownList ddlProvincias, string IDProvincia)
         {
             ListItem itemProvincia = ddlProvincias.Items.FindByValue(IDProvincia);
@@ -183,8 +182,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
         {
             if (txtFechaNacimiento != null)
             {
-                DateTime fecha;
-                if (DateTime.TryParseExact(fechaStr, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out fecha))
+                if (DateTime.TryParseExact(fechaStr, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out DateTime fecha))
                 {
                     txtFechaNacimiento.Text = fecha.ToString("yyyy-MM-dd");
                 }
@@ -198,7 +196,5 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
                 txtFechaNacimiento.Text = "";
             }
         }
-
-
     }
 }

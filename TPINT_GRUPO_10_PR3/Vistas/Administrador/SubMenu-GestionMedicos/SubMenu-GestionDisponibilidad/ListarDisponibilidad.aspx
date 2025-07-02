@@ -118,9 +118,9 @@
                     </td>
                     <td>
                         <br />
-                                <asp:Label ID="lblLegajoNoEncontrado" runat="server" Visible="False">El legajo buscado no se encuentra en los registros.</asp:Label>
+                                <asp:Label ID="lblLegajoNoEncontrado" runat="server" Visible="False" ForeColor="Red">El legajo buscado no se encuentra en los registros.</asp:Label>
                         <br />
-                        <asp:Label ID="lblDisponibilidadActiva" runat="server" Text="Usted está viendo: disponibilidades para todos los días."></asp:Label>
+                        <asp:Label ID="lblDisponibilidadActiva" runat="server" Text="Usted está viendo: disponibilidades para todos los días." ForeColor="Green"></asp:Label>
                         <br />
                         <br />
                         <asp:Panel ID="Panel1" runat="server">
@@ -151,13 +151,11 @@
                                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                                         </asp:GridView>
-                                        <asp:Label ID="lblSinRegistros" runat="server" Text="No hay disponibilidad para la especialidad/dia seleccionados." Visible="False"></asp:Label>
+                                        <asp:Label ID="lblSinRegistros" runat="server" Text="No hay disponibilidad para la especialidad/dia seleccionados." Visible="False" ForeColor="Red"></asp:Label>
                                     </td>
                                 </tr>
                             </table>
                         </asp:Panel>
-                        <br />
-                        <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                         <br />
                         <br />
                         <asp:Button ID="btnMenuFiltrosAvanzados" runat="server" Height="29px" Text="Aplicar Filtros Avanzados" Width="234px" OnClick="btnMenuFiltrosAvanzados_Click" />
@@ -200,7 +198,7 @@
                             </asp:DropDownList>
                             <asp:TextBox ID="txtEspecialidad" runat="server" Width="145px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Label ID="lblSinFiltroAvanzado" runat="server" Text="&quot;No se aplicó ningún filtro avanzado&quot;" Visible="False"></asp:Label>
+                            <asp:Label ID="lblSinFiltroAvanzado" runat="server" Text="&quot;No se aplicó ningún filtro avanzado&quot;" Visible="False" ForeColor="Red"></asp:Label>
                             </td>
                     </tr>
                     <tr>

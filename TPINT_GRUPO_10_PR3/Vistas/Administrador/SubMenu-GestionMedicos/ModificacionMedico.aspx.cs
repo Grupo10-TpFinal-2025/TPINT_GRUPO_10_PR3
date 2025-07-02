@@ -83,12 +83,14 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
             if (negocioMedico.ModificarMedico(medico))
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "Médico modificado correctamente.";
                 gvModificacionMedicos.EditIndex = -1;
                 CargarMedicosTabla();
             }
             else
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Error al modificar el médico. Verifique los datos ingresados.";
             }
         }
@@ -111,8 +113,6 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
 
         protected void gvModificacionMedicos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            negocioMedico = new NegocioMedico();
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
@@ -194,6 +194,25 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
             else
             {
                 txtFechaNacimiento.Text = "";
+            }
+        }
+
+        protected void ddl_et_Provincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(sender is DropDownList ddlProvincias)
+            {
+                if (ddlProvincias.SelectedIndex != 0)
+                {
+                    ddlProvincias.Items[0].Enabled = false;
+                }
+            }
+
+            if(sender is DropDownList ddlEspecialidades)
+            {
+                if (ddlEspecialidades.SelectedIndex != 0)
+                {
+                    ddlEspecialidades.Items[0].Enabled = false;
+                }
             }
         }
     }

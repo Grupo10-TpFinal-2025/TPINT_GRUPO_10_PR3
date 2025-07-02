@@ -83,7 +83,7 @@
             <tr>
                 <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style18">
-                    <asp:GridView ID="gvModificacionDisponibilidad" runat="server" AllowPaging="True" AutoGenerateColumns="False" AutoGenerateEditButton="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionDisponibilidad_PageIndexChanging" OnRowCancelingEdit="gvModificacionDisponibilidad_RowCancelingEdit" OnRowEditing="gvModificacionDisponibilidad_RowEditing" OnRowUpdating="gvModificacionDisponibilidad_RowUpdating" PageSize="5">
+                    <asp:GridView ID="gvModificacionDisponibilidad" runat="server" AllowPaging="True" AutoGenerateColumns="False" AutoGenerateEditButton="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvModificacionDisponibilidad_PageIndexChanging" OnRowCancelingEdit="gvModificacionDisponibilidad_RowCancelingEdit" OnRowEditing="gvModificacionDisponibilidad_RowEditing" OnRowUpdating="gvModificacionDisponibilidad_RowUpdating" PageSize="5" OnRowDataBound="gvModificacionDisponibilidad_RowDataBound">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:TemplateField HeaderText="Medico">
@@ -104,8 +104,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Inicio Turno">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_eit_Inicio" runat="server" Text='<%# Bind("Inicio") %>' TextMode="Time" ValidationGroup="Modificacion"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvInicioHorario" runat="server" ControlToValidate="txt_eit_Inicio" ErrorMessage="No se puede dejar en blanco" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    <asp:DropDownList ID="ddl_eit_HoraInicio" runat="server" OnSelectedIndexChanged="ddl_eit_HoraInicio_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvInicioHorario" runat="server" ControlToValidate="ddl_eit_HoraInicio" ErrorMessage="No se puede dejar en blanco" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Inicio" runat="server" Text='<%# Bind("Inicio") %>'></asp:Label>
@@ -113,8 +114,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fin Del Turno">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_eit_Fin" runat="server" Text='<%# Bind("Fin") %>' TextMode="Time" ValidationGroup="Modificacion"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvHorarioFin" runat="server" ControlToValidate="txt_eit_Fin" ErrorMessage="No se puede dejar el campo vacio." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    <asp:DropDownList ID="ddl_eit_HoraFin" runat="server">
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvHorarioFin" runat="server" ControlToValidate="ddl_eit_HoraFin" ErrorMessage="No se puede dejar el campo vacio." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Fin" runat="server" Text='<%# Bind("Fin") %>'></asp:Label>

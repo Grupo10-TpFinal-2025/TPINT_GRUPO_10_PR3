@@ -192,7 +192,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Provincia">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" ValidationGroup="Modificacion">
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" ValidationGroup="Modificacion" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     &nbsp;<asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddl_et_Provincias" ErrorMessage="Debe seleccionar una provincia." InitialValue="0" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>

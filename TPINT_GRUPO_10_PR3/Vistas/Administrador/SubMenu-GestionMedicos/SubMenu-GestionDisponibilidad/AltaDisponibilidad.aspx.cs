@@ -45,8 +45,8 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             ddlHorarioInicioDis.Items.Clear();
             ddlHorarioFinDis.Items.Clear();
 
-            ddlHorarioInicioDis.Items.Add(new ListItem("-- Hora inicio --", ""));
-            ddlHorarioFinDis.Items.Add(new ListItem("-- Hora fin --", ""));
+            ddlHorarioInicioDis.Items.Insert(0,new ListItem("-- Hora inicio --", ""));
+            ddlHorarioFinDis.Items.Insert(0, new ListItem("-- Hora fin --", ""));
 
             TimeSpan hora = new TimeSpan(8, 0, 0); // 08:00
             TimeSpan horaFin = new TimeSpan(20, 0, 0); // 20:00
@@ -76,6 +76,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 // Validar horario correcto
                 if (horarioInicio >= horarioFin)
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "El horario de inicio debe ser menor al horario de fin.";
                     return;
                 }
@@ -87,6 +88,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
                 if (existe)
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "El médico ya tiene una disponibilidad asignada en ese día.";
                     return;
                 }
@@ -104,11 +106,13 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 }
                 else
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "Error al cargar la disponibilidad.";
                 }
             }
             catch (Exception ex)
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = $"Error inesperado: {ex.Message}";
             }
         }

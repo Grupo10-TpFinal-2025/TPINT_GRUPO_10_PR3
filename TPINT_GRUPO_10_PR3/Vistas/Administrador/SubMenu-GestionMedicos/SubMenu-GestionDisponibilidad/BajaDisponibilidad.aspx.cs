@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -85,23 +86,35 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                     int filasAfectadas = negocioDisponibilidad.BajaLogicaDisponibilidad(disponibilidad);
                     if (filasAfectadas == 1)
                     {
+                        lblResultadoBaja.ForeColor = System.Drawing.Color.Green;
                         lblResultadoBaja.Text = "La baja de disponibilidad se realizó correctamente.";
                         pnlDias.Visible = false;
                     }
                     else
                     {
+                        lblResultadoBaja.ForeColor = System.Drawing.Color.Red;
                         lblResultadoBaja.Text = "No se pudo realizar la baja de disponibilidad. Verifique los datos ingresados.";
                     }
                     txtLegajoBaja.Text = string.Empty;
                 }
                 else
                 {
+                    lblResultadoBaja.ForeColor = System.Drawing.Color.Red;
                     lblResultadoBaja.Text = "Por favor, seleccione un día de la semana.";
                 }
             }
             else
             {
+                lblResultadoBaja.ForeColor = System.Drawing.Color.Red;
                 lblResultadoBaja.Text = "Por favor, ingresá un legajo medico.";
+            }
+        }
+
+        protected void ddlDisponibilidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDisponibilidad.SelectedIndex != 0)
+            {
+                ddlDisponibilidad.Items[0].Enabled = true;
             }
         }
     }

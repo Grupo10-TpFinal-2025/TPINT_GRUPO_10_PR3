@@ -57,12 +57,14 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
                 LimpiarCampos();
 
                 //Mensaje de exito al cargar medico
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "Se ha cargado con exito al sistema.";
             }
             else
             {
                 //Mensaje de error
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "Ha ocurrido un error.";
             }

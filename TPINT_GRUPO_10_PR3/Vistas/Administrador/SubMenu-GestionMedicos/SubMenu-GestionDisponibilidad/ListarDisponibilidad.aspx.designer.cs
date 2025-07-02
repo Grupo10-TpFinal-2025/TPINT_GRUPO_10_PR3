@@ -141,6 +141,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.Label lblLegajoNoEncontrado;
 
         /// <summary>
+        /// Control lblDisponibilidadActiva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDisponibilidadActiva;
+
+        /// <summary>
         /// Control Panel1.
         /// </summary>
         /// <remarks>

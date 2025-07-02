@@ -120,6 +120,7 @@
                         <br />
                                 <asp:Label ID="lblLegajoNoEncontrado" runat="server" Visible="False">El legajo buscado no se encuentra en los registros.</asp:Label>
                         <br />
+                        <asp:Label ID="lblDisponibilidadActiva" runat="server" Text="Usted está viendo: disponibilidades para todos los días."></asp:Label>
                         <br />
                         <br />
                         <asp:Panel ID="Panel1" runat="server">
@@ -137,16 +138,18 @@
                                         </asp:GridView>
                                     </td>
                                     <td>
-                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanging="gvDisponibilidades_PageIndexChanging">
-                                            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                                            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                                            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                                            <RowStyle BackColor="White" ForeColor="#330099" />
-                                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                                            <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                                            <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                                            <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                                            <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" AllowPaging="True" OnPageIndexChanging="gvDisponibilidades_PageIndexChanging" ForeColor="#333333" GridLines="None">
+                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                                         </asp:GridView>
                                         <asp:Label ID="lblSinRegistros" runat="server" Text="No hay disponibilidad para la especialidad/dia seleccionados." Visible="False"></asp:Label>
                                     </td>

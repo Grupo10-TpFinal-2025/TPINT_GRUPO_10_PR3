@@ -61,7 +61,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             Session["TablaDisponibilidad"] = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
             gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
 
-            gvDisponibilidades.DataBind();
+            gvDisponibilidades.DataBind();            
         }
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
@@ -70,7 +70,8 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             ResetearColoresBotonesDia();
             LimpiarFiltros();
 
-            Session["EspecialidadSeleccionada"] = null;
+            Session["NombreEspecialidad"] = null;
+            lblDisponibilidadActiva.Text = "Usted está viendo: disponibilidades para todos los días.";
 
             CargarDisponibilidad();
 
@@ -79,23 +80,25 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         protected void btnEspecialidad_Command(object sender, CommandEventArgs e)
         {
+            ResetearColoresBotonesEspecialidad();
             ResetearColoresBotonesDia();
             LimpiarFiltros();
 
+            Button btnEspecialidadSeleccionada = (Button)sender;
+            btnEspecialidadSeleccionada.BackColor = Color.DarkGray;
+            
             int codEspecialidad = Convert.ToInt32(e.CommandArgument);
+            string nombreEspecialidad = btnEspecialidadSeleccionada.Text;
 
             if (e.CommandName == "FiltroEspecialidad")
-            {
-                ResetearColoresBotonesEspecialidad();
-
-                Session["EspecialidadSeleccionada"] = codEspecialidad;
-
-                Button btnEspecialidadSeleccionada = (Button)sender;
-                btnEspecialidadSeleccionada.BackColor = Color.DarkGray;
-
+            {                
+                Session["CodEspecialidad"] = codEspecialidad;
+                Session["NombreEspecialidad"] = nombreEspecialidad;      
                 Session["TablaDisponibilidad"] = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
+
                 gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
                 gvDisponibilidades.DataBind();
+                lblDisponibilidadActiva.Text = $"Usted está viendo: disponibilidades para {nombreEspecialidad} para todos los días.";
 
                 VerificarNumeroRegistros();
             }
@@ -106,39 +109,44 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             ResetearColoresBotonesDia();
             LimpiarFiltros();
 
-            int diaSeleccionado  = Convert.ToInt32(e.CommandArgument);
-
             DataTable tablaDisponibilidad;
 
             Button btnDiaSeleccionado = (Button)sender;
             btnDiaSeleccionado.BackColor = Color.DarkGray;
 
-            if(Session["EspecialidadSeleccionada"] != null)
+            int numDiaSeleccionado  = Convert.ToInt32(e.CommandArgument);
+            string nombreDia = btnDiaSeleccionado.Text;
+
+            if(Session["NombreEspecialidad"] != null)
             {
-                int codEspecialidad = (int)Session["EspecialidadSeleccionada"];
+                int codEspecialidad = (int)Session["CodEspecialidad"];
+                string nombreEspecialidad = (string)Session["NombreEspecialidad"];
 
-
-                tablaDisponibilidad = (diaSeleccionado > 0)
-                ? negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, 0)
-                : negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
-                
-                                
-
-                if (diaSeleccionado > 0)
+                if (numDiaSeleccionado > 0)
                 {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, 0);
+                    tablaDisponibilidad = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, numDiaSeleccionado, 0);
+                    lblDisponibilidadActiva.Text = $"Usted está viendo: disponibilidades para {nombreEspecialidad} para los días {nombreDia}.";
                 }
                 else
                 {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
-                }              
+                    tablaDisponibilidad = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
+                    lblDisponibilidadActiva.Text = $"Usted está viendo: disponibilidades para {nombreEspecialidad} para todos los días.";
+                } 
+                
             }
+
             else
             {
-                tablaDisponibilidad = (diaSeleccionado > 0)                
-                ? negocioDisponibilidad.ObtenerTablaDisponibilidad(0, diaSeleccionado, 0)                                                
-                : negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
-                
+                if(numDiaSeleccionado > 0)
+                {
+                    tablaDisponibilidad = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, numDiaSeleccionado, 0);
+                    lblDisponibilidadActiva.Text = $"Usted está viendo: disponibilidades para los días {nombreDia}.";
+                }
+                else
+                {
+                    tablaDisponibilidad = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
+                    lblDisponibilidadActiva.Text = "Usted está viendo: disponibilidades para todos los días.";
+                }                               
             }
 
             Session["TablaDisponibilidad"] = tablaDisponibilidad;
@@ -147,8 +155,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             gvDisponibilidades.DataBind();
 
             VerificarNumeroRegistros();            
-
-            VerificarNumeroRegistros();
         }
 
         protected void btnFiltrarMedicoLegajo_Click(object sender, EventArgs e)
@@ -158,6 +164,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
 
             int legajoMedico = Convert.ToInt32(txtFiltroLegajoMedico.Text);
+            string numeroLegajo = legajoMedico.ToString();
 
             Session["TablaDisponibilidad"] = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, legajoMedico);
 
@@ -170,6 +177,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             }
             else
             {
+                lblDisponibilidadActiva.Text = $"Usted está viendo: disponibilidades para el médico con legajo {numeroLegajo} para todos los días.";
                 lblLegajoNoEncontrado.Visible = false;
             }
                            
@@ -184,7 +192,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             ResetearColoresBotonesEspecialidad();
 
             string cadenaFiltroAvanzado = ObtenerCadenaFiltroAvanzado();
-
+            
             if(cadenaFiltroAvanzado == null)
             {
                 lblSinFiltroAvanzado.Visible = true;
@@ -197,7 +205,8 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
                 gvDisponibilidades.DataBind();
             }
-            
+
+            lblDisponibilidadActiva.Text = string.Empty;
             lblSinFiltroAvanzado.Visible = false;
             LimpiarFiltros();
         }
@@ -313,6 +322,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             }
             else
             {
+                lblLegajoNoEncontrado.Visible = false;
                 lblSinRegistros.Visible = false;
             }
         }

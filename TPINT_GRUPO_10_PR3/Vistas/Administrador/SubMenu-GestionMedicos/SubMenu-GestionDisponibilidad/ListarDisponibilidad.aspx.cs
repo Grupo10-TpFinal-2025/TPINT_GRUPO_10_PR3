@@ -14,10 +14,12 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 	{
         private NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
         private NegocioEspecialidad negocioEspecialidad = new NegocioEspecialidad();
-        private NegocioDia negocioDia = new NegocioDia();
+        private NegocioDia negocioDia = new NegocioDia();        
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -54,23 +56,12 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         private void CargarDisponibilidad()
         {
-            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
+            Session["TablaDisponibilidad"] = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
+            gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
+
             gvDisponibilidades.DataBind();
         }
-
-        protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
-        {
-            if (btnMenuFiltrosAvanzados.Text == "Aplicar filtros avanzados")
-            {
-                pnlFiltrosAvanzados.Visible = true;
-                btnMenuFiltrosAvanzados.Text = "Ocultar filtros avanzados";
-            }
-            else
-            {
-                pnlFiltrosAvanzados.Visible = false;
-                btnMenuFiltrosAvanzados.Text = "Aplicar filtros avanzados";
-            }
-        }
+       
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
@@ -80,9 +71,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
             Session["EspecialidadSeleccionada"] = null;
 
-
-            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
-            gvDisponibilidades.DataBind();
+            CargarDisponibilidad();
 
             VerificarNumeroRegistros();
         }
@@ -102,8 +91,9 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
                 Button btnEspecialidadSeleccionada = (Button)sender;
                 btnEspecialidadSeleccionada.BackColor = Color.DarkGray;
-                                
-                gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
+
+                Session["TablaDisponibilidad"] = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
+                gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
                 gvDisponibilidades.DataBind();
 
                 VerificarNumeroRegistros();
@@ -117,7 +107,9 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             LimpiarFiltros();
 
             int diaSeleccionado  = Convert.ToInt32(e.CommandArgument);
-            
+
+            DataTable tablaDisponibilidad;
+
             Button btnDiaSeleccionado = (Button)sender;
             btnDiaSeleccionado.BackColor = Color.DarkGray;
 
@@ -125,53 +117,147 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             {
                 int codEspecialidad = (int)Session["EspecialidadSeleccionada"];
 
-                if (diaSeleccionado > 0)
-                {
-
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, 0);
-                }
-               else
-                {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
-                }
+                tablaDisponibilidad = (diaSeleccionado > 0)
+                ? negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, 0)
+                : negocioDisponibilidad.ObtenerTablaDisponibilidad(codEspecialidad, 0, 0);
+                
                                 
             }
             else
             {
-                if(diaSeleccionado > 0)
-                {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, diaSeleccionado, 0);
-                }
-                else
-                {
-                    gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
-                }
+                tablaDisponibilidad = (diaSeleccionado > 0)                
+                ? negocioDisponibilidad.ObtenerTablaDisponibilidad(0, diaSeleccionado, 0)                                                
+                : negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, 0);
+                
             }
 
+            Session["TablaDisponibilidad"] = tablaDisponibilidad;
+
+            gvDisponibilidades.DataSource = tablaDisponibilidad;
             gvDisponibilidades.DataBind();
 
-            VerificarNumeroRegistros();
-            
-
+            VerificarNumeroRegistros();            
         }
 
 
         protected void btnFiltrarMedicoLegajo_Click(object sender, EventArgs e)
         {
-
             ResetearColoresBotonesDia();
             ResetearColoresBotonesEspecialidad();
-            
+
 
             int legajoMedico = Convert.ToInt32(txtFiltroLegajoMedico.Text);
 
-            gvDisponibilidades.DataSource = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, legajoMedico);
+            Session["TablaDisponibilidad"] = negocioDisponibilidad.ObtenerTablaDisponibilidad(0, 0, legajoMedico);
+
+            gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
             gvDisponibilidades.DataBind();
 
-            VerificarNumeroRegistros();
+            if(gvDisponibilidades.Rows.Count == 0)
+            {
+                lblLegajoNoEncontrado.Visible = true;
+            }
+            else
+            {
+                lblLegajoNoEncontrado.Visible = false;
+            }
+                           
+            LimpiarFiltros();                        
+        }
+        
+
+        protected void btnAplicarFiltrosAvanzados_Click(object sender, EventArgs e)
+        {
+            
+            ResetearColoresBotonesDia();
+            ResetearColoresBotonesEspecialidad();
+
+            string cadenaFiltroAvanzado = ObtenerCadenaFiltroAvanzado();
+
+            if(cadenaFiltroAvanzado == null)
+            {
+                lblSinFiltroAvanzado.Visible = true;
+                return;
+            }
+
+            else
+            {
+                Session["TablaDisponibilidad"] = negocioDisponibilidad.ObtenerTablaDisponibilidadFiltroAvanzado(cadenaFiltroAvanzado);
+                gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
+                gvDisponibilidades.DataBind();
+            }
+            
+            lblSinFiltroAvanzado.Visible = false;
             LimpiarFiltros();
         }
 
+
+        protected void gvDisponibilidades_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvDisponibilidades.PageIndex = e.NewPageIndex;
+
+            if (Session["TablaDisponibilidad"] != null)
+            {
+                gvDisponibilidades.DataSource = (DataTable)Session["TablaDisponibilidad"];
+                gvDisponibilidades.DataBind();
+            }
+        }
+
+        private string ObtenerCadenaFiltroAvanzado()
+        {
+            string cadena = null;
+
+            string parametroRangoHorario = ddlOperatorsRangoHorario.SelectedValue;
+            string parametroEspecialidad = ddlOperatorsEspecialidad.SelectedValue;
+
+            string horario = ddlSeleccionarHorario.SelectedValue;
+            string especialidad = txtEspecialidad.Text;
+
+            
+
+            if (horario != "0")
+            {
+                cadena = " WHERE ";
+
+                switch (parametroRangoHorario)
+                {
+                    case "a partir de":
+                        cadena += $"HorarioInicio_DIS >= '{horario}'";
+                        break;
+
+                    default:
+                        cadena += $"HorarioFin_DIS < '{horario}'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtEspecialidad.Text))
+            {
+                if(horario != "0")
+                {
+                    cadena += " AND ";
+                }
+                else
+                {
+                    cadena = " WHERE ";
+                }
+
+                switch (parametroEspecialidad)
+                {
+                    case "contiene":
+                        cadena += $"E.Descripcion_ES LIKE '%{especialidad}%'";
+                        break;
+                    case "empieza con":
+                        cadena += $"E.Descripcion_ES LIKE '{especialidad}%'";
+                        break;
+                    default:
+                        cadena += $"E.Descripcion_ES LIKE '%{especialidad}'";
+                        break;
+                }
+            }
+
+            return cadena;
+        }
 
 
         private void ResetearColoresBotonesEspecialidad()
@@ -186,6 +272,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 }
             }
         }
+
         private void ResetearColoresBotonesDia()
         {
             foreach (GridViewRow fila in gvDias.Rows)
@@ -217,11 +304,31 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             }
         }
 
-        protected void btnAplicarFiltrosAvanzados_Click(object sender, EventArgs e)
-        {
 
-            negocioDisponibilidad.ObtenerTablaDisponibilidadFiltroAvanzado();
+        protected void btnLimpiarFiltrosMedicos_Click(object sender, EventArgs e)
+        {
+            ResetearColoresBotonesDia();
+            ResetearColoresBotonesEspecialidad();
+
+            ddlOperatorsRangoHorario.SelectedIndex = 0;
+            ddlOperatorsEspecialidad.SelectedIndex = 0;
+            ddlSeleccionarHorario.SelectedIndex = 0;
+            txtEspecialidad.Text = string.Empty;
+        }
+
+
+        protected void btnMenuFiltrosAvanzados_Click(object sender, EventArgs e)
+        {
+            if (btnMenuFiltrosAvanzados.Text == "Aplicar filtros avanzados")
+            {
+                pnlFiltrosAvanzados.Visible = true;
+                btnMenuFiltrosAvanzados.Text = "Ocultar filtros avanzados";
+            }
+            else
+            {
+                pnlFiltrosAvanzados.Visible = false;
+                btnMenuFiltrosAvanzados.Text = "Aplicar filtros avanzados";
+            }
         }
     }
-
 }

@@ -95,13 +95,14 @@
             <br />
             <br />
             Búsqueda por legajo de médico:
-                                <asp:TextBox ID="txtFiltroLegajoMedico" runat="server" Width="162px" TextMode="Number"></asp:TextBox>
-                            &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" OnClick="btnFiltrarMedicoLegajo_Click" />
+                                <asp:TextBox ID="txtFiltroLegajoMedico" runat="server" Width="162px" TextMode="Number" ValidationGroup="grupoLegajo"></asp:TextBox>
+                            &nbsp;<asp:Button ID="btnFiltrarMedicoLegajo" runat="server" Text="Filtrar" OnClick="btnFiltrarMedicoLegajo_Click" ValidationGroup="grupoLegajo" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
                             &nbsp;&nbsp;
-                                <asp:Label ID="lblLegajoNoEncontrado" runat="server"></asp:Label>
-                            <br />
+                                <asp:RequiredFieldValidator ID="rfvFiltrarLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ValidationGroup="grupoLegajo">Debe introducir un legajo.</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" ErrorMessage="El legajo debe ser un número mayor o igual a 1." ValidationExpression="^[1-9]\d*$" ValidationGroup="grupoLegajo"></asp:RegularExpressionValidator>
+&nbsp;<br />
             <table class="auto-style3">
                 <tr>
                     <td class="auto-style4">
@@ -117,6 +118,7 @@
                     </td>
                     <td>
                         <br />
+                                <asp:Label ID="lblLegajoNoEncontrado" runat="server" Visible="False">El legajo buscado no se encuentra en los registros.</asp:Label>
                         <br />
                         <br />
                         <br />
@@ -135,7 +137,7 @@
                                         </asp:GridView>
                                     </td>
                                     <td>
-                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+                                        <asp:GridView ID="gvDisponibilidades" runat="server" CellPadding="4" CssClass="auto-style22" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanging="gvDisponibilidades_PageIndexChanging">
                                             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                                             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
                                             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
@@ -167,10 +169,9 @@
                         <td>
                             <br />
                             <asp:Label ID="lblCantidadHoras" runat="server" Text="Rango Horario: "></asp:Label>
-                            &nbsp;<asp:DropDownList ID="ddOperatorsRangoHorario" runat="server" Height="20px" Width="105px">
-                                <asp:ListItem Value="igual a">Igual a:</asp:ListItem>
-                                <asp:ListItem Value="mayor a">Mayor a:</asp:ListItem>
-                                <asp:ListItem Value="menor a">Menor a:</asp:ListItem>
+                            &nbsp;<asp:DropDownList ID="ddlOperatorsRangoHorario" runat="server" Height="20px" Width="105px">
+                                <asp:ListItem Value="a partir de">A partir de:</asp:ListItem>
+                                <asp:ListItem Value="antes de">Antes de:</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;<asp:DropDownList ID="ddlSeleccionarHorario" runat="server" Height="20px" Width="162px">
                                 <asp:ListItem Value="0">-Seleccione un horario-</asp:ListItem>
@@ -195,7 +196,8 @@
                                 <asp:ListItem Value="termina con">Termina con:</asp:ListItem>
                             </asp:DropDownList>
                             <asp:TextBox ID="txtEspecialidad" runat="server" Width="145px"></asp:TextBox>
-                            &nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Label ID="lblSinFiltroAvanzado" runat="server" Text="&quot;No se aplicó ningún filtro avanzado&quot;" Visible="False"></asp:Label>
                             </td>
                     </tr>
                     <tr>
@@ -205,7 +207,7 @@
                         <td>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" OnClick="btnAplicarFiltrosAvanzados_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnLimpiarFiltrosMedicos" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" />
+                            <asp:Button ID="btnLimpiarFiltrosMedicos" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" OnClick="btnLimpiarFiltrosMedicos_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <br />
                             &nbsp;<asp:Label ID="lblFiltrosAvanzadosVacios" runat="server"></asp:Label>

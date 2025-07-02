@@ -135,9 +135,25 @@ namespace Datos
             return tablaDisponibilidad;
         }
 
-        public DataTable ObtenerTablaDisponibilidadFiltroAvanzado()
+        public DataTable ObtenerTablaDisponibilidadFiltroAvanzado(string cadena)
         {
-            return new DataTable();
+            DataTable tablaDisponibilidadFiltrada = new DataTable();            
+
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consultaFiltroAvanzado = consultaBase + cadena + ordenamiento;
+                
+                using(SqlCommand comando = new SqlCommand(consultaFiltroAvanzado, conexion))
+                {
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        tablaDisponibilidadFiltrada.Load(lector);
+                    }
+                }
+
+            }
+
+            return tablaDisponibilidadFiltrada;
         }
 
 

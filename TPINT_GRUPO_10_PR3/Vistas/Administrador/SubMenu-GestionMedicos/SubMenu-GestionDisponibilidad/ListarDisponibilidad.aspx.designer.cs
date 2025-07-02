@@ -105,13 +105,22 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.Button btnMostrarTodos;
 
         /// <summary>
-        /// Control lblLegajoNoEncontrado.
+        /// Control rfvFiltrarLegajo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLegajoNoEncontrado;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFiltrarLegajo;
+
+        /// <summary>
+        /// Control revLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revLegajo;
 
         /// <summary>
         /// Control gvEspecialidades.
@@ -121,6 +130,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvEspecialidades;
+
+        /// <summary>
+        /// Control lblLegajoNoEncontrado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLegajoNoEncontrado;
 
         /// <summary>
         /// Control Panel1.
@@ -195,13 +213,13 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.Label lblCantidadHoras;
 
         /// <summary>
-        /// Control ddOperatorsRangoHorario.
+        /// Control ddlOperatorsRangoHorario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddOperatorsRangoHorario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOperatorsRangoHorario;
 
         /// <summary>
         /// Control ddlSeleccionarHorario.
@@ -238,6 +256,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEspecialidad;
+
+        /// <summary>
+        /// Control lblSinFiltroAvanzado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSinFiltroAvanzado;
 
         /// <summary>
         /// Control btnAplicarFiltrosAvanzados.

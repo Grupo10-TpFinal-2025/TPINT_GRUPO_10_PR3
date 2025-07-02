@@ -30,9 +30,9 @@ namespace Negocios
         }
 
 
-        public DataTable ObtenerTablaDisponibilidadFiltroAvanzado()
+        public DataTable ObtenerTablaDisponibilidadFiltroAvanzado(string cadena)
         {
-            return daoD.ObtenerTablaDisponibilidadFiltroAvanzado();
+            return daoD.ObtenerTablaDisponibilidadFiltroAvanzado(cadena);
         {
 
         }

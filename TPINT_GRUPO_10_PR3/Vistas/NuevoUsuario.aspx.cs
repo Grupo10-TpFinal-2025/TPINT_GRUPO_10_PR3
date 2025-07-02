@@ -14,6 +14,10 @@ namespace Vistas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(IsPostBack)
+            {
+                lblContraseña.Text = string.Empty;
+            }
 
         }
 
@@ -53,15 +57,16 @@ namespace Vistas
 
                 if (exito)
                 {
-                    lblContraseña.Text = "Usuario creado correctamente.";
-                    limpiarCampos();
+                    lblContraseña.Text = "Usuario creado correctamente."; 
                 }
-            }
-            else
-            {
-                lblContraseña.Text = "Ocurrió un error al crear el usuario. Intentá nuevamente.";
+                else
+                {
+                    lblContraseña.Text = "Ocurrió un error al crear el usuario. Intentá nuevamente.";
+                }
+
                 limpiarCampos();
             }
+            
         }
          private void limpiarCampos()
           {

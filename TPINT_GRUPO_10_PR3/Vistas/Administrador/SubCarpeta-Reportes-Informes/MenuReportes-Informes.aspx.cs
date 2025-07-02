@@ -1,22 +1,26 @@
-﻿using System;
+﻿using Entidades;
+using Negocios;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using Negocios;
-using Entidades;
 
 
 namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
 {
 	public partial class MenuReportes_Informes : System.Web.UI.Page
 	{
-        NegocioMedico negocioMedico;
+        private DataTable dataTable;
+        private NegocioMedico negocioMedico;
+        private NegocioTurno negocioTurno;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-           if (Session["usuario"] == null)
+            if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
             }
@@ -24,17 +28,30 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
             if (!IsPostBack)
             {
                 lblUsuarioAdministrador.Text = "Administrador";
-                Session["TablaRedultados"] = null;
+                Session["TablaResultados"] = null;
                 Session["TituloInforme"] = null;
             }
+        }
+
+        protected void btnMedicoMasSolicitado_Click(object sender, EventArgs e)
+        {
+            negocioMedico = new NegocioMedico();
+            dataTable = negocioMedico.ObtenerMedicoMasSolicitado();
+
+            Session["TablaResultados"] = dataTable;
+            Session["TituloInforme"] = "Médico Más Solicitado";
+
+            Response.Redirect("ResultadosReportes-Informes.aspx");
         }
 
         protected void btnbtnPromedioMEspecialidad_Click(object sender, EventArgs e)
         {
             negocioMedico = new NegocioMedico();
-            DataTable tablaCompleta = negocioMedico.ObtenerMedicosXEspecialidad();
-            Session["TablaRedultados"] = tablaCompleta;
-            Session["TituloInforme"] = "Medicos por Especialidad";
+            dataTable = negocioMedico.ObtenerMedicosXEspecialidad();
+            
+            Session["TablaResultados"] = dataTable;
+            Session["TituloInforme"] = "Cantidad de Médicos por Especialidad";
+            
             Response.Redirect("ResultadosReportes-Informes.aspx");
         }
 
@@ -43,18 +60,13 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
             Response.Redirect("ResultadosReportes-Informes.aspx");
         }
 
-        protected void btnListarPaciente_Click(object sender, EventArgs e)
+        protected void btnConcurrenciaTurnosXDia_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ResultadosReportes-Informes.aspx");
-        }
+            negocioTurno = new NegocioTurno();
+            dataTable = negocioTurno.ObtenerConcurrenciaTurnosXDia();
 
-        protected void btnMedicoMasSolicitado_Click(object sender, EventArgs e)
-        {
-            negocioMedico = new NegocioMedico();
-            DataTable tabla = negocioMedico.ObtenerMedicoMasSolicitado();
-
-            Session["TablaRedultados"] = tabla;
-            Session["TituloInforme"] = "Médico Más Solicitado";
+            Session["TablaResultados"] = dataTable;
+            Session["TituloInforme"] = "Concurrencia de Turnos por Día";
 
             Response.Redirect("ResultadosReportes-Informes.aspx");
         }

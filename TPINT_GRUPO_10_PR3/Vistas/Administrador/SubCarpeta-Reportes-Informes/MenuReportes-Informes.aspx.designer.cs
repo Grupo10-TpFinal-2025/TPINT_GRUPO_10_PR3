@@ -78,12 +78,12 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
         protected global::System.Web.UI.WebControls.Button btnPorcentajePresencialidadT;
 
         /// <summary>
-        /// Control btnListarPaciente.
+        /// Control btnConcurrenciaTurnosXDia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnListarPaciente;
+        protected global::System.Web.UI.WebControls.Button btnConcurrenciaTurnosXDia;
     }
 }

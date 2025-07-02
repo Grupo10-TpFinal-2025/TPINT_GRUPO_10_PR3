@@ -207,7 +207,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnListarPaciente" runat="server" Text="Concurrencia Turnos X Día" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnListarPaciente_Click"/>
+                    <asp:Button ID="btnConcurrenciaTurnosXDia" runat="server" Text="Concurrencia Turnos X Día" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnConcurrenciaTurnosXDia_Click"/>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

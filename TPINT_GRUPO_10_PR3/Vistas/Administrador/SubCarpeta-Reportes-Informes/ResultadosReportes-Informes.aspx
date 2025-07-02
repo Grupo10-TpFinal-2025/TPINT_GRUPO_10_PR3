@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:Label ID="lblTituloInforme" runat="server" Font-Italic="True" Font-Size="X-Large"></asp:Label>
+                    <asp:Label ID="lblTituloInforme" runat="server" Font-Italic="True" Font-Size="X-Large" Font-Underline="True"></asp:Label>
                 </td>
                 <td class="auto-style19">&nbsp;</td>
             </tr>

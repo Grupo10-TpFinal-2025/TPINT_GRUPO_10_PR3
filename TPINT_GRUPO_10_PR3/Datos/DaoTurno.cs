@@ -361,5 +361,37 @@ namespace Datos
                 }
             }
         }
+
+        public DataTable ObtenerConcurrenciaTurnosXDia()
+        {
+            string consulta = @"
+                SET DATEFIRST 1;
+                SET LANGUAGE Spanish;
+
+                WITH DiasSemana AS (
+                    SELECT 1 AS NumeroDia_DS, 'Lunes' AS NombreDia_DS UNION ALL
+                    SELECT 2, 'Martes' UNION ALL
+                    SELECT 3, 'Miércoles' UNION ALL
+                    SELECT 4, 'Jueves' UNION ALL
+                    SELECT 5, 'Viernes' UNION ALL
+                    SELECT 6, 'Sábado' UNION ALL
+                    SELECT 7, 'Domingo'
+                )
+
+                SELECT 
+                    NombreDia_DS AS [Día de la Semana],
+                    ISNULL(COUNT(Fecha_TU), 0) AS [Turnos Asignados],
+                    ISNULL(SUM(CASE WHEN Asistencia_TU = 1 THEN 1 ELSE 0 END), 0) AS [Turnos Asistidos],
+                    CASE 
+                        WHEN COUNT(Fecha_TU) = 0 THEN '0.00 %'
+                        ELSE CONCAT(FORMAT(100.0 * SUM(CASE WHEN Asistencia_TU = 1 THEN 1 ELSE 0 END) / COUNT(Fecha_TU), 'N2'), ' %')
+                    END AS [Porcentaje de Asistencia]
+                FROM DiasSemana LEFT JOIN Turno
+                ON DATEPART(weekday, Fecha_TU) = NumeroDia_DS AND Estado_TU = 1 AND Pendiente_TU = 0
+                GROUP BY NumeroDia_DS, NombreDia_DS
+                ORDER BY NumeroDia_DS";
+
+            return datos.ObtenerTabla("ConcurrenciaTurnosPorDia", consulta);
+        }
     }
 }

@@ -92,5 +92,10 @@ namespace Negocios
         {
             return daoTurno.BajaLogicaTurno(codTurno);
         }
+
+        public DataTable ObtenerConcurrenciaTurnosXDia()
+        {
+            return daoTurno.ObtenerConcurrenciaTurnosXDia();
+        }
     }
 }

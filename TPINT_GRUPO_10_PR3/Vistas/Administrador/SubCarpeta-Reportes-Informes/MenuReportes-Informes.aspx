@@ -177,7 +177,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnPorcentajePresencialidadT" runat="server" Text="Porcentaje Presencialidad Turnos" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnPorcentajePresencialidadT_Click" />
+                    <asp:Button ID="btnPorcentajeAsistenciaTurnos" runat="server" Text="Porcentaje Asistencia de Turnos" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnPorcentajeAsistenciaTurnos_Click" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -207,7 +207,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:Button ID="btnConcurrenciaTurnosXDia" runat="server" Text="Horario mas solicitado" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnConcurrenciaTurnosXDia_Click"/>
+                    <asp:Button ID="btnHorarioMasSolicitado" runat="server" Text="Horario mas solicitado" CssClass="boton-estandar" Height="30px" Width="230px" OnClick="btnHorarioMasSolicitado_Click"/>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

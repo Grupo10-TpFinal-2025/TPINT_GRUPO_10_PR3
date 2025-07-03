@@ -81,7 +81,7 @@
 &nbsp;&nbsp;
                         <asp:Panel ID="pnlDias" runat="server" Visible="False">
                             &nbsp; Días de Atencion Semanal:
-                            <asp:DropDownList ID="ddlDisponibilidad" runat="server" OnSelectedIndexChanged="ddlDisponibilidad_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlDisponibilidad" runat="server" OnSelectedIndexChanged="ddlDisponibilidad_SelectedIndexChanged" AutoPostBack="True">
                             </asp:DropDownList>
                         </asp:Panel>
                         <br />

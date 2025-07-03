@@ -233,6 +233,10 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                     ddlInicio.Items[0].Enabled = false; 
                 }
             }
+        }
+
+        protected void ddl_eit_HoraFin_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if (sender is DropDownList ddlFin)
             {
                 if (ddlFin.SelectedIndex != 0)

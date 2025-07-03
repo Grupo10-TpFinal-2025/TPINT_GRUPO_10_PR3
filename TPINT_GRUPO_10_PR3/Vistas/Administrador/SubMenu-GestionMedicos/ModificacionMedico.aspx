@@ -241,7 +241,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Especialidad">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Especialidades" runat="server" ValidationGroup="Modificacion" AutoPostBack="True">
+                                    <asp:DropDownList ID="ddl_et_Especialidades" runat="server" ValidationGroup="Modificacion" AutoPostBack="True" OnSelectedIndexChanged="ddl_et_Especialidades_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddl_et_Especialidades" ErrorMessage="Debe seleccionar una especialdiad." InitialValue="0" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>

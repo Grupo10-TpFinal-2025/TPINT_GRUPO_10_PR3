@@ -81,18 +81,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Día:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlDiasDis" runat="server" OnSelectedIndexChanged="ddlDiasDis_SelectedIndexChanged">
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Día:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlDiasDis" runat="server" OnSelectedIndexChanged="ddlDiasDis_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Horario de Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlHorarioInicioDis" runat="server" OnSelectedIndexChanged="ddlHorarioInicioDis_SelectedIndexChanged">
+                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Horario de Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlHorarioInicioDis" runat="server" OnSelectedIndexChanged="ddlHorarioInicioDis_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Horario de Finalización:&nbsp;&nbsp;&nbsp;
-                        <asp:DropDownList ID="ddlHorarioFinDis" runat="server" OnSelectedIndexChanged="ddlHorarioFinDis_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlHorarioFinDis" runat="server" OnSelectedIndexChanged="ddlHorarioFinDis_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                 </tr>

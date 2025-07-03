@@ -208,7 +208,7 @@ namespace Datos
             estadoConexion = false;
 
             //Devuelvo la tabla
-            return dataSet.Tables[nombreTabla];
+            return dataSet.Tables[nombreTabla]; 
         }
 
         public SqlDataReader ObtenerLista(string consulta)

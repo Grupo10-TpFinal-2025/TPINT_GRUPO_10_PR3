@@ -35,8 +35,8 @@ namespace Negocios
 
             if (tabla.Rows.Count > 0)
             {
-                int codUsuarioMedico = Convert.ToInt32(tabla.Rows[0]["CodUsuarioMedico_UM"]);
-                return dao.ObtenerNombreCompletoMedico(codUsuarioMedico);
+                int legajoMedico = Convert.ToInt32(tabla.Rows[0]["LegajoMedico_UM"]);
+                return dao.ObtenerNombreCompletoMedico(legajoMedico);
             }
 
             return string.Empty;

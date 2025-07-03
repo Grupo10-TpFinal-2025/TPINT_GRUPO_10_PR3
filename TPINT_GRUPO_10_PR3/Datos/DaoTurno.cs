@@ -463,11 +463,28 @@ namespace Datos
         //Obtener horario mas solicitado
         public DataTable ObtenerTablaHorarioMasSolicitado()
         {
+            /*
+            El "WITH" es una forma de "crear una tabla" en la que selecciono x campo (ej: turnosRedondeados) y 
+            le pongo para que muestre AS y le establezco que vale lo mismo que otra consulta.
+
+            Los agrupo por la hora con el GROUP BY
+
+            Ya que es un DATE TIME tengo que separar la parte de date de la de time con el DATEPART
+
+            El COUNT(*) cuenta la cantidad de registros de esta tabla
+
+            Uso el cast para convertir el time en texto y asi sumarle lo que le quiera sumar
+
+            Format redondea el numero
+
+            Uso el CROSS JOIN para calcular el procentaje
+            */
+
             string consulta =
             "WITH TurnosRedondeados AS (" +
-            " SELECT DATEPART(HOUR, DATEADD(MINUTE, 30, Fecha_TU)) AS Hora, COUNT(*) AS Cantidad " +
+            " SELECT DATEPART(HOUR, Fecha_TU) AS Hora, COUNT(*) AS Cantidad " +
             " FROM Turno " +
-            " GROUP BY DATEPART(HOUR, DATEADD(MINUTE, 30, Fecha_TU)) " +
+            " GROUP BY DATEPART(HOUR, Fecha_TU) " +
             "), " +
             "TotalTurnos AS (" +
             " SELECT COUNT(*) AS Total FROM Turno " +

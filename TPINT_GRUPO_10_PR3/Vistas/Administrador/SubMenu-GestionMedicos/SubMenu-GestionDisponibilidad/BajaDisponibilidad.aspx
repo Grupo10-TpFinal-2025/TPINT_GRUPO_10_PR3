@@ -71,7 +71,7 @@
             <table class="auto-style9">
                 <tr>
                     <td class="auto-style7">
-                        &nbsp;&nbsp; Legajo:&nbsp;&nbsp;<asp:TextBox ID="txtLegajoBaja" runat="server" OnTextChanged="txtLegajoBaja_TextChanged" AutoPostBack="True"></asp:TextBox>
+                        &nbsp;&nbsp; Legajo:&nbsp;&nbsp;<asp:TextBox ID="txtLegajoBaja" runat="server" OnTextChanged="txtLegajoBaja_TextChanged" AutoPostBack="True" TextMode="Number"></asp:TextBox>
 &nbsp;&nbsp; <asp:Button ID="btnFiltrar" runat="server" Text="Dar de Baja" Width="120px" OnClick="btnFiltrar_Click" />
                     </td>
                 </tr>

@@ -77,7 +77,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; Legajo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtLegajoDisponibilidad" runat="server" Font-Size="Small"></asp:TextBox>
+                        <asp:TextBox ID="txtLegajoDisponibilidad" runat="server" Font-Size="Small" TextMode="Number"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

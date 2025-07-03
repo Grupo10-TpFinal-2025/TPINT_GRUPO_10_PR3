@@ -95,7 +95,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp; &nbsp; &nbsp;&nbsp; DNI Paciente:&nbsp;&nbsp;
-                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px"></asp:TextBox>
+                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px" TextMode="Number"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Descripción:&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtDescripcion" runat="server" Font-Size="Small" Height="17px" Width="217px"></asp:TextBox>
                     </td>
@@ -105,10 +105,10 @@
                         </asp:DropDownList>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dia: <asp:DropDownList ID="ddlDia" runat="server" Height="20px" Width="100px" AutoPostBack="True" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged">
                         </asp:DropDownList>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Horario:&nbsp; <asp:DropDownList ID="ddlHorario" runat="server" Height="20px" Width="100px">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Horario:&nbsp; <asp:DropDownList ID="ddlHorario" runat="server" Height="20px" Width="100px" OnSelectedIndexChanged="ddlHorario_SelectedIndexChanged">
                         </asp:DropDownList>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="lblError" runat="server" Visible="False"></asp:Label>
+                        <asp:Label ID="lblError" runat="server" Visible="False" ForeColor="Red"></asp:Label>
                     </td>
                 </tr>
                 <tr>

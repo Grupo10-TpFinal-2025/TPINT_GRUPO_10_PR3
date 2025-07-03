@@ -122,11 +122,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             {
 
                 Registrar_AltaPaciente();
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "Paciente duplicado registrado exitosamente según su confirmación.";
                 lblMensaje.CssClass = "mensaje-exito";
             }
             catch (Exception ex)
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Ocurrió un error al registrar: " + ex.Message;
                 lblMensaje.CssClass = "mensaje-error";
             }

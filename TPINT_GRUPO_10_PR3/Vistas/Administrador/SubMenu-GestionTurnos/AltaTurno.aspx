@@ -24,18 +24,15 @@
             width: 1770px;
             height: 65px;
         }
-        .auto-style7 {
-            height: 26px;
-        }
         .auto-style10 {
             height: 26px;
-            width: 959px;
+            width: 1017px;
         }
         .auto-style12 {
             width: 883px;
         }
         .auto-style13 {
-            width: 959px;
+            width: 1017px;
         }
         .auto-style14 {
             width: 1770px;
@@ -45,37 +42,57 @@
             width: 1770px;
             height: 17px;
         }
-        .auto-style16 {
-            width: 100%;
+        .auto-style17 {
+            width: 1100px;
+            height: 100%;
+            margin-bottom: 0px;
+        }
+        .auto-style19 {
+            width: 56%;
+            height: 100%;
+            margin-bottom: 0px;
         }
     </style>
 </head>
 <body>
     <form id="form2" runat="server">
         <div>
-            <table class="auto-style1">
+            <table class="auto-style17">
                 <tr>
-                    <td class="auto-style10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:HyperLink ID="hlAltaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/BajaTurno.aspx">Baja Turno</asp:HyperLink>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:HyperLink ID="hlBajaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ModificacionTurno.aspx">Modificación Turno</asp:HyperLink>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:HyperLink ID="hlModificacionTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ListarTurnos.aspx">Listar Turno</asp:HyperLink>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Usuario:<asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True"></asp:Label>
-                    &nbsp;</td>
-                    <td class="auto-style7"></td>
+                    <td class="auto-style10">
+                        &nbsp;
+                        <asp:HyperLink ID="hlAltaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/AltaTurno.aspx">Alta Turno</asp:HyperLink>
+                    </td>
+                    <td class="auto-style10">
+                        <asp:HyperLink ID="hlBajaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/BajaTurno.aspx">Baja Turno</asp:HyperLink>
+                    </td>
+                    <td class="auto-style10">
+                        <asp:HyperLink ID="hlModificacionTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ModificacionTurno.aspx">Modificación Turno</asp:HyperLink>
+                    </td>
+                    <td class="auto-style10">
+                        <asp:HyperLink ID="hlListarTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ListarTurnos.aspx">Listar Turno</asp:HyperLink>
+                    </td>
+                    <td class="auto-style10">
+                        Usuario: <asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style13">
                         &nbsp;</td>
-                    <td>
+                    <td class="auto-style13">
+                        &nbsp;</td>
+                    <td class="auto-style13">
+                        &nbsp;</td>
+                    <td class="auto-style13">
+                        &nbsp;</td>
+                    <td class="auto-style13">
                         &nbsp;</td>
                 </tr>
             </table>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="lblTituloAltaTurno" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Alta de un Turno:"></asp:Label>
             <br />
-            <table class="auto-style1">
+            <table class="auto-style19">
                 <tr>
                     <td class="auto-style12">
             <table class="auto-style1">
@@ -90,14 +107,13 @@
                         <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" Height="20px" Width="202px" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
                             
                         </asp:DropDownList>
-                        &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp; &nbsp; &nbsp;&nbsp; DNI Paciente:&nbsp;&nbsp;
-                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px"></asp:TextBox>
+                        <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px" TextMode="Number"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Descripción:&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtDescripcion" runat="server" Font-Size="Small" Height="17px" Width="217px"></asp:TextBox>
+                        <asp:TextBox ID="txtDescripcion" runat="server" Font-Size="Small" Height="17px" Width="217px" MaxLength="100"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -112,7 +128,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;</td>
+                    <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style15" style="font-size: small; text-decoration: blink">&nbsp;</td>
@@ -154,57 +170,6 @@
                         &nbsp;</td>
                 </tr>
                 </table>
-                    </td>
-                    <td>
-                        <table class="auto-style16">
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                        </table>
                     </td>
                 </tr>
             </table>

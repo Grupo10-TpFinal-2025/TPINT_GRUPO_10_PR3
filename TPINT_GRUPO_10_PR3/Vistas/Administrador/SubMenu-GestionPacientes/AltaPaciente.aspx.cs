@@ -12,9 +12,9 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 {
 	public partial class AltaPaciente : System.Web.UI.Page 
 	{
+        private Paciente paciente;
+        private NegocioPaciente negocioPaciente;
 
-        Paciente paciente;
-        NegocioPaciente negocioPaciente;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] == null)
@@ -31,7 +31,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
         }
 
-        public void Registrar_AltaPaciente()
+        private void Registrar_AltaPaciente()
         {
             paciente = getPaciente();
             bool resultado = negocioPaciente.AltaPaciente(paciente);
@@ -46,10 +46,11 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 lblMensaje.Text = "Error al registrar el paciente. Intente nuevamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
             }
+            
             LimpiarCampos();
         }
 
-        public void CargarProvincias()
+        private void CargarProvincias()
         {
             negocioPaciente = new NegocioPaciente();
             ddlProvinciaPaciente.DataSource = negocioPaciente.getRegistrosProvincias();
@@ -59,7 +60,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             ddlProvinciaPaciente.Items.Insert(0, new ListItem("Seleccione una provincia", ""));
         }
 
-        public void LimpiarCampos()
+        private void LimpiarCampos()
         {
             txtDniPaciente.Text = string.Empty;
             txtNombrePaciente.Text = string.Empty;
@@ -73,10 +74,9 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             txtCorreoPaciente.Text = string.Empty;
             txtTelefonoPaciente.Text = string.Empty;
             paciente = new Paciente();
-
         }
 
-       public Paciente getPaciente()
+        private Paciente getPaciente()
         {
             paciente = new Paciente();
             paciente = new Paciente();
@@ -120,7 +120,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         {
             try
             {
-
                 Registrar_AltaPaciente();
                 lblMensaje.Text = "Paciente duplicado registrado exitosamente según su confirmación.";
                 lblMensaje.CssClass = "mensaje-exito";
@@ -130,7 +129,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 lblMensaje.Text = "Ocurrió un error al registrar: " + ex.Message;
                 lblMensaje.CssClass = "mensaje-error";
             }
-
         }
 
         protected void ddlProvinciaPaciente_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,7 +138,5 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 ddlProvinciaPaciente.Items[0].Enabled = false;
             }
         }
-
-
     }
 }

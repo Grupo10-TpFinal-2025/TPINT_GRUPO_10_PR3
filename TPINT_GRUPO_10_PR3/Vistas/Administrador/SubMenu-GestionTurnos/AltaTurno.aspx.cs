@@ -449,7 +449,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             if (ddlSemana.SelectedValue != "0")
             {
-                ddlMedico.Items[0].Enabled = false;
+                ddlSemana.Items[0].Enabled = false;
                 int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
 
                 CargarDDLDia(legajoMedico);
@@ -462,11 +462,19 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             if (ddlDia.SelectedValue != "0")
             {
-                ddlSemana.Items[0].Enabled = false;
+                ddlDia.Items[0].Enabled = false;
                 int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
                 int diaSeleccionado = int.Parse(ddlDia.SelectedValue);
 
                 CargarDDLHorario(legajoMedico, diaSeleccionado);
+            }
+        }
+
+        protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlHorario.SelectedValue != "0")
+            {
+                ddlHorario.Items[0].Enabled = false;
             }
         }
 
@@ -542,14 +550,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();
             lblInfoTurnos.Text = string.Empty;
-        }
-
-        protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlHorario.SelectedValue != "0")
-            {
-                ddlDia.Items[0].Enabled = false;
-            }
         }
     }
 }

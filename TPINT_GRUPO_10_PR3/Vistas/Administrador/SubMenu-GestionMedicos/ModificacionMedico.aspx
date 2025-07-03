@@ -192,7 +192,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Provincia">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" ValidationGroup="Modificacion" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" ValidationGroup="Modificacion" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged" AutoPostBack="True">
                                     </asp:DropDownList>
                                     &nbsp;<asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddl_et_Provincias" ErrorMessage="Debe seleccionar una provincia." InitialValue="0" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -231,7 +231,6 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
-                                    <br />
                                     <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px" Text='<%# Bind("Correo") %>' ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<br /> <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar el correo electronico." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
@@ -242,7 +241,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Especialidad">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Especialidades" runat="server" ValidationGroup="Modificacion">
+                                    <asp:DropDownList ID="ddl_et_Especialidades" runat="server" ValidationGroup="Modificacion" AutoPostBack="True">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddl_et_Especialidades" ErrorMessage="Debe seleccionar una especialdiad." InitialValue="0" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>

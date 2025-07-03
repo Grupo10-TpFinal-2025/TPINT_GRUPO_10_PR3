@@ -280,13 +280,13 @@ namespace Datos
         //Modificacion Medico ------------------------------------------------------------------------
         public DataTable ObtenerTablaCompleta_Medico()
         {
-            string consultaModificacion = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido'," + 
-                "M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME," + 
-                " 'yyyy/MM/dd') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P" +
-                "WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad'," + 
-                " M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo'," + 
-                "(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad'" +
-                ", M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1 ORDER BY Apellido";
+            string consultaModificacion = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', " + 
+                "M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME, " + 
+                "'yyyy/MM/dd') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P " +
+                "WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', " + 
+                "M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo', " + 
+                "(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad' " +
+                ", M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1 ORDER BY Apellido ";
 
             return datos.ObtenerTabla("Medico", consultaModificacion);
         }

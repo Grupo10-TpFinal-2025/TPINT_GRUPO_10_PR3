@@ -42,15 +42,15 @@ namespace Datos
         }
 
         // OBTENER NOMBRE + APELLIDO DEL MÉDICO (para mostrar en el label luego del login)
-        public string ObtenerNombreCompletoMedico(int codUsuarioMedico)
+        public string ObtenerNombreCompletoMedico(int legajoMedico)
         {
             string consulta = @"SELECT M.Nombre_ME, M.Apellido_ME 
-                                FROM Medico M 
-                                INNER JOIN UsuarioMedico UM ON M.Legajo_ME = UM.CodUsuarioMedico_UM
-                                WHERE UM.CodUsuarioMedico_UM = @cod";
+                        FROM Medico M 
+                        INNER JOIN UsuarioMedico UM ON M.Legajo_ME = UM.LegajoMedico_UM
+                        WHERE UM.LegajoMedico_UM = @legajo";
 
             SqlCommand cmd = new SqlCommand(consulta);
-            cmd.Parameters.AddWithValue("@cod", codUsuarioMedico);
+            cmd.Parameters.AddWithValue("@legajo", legajoMedico);
 
             DataTable tabla = datos.ObtenerTablaFiltrada("Medico", cmd);
 
@@ -63,5 +63,6 @@ namespace Datos
 
             return string.Empty;
         }
+
     }
 }

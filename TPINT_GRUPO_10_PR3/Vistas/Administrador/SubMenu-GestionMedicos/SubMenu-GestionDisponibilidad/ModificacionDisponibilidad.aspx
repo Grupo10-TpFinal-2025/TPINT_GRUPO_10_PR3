@@ -104,7 +104,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Inicio Turno">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_eit_HoraInicio" runat="server" OnSelectedIndexChanged="ddl_eit_HoraInicio_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddl_eit_HoraInicio" runat="server" OnSelectedIndexChanged="ddl_eit_HoraInicio_SelectedIndexChanged" AutoPostBack="True">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvInicioHorario" runat="server" ControlToValidate="ddl_eit_HoraInicio" ErrorMessage="No se puede dejar en blanco" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -114,7 +114,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fin Del Turno">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_eit_HoraFin" runat="server">
+                                    <asp:DropDownList ID="ddl_eit_HoraFin" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_eit_HoraFin_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvHorarioFin" runat="server" ControlToValidate="ddl_eit_HoraFin" ErrorMessage="No se puede dejar el campo vacio." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>

@@ -150,6 +150,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
                 if (IsFiltrosVacios())
                 {
+                    lblFiltrosAvanzadosVacios.ForeColor = System.Drawing.Color.Red;
                     lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                     return;
                 }
@@ -165,6 +166,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
                 if (tablaFiltrada.Rows.Count == 0)
                 {
+                    lblFiltrosAvanzadosVacios.ForeColor = System.Drawing.Color.Red;
                     lblFiltrosAvanzadosVacios.Text = "No se encontraron resultados con los filtros aplicados.";
                 }
 
@@ -190,6 +192,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
         {
             if (IsFiltrosVacios())
             {
+                lblFiltrosAvanzadosVacios.ForeColor = System.Drawing.Color.Red;
                 lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                 return;
             }
@@ -217,6 +220,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
                 if (tablaFiltrada.Rows.Count == 0)
                 {
+                    lblDNInoEncontrado.ForeColor = System.Drawing.Color.Red;
                     lblDNInoEncontrado.Text = "El DNI ingresado no existe.";
                 }
                 else
@@ -267,6 +271,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 gvListadoPacientes.DataBind();
                 if (tabla.Rows.Count <= 0)
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "No se encontraron resultados para la provincia seleccionada.";
                 }
                 else

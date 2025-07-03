@@ -124,7 +124,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Eval("DNI") %>' ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Eval("DNI") %>' ValidationGroup="GrupoModificarPaciente" TextMode="Number"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="No puede dejar el campo DNI vacío." ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
@@ -165,7 +165,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Provincia">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server">
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddl_et_Provincias" Display="Dynamic" ErrorMessage="No puede dejar el campo Provincia vacío" InitialValue="0" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -195,7 +195,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Teléfono">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' TextMode="Number"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No puede dejar el campo Télefono vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No ingresó un formato de Teléfono válido" ValidationExpression="^\d{1,16}$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
@@ -205,7 +205,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Correo" runat="server" Text='<%# Bind("Correo") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Correo" runat="server" Text='<%# Bind("Correo") %>' TextMode="Email"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtCorreo" runat="server" ControlToValidate="txt_et_Correo" Display="Dynamic" ErrorMessage="No puede dejar el campo Correo vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTxtCorreo" runat="server" ControlToValidate="txt_et_Correo" Display="Dynamic" ErrorMessage="No ingresó un formato de Correo válido" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>

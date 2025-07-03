@@ -339,6 +339,15 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
         protected global::System.Web.UI.WebControls.Button btnRegistrarMedico;
 
         /// <summary>
+        /// Control btnAux.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAux;
+
+        /// <summary>
         /// Control lblMensaje.
         /// </summary>
         /// <remarks>

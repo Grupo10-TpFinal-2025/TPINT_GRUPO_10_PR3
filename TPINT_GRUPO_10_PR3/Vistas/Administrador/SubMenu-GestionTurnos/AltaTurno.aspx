@@ -121,10 +121,10 @@
                         </asp:DropDownList>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dia: <asp:DropDownList ID="ddlDia" runat="server" Height="20px" Width="100px" AutoPostBack="True" OnSelectedIndexChanged="ddlDia_SelectedIndexChanged">
                         </asp:DropDownList>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Horario:&nbsp; <asp:DropDownList ID="ddlHorario" runat="server" Height="20px" Width="100px">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Horario:&nbsp; <asp:DropDownList ID="ddlHorario" runat="server" Height="20px" Width="100px" OnSelectedIndexChanged="ddlHorario_SelectedIndexChanged">
                         </asp:DropDownList>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="lblError" runat="server" Visible="False"></asp:Label>
+                        <asp:Label ID="lblError" runat="server" Visible="False" ForeColor="Red"></asp:Label>
                     </td>
                 </tr>
                 <tr>

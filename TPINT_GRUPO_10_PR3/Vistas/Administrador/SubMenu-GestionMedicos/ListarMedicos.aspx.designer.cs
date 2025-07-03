@@ -222,6 +222,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtIDniMedico;
 
         /// <summary>
+        /// Control revTxtFiltroDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTxtFiltroDni;
+
+        /// <summary>
         /// Control lblApellidoMedico.
         /// </summary>
         /// <remarks>
@@ -274,15 +283,6 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCorreoMedico;
-
-        /// <summary>
-        /// Control revTxtFiltroDni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTxtFiltroDni;
 
         /// <summary>
         /// Control revTxtFiltroApellido.

@@ -134,6 +134,7 @@ namespace Vistas
 
                 if (IsFiltrosVacios())
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                     return;
                 }
@@ -159,6 +160,7 @@ namespace Vistas
             
             if (IsFiltrosVacios())
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                 return;
             }
@@ -282,6 +284,7 @@ namespace Vistas
                 gvListaMedicos.DataBind();
                 if (gvDisponibilidad == null)
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "No se encontraron resultados para la provincia seleccionada.";
                 }
                 else

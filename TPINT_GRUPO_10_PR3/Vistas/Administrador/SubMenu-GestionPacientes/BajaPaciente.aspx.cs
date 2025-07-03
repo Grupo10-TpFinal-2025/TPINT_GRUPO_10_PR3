@@ -35,20 +35,24 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
                 if (exito == 1)
                 {
+                    lblResultadoBaja.ForeColor = System.Drawing.Color.Green;
                     lblResultadoBaja.Text = "Paciente dado de baja exitosamente.";
                     txtLegajoBaja.Text = string.Empty;
                 }
                 else if (exito == 0)
                 {
+                    lblResultadoBaja.ForeColor = System.Drawing.Color.Red;
                     lblResultadoBaja.Text = "No se encontró el paciente o ya estaba dado de baja.";
                 }
                 else
                 {
+                    lblResultadoBaja.ForeColor = System.Drawing.Color.Red;
                     lblResultadoBaja.Text = "Ocurrió un error al intentar dar de baja al paciente. Por favor, intentá nuevamente más tarde.";
                 }
             }
             else
             {
+                lblResultadoBaja.ForeColor = System.Drawing.Color.Red;
                 lblResultadoBaja.Text = "Por favor, ingresá un legajo válido.";
             }
         }

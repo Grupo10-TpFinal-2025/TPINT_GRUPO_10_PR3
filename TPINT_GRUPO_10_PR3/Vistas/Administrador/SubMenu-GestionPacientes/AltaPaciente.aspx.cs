@@ -38,13 +38,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
             if (resultado)
             {
-                lblMensaje.Text = "Paciente registrado correctamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Paciente registrado correctamente.";
             }
             else
             {
-                lblMensaje.Text = "Error al registrar el paciente. Intente nuevamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Error al registrar el paciente. Intente nuevamente.";
             }
             
             LimpiarCampos();
@@ -121,11 +121,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             try
             {
                 Registrar_AltaPaciente();
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "Paciente duplicado registrado exitosamente según su confirmación.";
                 lblMensaje.CssClass = "mensaje-exito";
             }
             catch (Exception ex)
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Ocurrió un error al registrar: " + ex.Message;
                 lblMensaje.CssClass = "mensaje-error";
             }

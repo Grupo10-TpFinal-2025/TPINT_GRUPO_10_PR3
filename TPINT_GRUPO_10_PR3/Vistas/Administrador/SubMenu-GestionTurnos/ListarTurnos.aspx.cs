@@ -31,6 +31,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             {
                 lblUsuarioAdministrador.Text = "Administrador";
                 cargarGV();
+                Session["TablaFiltrada"] = null;
             }
         }
 
@@ -61,6 +62,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
             DataTable tabla = turno.getTabla();
             gvTablaTurnos.DataSource = tabla;
+            Session["TablaFiltrada"] = tabla; 
             gvTablaTurnos.DataBind();
         }
 
@@ -68,7 +70,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected void gvTablaTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTablaTurnos.PageIndex = e.NewPageIndex;
-            cargarGV();
+            gvTablaTurnos.DataSource = Session["TablaFiltrada"] as DataTable; 
+            gvTablaTurnos.DataBind();
         }
 
         //boton de filtro principal
@@ -77,6 +80,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             //Relleno el dataTable y lo bindeo
             
             DataTable tabla = turno.getTablaPorCodigoTurno(Convert.ToInt32(txtListarTurno.Text.Trim()));
+            Session["TablaFiltrada"] = tabla; 
             gvTablaTurnos.DataSource = tabla;
             gvTablaTurnos.DataBind();
 
@@ -116,6 +120,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             if( (string.IsNullOrEmpty(txtFiltroFecha.Text) && txtFiltroDni.Text == string.Empty) || (ddlDniPaciente.SelectedValue == "0" && (string.IsNullOrEmpty(txtFiltroFecha.Text))))
             {
                 //Mensaje
+                lblResultadoFiltroAvanzado.ForeColor = System.Drawing.Color.Red;
                 lblResultadoFiltroAvanzado.Text = "*Se deben ingresar campos para poder usar los filtros avanzados.";
             }
             else
@@ -131,12 +136,14 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     fecha = null;
                 }
                 DataTable dt = turno.getTablaFiltrada(fecha, txtFiltroDni.Text, ddlDniPaciente.SelectedValue);
+                Session["TablaFiltrada"] = dt; 
                 gvTablaTurnos.DataSource = dt;
                 gvTablaTurnos.DataBind();
 
                 //Mensaje si no encontro nada
                 if(dt.Rows.Count == 0)
                 {
+                    lblResultadoFiltroAvanzado.ForeColor = System.Drawing.Color.Red;
                     lblResultadoFiltroAvanzado.Text = "*No se encontraron resultados con esos filtros.";
                 }
 

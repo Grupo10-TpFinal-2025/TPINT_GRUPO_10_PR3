@@ -131,10 +131,10 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
                     <asp:TextBox ID="txtNuevoUsuario" runat="server" Height="20px" Width="126px" MaxLength="16" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvUsuarioNuevo" runat="server" ControlToValidate="txtNuevoUsuario" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False">Ingrese nombre de Usuario</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvUsuarioNuevo" runat="server" ControlToValidate="txtNuevoUsuario" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Ingrese nombre de Usuario</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style19">
-                    <asp:RegularExpressionValidator ID="revNuevoUsuario" runat="server" ControlToValidate="txtNuevoUsuario" ValidationExpression="^\S+$" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False">No ingrese espacios en blanco</asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revNuevoUsuario" runat="server" ControlToValidate="txtNuevoUsuario" ValidationExpression="^\S+$" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">No ingrese espacios en blanco</asp:RegularExpressionValidator>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -156,10 +156,10 @@
                 <td class="auto-style16"></td>
                 <td class="auto-style15">
                     <asp:TextBox ID="txtNuevaContraseña" runat="server" Height="20px" Width="126px" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False">Ingrese una contraseña</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Ingrese una contraseña</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style20">
-                    <asp:RegularExpressionValidator ID="revContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s]+$" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False">La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial y NO contener espacios en blanco</asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s]+$" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial y NO contener espacios en blanco</asp:RegularExpressionValidator>
                 </td>
                 <td class="auto-style17"></td>
                 <td class="auto-style17"></td>
@@ -181,10 +181,10 @@
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
                     <asp:TextBox ID="txtNuevaContraseña2" runat="server" Height="20px" Width="126px" TextMode="Password" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtNuevaContraseña2" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False">Debe ingresar algún valor</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtNuevaContraseña2" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Debe ingresar algún valor</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style19">
-                    <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToCompare="txtNuevaContraseña" ControlToValidate="txtNuevaContraseña2" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False">Las contreñas deben coincidir</asp:CompareValidator>
+                    <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToCompare="txtNuevaContraseña" ControlToValidate="txtNuevaContraseña2" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Las contreñas deben coincidir</asp:CompareValidator>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -203,7 +203,7 @@
                         <tr>
                             <td class="auto-style26">
                                 <asp:TextBox ID="txtLegajoMedico" runat="server" Height="27px" TextMode="Number" Width="59px" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoMedico" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False">Ingrese un legajo</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoMedico" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Ingrese un legajo</asp:RequiredFieldValidator>
                             </td>
                             <td>
                                 &nbsp;</td>

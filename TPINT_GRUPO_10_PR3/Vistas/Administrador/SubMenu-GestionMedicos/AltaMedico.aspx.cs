@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -43,30 +44,69 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
 
             //Cargo los valores en un objeto medico
             Entidades.Medico medico = CargaMedico();
+            if (negocioMedico.ValidarExistenciaMedicoXDNI(medico) > 0)
+            {
+                string script = "if(confirm('Ya existe un medico registrado con ese mismo DNI. ¿Está seguro de que desea registrarlo de todas formas?')) { " +
+                        "__doPostBack('" + btnAux.UniqueID + "',''); " +
+                        "}";
 
-            //Subo el objeto medico a la bd
-            bandera = negocioMedico.AgregarMedico (medico);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ConfirmarRegistro", script, true);
+            }
+            else
+            {
+                //Subo el objeto medico a la bd
+                bandera = negocioMedico.AgregarMedico(medico);
 
-            //Si todo salio bien
+                //Si todo salio bien
+                if (bandera)
+                {
+                    //Doy opcion a cargar las disponibilidades del medico
+                    hlDisponibilidadRapida.Visible = true;
+
+                    //borro los campos en el formulario
+                    LimpiarCampos();
+
+                    //Mensaje de exito al cargar medico
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                    lblMensaje.Visible = true;
+                    lblMensaje.Text = "Se ha cargado con exito al sistema.";
+                }
+                else
+                {
+                    //Mensaje de error
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje.Visible = true;
+                    lblMensaje.Text = "Ha ocurrido un error.";
+                }
+            }
+        }
+
+        protected void btnAux_Click(object sender, EventArgs e)
+        {
+            bool bandera = false;
+           Entidades.Medico medico = CargaMedico();
+
+            bandera = negocioMedico.AgregarMedico(medico);
+
             if (bandera)
             {
-                //Doy opcion a cargar las disponibilidades del medico
                 hlDisponibilidadRapida.Visible = true;
 
-                //borro los campos en el formulario
                 LimpiarCampos();
 
                 //Mensaje de exito al cargar medico
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "Se ha cargado con exito al sistema.";
+                lblMensaje.Text = "Medico duplicado registrado exitosamente según su confirmación.";
+                lblMensaje.CssClass = "mensaje-exito";
             }
             else
             {
                 //Mensaje de error
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "Ha ocurrido un error.";
+                lblMensaje.Text = "Ha ocurrido un error";
+                lblMensaje.CssClass = "mensaje-error";
             }
         }
 
@@ -160,6 +200,12 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
                 //Desactivar la opcion 0
                 ddlEspecialidadMedico.Items[0].Enabled = false;
             }
+        }
+
+        protected override void Render(HtmlTextWriter writer)
+        {
+            ClientScript.RegisterForEventValidation(btnAux.UniqueID);
+            base.Render(writer);
         }
     }
 }

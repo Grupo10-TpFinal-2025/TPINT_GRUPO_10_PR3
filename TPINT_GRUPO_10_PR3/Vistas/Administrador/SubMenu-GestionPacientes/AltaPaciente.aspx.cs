@@ -38,13 +38,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
             if (resultado)
             {
-                lblMensaje.Text = "Paciente registrado correctamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Paciente registrado correctamente.";
             }
             else
             {
-                lblMensaje.Text = "Error al registrar el paciente. Intente nuevamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Error al registrar el paciente. Intente nuevamente.";
             }
             LimpiarCampos();
         }

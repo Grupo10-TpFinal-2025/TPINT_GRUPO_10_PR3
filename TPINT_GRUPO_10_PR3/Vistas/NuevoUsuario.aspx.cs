@@ -31,6 +31,7 @@ namespace Vistas
                 //  Validar legajo ingresado
                 if (!int.TryParse(txtLegajoMedico.Text.Trim(), out int legajoMedico))
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "Por favor, ingresá un legajo válido.";
                     limpiarCampos();
                     return;
@@ -39,6 +40,7 @@ namespace Vistas
                 // Verificar que el médico exista
                 if (!negocioUsuarioMedico.ExisteMedicoPorLegajo(legajoMedico))
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "No existe un médico con el legajo ingresado.";
                     limpiarCampos();
                     return;
@@ -47,6 +49,7 @@ namespace Vistas
                 // Verificar que el médico no tenga ya un usuario asignado
                 if (negocioUsuarioMedico.ExisteUsuarioMedicoPorLegajo(legajoMedico))
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "Este médico ya tiene un usuario asignado.";
                     limpiarCampos();
                     return;
@@ -57,10 +60,12 @@ namespace Vistas
 
                 if (exito)
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Green;
                     lblContraseña.Text = "Usuario creado correctamente."; 
                 }
                 else
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "Ocurrió un error al crear el usuario. Intentá nuevamente.";
                 }
 

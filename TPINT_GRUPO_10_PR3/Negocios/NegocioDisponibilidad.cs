@@ -29,7 +29,6 @@ namespace Negocios
             return daoD.ObtenerTablaDisponibilidad(codEspecialidad, diaSeleccionado, legajoMedico);
         }
 
-
         public DataTable ObtenerTablaDisponibilidadFiltroAvanzado(string cadena)
         {
 

@@ -51,6 +51,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.HyperLink hlModificacionTurno;
 
         /// <summary>
+        /// Control hlListarTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlListarTurno;
+
+        /// <summary>
         /// Control lblUsuarioAdministrador.
         /// </summary>
         /// <remarks>
@@ -85,15 +94,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMedico;
-
-        /// <summary>
-        /// Control lblMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
         /// Control txtDniPaciente.

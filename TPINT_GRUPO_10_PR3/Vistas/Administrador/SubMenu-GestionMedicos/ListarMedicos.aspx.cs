@@ -38,7 +38,7 @@ namespace Vistas
             }
         }
 
-        public void CargarDias()
+        private void CargarDias()
         {
             gvDisponibilidad.DataSource = negocioMedico.getDias();
             gvDisponibilidad.DataBind();
@@ -251,7 +251,7 @@ namespace Vistas
             return filtros;
         }
 
-        void LimpiarTxtFiltrosAvanzados()
+        private void LimpiarTxtFiltrosAvanzados()
         {
             txtFiltroLegajoMedico.Text = string.Empty;
             txtIDniMedico.Text = string.Empty;
@@ -262,7 +262,7 @@ namespace Vistas
             ddlOperatorsCorreo.SelectedIndex = 0;
         }
 
-        void LimpiarValoresFiltrosAvanzados()
+        private void LimpiarValoresFiltrosAvanzados()
         {
             for (int i = 0; i < filtros.GetLength(0); i++)
             {

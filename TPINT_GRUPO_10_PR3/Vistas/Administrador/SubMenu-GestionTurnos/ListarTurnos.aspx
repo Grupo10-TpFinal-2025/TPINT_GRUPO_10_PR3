@@ -13,15 +13,8 @@
         .auto-style2 {
             width: 663px;
         }
-        .auto-style3 {
-            width: 275px;
-        }
         .auto-style4 {
             width: 1658px;
-            height: 23px;
-        }
-        .auto-style5 {
-            width: 275px;
             height: 23px;
         }
         .auto-style6 {
@@ -42,29 +35,39 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:HyperLink ID="hlAltaTurno" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/AltaTurno.aspx">Alta Turno</asp:HyperLink>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:HyperLink ID="hlBajaTurno" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/BajaTurno.aspx">Baja Turno</asp:HyperLink>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:HyperLink ID="hlModificacionTurno" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ModificacionTurno.aspx">Modificación Turno</asp:HyperLink>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Usuario:<asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                    <td class="auto-style5">&nbsp;</td>
+                    <td class="auto-style4">&nbsp;<asp:Panel ID="Panel1" runat="server">
+                        <table class="auto-style1">
+                            <tr>
+                                <td>
+                                    <asp:HyperLink ID="hlAltaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/AltaTurno.aspx">Alta Turno</asp:HyperLink>
+                                </td>
+                                <td>
+                                    <asp:HyperLink ID="hlBajaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/BajaTurno.aspx">Baja Turno</asp:HyperLink>
+                                </td>
+                                <td>
+                                    <asp:HyperLink ID="hlModificacionTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ModificacionTurno.aspx">Modificación Turno</asp:HyperLink>
+                                </td>
+                                <td>
+                                    <asp:HyperLink ID="hlListarTurnos" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/ListarTurnos.aspx">Listar Turnos</asp:HyperLink>
+                                </td>
+                                <td>Usuario:
+                                    <asp:Label ID="lblUsuarioAdministrador" runat="server" Font-Bold="True"></asp:Label>
+                                </td>
+                            </tr>
+                        </table>
+                        </asp:Panel>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style4"></td>
-                    <td class="auto-style5"></td>
                 </tr>
                 <tr>
                     <td class="auto-style9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Listar Turnos"></asp:Label>
                     </td>
-                    <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style9">&nbsp;</td>
-                    <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style9">Código de turno: <asp:TextBox ID="txtListarTurno" runat="server" OnTextChanged="txtListarTurno_TextChanged" Width="135px" TextMode="Number"></asp:TextBox>
@@ -73,7 +76,6 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <asp:Button ID="btnLimpiarFiltrosAvanzados" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" OnClick="btnLimpiarFiltrosAvanzados_Click" />
                     </td>
-                    <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style9">
@@ -93,13 +95,11 @@
                         <br />
                         <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     </td>
-                    <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnMostrarFiltrosAvanzado0" runat="server" Height="29px" OnClick="btnAplicarFiltroAvanzado0_Click" Text="Aplicar Filtros Avanzado" Width="234px" />
                     </td>
-                    <td class="auto-style5"></td>
                 </tr>
                 <tr>
                     <td class="auto-style9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -131,17 +131,14 @@
                             </table>
                         </asp:Panel>
                     </td>
-                    <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style9">&nbsp;</td>
-                    <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style9">
                         <asp:HyperLink ID="hlGestionTurnos" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/MenuGestionTurnos.aspx">Regresar a Menú de Gestión de Turnos...</asp:HyperLink>
                     </td>
-                    <td class="auto-style3">&nbsp;</td>
                 </tr>
             </table>
         </div>

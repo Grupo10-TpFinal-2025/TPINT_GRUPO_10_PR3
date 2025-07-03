@@ -10,7 +10,7 @@ namespace Vistas
 {
     public partial class NuevoUsuario : System.Web.UI.Page
     {
-        NegocioUsuarioMedico negocioUsuarioMedico = new NegocioUsuarioMedico();
+        private readonly NegocioUsuarioMedico negocioUsuarioMedico = new NegocioUsuarioMedico();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,6 @@ namespace Vistas
             {
                 lblContraseña.Text = string.Empty;
             }
-
         }
 
         protected void btnAgregarUsuarioMedico_Click(object sender, EventArgs e)
@@ -71,14 +70,14 @@ namespace Vistas
 
                 limpiarCampos();
             }
-            
         }
-         private void limpiarCampos()
-          {
-              txtLegajoMedico.Text = "";
-              txtNuevoUsuario.Text = "";
-              txtNuevaContraseña.Text = "";
-              txtNuevaContraseña2.Text = "";
-          }
+
+        private void limpiarCampos()
+        {
+            txtLegajoMedico.Text = "";
+            txtNuevoUsuario.Text = "";
+            txtNuevaContraseña.Text = "";
+            txtNuevaContraseña2.Text = "";
+        }
     }
 }

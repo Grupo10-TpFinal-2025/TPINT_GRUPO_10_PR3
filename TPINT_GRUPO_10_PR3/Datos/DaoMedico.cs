@@ -184,7 +184,7 @@ namespace Datos
             return reader;
         }
 
-        public void ValidarOCrearProcedimientoMedicoPorEspecialidad()
+        private void ValidarOCrearProcedimientoMedicoPorEspecialidad()
         {
             SqlConnection conexion = datos.ObtenerConexion();
             using (conexion)
@@ -250,7 +250,7 @@ namespace Datos
             cmd.Parameters.Add("@DNI_ME", SqlDbType.Char, 8).Value = medico.DNI;
         }
 
-        public void ArmarParametro_FiltroMedico(ref SqlCommand command, Medico medico)
+        private void ArmarParametro_FiltroMedico(ref SqlCommand command, Medico medico)
         {
             if (medico.DiaDisponible > 0)
             {
@@ -291,7 +291,7 @@ namespace Datos
             return datos.ObtenerTabla("Medico", consultaModificacion);
         }
 
-        public void ValidarOCrearProcedimientoModificacionMedico()
+        private void ValidarOCrearProcedimientoModificacionMedico()
         {
             using (SqlConnection conexion = datos.ObtenerConexion())
             {

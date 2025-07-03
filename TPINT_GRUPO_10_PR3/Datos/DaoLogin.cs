@@ -10,7 +10,7 @@ namespace Datos
 {
     public class DaoLogin
     {
-        private AccesoDatos datos;
+        private readonly AccesoDatos datos;
 
         public DaoLogin()
         {

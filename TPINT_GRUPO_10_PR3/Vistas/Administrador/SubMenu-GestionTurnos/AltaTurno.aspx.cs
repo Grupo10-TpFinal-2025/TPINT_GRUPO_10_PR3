@@ -22,6 +22,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -470,7 +472,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         protected void btnAgregarT_Click(object sender, EventArgs e)
         {
-            if (ddlMedico.SelectedValue == "0" || ddlDia.SelectedValue == "0" || ddlSemana.SelectedValue == "0" || ddlHorario.SelectedValue == "0" || string.IsNullOrWhiteSpace(txtDniPaciente.Text))
+            if (ddlMedico.SelectedValue == "0" || ddlDia.SelectedValue == "0" || ddlSemana.SelectedValue == "0" || ddlHorario.SelectedValue == "0" || string.IsNullOrWhiteSpace(txtDniPaciente.Text.Trim()) || string.IsNullOrWhiteSpace(txtDescripcion.Text.Trim()))
             {
                 lblResultadoAltaT.Text = "Debe completar todos los campos.";
                 lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
@@ -515,6 +517,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 {
                     lblResultadoAltaT.Text = "Turno agendado correctamente.";
                     lblResultadoAltaT.ForeColor = System.Drawing.Color.Green;
+                    LimpiarCampos();
                 }
                 else
                 {
@@ -527,6 +530,18 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 lblResultadoAltaT.Text = "Error al agendar el turno: " + ex.Message;
                 lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
             }
+        }
+
+        public void LimpiarCampos()
+        {
+            ddlEspecialidad.SelectedIndex = 0;
+            ddlMedico.Items.Clear();
+            txtDniPaciente.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            ddlSemana.Items.Clear();
+            ddlDia.Items.Clear();
+            ddlHorario.Items.Clear();
+            lblInfoTurnos.Text = string.Empty;
         }
 
         protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)

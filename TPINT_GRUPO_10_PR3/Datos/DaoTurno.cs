@@ -26,7 +26,7 @@ namespace Datos
             datos = new AccesoDatos();
         }
 
-        public void ValidarOCrearProcedimientoAgendarTurno()
+        private void ValidarOCrearProcedimientoAgendarTurno()
         {
             SqlConnection conexion = datos.ObtenerConexion();
             using (conexion)
@@ -110,7 +110,7 @@ namespace Datos
             return listaTurnosMedico;
         }
 
-        public void ValidarOCrearProcedimientoMostrarTurno()
+        private void ValidarOCrearProcedimientoMostrarTurno()
         {
             SqlConnection conexion = datos.ObtenerConexion();
             using (conexion)
@@ -178,7 +178,7 @@ namespace Datos
         private SqlCommand ObtenerConsultaFiltrada(int caso, string dni, DateTime? fecha)
         {
             //Variable
-            string consulta = "";
+            string consulta;
 
             //Pregunto que caso es
             if (caso == 1)
@@ -334,7 +334,7 @@ namespace Datos
             }
         }
 
-        public SqlCommand CargarParametros_ModificacionTurno(Turno turno)
+        private SqlCommand CargarParametros_ModificacionTurno(Turno turno)
         {
             SqlCommand sqlComand = new SqlCommand("SP_ModificacionTurno_Grupo10");
             sqlComand.CommandType = CommandType.StoredProcedure;

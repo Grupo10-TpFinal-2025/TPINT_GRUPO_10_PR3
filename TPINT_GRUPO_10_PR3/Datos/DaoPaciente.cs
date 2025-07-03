@@ -11,9 +11,8 @@ namespace Datos
 {
     public class DaoPaciente
     {
-        private AccesoDatos datos;
+        private readonly AccesoDatos datos;
         private SqlCommand sqlCommand;
-
         private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo', P.DNI_PA AS 'DNI', P.Apellido_PA AS 'Apellido', P.Nombre_PA AS 'Nombre', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', FORMAT(P.FechaNacimiento_PA, 'dd/MM/yyyy') AS [Fecha de Nacimiento], P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', Pr.CodProvincia_Pr AS 'CodProvincia', P.Correo_PA AS 'Correo', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
 
         public DaoPaciente()
@@ -23,7 +22,7 @@ namespace Datos
 
         //------------------------------------------------------ Alta Paciente ------------------------------------------------------
        
-        public void ValidarOCrearProcedimientoAltaPaciente()
+        private void ValidarOCrearProcedimientoAltaPaciente()
         {
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
@@ -61,7 +60,7 @@ namespace Datos
             }
         }
 
-        public void ArmarParametro_Alta_Paciente(ref SqlCommand command, Paciente paciente)
+        private void ArmarParametro_Alta_Paciente(ref SqlCommand command, Paciente paciente)
         {
             command.Parameters.AddWithValue("@DNI_PA", paciente.Dni);
             command.Parameters.AddWithValue("@Nombre_PA", paciente.Nombre);
@@ -86,7 +85,7 @@ namespace Datos
             return resultado;
         }
 
-        public void ArmarParametro_DNIPaciente(ref SqlCommand command, Paciente paciente)
+        private void ArmarParametro_DNIPaciente(ref SqlCommand command, Paciente paciente)
         {
             SqlParameter parametro = new SqlParameter();
             parametro = command.Parameters.Add("@DNI_PA", SqlDbType.Int);
@@ -150,7 +149,7 @@ namespace Datos
             return datos.ObtenerTabla("Pacientes", consulta);
         }
 
-        public void ArmarParametro_FiltroPaciente(ref SqlCommand command, Paciente paciente)
+        private void ArmarParametro_FiltroPaciente(ref SqlCommand command, Paciente paciente)
         {
             if(!string.IsNullOrEmpty(paciente.Dni) && paciente.Dni.Length > 0)
             {
@@ -258,7 +257,7 @@ namespace Datos
         }
 
         //Modificacion Paciente ------------------------------------------------------------------------
-        public void ValidarOCrearProcedimientoModificacionPaciente()
+        private void ValidarOCrearProcedimientoModificacionPaciente()
         {
             using (SqlConnection conexion = datos.ObtenerConexion())
             {

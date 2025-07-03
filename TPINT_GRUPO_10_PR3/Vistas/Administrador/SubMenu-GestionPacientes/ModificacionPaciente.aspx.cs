@@ -30,13 +30,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
         }
 
-        public void CargarPacientesTabla()
+        private void CargarPacientesTabla()
         {
             gvModificacionPacientes.DataSource = negocioPaciente.ObtenerPacientes();
             gvModificacionPacientes.DataBind();
         }
 
-        public void CargarDDLProvincias(DropDownList ddl)
+        private void CargarDDLProvincias(DropDownList ddl)
         {
             ddl.DataSource = negocioPaciente.getRegistrosProvincias();
             ddl.DataTextField = "Descripcion_PR";

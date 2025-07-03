@@ -24,6 +24,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control Panel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+
+        /// <summary>
         /// Control hlAltaTurno.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlModificacionTurno;
+
+        /// <summary>
+        /// Control hlListarTurnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlListarTurnos;
 
         /// <summary>
         /// Control lblUsuarioAdministrador.

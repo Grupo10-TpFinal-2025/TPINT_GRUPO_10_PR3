@@ -85,20 +85,20 @@
             <tr>
                 <td class="auto-style9">&nbsp;</td>
                 <td class="auto-style7">
-                    <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Vertical">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
-                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="Dni" HeaderText="DNI" />
                             <asp:BoundField DataField="Sexo" HeaderText="Sexo" />
                             <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
-                            <asp:BoundField DataField="FechaNacimientoFormateada" HeaderText="Fecha Nacimiento" />
-                            <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
+                            <asp:BoundField DataField="FechaNacimientoFormateada" HeaderText="Fecha de Nacimiento" />
+                            <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
                             <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
                             <asp:BoundField DataField="CorreoElectronico" HeaderText="Correo " />
-                            <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                            <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />
                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

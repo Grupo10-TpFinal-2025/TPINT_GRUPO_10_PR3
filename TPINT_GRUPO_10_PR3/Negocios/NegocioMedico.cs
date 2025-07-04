@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
@@ -91,6 +92,11 @@ namespace Negocios
         {
             DaoMedico daoMedico = new DaoMedico();
             return daoMedico.ObtenerMedicoMasSolicitado();
+        }
+
+        public int ValidarExistenciaMedicoXDNI(Medico dni)
+        {
+            return daoMedico.ValidarExistenciaMedicoXDni(dni);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Vistas
 {
     public partial class NuevoUsuario : System.Web.UI.Page
     {
-        NegocioUsuarioMedico negocioUsuarioMedico = new NegocioUsuarioMedico();
+        private readonly NegocioUsuarioMedico negocioUsuarioMedico = new NegocioUsuarioMedico();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,6 @@ namespace Vistas
             {
                 lblContraseña.Text = string.Empty;
             }
-
         }
 
         protected void btnAgregarUsuarioMedico_Click(object sender, EventArgs e)
@@ -31,6 +30,7 @@ namespace Vistas
                 //  Validar legajo ingresado
                 if (!int.TryParse(txtLegajoMedico.Text.Trim(), out int legajoMedico))
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "Por favor, ingresá un legajo válido.";
                     limpiarCampos();
                     return;
@@ -39,6 +39,7 @@ namespace Vistas
                 // Verificar que el médico exista
                 if (!negocioUsuarioMedico.ExisteMedicoPorLegajo(legajoMedico))
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "No existe un médico con el legajo ingresado.";
                     limpiarCampos();
                     return;
@@ -47,6 +48,7 @@ namespace Vistas
                 // Verificar que el médico no tenga ya un usuario asignado
                 if (negocioUsuarioMedico.ExisteUsuarioMedicoPorLegajo(legajoMedico))
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "Este médico ya tiene un usuario asignado.";
                     limpiarCampos();
                     return;
@@ -57,23 +59,25 @@ namespace Vistas
 
                 if (exito)
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Green;
                     lblContraseña.Text = "Usuario creado correctamente."; 
                 }
                 else
                 {
+                    lblContraseña.ForeColor = System.Drawing.Color.Red;
                     lblContraseña.Text = "Ocurrió un error al crear el usuario. Intentá nuevamente.";
                 }
 
                 limpiarCampos();
             }
-            
         }
-         private void limpiarCampos()
-          {
-              txtLegajoMedico.Text = "";
-              txtNuevoUsuario.Text = "";
-              txtNuevaContraseña.Text = "";
-              txtNuevaContraseña2.Text = "";
-          }
+
+        private void limpiarCampos()
+        {
+            txtLegajoMedico.Text = "";
+            txtNuevoUsuario.Text = "";
+            txtNuevaContraseña.Text = "";
+            txtNuevaContraseña2.Text = "";
+        }
     }
 }

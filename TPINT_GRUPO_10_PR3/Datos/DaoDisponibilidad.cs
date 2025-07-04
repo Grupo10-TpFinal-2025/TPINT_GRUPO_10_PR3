@@ -13,7 +13,7 @@ namespace Datos
     public class DaoDisponibilidad
     {
         private AccesoDatos datos;
-        private string consultaBase = @"SELECT E.Descripcion_ES AS 'Especialidad', 
+        private const string consultaBase = @"SELECT E.Descripcion_ES AS 'Especialidad', 
             M.Apellido_ME + ' ' + 
             M.Nombre_ME AS 'Medico', 
             DIA.Descripcion_DI AS 'Dia', 
@@ -24,14 +24,14 @@ namespace Datos
             INNER JOIN Medico M ON M.Legajo_ME = DIS.LegajoMedico_DIS 
             INNER JOIN Especialidad E ON E.CodEspecialidad_ES = M.CodigoEspecialidad_ME";
 
-        private string ordenamiento = " ORDER BY [Especialidad] ASC";
+        private const string ordenamiento = " ORDER BY [Especialidad] ASC";
 
-        private string consultaModificacionDisponibilidad = @"SELECT Descripcion_DI AS Dia, Nombre_ME + ' ' + Apellido_ME AS Nombre, 
+        private const string consultaModificacionDisponibilidad = @"SELECT Descripcion_DI AS Dia, Nombre_ME + ' ' + Apellido_ME AS Nombre, 
                                 LegajoMedico_DIS AS Legajo, HorarioInicio_DIS AS Inicio, HorarioFin_DIS AS Fin, Estado_DIS AS Estado FROM Disponibilidad 
                                 INNER JOIN Medico ON LegajoMedico_DIS = Legajo_ME
                                 INNER JOIN Dia ON NumDia_DIS = NumDia_DI";
 
-        private string ordenamientoPorDia = " ORDER BY NumDia_DI";
+        private const string ordenamientoPorDia = " ORDER BY NumDia_DI";
 
         public DaoDisponibilidad()
         {
@@ -167,7 +167,6 @@ namespace Datos
 
             return tablaDisponibilidadFiltrada;
         }
-
 
         public DataTable Obtener_Disponibilidad(Disponibilidad disponibilidad)
         {
@@ -388,7 +387,7 @@ namespace Datos
         }
 
         //Cargar los parametros
-        public SqlCommand CargarParametros_ModificacionDsiponibilidad(Disponibilidad disp)
+        private SqlCommand CargarParametros_ModificacionDsiponibilidad(Disponibilidad disp)
         {
             SqlCommand sqlComand = new SqlCommand("SP_ModificacionDisponibilidad");
             sqlComand.CommandType = CommandType.StoredProcedure;

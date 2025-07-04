@@ -180,6 +180,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btnRegistrarMedico" runat="server" Height="30px" OnClick="btnDisponivilidadMedico_Click" Text="Agregar" Width="100px" ValidationGroup="alta" />
 &nbsp;
+                        <asp:Button ID="btnAux" runat="server" BackColor="White" BorderColor="White" BorderStyle="None" ForeColor="White" Height="16px" OnClick="btnAux_Click" style="margin-right: 0px; margin-top: 0px" Visible="False" Width="16px" />
                         <br />
                         <br />
                         <asp:Label ID="lblMensaje" runat="server" Font-Size="Small"></asp:Label>

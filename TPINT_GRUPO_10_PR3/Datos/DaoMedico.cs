@@ -1,12 +1,7 @@
-﻿using Entidades;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entidades;
 
 namespace Datos
 {
@@ -15,8 +10,8 @@ namespace Datos
         ///---------------------------------------------------- Propiedades -------------------------------------------------------------------------------
 
         private readonly AccesoDatos datos;
-        private const string ConsultaBase = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME, 'yyyy/MM/dd') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo',(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad', M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1 ORDER BY Apellido";
         private SqlCommand sqlCommand;
+
 
         ///--------------------------------------------------- Constructores ------------------------------------------------------------------------------
         public DaoMedico()
@@ -189,7 +184,7 @@ namespace Datos
             return reader;
         }
 
-        public void ValidarOCrearProcedimientoMedicoPorEspecialidad()
+        private void ValidarOCrearProcedimientoMedicoPorEspecialidad()
         {
             SqlConnection conexion = datos.ObtenerConexion();
             using (conexion)
@@ -255,7 +250,7 @@ namespace Datos
             cmd.Parameters.Add("@DNI_ME", SqlDbType.Char, 8).Value = medico.DNI;
         }
 
-        public void ArmarParametro_FiltroMedico(ref SqlCommand command, Medico medico)
+        private void ArmarParametro_FiltroMedico(ref SqlCommand command, Medico medico)
         {
             if (medico.DiaDisponible > 0)
             {
@@ -285,11 +280,18 @@ namespace Datos
         //Modificacion Medico ------------------------------------------------------------------------
         public DataTable ObtenerTablaCompleta_Medico()
         {
-            //Obtengo la tabla
-            return datos.ObtenerTabla("Medico", ConsultaBase);
+            string consultaModificacion = "SELECT M.Legajo_ME AS 'Legajo', M.Nombre_ME As 'Nombre', M.Apellido_ME As 'Apellido', " + 
+                "M.DNI_ME As 'DNI', CASE M.Sexo_ME WHEN 'F' Then 'Femenino' ELSE 'Masculino' END AS 'Sexo', FORMAT(M.FechaNacimiento_ME, " + 
+                "'yyyy/MM/dd') AS [Fecha de Nacimiento], M.Nacionalidad_ME AS 'Nacionalidad' ,(SELECT P.Descripcion_PR FROM Provincia  AS P " +
+                "WHERE P.CodProvincia_PR = M.CodProvincia_ME) AS 'Provincia', M.CodProvincia_ME AS 'CodProvincia', M.Localidad_ME AS 'Localidad', " + 
+                "M.Direccion_ME AS 'Direccion', M.Telefono_ME AS 'Telefono', M.Correo_ME AS 'Correo', " + 
+                "(SELECT E.Descripcion_ES FROM Especialidad AS E WHERE E.CodEspecialidad_ES = M.CodigoEspecialidad_ME) AS 'Especialidad' " +
+                ", M.CodigoEspecialidad_ME AS 'CodEspecialidad' FROM Medico AS M WHERE M.Estado_ME = 1 ORDER BY Apellido ";
+
+            return datos.ObtenerTabla("Medico", consultaModificacion);
         }
 
-        public void ValidarOCrearProcedimientoModificacionMedico()
+        private void ValidarOCrearProcedimientoModificacionMedico()
         {
             using (SqlConnection conexion = datos.ObtenerConexion())
             {
@@ -387,6 +389,21 @@ namespace Datos
                     COUNT(T.CodTurno_TU) DESC;";
 
             return datos.ObtenerTabla("MedicoMasSolicitado", consulta);
+        }
+
+        public int ValidarExistenciaMedicoXDni(Medico dni)
+        {
+            string consultaValidacion = "SELECT * FROM Medico WHERE DNI_ME = @DNI_ME AND Estado_ME = 1";
+            sqlCommand = new SqlCommand(consultaValidacion);
+            sqlCommand.Parameters.Add("@DNI_ME", SqlDbType.Char, 8).Value = dni.DNI;
+            try
+            {
+                return datos.ObtenerTablaFiltrada("Medico", sqlCommand).Rows.Count;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al validar la existencia del médico por DNI.");
+            }
         }
     }
 }

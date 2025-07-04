@@ -152,7 +152,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_DNI" runat="server" ValidationGroup="Modificacion" Text='<%# Eval("DNI") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_DNI" runat="server" ValidationGroup="Modificacion" Text='<%# Eval("DNI") %>' TextMode="Number"></asp:TextBox>
                                     <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txt_et_DNI" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txt_et_DNI" ErrorMessage="Debe ingresar un dni valido." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -192,7 +192,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Provincia">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" ValidationGroup="Modificacion" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" ValidationGroup="Modificacion" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged" AutoPostBack="True">
                                     </asp:DropDownList>
                                     &nbsp;<asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddl_et_Provincias" ErrorMessage="Debe seleccionar una provincia." InitialValue="0" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -221,7 +221,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Teléfono">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion" TextMode="Number"></asp:TextBox>
                                     &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^(?:\s*\d\s*){1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -231,8 +231,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
-                                    <br />
-                                    <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px" Text='<%# Bind("Correo") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px" Text='<%# Bind("Correo") %>' ValidationGroup="Modificacion" TextMode="Email"></asp:TextBox>
                                     &nbsp;<br /> <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar el correo electronico." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -242,7 +241,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Especialidad">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Especialidades" runat="server" ValidationGroup="Modificacion">
+                                    <asp:DropDownList ID="ddl_et_Especialidades" runat="server" ValidationGroup="Modificacion" AutoPostBack="True" OnSelectedIndexChanged="ddl_et_Especialidades_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddl_et_Especialidades" ErrorMessage="Debe seleccionar una especialdiad." InitialValue="0" ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>

@@ -22,6 +22,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -41,7 +43,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 ddlEspecialidad.DataSource = negocioEspecialidad.ObtenerSqlDataReaderEspecialidad();
                 ddlEspecialidad.DataTextField = "Descripcion_ES";
                 ddlEspecialidad.DataValueField = "CodEspecialidad_ES";
-                ddlEspecialidad.DataBind();                
+                ddlEspecialidad.DataBind();
 
                 ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccione--", "0"));
 
@@ -50,8 +52,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             catch (Exception ex)
             {
                 lblError.Visible = true;
-                lblError.Text = "Error al cargar especialidades.";                
-            }            
+                lblError.Text = "Error al cargar especialidades.";
+            }
         }
 
         private void CargarDDLMedico(string cod)
@@ -68,13 +70,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     ddlMedico.Items.Insert(0, new ListItem("--Seleccione un médico--", "0"));
                 }
 
-                lblError.Visible = false;         
+                lblError.Visible = false;
             }
             catch (Exception ex)
             {
                 lblError.Visible = true;
                 lblError.Text = "Error al cargar médicos.";
-            }            
+            }
         }
 
         private void CargarDDLSemana(int legajoMedico)
@@ -207,7 +209,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                         DateTime turnoHora = fechaDelDia.Add(hora);
                         bool yaPaso = turnoHora <= ahora;
                         bool ocupado = false;
-                        
+
                         foreach (var t in listaTurnos)
                         {
                             if (t.Fecha == turnoHora && t.Estado)
@@ -324,6 +326,11 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlHorario.Items.Clear();
             lblInfoTurnos.Text = string.Empty;
 
+            if (ddlEspecialidad.SelectedIndex != 0)
+            {
+                ddlEspecialidad.Items[0].Enabled = false;
+            }
+
             //Cargar médicos y restaurar selección si corresponde
             CargarDDLMedico(cod);
         }
@@ -335,11 +342,16 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlHorario.Items.Clear();
             lblInfoTurnos.Text = string.Empty;
 
+            if (ddlMedico.SelectedIndex != 0)
+            {
+                ddlMedico.Items[0].Enabled = false;
+            }
+
             int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
 
             List<Disponibilidad> listaDisponibilidadMedico = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
             List<Turno> listaTurnos = negocioTurno.ObtenerListaTurnos(legajoMedico);
-            
+
             if (listaTurnos != null)
             {
                 int cantidadDisponibles = CalcularTurnosDisponibles(listaDisponibilidadMedico, listaTurnos);
@@ -352,13 +364,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 else if (ddlMedico.SelectedValue != "0")
                 {
                     lblInfoTurnos.Text = "Este médico no tiene turnos próximos disponibles.";
-                    lblInfoTurnos.ForeColor= System.Drawing.Color.Red;
+                    lblInfoTurnos.ForeColor = System.Drawing.Color.Red;
                 }
             }
             else
             {
                 lblInfoTurnos.Text = "No se encontraron datos de turnos para este médico.";
-                lblInfoTurnos.ForeColor = System.Drawing.Color.Black;
+                lblInfoTurnos.ForeColor = System.Drawing.Color.Red;
             }
 
             if (legajoMedico != 0)
@@ -437,6 +449,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             if (ddlSemana.SelectedValue != "0")
             {
+                ddlSemana.Items[0].Enabled = false;
                 int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
 
                 CargarDDLDia(legajoMedico);
@@ -449,6 +462,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             if (ddlDia.SelectedValue != "0")
             {
+                ddlDia.Items[0].Enabled = false;
                 int legajoMedico = Convert.ToInt32(ddlMedico.SelectedValue);
                 int diaSeleccionado = int.Parse(ddlDia.SelectedValue);
 
@@ -456,9 +470,17 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
         }
 
+        protected void ddlHorario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlHorario.SelectedValue != "0")
+            {
+                ddlHorario.Items[0].Enabled = false;
+            }
+        }
+
         protected void btnAgregarT_Click(object sender, EventArgs e)
         {
-            if (ddlMedico.SelectedValue == "0" || ddlDia.SelectedValue == "0" || ddlSemana.SelectedValue == "0" || ddlHorario.SelectedValue == "0" || string.IsNullOrWhiteSpace(txtDniPaciente.Text))
+            if (ddlMedico.SelectedValue == "0" || ddlDia.SelectedValue == "0" || ddlSemana.SelectedValue == "0" || ddlHorario.SelectedValue == "0" || string.IsNullOrWhiteSpace(txtDniPaciente.Text.Trim()) || string.IsNullOrWhiteSpace(txtDescripcion.Text.Trim()))
             {
                 lblResultadoAltaT.Text = "Debe completar todos los campos.";
                 lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
@@ -497,12 +519,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     return;
                 }
 
-                bool exito = negocioTurno.AgendarTurno(legajoMedico, legajoPaciente, descripcion ,fechaYHoraTurno);
+                bool exito = negocioTurno.AgendarTurno(legajoMedico, legajoPaciente, descripcion, fechaYHoraTurno);
 
                 if (exito)
                 {
                     lblResultadoAltaT.Text = "Turno agendado correctamente.";
                     lblResultadoAltaT.ForeColor = System.Drawing.Color.Green;
+                    LimpiarCampos();
                 }
                 else
                 {
@@ -516,5 +539,17 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
             }
         }
-    }    
+
+        public void LimpiarCampos()
+        {
+            ddlEspecialidad.SelectedIndex = 0;
+            ddlMedico.Items.Clear();
+            txtDniPaciente.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            ddlSemana.Items.Clear();
+            ddlDia.Items.Clear();
+            ddlHorario.Items.Clear();
+            lblInfoTurnos.Text = string.Empty;
+        }
+    }
 }

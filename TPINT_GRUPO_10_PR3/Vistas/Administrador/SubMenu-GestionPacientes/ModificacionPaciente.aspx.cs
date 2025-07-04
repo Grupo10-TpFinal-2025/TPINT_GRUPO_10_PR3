@@ -30,13 +30,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
         }
 
-        public void CargarPacientesTabla()
+        private void CargarPacientesTabla()
         {
             gvModificacionPacientes.DataSource = negocioPaciente.ObtenerPacientes();
             gvModificacionPacientes.DataBind();
         }
 
-        public void CargarDDLProvincias(DropDownList ddl)
+        private void CargarDDLProvincias(DropDownList ddl)
         {
             ddl.DataSource = negocioPaciente.getRegistrosProvincias();
             ddl.DataTextField = "Descripcion_PR";
@@ -81,12 +81,14 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
             if (negocioPaciente.ModificarPaciente(paciente))
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "Paciente modificado correctamente.";
                 gvModificacionPacientes.EditIndex = -1;
                 CargarPacientesTabla();
             }
             else
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = "Error al modificar el paciente. Verifique los datos ingresados.";
             }
         }
@@ -165,6 +167,17 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             else
             {
                 txtFechaNacimiento.Text = "";
+            }
+        }
+
+        protected void ddl_et_Provincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(sender is DropDownList ddl_et_Provincias)
+            {
+                if (ddl_et_Provincias.SelectedIndex != 0)
+                {
+                    ddl_et_Provincias.Items[0].Enabled = false;
+                }
             }
         }
     }

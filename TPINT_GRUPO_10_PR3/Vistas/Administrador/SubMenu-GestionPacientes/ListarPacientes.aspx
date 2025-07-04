@@ -144,7 +144,7 @@
                                                             <asp:ListItem Value="2">Mayor a:</asp:ListItem>
                                                             <asp:ListItem Value="3">Menor a:</asp:ListItem>
                                                         </asp:DropDownList>
-                                                        &nbsp;<asp:TextBox ID="txtDniPaciente" runat="server" Width="140px"></asp:TextBox>
+                                                        &nbsp;<asp:TextBox ID="txtDniPaciente" runat="server" Width="140px" TextMode="Number"></asp:TextBox>
                                                         &nbsp;<asp:RegularExpressionValidator ID="revTxtFiltroDni" runat="server" ControlToValidate="txtDniPaciente" ErrorMessage="Solo se permite el ingreso de números naturales en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
                                                         &nbsp;&nbsp;
                                                         <asp:Label ID="lblNombrePaciente" runat="server" Text="Nombre:"></asp:Label>
@@ -162,7 +162,7 @@
                                                             <asp:ListItem Value="2">Empieza con:</asp:ListItem>
                                                             <asp:ListItem Value="3">Termina con:</asp:ListItem>
                                                         </asp:DropDownList>
-                                                        &nbsp;<asp:TextBox ID="txtTelefonoPaciente" runat="server" Width="145px"></asp:TextBox>
+                                                        &nbsp;<asp:TextBox ID="txtTelefonoPaciente" runat="server" Width="145px" TextMode="Number"></asp:TextBox>
                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>

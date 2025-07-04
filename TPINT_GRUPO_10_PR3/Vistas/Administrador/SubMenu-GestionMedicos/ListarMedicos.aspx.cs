@@ -38,7 +38,7 @@ namespace Vistas
             }
         }
 
-        public void CargarDias()
+        private void CargarDias()
         {
             gvDisponibilidad.DataSource = negocioMedico.getDias();
             gvDisponibilidad.DataBind();
@@ -134,6 +134,7 @@ namespace Vistas
 
                 if (IsFiltrosVacios())
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                     return;
                 }
@@ -159,6 +160,7 @@ namespace Vistas
             
             if (IsFiltrosVacios())
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                 return;
             }
@@ -249,7 +251,7 @@ namespace Vistas
             return filtros;
         }
 
-        void LimpiarTxtFiltrosAvanzados()
+        private void LimpiarTxtFiltrosAvanzados()
         {
             txtFiltroLegajoMedico.Text = string.Empty;
             txtIDniMedico.Text = string.Empty;
@@ -260,7 +262,7 @@ namespace Vistas
             ddlOperatorsCorreo.SelectedIndex = 0;
         }
 
-        void LimpiarValoresFiltrosAvanzados()
+        private void LimpiarValoresFiltrosAvanzados()
         {
             for (int i = 0; i < filtros.GetLength(0); i++)
             {
@@ -282,6 +284,7 @@ namespace Vistas
                 gvListaMedicos.DataBind();
                 if (gvDisponibilidad == null)
                 {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "No se encontraron resultados para la provincia seleccionada.";
                 }
                 else

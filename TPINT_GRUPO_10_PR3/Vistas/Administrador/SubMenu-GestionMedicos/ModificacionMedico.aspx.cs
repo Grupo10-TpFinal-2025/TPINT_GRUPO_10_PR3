@@ -206,14 +206,18 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
                     ddlProvincias.Items[0].Enabled = false;
                 }
             }
+        }
 
-            if(sender is DropDownList ddlEspecialidades)
+        protected void ddl_et_Especialidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sender is DropDownList ddlEspecialidades)
             {
                 if (ddlEspecialidades.SelectedIndex != 0)
                 {
                     ddlEspecialidades.Items[0].Enabled = false;
                 }
             }
+
         }
     }
 }

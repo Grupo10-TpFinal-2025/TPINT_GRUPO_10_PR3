@@ -26,7 +26,7 @@ namespace Datos
             datos = new AccesoDatos();
         }
 
-        public void ValidarOCrearProcedimientoAgendarTurno()
+        private void ValidarOCrearProcedimientoAgendarTurno()
         {
             SqlConnection conexion = datos.ObtenerConexion();
             using (conexion)
@@ -110,7 +110,7 @@ namespace Datos
             return listaTurnosMedico;
         }
 
-        public void ValidarOCrearProcedimientoMostrarTurno()
+        private void ValidarOCrearProcedimientoMostrarTurno()
         {
             SqlConnection conexion = datos.ObtenerConexion();
             using (conexion)
@@ -178,7 +178,7 @@ namespace Datos
         private SqlCommand ObtenerConsultaFiltrada(int caso, string dni, DateTime? fecha)
         {
             //Variable
-            string consulta = "";
+            string consulta;
 
             //Pregunto que caso es
             if (caso == 1)
@@ -334,7 +334,7 @@ namespace Datos
             }
         }
 
-        public SqlCommand CargarParametros_ModificacionTurno(Turno turno)
+        private SqlCommand CargarParametros_ModificacionTurno(Turno turno)
         {
             SqlCommand sqlComand = new SqlCommand("SP_ModificacionTurno_Grupo10");
             sqlComand.CommandType = CommandType.StoredProcedure;
@@ -374,38 +374,6 @@ namespace Datos
                     return comando.ExecuteNonQuery(); // Devuelve 1 si se actualizó
                 }
             }
-        }
-
-        public DataTable ObtenerConcurrenciaTurnosXDia()
-        {
-            string consulta = @"
-                SET DATEFIRST 1;
-                SET LANGUAGE Spanish;
-
-                WITH DiasSemana AS (
-                    SELECT 1 AS NumeroDia_DS, 'Lunes' AS NombreDia_DS UNION ALL
-                    SELECT 2, 'Martes' UNION ALL
-                    SELECT 3, 'Miércoles' UNION ALL
-                    SELECT 4, 'Jueves' UNION ALL
-                    SELECT 5, 'Viernes' UNION ALL
-                    SELECT 6, 'Sábado' UNION ALL
-                    SELECT 7, 'Domingo'
-                )
-
-                SELECT 
-                    NombreDia_DS AS [Día de la Semana],
-                    ISNULL(COUNT(Fecha_TU), 0) AS [Turnos Asignados],
-                    ISNULL(SUM(CASE WHEN Asistencia_TU = 1 THEN 1 ELSE 0 END), 0) AS [Turnos Asistidos],
-                    CASE 
-                        WHEN COUNT(Fecha_TU) = 0 THEN '0.00 %'
-                        ELSE CONCAT(FORMAT(100.0 * SUM(CASE WHEN Asistencia_TU = 1 THEN 1 ELSE 0 END) / COUNT(Fecha_TU), 'N2'), ' %')
-                    END AS [Porcentaje de Asistencia]
-                FROM DiasSemana LEFT JOIN Turno
-                ON DATEPART(weekday, Fecha_TU) = NumeroDia_DS AND Estado_TU = 1 AND Pendiente_TU = 0
-                GROUP BY NumeroDia_DS, NombreDia_DS
-                ORDER BY NumeroDia_DS";
-
-            return datos.ObtenerTabla("ConcurrenciaTurnosPorDia", consulta);
         }
 
         public int ObtenerLegajoPacientePorDNI(string dni)
@@ -460,14 +428,63 @@ namespace Datos
             }
         }
 
+        public DataTable ObtenerPorcentajeTurnosPorDia()
+        {
+            string consulta = @"
+                SET DATEFIRST 1;
+                SET LANGUAGE Spanish;
+
+                WITH DiasSemana AS (
+                    SELECT 1 AS NumeroDia_DS, 'Lunes' AS NombreDia_DS UNION ALL
+                    SELECT 2, 'Martes' UNION ALL
+                    SELECT 3, 'Miércoles' UNION ALL
+                    SELECT 4, 'Jueves' UNION ALL
+                    SELECT 5, 'Viernes' UNION ALL
+                    SELECT 6, 'Sábado' UNION ALL
+                    SELECT 7, 'Domingo'
+                )
+
+                SELECT 
+                    NombreDia_DS AS [Día de la Semana],
+                    ISNULL(COUNT(Fecha_TU), 0) AS [Turnos Asignados],
+                    ISNULL(SUM(CASE WHEN Asistencia_TU = 1 THEN 1 ELSE 0 END), 0) AS [Turnos Asistidos],
+                    CASE 
+                        WHEN COUNT(Fecha_TU) = 0 THEN '0.00 %'
+                        ELSE CONCAT(FORMAT(100.0 * SUM(CASE WHEN Asistencia_TU = 1 THEN 1 ELSE 0 END) / COUNT(Fecha_TU), 'N2'), ' %')
+                    END AS [Porcentaje de Asistencia]
+                FROM DiasSemana LEFT JOIN Turno
+                ON DATEPART(weekday, Fecha_TU) = NumeroDia_DS AND Estado_TU = 1 AND Pendiente_TU = 0
+                GROUP BY NumeroDia_DS, NombreDia_DS
+                ORDER BY NumeroDia_DS";
+
+            return datos.ObtenerTabla("ConcurrenciaTurnosPorDia", consulta);
+        }
+
         //Obtener horario mas solicitado
         public DataTable ObtenerTablaHorarioMasSolicitado()
         {
+            /*
+            El "WITH" es una forma de "crear una tabla" en la que selecciono x campo (ej: turnosRedondeados) y 
+            le pongo para que muestre AS y le establezco que vale lo mismo que otra consulta.
+
+            Los agrupo por la hora con el GROUP BY
+
+            Ya que es un DATE TIME tengo que separar la parte de date de la de time con el DATEPART
+
+            El COUNT(*) cuenta la cantidad de registros de esta tabla
+
+            Uso el cast para convertir el time en texto y asi sumarle lo que le quiera sumar
+
+            Format redondea el numero
+
+            Uso el CROSS JOIN para calcular el procentaje
+            */
+
             string consulta =
             "WITH TurnosRedondeados AS (" +
-            " SELECT DATEPART(HOUR, DATEADD(MINUTE, 30, Fecha_TU)) AS Hora, COUNT(*) AS Cantidad " +
+            " SELECT DATEPART(HOUR, Fecha_TU) AS Hora, COUNT(*) AS Cantidad " +
             " FROM Turno " +
-            " GROUP BY DATEPART(HOUR, DATEADD(MINUTE, 30, Fecha_TU)) " +
+            " GROUP BY DATEPART(HOUR, Fecha_TU) " +
             "), " +
             "TotalTurnos AS (" +
             " SELECT COUNT(*) AS Total FROM Turno " +

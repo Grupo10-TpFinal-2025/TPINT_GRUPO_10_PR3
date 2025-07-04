@@ -100,8 +100,8 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnMostrarTodos" runat="server" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" />
                             &nbsp;&nbsp;
-                                <asp:RequiredFieldValidator ID="rfvFiltrarLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ValidationGroup="grupoLegajo">Debe introducir un legajo.</asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" ErrorMessage="El legajo debe ser un número mayor o igual a 1." ValidationExpression="^[1-9]\d*$" ValidationGroup="grupoLegajo"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfvFiltrarLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ValidationGroup="grupoLegajo" ForeColor="Red">Debe introducir un legajo.</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" ErrorMessage="El legajo debe ser un número mayor o igual a 1." ValidationExpression="^[1-9]\d*$" ValidationGroup="grupoLegajo" ForeColor="Red"></asp:RegularExpressionValidator>
 &nbsp;<br />
             <table class="auto-style3">
                 <tr>

@@ -14,7 +14,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 	public partial class ModificacionDisponibilidad : System.Web.UI.Page
 	{
         //Variable del form
-        NegocioDisponibilidad disponibilidad = new NegocioDisponibilidad();
+        private readonly NegocioDisponibilidad disponibilidad = new NegocioDisponibilidad();
 
         //Page load
         protected void Page_Load(object sender, EventArgs e)
@@ -38,7 +38,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 cargarGV();
             }
         }
-
         
         //Funcion cargar gv
         void cargarGV()
@@ -52,6 +51,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected void gvModificacionDisponibilidad_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvModificacionDisponibilidad.PageIndex = e.NewPageIndex;
+            gvModificacionDisponibilidad.EditIndex = -1;
             cargarGV();
         }
 
@@ -233,6 +233,10 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                     ddlInicio.Items[0].Enabled = false; 
                 }
             }
+        }
+
+        protected void ddl_eit_HoraFin_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if (sender is DropDownList ddlFin)
             {
                 if (ddlFin.SelectedIndex != 0)

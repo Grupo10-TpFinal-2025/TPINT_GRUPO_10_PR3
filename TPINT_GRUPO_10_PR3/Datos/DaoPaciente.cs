@@ -14,8 +14,7 @@ namespace Datos
         private AccesoDatos datos;
         private SqlCommand sqlCommand;
 
-        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo', P.DNI_PA AS 'DNI', P.Apellido_PA AS 'Apellido', P.Nombre_PA AS 'Nombre', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', FORMAT(P.FechaNacimiento_PA, 'dd/MM/yyyy') AS [Fecha de Nacimiento], P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', Pr.CodProvincia_Pr AS 'CodProvincia', P.Correo_PA AS 'Correo', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";
-
+        private const string consultaBaseSQL = "SELECT P.Legajo_PA AS 'Legajo', P.DNI_PA AS 'DNI', P.Apellido_PA AS 'Apellido', P.Nombre_PA AS 'Nombre', P.Sexo_PA AS 'Sexo', P.Nacionalidad_PA AS 'Nacionalidad', FORMAT(P.FechaNacimiento_PA, 'dd/MM/yyyy') AS [Fecha de Nacimiento], P.Direccion_PA AS 'Direccion', P.Localidad_PA AS 'Localidad', Pr.Descripcion_Pr AS 'Provincia', Pr.CodProvincia_Pr AS 'CodProvincia', P.Correo_PA AS 'Correo', P.Telefono_PA AS 'Telefono' FROM Paciente AS P INNER JOIN Provincia AS Pr ON P.CodProvincia_PA = Pr.CodProvincia_Pr";        
         public DaoPaciente()
         {
             datos = new AccesoDatos();
@@ -317,6 +316,55 @@ namespace Datos
             CargarParametros(ref sqlCommand, paciente);
             ValidarOCrearProcedimientoModificacionPaciente();
             return datos.EjecutarProcedimientoAlmacenado("ModificarPaciente_Grupo10", sqlCommand);
+        }
+
+        public Paciente ObtenerPacienteXCodTurno(int codTurno)
+        {
+            string consulta = @"SELECT P.Legajo_PA AS 'Legajo',
+                              P.Nombre_PA AS 'Nombre',
+                              P.Apellido_PA as 'Apellido',
+                              P.DNI_PA AS 'DNI', 
+                              P.Sexo_PA AS 'Sexo', 
+                              P.Nacionalidad_PA AS 'Nacionalidad', 
+                              P.FechaNacimiento_PA AS 'Fecha nacimiento',
+                              P.Direccion_PA AS 'Direccion',                                
+                              PRO.Descripcion_PR AS 'Provincia',
+                              P.Correo_PA AS 'Correo', 
+                              P.Telefono_PA AS 'Telefono' 
+                              FROM Paciente P 
+                              INNER JOIN Turno T ON T.LegajoPaciente_TU = P.Legajo_PA 
+                              INNER JOIN Provincia PRO ON PRO.CodProvincia_PR = P.CodProvincia_PA 
+                              WHERE T.CodTurno_TU = @CodTurno";
+
+            Paciente paciente = new Paciente();
+
+            using(SqlConnection conexion = datos.ObtenerConexion())
+            {
+                using(SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@CodTurno", codTurno);
+
+                    using(SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        while (lector.Read())
+                        {
+                            paciente.Legajo = (int)lector["Legajo"];
+                            paciente.Nombre = (string)lector["Nombre"];
+                            paciente.Apellido = (string)lector["Apellido"];
+                            paciente.Dni = lector["DNI"].ToString().Trim();
+                            paciente.Sexo = Convert.ToChar(lector["Sexo"]);
+                            paciente.Nacionalidad = (string)lector["Nacionalidad"];
+                            paciente.FechaNacimiento = (DateTime)lector["Fecha nacimiento"];
+                            paciente.Direccion = (string)lector["Direccion"];
+                            paciente.Provincia = (string)lector["Provincia"];
+                            paciente.CorreoElectronico = (string)lector["Correo"];
+                            paciente.Telefono= (string)lector["Telefono"];
+                        }
+                    }
+                }
+            }
+
+            return paciente;
         }
     }
 }

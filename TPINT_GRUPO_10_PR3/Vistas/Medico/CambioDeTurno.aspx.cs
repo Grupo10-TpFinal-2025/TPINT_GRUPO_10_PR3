@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.WebSockets;
 using Entidades;
 using Negocios;
 
@@ -15,6 +16,10 @@ namespace Vistas.Medico
     {
         NegocioTurno negocioTurno;
         Turno turno;
+
+        NegocioPaciente negocioPaciente;
+        List<Paciente> listaPacientesSeleccionado;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -200,5 +205,34 @@ namespace Vistas.Medico
             }
         }
 
+        protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
+        {
+            if(e.CommandName == "Select")
+            {
+                int codTurno = Convert.ToInt32(e.CommandArgument);
+
+                if (Session["PacientesSeleccionados"] != null)
+                {
+                    listaPacientesSeleccionado = Session["PacientesSeleccionados"] as List<Paciente>;
+                }                    
+                else
+                {
+                    listaPacientesSeleccionado = new List<Paciente>();
+                }
+                    
+                negocioPaciente = new NegocioPaciente();
+                                                
+                Paciente pacienteSeleccionado = negocioPaciente.ObtenerPacienteXTurno(codTurno);
+
+                if (listaPacientesSeleccionado.Any(p => p.Legajo == pacienteSeleccionado.Legajo))
+                {
+                    return;
+                }                    
+
+                listaPacientesSeleccionado.Add(pacienteSeleccionado);                
+
+                Session["PacientesSeleccionados"] = listaPacientesSeleccionado;
+            }
+        }
     }
 }

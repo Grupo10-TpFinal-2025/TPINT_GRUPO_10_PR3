@@ -85,7 +85,31 @@
             <tr>
                 <td class="auto-style9">&nbsp;</td>
                 <td class="auto-style7">
-                    <asp:GridView ID="gvPacientes" runat="server">
+                    <asp:GridView ID="gvPacientes" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                            <asp:BoundField DataField="Dni" HeaderText="DNI" />
+                            <asp:BoundField DataField="Sexo" HeaderText="Sexo" />
+                            <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
+                            <asp:BoundField DataField="FechaNacimientoFormateada" HeaderText="Fecha Nacimiento" />
+                            <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
+                            <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
+                            <asp:BoundField DataField="CorreoElectronico" HeaderText="Correo " />
+                            <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                        </Columns>
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
                 </td>
                 <td class="auto-style7"></td>
@@ -96,7 +120,7 @@
             </tr>
             <tr>
                 <td class="auto-style9"></td>
-                <td class="auto-style7"></td>
+                <td class="auto-style7">&nbsp;</td>
                 <td class="auto-style7"></td>
                 <td class="auto-style7"></td>
                 <td class="auto-style7"></td>
@@ -106,7 +130,7 @@
             <tr>
                 <td class="auto-style9"></td>
                 <td class="auto-style7">
-                    <asp:Button ID="btnEliminarTodo" runat="server" Text="Eliminar todo" />
+                    <asp:Label ID="lblSinPacientes" runat="server" Text="No hay pacientes seleccionados."></asp:Label>
                 </td>
                 <td class="auto-style7"></td>
                 <td class="auto-style7"></td>
@@ -117,6 +141,17 @@
             <tr>
                 <td class="auto-style8">&nbsp;</td>
                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style8">&nbsp;</td>
+                <td>
+                    <asp:Button ID="btnEliminarTodo" runat="server" Text="Eliminar todo" OnClick="btnEliminarTodo_Click" />
+                </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

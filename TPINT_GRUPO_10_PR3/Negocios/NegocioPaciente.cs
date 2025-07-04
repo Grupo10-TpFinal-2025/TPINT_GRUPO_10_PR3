@@ -81,5 +81,10 @@ namespace Negocios
                 return false;
             }
         }
+
+        public Paciente ObtenerPacienteXTurno(int codTurno)
+        {
+            return daoP.ObtenerPacienteXCodTurno(codTurno);
+        }
     }
 }

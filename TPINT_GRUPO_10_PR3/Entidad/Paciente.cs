@@ -76,6 +76,12 @@ namespace Entidades
             get { return _fechaNacimiento; }
             set { _fechaNacimiento = value; }
         }
+
+        public string FechaNacimientoFormateada
+        {
+            get { return _fechaNacimiento.ToString("dd/MM/yyyy"); }
+        }
+
         public string Direccion
         {
             get { return _direccion; }

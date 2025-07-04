@@ -95,7 +95,7 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbtn_it_Editar" runat="server" CausesValidation="False" CommandName="Edit" Enabled="False" Text="Editar"></asp:LinkButton>
                                     &nbsp;<br />
-                                    <asp:LinkButton ID="btnSeleccionar" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar"></asp:LinkButton>
+                                    <asp:LinkButton ID="btnSeleccionar" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar" CommandArgument='<%# Eval("ID Consulta") %>' OnCommand="btnSeleccionar_Command" ></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="ID Turno">

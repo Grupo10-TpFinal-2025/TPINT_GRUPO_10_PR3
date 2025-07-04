@@ -14,19 +14,19 @@ namespace Vistas.Medico
 {
     public partial class CambioDeTurno : System.Web.UI.Page
     {
-        NegocioTurno negocioTurno;
-        Turno turno;
+        private NegocioTurno negocioTurno;
+        private Turno turno;
 
-        NegocioPaciente negocioPaciente;
-        List<Paciente> listaPacientesSeleccionado;
+        private NegocioPaciente negocioPaciente;
+        private List<Paciente> listaPacientesSeleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
             }
+
             if (Session["legajo"] == null)
             {
                 lblMensaje.Text = "No se ha logrado encontrar el registro de legajo médico. Por favor, inicie sesión nuevamente.";
@@ -49,14 +49,12 @@ namespace Vistas.Medico
             {
                 lblMensaje.Text = "No se encontraron registros de turnos vigentes.";
             }
-
         }
 
         protected void gvActualizacionTurnos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvActualizacionTurnos.EditIndex = e.NewEditIndex;
             CargarTurnosMedico();
-
         }
 
         protected void gvActualizacionTurnos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -70,7 +68,6 @@ namespace Vistas.Medico
             gvActualizacionTurnos.EditIndex = -1;
             gvActualizacionTurnos.PageIndex = e.NewPageIndex;
             CargarTurnosMedico();
-
         }
 
         protected void gvActualizacionTurnos_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -136,7 +133,6 @@ namespace Vistas.Medico
             {
                 btnEditar.Enabled = false;
             }
-
         }
 
         private void FormatearAsistencia(Label lblAsistencia)
@@ -183,7 +179,6 @@ namespace Vistas.Medico
             {
                 txtDescripcion.Text = "Sin Completar";
             }
- 
         }
 
         private void SeleccionarOpcionAsistencia(RadioButtonList rblAsistencia, string asistencia)

@@ -12,9 +12,11 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 {
     public partial class AltaDisponibilidad : System.Web.UI.Page
     {
+        private NegocioDisponibilidad negocioDisponibilidad;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-           if (Session["usuario"] == null)
+            if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");
             }
@@ -23,13 +25,13 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             {
                 lblUsuarioAdministrador.Text = "Administrador";
                 CargarDias();
-                CargarHorarios();
+                CargarDDLHorarioInicio();
             }
         }
 
         private void CargarDias()
         {
-            NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+            negocioDisponibilidad = new NegocioDisponibilidad();
             DataTable tablaDias = negocioDisponibilidad.ObtenerDias();
 
             ddlDiasDis.DataSource = tablaDias;
@@ -40,24 +42,38 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             ddlDiasDis.Items.Insert(0, new ListItem("-- Seleccione un día --", "0"));
         }
 
-        private void CargarHorarios()
+        private void CargarDDLHorarioInicio()
         {
             ddlHorarioInicioDis.Items.Clear();
-            ddlHorarioFinDis.Items.Clear();
+            ddlHorarioInicioDis.Items.Insert(0, new ListItem("-- Hora inicio --", ""));
 
-            ddlHorarioInicioDis.Items.Insert(0,new ListItem("-- Hora inicio --", ""));
+            TimeSpan horaInicio = new TimeSpan(8, 0, 0); // 08:00
+            TimeSpan horaFin = new TimeSpan(19, 0, 0);   // hasta 19:00
+            TimeSpan intervalo = new TimeSpan(1, 0, 0);
+
+            TimeSpan actual = horaInicio;
+            while (actual <= horaFin)
+            {
+                string horaStr = actual.ToString(@"hh\:mm");
+                ddlHorarioInicioDis.Items.Add(new ListItem(horaStr, horaStr));
+                actual = actual.Add(intervalo);
+            }
+        }
+
+        private void CargarDDLHorarioFin(TimeSpan horaInicio)
+        {
+            ddlHorarioFinDis.Items.Clear();
             ddlHorarioFinDis.Items.Insert(0, new ListItem("-- Hora fin --", ""));
 
-            TimeSpan hora = new TimeSpan(8, 0, 0); // 08:00
-            TimeSpan horaFin = new TimeSpan(20, 0, 0); // 20:00
-            TimeSpan intervalo = new TimeSpan(1, 0, 0); // 1 hora 
+            TimeSpan horaMax = new TimeSpan(20, 0, 0); // 20:00
+            TimeSpan intervalo = new TimeSpan(1, 0, 0);
 
-            while (hora <= horaFin)
+            TimeSpan actual = horaInicio.Add(intervalo);
+            while (actual <= horaMax)
             {
-                string horaStr = hora.ToString(@"hh\:mm");
-                ddlHorarioInicioDis.Items.Add(new ListItem(horaStr, horaStr));
+                string horaStr = actual.ToString(@"hh\:mm");
                 ddlHorarioFinDis.Items.Add(new ListItem(horaStr, horaStr));
-                hora = hora.Add(intervalo);
+                actual = actual.Add(intervalo);
             }
         }
 
@@ -73,18 +89,10 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 TimeSpan horarioInicio = TimeSpan.Parse(ddlHorarioInicioDis.SelectedValue);
                 TimeSpan horarioFin = TimeSpan.Parse(ddlHorarioFinDis.SelectedValue);
 
-                // Validar horario correcto
-                if (horarioInicio >= horarioFin)
-                {
-                    lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    lblMensaje.Text = "El horario de inicio debe ser menor al horario de fin.";
-                    return;
-                }
-
-                NegocioDisponibilidad negocio = new NegocioDisponibilidad();
+                negocioDisponibilidad = new NegocioDisponibilidad();
 
                 // Verificar superposición
-                bool existe = negocio.VerificarDisponibilidad(legajoMedico, numDia);
+                bool existe = negocioDisponibilidad.VerificarDisponibilidad(legajoMedico, numDia);
 
                 if (existe)
                 {
@@ -96,7 +104,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 // Crear disponibilidad y guardar
                 Disponibilidad disponibilidad = new Disponibilidad(numDia, legajoMedico, horarioInicio, horarioFin, true);
 
-                int resultado = negocio.AltaDisponibilidad(disponibilidad);
+                int resultado = negocioDisponibilidad.AltaDisponibilidad(disponibilidad);
 
                 if (resultado > 0)
                 {
@@ -129,8 +137,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         {
             if(ddlDiasDis.SelectedIndex != 0)
             {
-                ddlDiasDis.Items[0].Enabled = false; 
-
+                ddlDiasDis.Items[0].Enabled = false;
             }
         }
 
@@ -139,6 +146,9 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             if(ddlHorarioInicioDis.SelectedIndex != 0)
             {
                 ddlHorarioInicioDis.Items[0].Enabled = false;
+
+                TimeSpan horaInicio = TimeSpan.Parse(ddlHorarioInicioDis.SelectedValue);
+                CargarDDLHorarioFin(horaInicio);
             }
         }
 

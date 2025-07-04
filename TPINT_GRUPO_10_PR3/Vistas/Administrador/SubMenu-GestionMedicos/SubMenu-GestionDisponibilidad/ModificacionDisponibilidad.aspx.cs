@@ -40,7 +40,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         }
         
         //Funcion cargar gv
-        void cargarGV()
+        private void cargarGV()
         {
             DataTable tabla = disponibilidad.TablaDisponibilidad();
             gvModificacionDisponibilidad.DataSource = tabla;
@@ -219,7 +219,6 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                     {
                         cbEstado.Checked = false;
                     }
-
                 }
             }
         }

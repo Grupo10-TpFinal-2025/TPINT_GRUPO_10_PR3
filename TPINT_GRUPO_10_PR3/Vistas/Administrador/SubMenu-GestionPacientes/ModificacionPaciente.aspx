@@ -32,6 +32,14 @@
             width: 1460px;
             height: 23px;
         }
+        .auto-style23 {
+            width: 23px;
+            height: 20px;
+        }
+        .auto-style24 {
+            width: 1460px;
+            height: 20px;
+        }
         </style>
 </head>
 <body>
@@ -245,8 +253,8 @@
                     &nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style21">&nbsp;</td>
-                <td class="auto-style22">
+                <td class="auto-style23"></td>
+                <td class="auto-style24">
                         <asp:HyperLink ID="hlMenuGestionPacientes" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionPacientes/MenuGestionPacientes.aspx">Regresar a Menú de Gestión de Pacientes...</asp:HyperLink>
                     </td>
             </tr>

@@ -23,7 +23,7 @@
             height: 23px;
         }
         .auto-style10 {
-            width: 100%;
+            width: 134%;
             height: 23px;
             margin-bottom: 0px;
         }
@@ -68,9 +68,57 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:ListView ID="lvModificacionTurnos" runat="server">
-                        </asp:ListView>
-                        <asp:SqlDataSource ID="dsTurnos" runat="server"></asp:SqlDataSource>
+                        <asp:GridView ID="gvModificarTurnos" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True">
+    <Columns>
+        <asp:TemplateField></asp:TemplateField>
+        <asp:TemplateField HeaderText="ID Consulta">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_IDConsulta" runat="server" Text='<%# Eval("ID Consulta") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Medico">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Medico" runat="server" Text='<%# Eval("Medico") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Paciente">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Turno">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Turno" runat="server" Text='<%# Eval("Turno") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Pendiente">
+            <ItemTemplate>
+                <asp:CheckBox ID="chk_it_Pendiente" runat="server"
+                    Checked='<%# Eval("Pendiente") != DBNull.Value && Convert.ToBoolean(Eval("Pendiente")) %>' 
+                    Enabled="false" />
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Asistencia">
+            <ItemTemplate>
+                <asp:CheckBox ID="chk_it_Asistencia" runat="server"
+                    Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>' 
+                    Enabled="false" />
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Descripcion">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Estado">
+            <ItemTemplate>
+                <asp:CheckBox ID="chk_it_Estado" runat="server"
+                    Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>' 
+                    Enabled="false" />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
                     </td>
                 </tr>
                 <tr>

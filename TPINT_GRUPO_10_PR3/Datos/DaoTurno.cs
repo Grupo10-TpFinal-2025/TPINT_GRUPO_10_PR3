@@ -14,7 +14,7 @@ namespace Datos
     public class DaoTurno
     {
         private const string ConsultaBase = "SELECT CodTurno_TU AS [ID Consulta], Nombre_ME + ' ' + Apellido_ME AS Medico, " +
-            "Nombre_PA + ' ' + Apellido_PA AS [Paciente], Fecha_TU AS Turno, Pendiente_TU AS Pendiente," +
+            "Nombre_PA + ' ' + Apellido_PA AS [Paciente], FORMAT(Fecha_TU, 'dd/MM/yyyy HH:mm') AS Turno, Pendiente_TU AS Pendiente," +
             "Asistencia_TU AS Asistencia, Descripcion_TU AS Descripcion, Estado_TU AS Estado FROM Turno " +
             "INNER JOIN Medico ON LegajoMedico_TU = Legajo_ME " +
             "INNER JOIN Paciente ON LegajoPaciente_TU = Legajo_PA WHERE Estado_TU = 1";

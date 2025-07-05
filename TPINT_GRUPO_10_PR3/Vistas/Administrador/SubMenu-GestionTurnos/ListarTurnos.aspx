@@ -79,8 +79,50 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:GridView ID="gvTablaTurnos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvTablaTurnos_PageIndexChanging">
+                        <asp:GridView ID="gvTablaTurnos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvTablaTurnos_PageIndexChanging" AutoGenerateColumns="False">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <Columns>
+                                <asp:TemplateField HeaderText="ID Consulta">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbl_it_IDConsulta" runat="server" Text='<%# Bind("[ID Consulta]") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Médico">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbl_it_Medico" runat="server" Text='<%# Bind("Medico") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Paciente">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Bind("Paciente") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Turno">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbl_it_Turno" runat="server" Text='<%# Bind("Turno") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Pendiente">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chk_it_Pendiente" runat="server" Checked='<%# Eval("Pendiente") != DBNull.Value && Convert.ToBoolean(Eval("Pendiente")) %>' Enabled="false" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Asistencia">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chk_it_Asistencia" runat="server" Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>' Enabled="false" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Descripción">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbl_it_Descripcion" runat="server" Text='<%# Bind("Descripcion") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Estado">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chk_it_Estado" runat="server" Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>' Enabled="false" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
                             <EditRowStyle BackColor="#999999" />
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

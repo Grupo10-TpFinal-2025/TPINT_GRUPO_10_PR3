@@ -132,7 +132,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Eval("DNI") %>' ValidationGroup="GrupoModificarPaciente" TextMode="Number"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Bind("DNI") %>' ValidationGroup="GrupoModificarPaciente" TextMode="Number"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="No puede dejar el campo DNI vacío." ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>

@@ -14,8 +14,8 @@ namespace Vistas
 {
 	public partial class ListarMedicos : System.Web.UI.Page
 	{
-        private readonly Negocios.NegocioMedico negocioMedico = new Negocios.NegocioMedico();
-        private Entidades.Medico medico = new Entidades.Medico();
+        private readonly NegocioMedico negocioMedico = new Negocios.NegocioMedico();
+        private Entidades.Medico medico;
         private bool aplicarFiltroAvanzado = false;
         private bool[,] filtros = new bool[3, 3];
 
@@ -55,8 +55,8 @@ namespace Vistas
             gvListaMedicos.PageIndex = e.NewPageIndex;
             if (Session["TablaFiltrada"] != null)
             {
-                DataTable tablaFiltrada = (DataTable)Session["TablaFiltrada"];
-                gvListaMedicos.DataSource = tablaFiltrada;
+                gvListaMedicos.DataSource = (DataTable)Session["TablaFiltrada"];
+                gvListaMedicos.DataBind();
             }
             else
             {
@@ -68,9 +68,9 @@ namespace Vistas
         {
             if (Page.IsValid)
             {
-                aplicarFiltroAvanzado = false;
-
+                medico = new Entidades.Medico();
                 medico.Legajo = Convert.ToInt32(txtFiltroLegajoMedico.Text.Trim());
+                aplicarFiltroAvanzado = false;
 
                 DataTable tablaFiltrada = negocioMedico.getTablaMedicosFiltrada(medico, aplicarFiltroAvanzado, filtros);
                 Session["TablaFiltrada"] = tablaFiltrada;
@@ -78,12 +78,11 @@ namespace Vistas
                 if (tablaFiltrada.Rows.Count == 0)
                 {
                     lblLegajoNoEncontrado.Text = "El legajo ingresado no existe.";
-                    gvListaMedicos.DataSource = null;
-                    gvListaMedicos.DataBind();
                 }
                 else
                 {
                     lblLegajoNoEncontrado.Text = string.Empty; // Oculta mensaje si sí encontró                    
+                    gvListaMedicos.PageIndex = 0;
                     gvListaMedicos.DataSource = tablaFiltrada;
                     gvListaMedicos.DataBind();
                 }
@@ -125,6 +124,7 @@ namespace Vistas
         {
             if (Page.IsValid)
             {
+                medico = new Entidades.Medico();
                 aplicarFiltroAvanzado = true;
                 txtFiltroLegajoMedico.Text = string.Empty;
 
@@ -167,11 +167,12 @@ namespace Vistas
             else
             {
                 Session["TablaFiltrada"] = null;
-               LimpiarTxtFiltrosAvanzados();
+                LimpiarTxtFiltrosAvanzados();
                 LimpiarValoresFiltrosAvanzados();
                 gvListaMedicos.PageIndex = 0;
                 CargarTablaMedicos();
             }
+            
             lblFiltrosAvanzadosVacios.Text = string.Empty;
         }
 
@@ -277,10 +278,12 @@ namespace Vistas
         {
             if (e.CommandName == "FiltroDias")
             {
+                medico = new Entidades.Medico();
+
                 medico.DiaDisponible = Convert.ToInt32(e.CommandArgument);
-                DataTable TablaFimtrada = negocioMedico.getTablaMedicosFiltrada(medico, false, filtros);
-                Session["TablaFiltrada"] = TablaFimtrada;
-                gvListaMedicos.DataSource = TablaFimtrada;
+                DataTable tablaFiltrada = negocioMedico.getTablaMedicosFiltrada(medico, false, filtros);
+                Session["TablaFiltrada"] = tablaFiltrada;
+                gvListaMedicos.DataSource = tablaFiltrada;
                 gvListaMedicos.DataBind();
                 if (gvDisponibilidad == null)
                 {

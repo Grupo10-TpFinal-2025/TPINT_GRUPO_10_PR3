@@ -13,9 +13,10 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 {
     public partial class ListarPacientes : System.Web.UI.Page
     {
-        NegocioPaciente negocioPaciente = new NegocioPaciente();
-        Paciente paciente = new Paciente();
+        private readonly NegocioPaciente negocioPaciente = new NegocioPaciente();
+        private Paciente paciente = new Paciente();
         private bool[,] filtros = new bool[3, 3];
+
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -40,7 +41,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             gvProvincias.DataBind();
         }
 
-        public void CargarTablaPacientes()
+        private void CargarTablaPacientes()
         {
             gvListadoPacientes.DataSource = negocioPaciente.ObtenerPacientes();
             gvListadoPacientes.DataBind();
@@ -129,7 +130,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             return filtros;
         }
 
-        public bool IsFiltrosVacios()
+        private bool IsFiltrosVacios()
         {
             if (string.IsNullOrWhiteSpace(txtDniPaciente.Text) && string.IsNullOrWhiteSpace(txtNombrePaciente.Text) && string.IsNullOrWhiteSpace(txtTelefonoPaciente.Text))
             {
@@ -177,7 +178,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             }
         }
 
-        public void LimpiarFiltrosAvanzados()
+        private void LimpiarFiltrosAvanzados()
         {
             txtDniPaciente.Text = string.Empty;
             txtNombrePaciente.Text = string.Empty;
@@ -228,9 +229,9 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                     lblDNInoEncontrado.Text = string.Empty;
                 }
 
+                gvListadoPacientes.PageIndex = 0;
                 gvListadoPacientes.DataSource = tablaFiltrada;
                 gvListadoPacientes.DataBind();
-                gvListadoPacientes.PageIndex = 0;
                 paciente = new Paciente();
                 txtFiltroDNIPaciente.Text = string.Empty;
             }

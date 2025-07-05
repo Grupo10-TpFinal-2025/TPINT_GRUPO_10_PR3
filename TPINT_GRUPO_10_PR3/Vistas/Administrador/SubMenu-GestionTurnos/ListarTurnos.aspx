@@ -70,7 +70,7 @@
                     <td class="auto-style9">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style9">Código de turno: <asp:TextBox ID="txtListarTurno" runat="server" OnTextChanged="txtListarTurno_TextChanged" Width="135px" TextMode="Number"></asp:TextBox>
+                    <td class="auto-style9">Código de turno: <asp:TextBox ID="txtListarTurno" runat="server" Width="135px" TextMode="Number"></asp:TextBox>
 &nbsp;<asp:RequiredFieldValidator ID="rfvCodigoTurno" runat="server" ControlToValidate="txtListarTurno" ErrorMessage="Ingrese un numero valido" ValidationGroup="FiltroTurno">*</asp:RequiredFieldValidator>
 &nbsp;<asp:Button ID="btnFiltarTurno" runat="server" Text="Buscar" OnClick="btnFiltarTurno_Click" ValidationGroup="FiltroTurno" Width="101px" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:GridView ID="gvTablaTurnos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" OnPageIndexChanging="gvTablaTurnos_PageIndexChanging">
+                        <asp:GridView ID="gvTablaTurnos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvTablaTurnos_PageIndexChanging">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <EditRowStyle BackColor="#999999" />
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

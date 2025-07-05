@@ -12,7 +12,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
     public partial class ListarTurnos : System.Web.UI.Page
     {
         //Variable del form
-        NegocioTurno turno = new NegocioTurno();
+        private readonly NegocioTurno negocioTurno = new NegocioTurno();
 
         //page load
         protected void Page_Load(object sender, EventArgs e)
@@ -35,12 +35,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
         }
 
-        //No se, estaba cuando empece
-        protected void txtListarTurno_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         //Filtro avanzado
         protected void btnAplicarFiltroAvanzado0_Click(object sender, EventArgs e)
         {
@@ -49,7 +43,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 panelListarTurnos.Visible = true;
                 btnMostrarFiltrosAvanzado0.Text = "Ocultar Filtros Avanzados";
             }
-
             else
             {
                 panelListarTurnos.Visible = false;
@@ -58,9 +51,9 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         }
 
         //Funcion que carga la gv con parametros default
-        void cargarGV()
+        private void cargarGV()
         {
-            DataTable tabla = turno.getTabla();
+            DataTable tabla = negocioTurno.getTabla();
             gvTablaTurnos.DataSource = tabla;
             Session["TablaFiltrada"] = tabla; 
             gvTablaTurnos.DataBind();
@@ -70,8 +63,15 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected void gvTablaTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTablaTurnos.PageIndex = e.NewPageIndex;
-            gvTablaTurnos.DataSource = Session["TablaFiltrada"] as DataTable; 
-            gvTablaTurnos.DataBind();
+            if (Session["TablaFiltrada"] != null)
+            {
+                gvTablaTurnos.DataSource = (DataTable)Session["TablaFiltrada"];
+                gvTablaTurnos.DataBind();
+            }
+            else
+            {
+                cargarGV();
+            }
         }
 
         //boton de filtro principal
@@ -79,7 +79,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
             //Relleno el dataTable y lo bindeo
             
-            DataTable tabla = turno.getTablaPorCodigoTurno(Convert.ToInt32(txtListarTurno.Text.Trim()));
+            DataTable tabla = negocioTurno.getTablaPorCodigoTurno(Convert.ToInt32(txtListarTurno.Text.Trim()));
             Session["TablaFiltrada"] = tabla; 
             gvTablaTurnos.DataSource = tabla;
             gvTablaTurnos.DataBind();
@@ -96,7 +96,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
             //Limpio el txt
             txtListarTurno.Text = "";
-            
         }
 
         //Limpio filtros
@@ -110,7 +109,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             txtFiltroDni.Text = "";
             txtFiltroFecha.Text = "";
             ddlDniPaciente.SelectedValue = "0";
-
         }
 
         //Evento click filtro avanzado
@@ -135,7 +133,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 {
                     fecha = null;
                 }
-                DataTable dt = turno.getTablaFiltrada(fecha, txtFiltroDni.Text, ddlDniPaciente.SelectedValue);
+                DataTable dt = negocioTurno.getTablaFiltrada(fecha, txtFiltroDni.Text, ddlDniPaciente.SelectedValue);
                 Session["TablaFiltrada"] = dt; 
                 gvTablaTurnos.DataSource = dt;
                 gvTablaTurnos.DataBind();

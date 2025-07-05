@@ -93,7 +93,6 @@
                         &nbsp;</td>
                     <td class="auto-style10">
                         <asp:RequiredFieldValidator ID="rfvTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Debe ingresar un valor antes de filtrar" ValidationGroup="GrupoListarMedico">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números en el Legajo" ValidationExpression="^\d+$" ValidationGroup="GrupoListarMedico">*</asp:RegularExpressionValidator>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -149,8 +148,7 @@
                                                             <asp:ListItem Value="2">Mayor a:</asp:ListItem>
                                                             <asp:ListItem Value="3">Menor a:</asp:ListItem>
                                                         </asp:DropDownList>
-                                                        &nbsp;<asp:TextBox ID="txtIDniMedico" runat="server" ValidationGroup="GrupoFiltrarAvanzado" Width="54px"></asp:TextBox>
-                                                        <asp:RegularExpressionValidator ID="revTxtFiltroDni" runat="server" ControlToValidate="txtIDniMedico" ErrorMessage="Solo se permite el ingreso de números en el DNI" ValidationExpression="^\d+$" ValidationGroup="GrupoFiltrarAvanzado">*</asp:RegularExpressionValidator>
+                                                        &nbsp;<asp:TextBox ID="txtIDniMedico" runat="server" ValidationGroup="GrupoFiltrarAvanzado" Width="145px" MaxLength="8" TextMode="Number"></asp:TextBox>
                                                         &nbsp;&nbsp;&nbsp;
                                                         <asp:Label ID="lblApellidoMedico" runat="server" Text="Apellido:"></asp:Label>
                                                         &nbsp;<asp:DropDownList ID="ddlOperatorsApellido" runat="server" Height="20px" style="margin-bottom: 0px">

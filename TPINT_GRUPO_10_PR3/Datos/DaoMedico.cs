@@ -63,7 +63,7 @@ namespace Datos
                 "DNI_ME AS DNI " +
                 "FROM ((Medico INNER JOIN Provincia " +
                 "ON CodProvincia_ME = CodProvincia_PR) INNER JOIN Especialidad " +
-                "ON CodigoEspecialidad_ME = CodEspecialidad_ES) INNER JOIN Disponibilidad " +
+                "ON CodigoEspecialidad_ME = CodEspecialidad_ES) LEFT JOIN Disponibilidad " +
                 "ON Legajo_ME = LegajoMedico_DIS " +
                 "WHERE Estado_ME = 1";
 
@@ -71,7 +71,7 @@ namespace Datos
             {
                 if (medico.DiaDisponible > 0)
                 {
-                    consulta += " AND NumDia_DIS = @NumDia_DIS";
+                    consulta += " AND NumDia_DIS = @NumDia_DIS AND Estado_DIS = 1";
                 }
                 else
                 {

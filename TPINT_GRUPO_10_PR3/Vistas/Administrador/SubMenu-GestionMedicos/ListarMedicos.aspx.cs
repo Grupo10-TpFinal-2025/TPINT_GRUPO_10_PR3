@@ -78,6 +78,8 @@ namespace Vistas
                 if (tablaFiltrada.Rows.Count == 0)
                 {
                     lblLegajoNoEncontrado.Text = "El legajo ingresado no existe.";
+                    gvListaMedicos.DataSource = null;
+                    gvListaMedicos.DataBind();
                 }
                 else
                 {

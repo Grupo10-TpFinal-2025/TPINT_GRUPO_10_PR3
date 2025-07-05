@@ -106,7 +106,7 @@
                         <asp:Panel ID="panelListarTurnos" runat="server" Visible="False">
                             <table class="auto-style1">
                                 <tr>
-                                    <td class="auto-style6">Fecha: <asp:TextBox ID="txtFiltroFecha" runat="server" Width="105px" TextMode="DateTime"></asp:TextBox>
+                                    <td class="auto-style6">Fecha y hora: <asp:TextBox ID="txtFiltroFecha" runat="server" Width="105px" TextMode="DateTime"></asp:TextBox>
                                         <asp:RegularExpressionValidator ID="revFecha" runat="server" ControlToValidate="txtFiltroFecha" ErrorMessage="Ingrese DD/MM/AAAA HH/MM" ValidationExpression="^([1-9]|0[1-9]|[12][0-9]|3[01])/([1-9]|0[1-9]|1[0-2])/\d{4} (([0-9]|1[0-9]|2[0-3])|0[0-9]):[0-5][0-9]$" ValidationGroup="FiltroAvanzado">*</asp:RegularExpressionValidator>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DNI:
                                         <asp:DropDownList ID="ddlDniPaciente" runat="server" Height="20px" Width="120px">

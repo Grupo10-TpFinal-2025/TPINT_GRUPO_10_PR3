@@ -338,20 +338,16 @@ namespace Datos
         {
             SqlCommand sqlComand = new SqlCommand("SP_ModificacionTurno_Grupo10");
             sqlComand.CommandType = CommandType.StoredProcedure;
+
             sqlComand.Parameters.AddWithValue("@Fecha_TU", turno.Fecha);
             sqlComand.Parameters.AddWithValue("@CodTurno_TU", turno.CodTurno);
-            object asistenciaParametro;
-            if (turno.Asistencia == "NULL")
-            {
-                asistenciaParametro = (object)DBNull.Value;
-            }
-            else
-            {
-                asistenciaParametro = Convert.ToInt32(turno.Asistencia);
-            }
-            sqlComand.Parameters.AddWithValue("@Asistencia_TU", asistenciaParametro);
+
+            sqlComand.Parameters.AddWithValue("@Pendiente_TU", turno.Pendiente);
+
+            sqlComand.Parameters.AddWithValue("@Asistencia_TU", turno.Asistencia == null ? (object)DBNull.Value : Convert.ToInt32(turno.Asistencia));
             sqlComand.Parameters.AddWithValue("@Descripcion_TU", turno.Descripcion);
-            sqlComand.Parameters.AddWithValue("@Estado_TU", 1);
+            sqlComand.Parameters.AddWithValue("@Estado_TU", turno.Estado ? 1 : 0);
+
             return sqlComand;
         }
 

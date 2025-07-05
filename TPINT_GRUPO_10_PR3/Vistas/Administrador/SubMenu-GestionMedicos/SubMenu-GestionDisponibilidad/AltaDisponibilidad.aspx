@@ -78,22 +78,27 @@
                 <tr>
                     <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; &nbsp; Legajo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtLegajoDisponibilidad" runat="server" Font-Size="Small" TextMode="Number"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoDisponibilidad">Ingrese un legajo</asp:RequiredFieldValidator>
+                        <asp:RangeValidator ID="rvLegajo" runat="server" ControlToValidate="txtLegajoDisponibilidad" MaximumValue="200" MinimumValue="1" Type="Integer">Número de legajo fuera de rango</asp:RangeValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Día:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlDiasDis" runat="server" OnSelectedIndexChanged="ddlDiasDis_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="ddlDiasDis">Seleccióne día</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Horario de Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:DropDownList ID="ddlHorarioInicioDis" runat="server" OnSelectedIndexChanged="ddlHorarioInicioDis_SelectedIndexChanged" AutoPostBack="True" Width="110px">
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvHorarioInicio" runat="server" ControlToValidate="ddlHorarioInicioDis">Seleccione horario de inicio</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Horario de Finalización:&nbsp;&nbsp;&nbsp;
                         <asp:DropDownList ID="ddlHorarioFinDis" runat="server" OnSelectedIndexChanged="ddlHorarioFinDis_SelectedIndexChanged" AutoPostBack="True" Width="110px">
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvHorarioFinalizacion" runat="server" ControlToValidate="ddlHorarioFinDis">Seleccione horario de finalización</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>

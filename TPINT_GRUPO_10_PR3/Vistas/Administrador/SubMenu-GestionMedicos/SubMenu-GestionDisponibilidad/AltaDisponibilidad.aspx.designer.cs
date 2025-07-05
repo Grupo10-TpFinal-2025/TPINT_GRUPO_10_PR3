@@ -87,6 +87,24 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.TextBox txtLegajoDisponibilidad;
 
         /// <summary>
+        /// Control rfvLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLegajo;
+
+        /// <summary>
+        /// Control rvLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvLegajo;
+
+        /// <summary>
         /// Control ddlDiasDis.
         /// </summary>
         /// <remarks>
@@ -94,6 +112,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDiasDis;
+
+        /// <summary>
+        /// Control rfvDia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDia;
 
         /// <summary>
         /// Control ddlHorarioInicioDis.
@@ -105,6 +132,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.DropDownList ddlHorarioInicioDis;
 
         /// <summary>
+        /// Control rfvHorarioInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHorarioInicio;
+
+        /// <summary>
         /// Control ddlHorarioFinDis.
         /// </summary>
         /// <remarks>
@@ -112,6 +148,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHorarioFinDis;
+
+        /// <summary>
+        /// Control rfvHorarioFinalizacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHorarioFinalizacion;
 
         /// <summary>
         /// Control btnAgregarDisponibilidad.

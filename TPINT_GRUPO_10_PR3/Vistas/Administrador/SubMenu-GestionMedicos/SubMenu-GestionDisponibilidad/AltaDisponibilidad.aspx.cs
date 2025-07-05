@@ -17,6 +17,8 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("~/Login.aspx");

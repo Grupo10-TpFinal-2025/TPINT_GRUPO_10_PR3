@@ -10,7 +10,6 @@ using System.Web.UI.WebControls;
 
 namespace Vistas.Administrador.SubMenu_GestionTurnos
 {
-    
 	public partial class ModificacionTurno : System.Web.UI.Page
 	{
         private readonly NegocioTurno negocioTurno = new NegocioTurno();

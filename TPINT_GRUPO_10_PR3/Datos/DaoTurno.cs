@@ -245,7 +245,7 @@ namespace Datos
             }
         }
 
-        public void ValidarOCrearProcedimiento_ModificacionTurno()
+        private void ValidarOCrearProcedimiento_ModificacionTurno()
         {
             SqlConnection conexion = datos.ObtenerConexion();
             using (conexion)

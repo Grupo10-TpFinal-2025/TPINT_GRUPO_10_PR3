@@ -4,6 +4,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script type="text/javascript">
+        function toggleExclusive(pendienteId, asistenciaId, clicked) {
+            var pendiente = document.getElementById(pendienteId);
+            var asistencia = document.getElementById(asistenciaId);
+
+            if (clicked === 'pendiente' && pendiente.checked) {
+                asistencia.checked = false;
+            } else if (clicked === 'asistencia' && asistencia.checked) {
+                pendiente.checked = false;
+            }
+        }
+    </script>
+</head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <style type="text/css">
@@ -68,105 +81,96 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:GridView ID="gvModificarTurnos" runat="server"
-                        AutoGenerateColumns="False"
-                        AutoGenerateEditButton="True"
-                        DataKeyNames="ID Consulta"
-                        OnRowEditing="gvModificarTurnos_RowEditing"
-                        OnRowUpdating="gvModificarTurnos_RowUpdating"
-                        OnRowCancelingEdit="gvModificarTurnos_RowCancelingEdit"
-                        CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True">
+                   <asp:GridView ID="gvModificarTurnos" runat="server"
+    AutoGenerateColumns="False"
+    AutoGenerateEditButton="True"
+    DataKeyNames="ID Consulta"
+    OnRowEditing="gvModificarTurnos_RowEditing"
+    OnRowUpdating="gvModificarTurnos_RowUpdating"
+    OnRowCancelingEdit="gvModificarTurnos_RowCancelingEdit"
+    CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnRowDataBound="gvModificarTurnos_RowDataBound">
 
-                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
 
-                        <Columns>
+    <Columns>
 
-                            <asp:TemplateField></asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="ID Consulta">
-                                <ItemTemplate>
-                                    <asp:Label ID="lbl_it_IDConsulta" runat="server" Text='<%# Eval("ID Consulta") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+        <asp:TemplateField HeaderText="ID Consulta">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_IDConsulta" runat="server" Text='<%# Eval("ID Consulta") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
 
 
-                            <asp:TemplateField HeaderText="Medico">
-                                <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Medico" runat="server" Text='<%# Eval("Medico") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+        <asp:TemplateField HeaderText="Medico">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Medico" runat="server" Text='<%# Eval("Medico") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Paciente">
-                                <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+        <asp:TemplateField HeaderText="Paciente">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Turno">
-                                <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Turno" runat="server" Text='<%# Eval("Turno") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+        <asp:TemplateField HeaderText="Turno">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Turno" runat="server" Text='<%# Eval("Turno") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Pendiente">
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chk_it_Pendiente" runat="server"
-                                        Checked='<%# Eval("Pendiente") != DBNull.Value && Convert.ToBoolean(Eval("Pendiente")) %>'
-                                        Enabled="false" />
-                                </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:CheckBox ID="chk_eit_Pendiente" runat="server"
-                                        Checked='<%# Eval("Pendiente") != DBNull.Value && Convert.ToBoolean(Eval("Pendiente")) %>' />
-                                </EditItemTemplate>
-                            </asp:TemplateField>
+        <asp:TemplateField HeaderText="Pendiente">
+            <ItemTemplate>
+                <asp:CheckBox ID="chk_it_Pendiente" runat="server"
+                    Checked='<%# Eval("Pendiente") != DBNull.Value && Convert.ToBoolean(Eval("Pendiente")) %>'
+                    Enabled="false" />
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:CheckBox ID="chk_eit_Pendiente" runat="server"
+                    Checked='<%# Bind("Pendiente") %>' />
+            </EditItemTemplate>
+        </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Asistencia">
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chk_it_Asistencia" runat="server"
-                                        Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>'
-                                        Enabled="false" />
-                                </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:CheckBox ID="chk_eit_Asistencia" runat="server"
-                                        Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>' />
-                                </EditItemTemplate>
-                            </asp:TemplateField>
+        <asp:TemplateField HeaderText="Asistencia">
+            <ItemTemplate>
+                <asp:CheckBox ID="chk_it_Asistencia" runat="server"
+                    Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>'
+                    Enabled="false" />
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:CheckBox ID="chk_eit_Asistencia" runat="server"
+                    Checked='<%# Bind("Asistencia") %>' />
+            </EditItemTemplate>
+        </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Descripcion">
-                                <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Descripcion" runat="server"
-                                        Text='<%# Eval("Descripcion") %>'></asp:Label>
-                                </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txt_eit_Descripcion" runat="server"
-                                        Text='<%# Bind("Descripcion") %>'></asp:TextBox>
-                                </EditItemTemplate>
-                            </asp:TemplateField>
+        <asp:TemplateField HeaderText="Descripcion">
+            <ItemTemplate>
+                <asp:Label ID="lbl_it_Descripcion" runat="server"
+                    Text='<%# Eval("Descripcion") %>'></asp:Label>
+            </ItemTemplate>
+        </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Estado">
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chk_it_Estado" runat="server"
-                                        Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>'
-                                        Enabled="false" />
-                                </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:CheckBox ID="chk_eit_Estado" runat="server"
-                                        Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>' />
-                                </EditItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
+        <asp:TemplateField HeaderText="Estado">
+            <ItemTemplate>
+                <asp:CheckBox ID="chk_it_Estado" runat="server"
+                    Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>'
+                    Enabled="false" />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
 
-                        <EditRowStyle BackColor="#999999" />
-                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                    </asp:GridView>
+    <EditRowStyle BackColor="#999999" />
+    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+
+</asp:GridView>
 
 
 <tr>

@@ -26,6 +26,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             {
                 lblUsuarioAdministrador.Text = "Administrador";
                 cargarGV();
+                gvModificarTurnos.RowDataBound += gvModificarTurnos_RowDataBound;
             }
         }
 
@@ -58,42 +59,70 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 // Obtener el ID del turno (clave primaria)
                 int idConsulta = Convert.ToInt32(gvModificarTurnos.DataKeys[e.RowIndex].Value);
 
-                // Obtener controles de edición
+                // Obtener el CheckBox de Pendiente
                 CheckBox chkPendiente = fila.FindControl("chk_eit_Pendiente") as CheckBox;
                 int pendiente = (chkPendiente != null && chkPendiente.Checked) ? 1 : 0;
 
+                // Obtener el CheckBox de Asistencia
                 CheckBox chkAsistencia = fila.FindControl("chk_eit_Asistencia") as CheckBox;
-                // Pasamos "1" o "0" como string para usar en el SP
                 string asistencia = (chkAsistencia != null && chkAsistencia.Checked) ? "1" : "0";
 
-                CheckBox chkEstado = fila.FindControl("chk_eit_Estado") as CheckBox;
+                // Traer la descripción actual (ya que tu SP la requiere)
+                Label lblDescripcion = fila.FindControl("lbl_it_Descripcion") as Label;
+                string descripcion = lblDescripcion != null ? lblDescripcion.Text.Trim() : "";
+
+                // Traer el estado actual (ya que tu SP lo requiere)
+                CheckBox chkEstado = fila.FindControl("chk_it_Estado") as CheckBox;
                 bool estado = chkEstado != null && chkEstado.Checked;
 
-                TextBox txtDescripcion = fila.FindControl("txt_eit_Descripcion") as TextBox;
-                string descripcion = txtDescripcion != null ? txtDescripcion.Text.Trim() : "";
-
-                // Traer la fecha actual de la base o usar DateTime.Now temporalmente
+                // Traer la fecha actual (temporal) porque tu SP la requiere
                 DateTime fecha = DateTime.Now;
 
-                // Crear objeto Turno para enviar al SP
+                // Crear el objeto Turno
                 Turno turnoModificado = new Turno
                 {
                     CodTurno = idConsulta,
                     Fecha = fecha,
                     Pendiente = pendiente,
-                    Asistencia = asistencia, // "1" o "0"
+                    Asistencia = asistencia,
                     Descripcion = descripcion,
-                    Estado = estado // bool
+                    Estado = estado
                 };
 
-                lblModificacionMensaje.Text = "Modificación exitosa.";
+                // Llamar a NegocioTurno para actualizar en la BD
+                NegocioTurno negocioTurno = new NegocioTurno();
+                int filasAfectadas = negocioTurno.ModificarTurno(turnoModificado);
+
+                if (filasAfectadas > 0)
+                {
+                    lblModificacionMensaje.Text = "Modificación exitosa.";
+                }
+                else
+                {
+                    lblModificacionMensaje.Text = "No se realizó ninguna modificación.";
+                }
 
                 gvModificarTurnos.EditIndex = -1;
                 cargarGV();
             }
             catch (Exception ex)
             {
-                lblModificacionMensaje.Text = "Error inesperado: " + ex.Message;
+                lblModificacionMensaje.Text = "❌ Error: " + ex.Message;
+            }
+        }
+
+        protected void gvModificarTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chkPendiente = e.Row.FindControl("chk_eit_Pendiente") as CheckBox;
+                CheckBox chkAsistencia = e.Row.FindControl("chk_eit_Asistencia") as CheckBox;
+
+                if (chkPendiente != null && chkAsistencia != null)
+                {
+                    chkPendiente.Attributes["onclick"] = $"toggleExclusive('{chkPendiente.ClientID}', '{chkAsistencia.ClientID}', 'pendiente');";
+                    chkAsistencia.Attributes["onclick"] = $"toggleExclusive('{chkPendiente.ClientID}', '{chkAsistencia.ClientID}', 'asistencia');";
+                }
             }
         }
     }

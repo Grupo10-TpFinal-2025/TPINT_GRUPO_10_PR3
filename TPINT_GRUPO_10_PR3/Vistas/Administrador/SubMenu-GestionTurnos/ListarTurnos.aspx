@@ -1,13 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListarTurnos.aspx.cs" Inherits="Vistas.Administrador.SubMenu_GestionTurnos.ListarTurnos" %>
+﻿<!-- Configuraciones de la pagina -->
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListarTurnos.aspx.cs" Inherits="Vistas.Administrador.SubMenu_GestionTurnos.ListarTurnos" %>
 
+<!-- Declaro el tipo de documento -->
 <!DOCTYPE html>
 
+<!-- Esto es algo asi como el using namespace de asp.net -->
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Indica que abro el "Head" que es algo asi como lo que se programa pero no se muestra -->
 <head runat="server">
+
+<!-- Esto es algo asi como la biblioteca locale.h de codeblocks -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+
+    <!-- El titulo de la pagina -->
+    <title>Listado de turnos</title>
+
+    <!-- Defino los estilos que voy a usar en mis labels, textbox, etc -->
     <style type="text/css">
-        .auto-style1 {
+        .TablaSuperior {
             width: 100%;
         }
         .auto-style2 {
@@ -29,14 +40,18 @@
             width: 1658px;
         }
     </style>
+
+<!-- Cierro el head -->
 </head>
+
+<!-- Abro el body -->
 <body>
     <form id="form1" runat="server">
         <div>
-            <table class="auto-style1">
+            <table class="TablaSuperior"
                 <tr>
                     <td class="auto-style4">&nbsp;<asp:Panel ID="Panel1" runat="server">
-                        <table class="auto-style1">
+                        <table class="TablaSuperior">
                             <tr>
                                 <td>
                                     <asp:HyperLink ID="hlAltaTurno" runat="server" Font-Size="Large" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/AltaTurno.aspx">Alta Turno</asp:HyperLink>

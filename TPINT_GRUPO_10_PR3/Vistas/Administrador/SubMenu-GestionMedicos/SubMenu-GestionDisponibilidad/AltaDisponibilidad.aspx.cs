@@ -116,12 +116,14 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 {
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Text = "Error al cargar la disponibilidad.";
+                    LimpiarCampos();
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Text = $"Error inesperado: {ex.Message}";
+                LimpiarCampos();
             }
         }
 

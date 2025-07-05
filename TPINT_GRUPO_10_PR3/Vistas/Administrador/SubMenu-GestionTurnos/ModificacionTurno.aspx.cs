@@ -157,10 +157,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
                     if (chkPendiente.Checked)
                     {
-
                         Label lblIDConsulta = e.Row.FindControl("lbl_et_IDConsulta") as Label;
                         Label legajo = e.Row.FindControl("lbl_et_Legajo") as Label;
-
 
                         int idTurno = Convert.ToInt32(lblIDConsulta.Text);
                         int legajoMedico = Convert.ToInt32(legajo.Text);
@@ -259,7 +257,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                             Calendario[i, j] = j + 1;
                         }
                     }
-
                 }
             }
 

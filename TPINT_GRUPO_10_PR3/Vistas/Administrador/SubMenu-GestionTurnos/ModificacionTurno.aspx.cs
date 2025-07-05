@@ -13,8 +13,9 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
     public partial class ModificacionTurno : System.Web.UI.Page
     {
         private readonly NegocioTurno negocioTurno = new NegocioTurno();
-        int[,] Calendario = new int[12, 31];
         private readonly NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
+        private int[,] Calendario = new int[12, 31];
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] == null)
@@ -73,7 +74,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
                 turnoModificado.CodTurno = idConsulta;
 
-               bool  bandera = Convert.ToBoolean(Session["fechaModificable"]);
+                bool  bandera = Convert.ToBoolean(Session["fechaModificable"]);
                 if (bandera == true)
                 {
                     DropDownList ddlFechas = fila.FindControl("ddl_et_FechasTurnos") as DropDownList;
@@ -171,7 +172,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
                         string fechaSeleccionada = fechaTurnoActual.ToString();
 
-
                         for (int i = 0; i < ddlfechasTurnos.Items.Count; i++)
                         {
 
@@ -213,7 +213,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
                     }
 
-                        TextBox txtDescripcion = (TextBox)e.Row.FindControl("txt_et_Descripcion");
+                    TextBox txtDescripcion = (TextBox)e.Row.FindControl("txt_et_Descripcion");
                     if (string.IsNullOrEmpty(txtDescripcion.Text))
                     {
                         txtDescripcion.Text = "Sin Completar";
@@ -223,7 +223,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
         }
 
-        public void Calendario_Vacio()
+        private void Calendario_Vacio()
         {
             for (int i = 0; i < 12; i++)
             {
@@ -234,7 +234,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
         }
 
-        public int[,] ObtenerCalendarioMedico(int idTurno)
+        private int[,] ObtenerCalendarioMedico(int idTurno)
         {
             Calendario_Vacio();
             DataTable registroTurno = negocioTurno.getTablaPorCodigoTurno(idTurno);
@@ -266,7 +266,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             return Calendario;
         }
 
-        public List<DateTime> ListarFechasTurnos(int[,] calendario, int legajoMedico)
+        private List<DateTime> ListarFechasTurnos(int[,] calendario, int legajoMedico)
         {
             List<DateTime> fechasTurnos = new List<DateTime>();
             List<Disponibilidad> ListaDisponibilidad = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
@@ -298,7 +298,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             return fechasTurnos;
         }
 
-        public List<TimeSpan> ObtenerHoras(int legajoMedico, List<Disponibilidad> ListaDisponibilidad)
+        private List<TimeSpan> ObtenerHoras(int legajoMedico, List<Disponibilidad> ListaDisponibilidad)
         {
             List<TimeSpan> horasDisponibles = new List<TimeSpan>();
 
@@ -317,7 +317,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             return horasDisponibles;
         }
 
-        public List<DateTime> DescontarTurnosOcupados(List<DateTime> fechasTurnos, int legajoMedico, DateTime fechaTurnoActual)
+        private List<DateTime> DescontarTurnosOcupados(List<DateTime> fechasTurnos, int legajoMedico, DateTime fechaTurnoActual)
         {
             List<Turno> turnosOcupados = negocioTurno.ObtenerListaTurnos(legajoMedico);
 
@@ -341,7 +341,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             return fechasTurnos;
         }
 
-        public List<DateTime> ObtenerTurnosDisponibles(int idTurno, DateTime fechaTurnoActual)
+        private List<DateTime> ObtenerTurnosDisponibles(int idTurno, DateTime fechaTurnoActual)
         {
             //Obtener el calendario del médico para el turno dado
             int[,] calendario = ObtenerCalendarioMedico(idTurno);
@@ -359,14 +359,10 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             return turnosDisponibles;
         }
 
-        public void CargarDDL_Fechas(List<DateTime> fechasTurnosLibres, DropDownList ddlfechasTurnos)
+        private void CargarDDL_Fechas(List<DateTime> fechasTurnosLibres, DropDownList ddlfechasTurnos)
         {
             ddlfechasTurnos.DataSource = fechasTurnosLibres;
             ddlfechasTurnos.DataBind();
-
         }
-       
-
-
     }
 }

@@ -113,7 +113,7 @@
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp; &nbsp; &nbsp;&nbsp; DNI Paciente:&nbsp;&nbsp;
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px" TextMode="Number"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Descripción:&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtDescripcion" runat="server" Font-Size="Small" Height="17px" Width="217px" MaxLength="100"></asp:TextBox>
+                        <asp:TextBox ID="txtDescripcion" runat="server" Font-Size="Small" Height="36px" Width="350px" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

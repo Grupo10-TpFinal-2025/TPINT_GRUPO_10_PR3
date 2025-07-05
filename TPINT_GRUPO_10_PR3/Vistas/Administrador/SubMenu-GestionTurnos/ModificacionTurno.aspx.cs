@@ -27,6 +27,11 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 lblUsuarioAdministrador.Text = "Administrador";
                 cargarGV();
                 gvModificarTurnos.RowDataBound += gvModificarTurnos_RowDataBound;
+                Session["fechaModificable"] = false;
+            }
+            else
+            {
+                lblModificacionMensaje.Text = string.Empty;
             }
         }
 
@@ -59,41 +64,49 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
             try
             {
+                Turno turnoModificado = new Turno();
+
                 GridViewRow fila = gvModificarTurnos.Rows[e.RowIndex];
 
                 // Obtener el ID del turno (clave primaria)
                 int idConsulta = Convert.ToInt32(gvModificarTurnos.DataKeys[e.RowIndex].Value);
 
-                DropDownList ddlFechas = fila.FindControl("ddl_et_FechasTurnos") as DropDownList;
-                DateTime fecha = Convert.ToDateTime(ddlFechas.SelectedItem.Text);
+                turnoModificado.CodTurno = idConsulta;
 
-               // Obtener el CheckBox de Pendiente
-               CheckBox chkPendiente = fila.FindControl("chk_eit_Pendiente") as CheckBox;
+               bool  bandera = Convert.ToBoolean(Session["fechaModificable"]);
+                if (bandera == true)
+                {
+                    DropDownList ddlFechas = fila.FindControl("ddl_et_FechasTurnos") as DropDownList;
+                    DateTime fecha = Convert.ToDateTime(ddlFechas.SelectedItem.Text);
+                    turnoModificado.Fecha = fecha; 
+                }
+                else
+                {
+                    Label lblFechaTurnoActual = fila.FindControl("lbl_et_Turno") as Label;
+                    DateTime fecha = Convert.ToDateTime(lblFechaTurnoActual.Text);
+                    turnoModificado.Fecha = fecha;
+                }
+
+                // Obtener el CheckBox de Pendiente
+                CheckBox chkPendiente = fila.FindControl("chk_eit_Pendiente") as CheckBox;
                 int pendiente = (chkPendiente != null && chkPendiente.Checked) ? 1 : 0;
+                turnoModificado.Pendiente = pendiente;
 
                 // Obtener el CheckBox de Asistencia
                 CheckBox chkAsistencia = fila.FindControl("chk_eit_Asistencia") as CheckBox;
                 string asistencia = (chkAsistencia != null && chkAsistencia.Checked) ? "1" : "0";
+                turnoModificado.Asistencia = asistencia;
 
                 // Traer la descripción actual (ya que la SP la requiere)
                 TextBox txtDescripcion = fila.FindControl("txt_et_Descripcion") as TextBox;
                 string descripcion = txtDescripcion != null ? txtDescripcion.Text.Trim() : "Sin Completar";
+                turnoModificado.Descripcion = descripcion;
 
                 // Traer el estado actual (ya que la SP lo requiere)
                 CheckBox chkEstado = fila.FindControl("chk_et_Estado") as CheckBox;
                 bool estado = chkEstado != null && chkEstado.Checked;
+                turnoModificado.Estado = estado;
 
-
-                // Crear el objeto Turno
-                Turno turnoModificado = new Turno
-                {
-                    CodTurno = idConsulta,
-                    Fecha = fecha,
-                    Pendiente = pendiente,
-                    Asistencia = asistencia,
-                    Descripcion = descripcion,
-                    Estado = estado
-                };
 
                 // Llamar a NegocioTurno para actualizar en la BD
                 int filasAfectadas = negocioTurno.ModificarTurno(turnoModificado);
@@ -138,13 +151,14 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                         chkAsistencia.Attributes["onclick"] = $"toggleExclusive('{chkPendiente.ClientID}', '{chkAsistencia.ClientID}', 'asistencia');";
                     }
 
+                    Label lblFechaTurnoActual = e.Row.FindControl("lbl_et_Turno") as Label;
+                    DropDownList ddlfechasTurnos = e.Row.FindControl("ddl_et_FechasTurnos") as DropDownList;
+
                     if (chkPendiente.Checked)
                     {
 
                         Label lblIDConsulta = e.Row.FindControl("lbl_et_IDConsulta") as Label;
-                        DropDownList ddlfechasTurnos = e.Row.FindControl("ddl_et_FechasTurnos") as DropDownList;
                         Label legajo = e.Row.FindControl("lbl_et_Legajo") as Label;
-                        Label lblFechaTurnoActual = e.Row.FindControl("lbl_et_Turno") as Label;
 
 
                         int idTurno = Convert.ToInt32(lblIDConsulta.Text);
@@ -169,23 +183,34 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                             }
                         }
 
-                        if (ddlfechasTurnos.Items.Count <= 1)
+                        if (ddlfechasTurnos.SelectedIndex == -1)
                         {
-                            lblFechaTurnoActual.Visible = true;
-                            ddlfechasTurnos.Visible = false;
-                            lblModificacionMensaje.Text = "Actualmente este medico no cuenta con registros de disponibilidad vigentes para poder modificar la fecha.";
+                            if (ddlfechasTurnos.Items.Count <= 0)
+                            {
+                                lblModificacionMensaje.Text = "Actualmente este medico no cuenta con disponibilidad vigente para poder modificar la fecha de este turno.";
+                                lblFechaTurnoActual.Visible = true;
+                                ddlfechasTurnos.Visible = false;
+                            }
+                            else
+                            {
+                                ddlfechasTurnos.Items.Insert(0, new ListItem("Seleccione una fecha", "0"));
+                                Session["fechaModificable"] = true;
+                            }
+
+                            ddlfechasTurnos.SelectedIndex = 0;
                         }
-
-                        else if (ddlfechasTurnos.SelectedIndex == -1)
+                        else
                         {
-                            ddlfechasTurnos.Items.Insert(0, new ListItem("Seleccione una fecha", "0"));
-
+                            Session["fechaModificable"] = true;
                         }
                     }
 
                     else
                     {
                         lblModificacionMensaje.Text = "Este turno no esta pendiente, por lo que su fecha no es modificable.";
+                        lblFechaTurnoActual.Visible = true;
+                        ddlfechasTurnos.Visible = false;
+
                     }
 
                         TextBox txtDescripcion = (TextBox)e.Row.FindControl("txt_et_Descripcion");

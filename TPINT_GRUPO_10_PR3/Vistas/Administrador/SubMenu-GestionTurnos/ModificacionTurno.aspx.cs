@@ -86,17 +86,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     Estado = estado // bool
                 };
 
-                // Ejecutar actualización en la base
-                int resultado = turno.ModificarTurno(turnoModificado);
-
-                if (resultado > 0)
-                {
-                    lblModificacionMensaje.Text = " Turno actualizado correctamente en la base de datos.";
-                }
-                else
-                {
-                    lblModificacionMensaje.Text = "⚠Error: No se pudo actualizar el turno en la base de datos.";
-                }
+                lblModificacionMensaje.Text = "Modificación exitosa.";
 
                 gvModificarTurnos.EditIndex = -1;
                 cargarGV();

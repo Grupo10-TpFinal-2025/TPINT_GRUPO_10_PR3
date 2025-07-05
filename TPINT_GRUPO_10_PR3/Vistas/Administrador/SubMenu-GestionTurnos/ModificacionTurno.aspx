@@ -88,7 +88,7 @@
     OnRowEditing="gvModificarTurnos_RowEditing"
     OnRowUpdating="gvModificarTurnos_RowUpdating"
     OnRowCancelingEdit="gvModificarTurnos_RowCancelingEdit"
-    CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnRowDataBound="gvModificarTurnos_RowDataBound">
+    CellPadding="4" ForeColor="#333333" GridLines="Vertical" AllowPaging="True" OnRowDataBound="gvModificarTurnos_RowDataBound" OnPageIndexChanging="gvModificarTurnos_PageIndexChanging">
 
     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
 
@@ -96,20 +96,20 @@
 
         <asp:TemplateField HeaderText="ID Consulta">
             <ItemTemplate>
-                <asp:Label ID="lbl_it_IDConsulta" runat="server" Text='<%# Eval("ID Consulta") %>'></asp:Label>
+                <asp:Label ID="lbl_it_IDConsulta" runat="server" Text='<%# Bind("[ID Consulta]") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
 
 
-        <asp:TemplateField HeaderText="Medico">
+        <asp:TemplateField HeaderText="Médico">
             <ItemTemplate>
-                <asp:Label ID="lbl_it_Medico" runat="server" Text='<%# Eval("Medico") %>'></asp:Label>
+                <asp:Label ID="lbl_it_Medico" runat="server" Text='<%# Bind("Medico") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
 
         <asp:TemplateField HeaderText="Paciente">
             <ItemTemplate>
-                <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Eval("Paciente") %>'></asp:Label>
+                <asp:Label ID="lbl_it_Paciente" runat="server" Text='<%# Bind("Paciente") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
 
@@ -143,10 +143,10 @@
             </EditItemTemplate>
         </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Descripcion">
+        <asp:TemplateField HeaderText="Descripción">
             <ItemTemplate>
                 <asp:Label ID="lbl_it_Descripcion" runat="server"
-                    Text='<%# Eval("Descripcion") %>'></asp:Label>
+                    Text='<%# Bind("Descripcion") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
 

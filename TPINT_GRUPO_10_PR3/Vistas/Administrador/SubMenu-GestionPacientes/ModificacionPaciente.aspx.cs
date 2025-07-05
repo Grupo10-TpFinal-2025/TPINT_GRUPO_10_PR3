@@ -12,7 +12,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 	public partial class ModificacionPaciente : System.Web.UI.Page
 	{
 		private readonly NegocioPaciente negocioPaciente = new NegocioPaciente();
-        private readonly Paciente paciente = new Paciente();
+        private Paciente paciente;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,6 +66,8 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
         protected void gvModificacionPacientes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            paciente = new Paciente();
+
             paciente.Legajo = int.Parse(((Label)gvModificacionPacientes.Rows[e.RowIndex].FindControl("lbl_et_Legajo")).Text);
             paciente.Apellido = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Apellido")).Text;
             paciente.Nombre = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Nombre")).Text;

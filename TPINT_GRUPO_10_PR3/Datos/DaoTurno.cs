@@ -110,50 +110,6 @@ namespace Datos
             return listaTurnosMedico;
         }
 
-        private void ValidarOCrearProcedimientoMostrarTurno()
-        {
-            SqlConnection conexion = datos.ObtenerConexion();
-            using (conexion)
-            {
-                // Verificar si existe el procedimiento
-                string consultaExiste = @"
-                    SELECT COUNT(*) 
-                    FROM sys.objects 
-                    WHERE type = 'P' AND name = 'SP_MostrarTurnosDisponibles'";
-
-                SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
-                int cantidad = (int)cmdExiste.ExecuteScalar();
-
-                if (cantidad == 0)
-                {
-                    // Crear el procedimiento si no existe
-                    string crearProc = @"
-                        CREATE PROCEDURE SP_MostrarTurnosDisponibles(
-                            @LegajoMedico INT,
-                            @NombreDia VARCHAR (10)                           
-                        )
-                        AS
-                        BEGIN
-                            DECLARE @NumDia INT
-                            
-                            SELECT @NumDia = NumDia_DI
-                            FROM Dia
-                            WHERE LOWER(Descripcion_DI) = @NombreDia
-
-                            SELECT	NumDia_DIS AS 'NumeroDia',
-		                            DI.Descripcion_DI AS 'NombreDia'
-                            FROM Disponibilidad DIS
-                            INNER JOIN Dia DI ON DI.NumDia_DI = DIS.NumDia_DIS
-                            WHERE	DIS.LegajoMedico_DIS = @LegajoMedico AND
-		                            DIS.NumDia_DIS >= @NumDia                                                        
-                        END";
-
-                    SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);
-                    cmdCrear.ExecuteNonQuery();
-                }
-            }
-        }
-
         //Consigue la tabla
         public DataTable getTabla()
         {
@@ -310,6 +266,7 @@ namespace Datos
                             CREATE PROCEDURE SP_ModificacionTurno_Grupo10 
                                 @Fecha_TU DateTime,           
                                 @CodTurno_TU INT,
+                                @Pendiente_TU BIT,
                                 @Asistencia_TU BIT,
                                 @Descripcion_TU NVARCHAR(300),
                                 @Estado_TU BIT
@@ -318,6 +275,7 @@ namespace Datos
                                 UPDATE Turno 
                                 SET 
                                     Fecha_TU = @Fecha_TU,    
+                                    Pendiente_TU = @Pendiente_TU,
                                     Asistencia_TU = @Asistencia_TU, 
                                     Descripcion_TU = @Descripcion_TU, 
                                     Estado_TU = @Estado_TU 

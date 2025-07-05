@@ -28,6 +28,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
                 CargarProvincias();
                 lblUsuarioAdministrador.Text = "Administrador";
+                txtFechaNacimientoPaciente.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
             }
         }
 

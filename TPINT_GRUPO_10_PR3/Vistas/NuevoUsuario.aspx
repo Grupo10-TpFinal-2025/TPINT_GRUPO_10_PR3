@@ -155,7 +155,7 @@
             <tr>
                 <td class="auto-style16"></td>
                 <td class="auto-style15">
-                    <asp:TextBox ID="txtNuevaContraseña" runat="server" Height="20px" Width="126px" ValidationGroup="NuevoUsuario"></asp:TextBox>
+                    <asp:TextBox ID="txtNuevaContraseña" runat="server" Height="20px" Width="126px" ValidationGroup="NuevoUsuario" MaxLength="30"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Ingrese una contraseña</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style20">
@@ -180,7 +180,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">
-                    <asp:TextBox ID="txtNuevaContraseña2" runat="server" Height="20px" Width="126px" TextMode="Password" ValidationGroup="NuevoUsuario"></asp:TextBox>
+                    <asp:TextBox ID="txtNuevaContraseña2" runat="server" Height="20px" Width="126px" TextMode="Password" ValidationGroup="NuevoUsuario" MaxLength="30"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtNuevaContraseña2" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Debe ingresar algún valor</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style19">

@@ -33,6 +33,18 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
             {
                 CargarDDLS(); // Cargar los DropDownList
                 lblUsuarioAdministrador.Text = "Administrador";
+
+                //Obtener la fecha actual.
+                DateTime hoy = DateTime.Today;
+
+                //Calcular la fecha límite restando 18 años a la fecha de hoy (cualquier persona nacida después de esta fecha es menor de edad).
+                DateTime fechaMaximaPermitida = hoy.AddYears(-18);
+
+                //Formatear la fecha al estándar "yyyy-MM-dd" que entiende <input type="date">
+                string fechaMaximaFormateada = fechaMaximaPermitida.ToString("yyyy-MM-dd");
+
+                //Asignar la fecha calculada como el atributo 'max' del control.
+                txtFechaNacimientoMedico.Attributes["max"] = fechaMaximaFormateada;
             }
         }
 

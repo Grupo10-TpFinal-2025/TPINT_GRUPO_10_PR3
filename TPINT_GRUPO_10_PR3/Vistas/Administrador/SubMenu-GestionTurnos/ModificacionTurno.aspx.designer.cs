@@ -105,15 +105,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control HyperLink2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
-
-        /// <summary>
         /// Control lblModificacionMensaje.
         /// </summary>
         /// <remarks>
@@ -123,12 +114,12 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         protected global::System.Web.UI.WebControls.Label lblModificacionMensaje;
 
         /// <summary>
-        /// Control hlGestionTurnos.
+        /// Control HyperLink2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlGestionTurnos;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
     }
 }

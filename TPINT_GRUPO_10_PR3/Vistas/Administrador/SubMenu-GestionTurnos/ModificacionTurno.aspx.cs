@@ -10,10 +10,11 @@ using System.Web.UI.WebControls;
 
 namespace Vistas.Administrador.SubMenu_GestionTurnos
 {
-	public partial class ModificacionTurno : System.Web.UI.Page
-	{
+    public partial class ModificacionTurno : System.Web.UI.Page
+    {
         private readonly NegocioTurno negocioTurno = new NegocioTurno();
-
+        int[,] Calendario = new int[12, 31];
+        private readonly NegocioDisponibilidad negocioDisponibilidad = new NegocioDisponibilidad();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] == null)
@@ -63,8 +64,11 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 // Obtener el ID del turno (clave primaria)
                 int idConsulta = Convert.ToInt32(gvModificarTurnos.DataKeys[e.RowIndex].Value);
 
-                // Obtener el CheckBox de Pendiente
-                CheckBox chkPendiente = fila.FindControl("chk_eit_Pendiente") as CheckBox;
+                DropDownList ddlFechas = fila.FindControl("ddl_et_FechasTurnos") as DropDownList;
+                DateTime fecha = Convert.ToDateTime(ddlFechas.SelectedItem.Text);
+
+               // Obtener el CheckBox de Pendiente
+               CheckBox chkPendiente = fila.FindControl("chk_eit_Pendiente") as CheckBox;
                 int pendiente = (chkPendiente != null && chkPendiente.Checked) ? 1 : 0;
 
                 // Obtener el CheckBox de Asistencia
@@ -72,15 +76,13 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 string asistencia = (chkAsistencia != null && chkAsistencia.Checked) ? "1" : "0";
 
                 // Traer la descripción actual (ya que la SP la requiere)
-                Label lblDescripcion = fila.FindControl("lbl_it_Descripcion") as Label;
-                string descripcion = lblDescripcion != null ? lblDescripcion.Text.Trim() : "";
+                TextBox txtDescripcion = fila.FindControl("txt_et_Descripcion") as TextBox;
+                string descripcion = txtDescripcion != null ? txtDescripcion.Text.Trim() : "Sin Completar";
 
                 // Traer el estado actual (ya que la SP lo requiere)
-                CheckBox chkEstado = fila.FindControl("chk_it_Estado") as CheckBox;
+                CheckBox chkEstado = fila.FindControl("chk_et_Estado") as CheckBox;
                 bool estado = chkEstado != null && chkEstado.Checked;
 
-                // Traer la fecha actual (temporal) porque la SP la requiere
-                DateTime fecha = DateTime.Now;
 
                 // Crear el objeto Turno
                 Turno turnoModificado = new Turno
@@ -103,8 +105,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 }
                 else
                 {
-                    lblModificacionMensaje.ForeColor= System.Drawing.Color.Red;
-                    lblModificacionMensaje.Text = "No se realizó ninguna modificación.";
+                    lblModificacionMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblModificacionMensaje.Text = "No fue posible realizar la modificación.";
                 }
 
                 gvModificarTurnos.EditIndex = -1;
@@ -129,13 +131,217 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     CheckBox chkPendiente = e.Row.FindControl("chk_eit_Pendiente") as CheckBox;
                     CheckBox chkAsistencia = e.Row.FindControl("chk_eit_Asistencia") as CheckBox;
 
+
                     if (chkPendiente != null && chkAsistencia != null)
                     {
                         chkPendiente.Attributes["onclick"] = $"toggleExclusive('{chkPendiente.ClientID}', '{chkAsistencia.ClientID}', 'pendiente');";
                         chkAsistencia.Attributes["onclick"] = $"toggleExclusive('{chkPendiente.ClientID}', '{chkAsistencia.ClientID}', 'asistencia');";
                     }
+
+                    if (chkPendiente.Checked)
+                    {
+
+                        Label lblIDConsulta = e.Row.FindControl("lbl_et_IDConsulta") as Label;
+                        DropDownList ddlfechasTurnos = e.Row.FindControl("ddl_et_FechasTurnos") as DropDownList;
+                        Label legajo = e.Row.FindControl("lbl_et_Legajo") as Label;
+                        Label lblFechaTurnoActual = e.Row.FindControl("lbl_et_Turno") as Label;
+
+
+                        int idTurno = Convert.ToInt32(lblIDConsulta.Text);
+                        int legajoMedico = Convert.ToInt32(legajo.Text);
+                        DateTime fechaTurnoActual = Convert.ToDateTime(lblFechaTurnoActual.Text);
+
+                        List<DateTime> fechasTurnosLibres = ObtenerTurnosDisponibles(idTurno, fechaTurnoActual);
+
+                        CargarDDL_Fechas(fechasTurnosLibres, ddlfechasTurnos);
+
+                        string fechaSeleccionada = fechaTurnoActual.ToString();
+
+
+                        for (int i = 0; i < ddlfechasTurnos.Items.Count; i++)
+                        {
+
+                            if (ddlfechasTurnos.Items[i].Text == fechaSeleccionada)
+                            {
+
+                                ddlfechasTurnos.SelectedIndex = i;
+                                break;
+                            }
+                        }
+
+                        if (ddlfechasTurnos.Items.Count <= 1)
+                        {
+                            lblFechaTurnoActual.Visible = true;
+                            ddlfechasTurnos.Visible = false;
+                            lblModificacionMensaje.Text = "Actualmente este medico no cuenta con registros de disponibilidad vigentes para poder modificar la fecha.";
+                        }
+
+                        else if (ddlfechasTurnos.SelectedIndex == -1)
+                        {
+                            ddlfechasTurnos.Items.Insert(0, new ListItem("Seleccione una fecha", "0"));
+
+                        }
+                    }
+
+                    else
+                    {
+                        lblModificacionMensaje.Text = "Este turno no esta pendiente, por lo que su fecha no es modificable.";
+                    }
+
+                        TextBox txtDescripcion = (TextBox)e.Row.FindControl("txt_et_Descripcion");
+                    if (string.IsNullOrEmpty(txtDescripcion.Text))
+                    {
+                        txtDescripcion.Text = "Sin Completar";
+                    }
+
                 }
             }
         }
+
+        public void Calendario_Vacio()
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 31; j++)
+                {
+                    Calendario[i, j] = 0;
+                }
+            }
+        }
+
+        public int[,] ObtenerCalendarioMedico(int idTurno)
+        {
+            Calendario_Vacio();
+            DataTable registroTurno = negocioTurno.getTablaPorCodigoTurno(idTurno);
+            int legajo = Convert.ToInt32(registroTurno.Rows[0]["Legajo Medico"]);
+            List<Disponibilidad> listaDisponibilidad = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajo);
+
+            DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            for (int i = 0; i < 12; i++)
+            {
+                Calendario[i, 0] = i + 1;
+                int diasMes = DateTime.DaysInMonth(DateTime.Now.Year, i+1);
+
+                for (int j = 0; j < diasMes; j++)
+                {
+                    DateTime fecha = new DateTime(DateTime.Now.Year, i + 1, j + 1);
+                    int numeroDia = ((int)fecha.DayOfWeek == 0) ? 7 : (int)fecha.DayOfWeek;
+
+                    foreach (Disponibilidad disponibilidad in listaDisponibilidad)
+                    {
+                        if (disponibilidad.NumDia == numeroDia)
+                        {
+                            Calendario[i, j] = j + 1;
+                        }
+                    }
+
+                }
+            }
+
+            return Calendario;
+        }
+
+        public List<DateTime> ListarFechasTurnos(int[,] calendario, int legajoMedico)
+        {
+            List<DateTime> fechasTurnos = new List<DateTime>();
+            List<Disponibilidad> ListaDisponibilidad = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
+            List<TimeSpan> horarios;
+
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 31; j++)
+                {
+                    if (calendario[i, j] != 0)
+                    {
+                        DateTime fecha = new DateTime(DateTime.Now.Year, i + 1, j + 1);
+                        int numeroDia = ((int)fecha.DayOfWeek == 0) ? 7 : (int)fecha.DayOfWeek;
+                        horarios = ObtenerHoras(legajoMedico, ListaDisponibilidad.Where(d => d.NumDia == numeroDia).ToList());
+
+                        for (int k = 0; k < horarios.Count; k++)
+                        {
+                            TimeSpan hora = horarios[k];
+                            DateTime fechaTurno = new DateTime(fecha.Year, fecha.Month, calendario[i, j], hora.Hours, hora.Minutes, 0);
+                            if (fechaTurno >= DateTime.Now)
+                            {
+                                fechasTurnos.Add(fechaTurno);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return fechasTurnos;
+        }
+
+        public List<TimeSpan> ObtenerHoras(int legajoMedico, List<Disponibilidad> ListaDisponibilidad)
+        {
+            List<TimeSpan> horasDisponibles = new List<TimeSpan>();
+
+            for (int i = 0; i < ListaDisponibilidad.Count; i++)
+            {
+                TimeSpan horaInicio = ListaDisponibilidad[i].HorarioInicio;
+                TimeSpan horaFin = ListaDisponibilidad[i].HorarioFin;
+
+                while (horaInicio <= horaFin)
+                {
+                    horasDisponibles.Add(horaInicio);
+                    horaInicio = horaInicio.Add(new TimeSpan(1, 0, 0));
+                }
+            }
+
+            return horasDisponibles;
+        }
+
+        public List<DateTime> DescontarTurnosOcupados(List<DateTime> fechasTurnos, int legajoMedico, DateTime fechaTurnoActual)
+        {
+            List<Turno> turnosOcupados = negocioTurno.ObtenerListaTurnos(legajoMedico);
+
+            for (int i = fechasTurnos.Count - 1; i >= 0; i--)
+            {
+                DateTime fechaPotencial = fechasTurnos[i];
+
+                for(int j = 0; j < turnosOcupados.Count; j++)
+                {
+                    if (turnosOcupados[j].Fecha == fechaPotencial)
+                    {
+                        if (turnosOcupados[j].Fecha != fechaTurnoActual)
+                        {
+                            fechasTurnos.RemoveAt(i);
+                            break; 
+                        }
+                    }
+                }
+            }
+
+            return fechasTurnos;
+        }
+
+        public List<DateTime> ObtenerTurnosDisponibles(int idTurno, DateTime fechaTurnoActual)
+        {
+            //Obtener el calendario del médico para el turno dado
+            int[,] calendario = ObtenerCalendarioMedico(idTurno);
+
+            //Obtener el legajo del médico a partir del idTurno
+            DataTable registroTurno = negocioTurno.getTablaPorCodigoTurno(idTurno);
+            int legajoMedico = Convert.ToInt32(registroTurno.Rows[0]["Legajo Medico"]);
+
+            //Listar todas las fechas posibles de turnos según el calendario, legajo y especialidad
+            List<DateTime> fechasTurnos = ListarFechasTurnos(calendario, legajoMedico);
+
+            //Descontar los turnos ya ocupados
+            List<DateTime> turnosDisponibles = DescontarTurnosOcupados(fechasTurnos, legajoMedico, fechaTurnoActual);
+
+            return turnosDisponibles;
+        }
+
+        public void CargarDDL_Fechas(List<DateTime> fechasTurnosLibres, DropDownList ddlfechasTurnos)
+        {
+            ddlfechasTurnos.DataSource = fechasTurnosLibres;
+            ddlfechasTurnos.DataBind();
+
+        }
+       
+
+
     }
 }

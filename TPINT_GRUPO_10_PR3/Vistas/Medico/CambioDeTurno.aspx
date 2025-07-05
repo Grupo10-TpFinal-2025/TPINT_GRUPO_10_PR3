@@ -138,7 +138,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Observaciones Medicas">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>' TextMode="MultiLine" Width="430px" MaxLength="300"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>'></asp:Label>

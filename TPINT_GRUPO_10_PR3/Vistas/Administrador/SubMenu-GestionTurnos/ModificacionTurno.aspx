@@ -95,6 +95,9 @@
     <Columns>
 
         <asp:TemplateField HeaderText="ID Consulta">
+            <EditItemTemplate>
+                <asp:Label ID="lbl_et_IDConsulta" runat="server" Text='<%# Bind("[ID Consulta]") %>'></asp:Label>
+            </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl_it_IDConsulta" runat="server" Text='<%# Bind("[ID Consulta]") %>'></asp:Label>
             </ItemTemplate>
@@ -102,6 +105,11 @@
 
 
         <asp:TemplateField HeaderText="Médico">
+            <EditItemTemplate>
+                <asp:Label ID="lbl_et_Medico" runat="server" Text='<%# Bind("Medico") %>'></asp:Label>
+                <br />
+                <asp:Label ID="lbl_et_Legajo" runat="server" Text='<%# Eval("Legajo Medico") %>' Visible="False"></asp:Label>
+            </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl_it_Medico" runat="server" Text='<%# Bind("Medico") %>'></asp:Label>
             </ItemTemplate>
@@ -114,6 +122,12 @@
         </asp:TemplateField>
 
         <asp:TemplateField HeaderText="Turno">
+            <EditItemTemplate>
+                <asp:DropDownList ID="ddl_et_FechasTurnos" runat="server">
+                </asp:DropDownList>
+                <br />
+                <asp:Label ID="lbl_et_Turno" runat="server" Text='<%# Eval("Turno") %>' Visible="False"></asp:Label>
+            </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl_it_Turno" runat="server" Text='<%# Eval("Turno") %>'></asp:Label>
             </ItemTemplate>
@@ -139,11 +153,14 @@
             </ItemTemplate>
             <EditItemTemplate>
                 <asp:CheckBox ID="chk_eit_Asistencia" runat="server"
-                    Checked='<%# Bind("Asistencia") %>' />
+                    Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>' />
             </EditItemTemplate>
         </asp:TemplateField>
 
         <asp:TemplateField HeaderText="Descripción">
+            <EditItemTemplate>
+                <asp:TextBox ID="txt_et_Descripcion" runat="server" Text='<%# Eval("Descripcion") %>' TextMode="MultiLine" Width="430px" MaxLength="300"></asp:TextBox>
+            </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl_it_Descripcion" runat="server"
                     Text='<%# Bind("Descripcion") %>'></asp:Label>
@@ -151,6 +168,9 @@
         </asp:TemplateField>
 
         <asp:TemplateField HeaderText="Estado">
+            <EditItemTemplate>
+                <asp:CheckBox ID="chk_et_Estado" runat="server" Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>' Enabled="false" />
+            </EditItemTemplate>
             <ItemTemplate>
                 <asp:CheckBox ID="chk_it_Estado" runat="server"
                     Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>'
@@ -179,7 +199,9 @@
     </td>
 </tr>
 
-<tr><td class="auto-style2">&nbsp;</td></tr>
+<tr><td class="auto-style2">
+                        <asp:Label ID="lblModificacionMensaje" runat="server"></asp:Label>
+                    </td></tr>
 
 <tr>
     <td class="auto-style7">
@@ -194,16 +216,14 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="lblModificacionMensaje" runat="server"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style7">
-                        <asp:HyperLink ID="hlGestionTurnos" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionTurnos/MenuGestionTurnos.aspx">Regresar a  Menú de Gestión de Turnos...</asp:HyperLink>
-                    </td>
+                        &nbsp;</td>
                 </tr>
             </table>
         </div>

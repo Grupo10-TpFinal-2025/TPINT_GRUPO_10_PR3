@@ -108,7 +108,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 bool estado = chkEstado != null && chkEstado.Checked;
                 turnoModificado.Estado = estado;
 
-
                 // Llamar a NegocioTurno para actualizar en la BD
                 int filasAfectadas = negocioTurno.ModificarTurno(turnoModificado);
 
@@ -358,6 +357,5 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlfechasTurnos.DataSource = fechasTurnosLibres;
             ddlfechasTurnos.DataBind();
         }
-
     }
 }

@@ -203,7 +203,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:HyperLink ID="hlDisponibilidadRapida" runat="server" Visible="False">Cargar la Disponibilidad del Médico Dado de Alta</asp:HyperLink>
+                        <asp:HyperLink ID="hlDisponibilidadRapida" runat="server" Visible="False" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/SubMenu-GestionDisponibilidad/AltaDisponibilidad.aspx">Cargar la Disponibilidad del Médico Dado de Alta</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>

@@ -109,14 +109,6 @@
                                     <asp:LinkButton ID="btnEditar" runat="server" CausesValidation="False" CommandName="Edit">Editar</asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Legajo">
-                                <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
-                                </EditItemTemplate>
-                                <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Apellido">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
@@ -137,11 +129,19 @@
                                     <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Legajo">
+                                <EditItemTemplate>
+                                    <asp:Label ID="lbl_et_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Bind("DNI") %>' ValidationGroup="GrupoModificarPaciente" TextMode="Number"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Bind("DNI") %>' ValidationGroup="GrupoModificarPaciente" TextMode="Number" MaxLength="8"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="No puede dejar el campo DNI vacío." ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                    <asp:RangeValidator ID="rvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="Ha ingresado un valor de DNI demasiado bajo" MaximumValue="99999999" MinimumValue="1000000" ValidationGroup="GrupoModificarPaciente">*</asp:RangeValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
@@ -210,9 +210,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Teléfono">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' TextMode="Number"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' TextMode="Number" MaxLength="10" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No puede dejar el campo Télefono vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No ingresó un formato de Teléfono válido" ValidationExpression="^\d{1,16}$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                    <asp:RangeValidator ID="rvTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="Ha ingresado un número de teléfono inválido" MaximumValue="9999999999" MinimumValue="1000000000" ValidationGroup="GrupoModificarPaciente">*</asp:RangeValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>

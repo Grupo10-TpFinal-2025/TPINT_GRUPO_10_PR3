@@ -81,17 +81,25 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             paciente.Telefono = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Telefono")).Text;
             paciente.CorreoElectronico = ((TextBox)gvModificacionPacientes.Rows[e.RowIndex].FindControl("txt_et_Correo")).Text;
 
-            if (negocioPaciente.ModificarPaciente(paciente))
+            if (!(negocioPaciente.ExisteDniDuplicado(paciente.Dni, paciente.Nacionalidad, paciente.Legajo)))
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
-                lblMensaje.Text = "Paciente modificado correctamente.";
-                gvModificacionPacientes.EditIndex = -1;
-                CargarPacientesTabla();
+                if (negocioPaciente.ModificarPaciente(paciente))
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                    lblMensaje.Text = "Paciente modificado correctamente.";
+                    gvModificacionPacientes.EditIndex = -1;
+                    CargarPacientesTabla();
+                }
+                else
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje.Text = "Error al modificar el paciente. Verifique los datos ingresados.";
+                }
             }
             else
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
-                lblMensaje.Text = "Error al modificar el paciente. Verifique los datos ingresados.";
+                lblMensaje.Text = "Error al modificar el paciente. El DNI Ingresado ya se encuentra en el Sistema.";
             }
         }
 
@@ -170,6 +178,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             {
                 txtFechaNacimiento.Text = "";
             }
+
+            // Configuro el rango permitido
+            DateTime hoy = DateTime.Today;
+            DateTime fechaMinima = hoy.AddYears(-140);
+
+            txtFechaNacimiento.Attributes["max"] = hoy.ToString("yyyy-MM-dd");
+            txtFechaNacimiento.Attributes["min"] = fechaMinima.ToString("yyyy-MM-dd");
         }
 
         protected void ddl_et_Provincias_SelectedIndexChanged(object sender, EventArgs e)

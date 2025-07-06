@@ -112,7 +112,7 @@ namespace Datos
             return table;
         }
 
-        //Consigue la tabla por codigo de turno
+        //Consigue la tabla por código de turno
         public DataTable getTablaPorCodigoTurno(int numero)
         {
             string consulta = ConsultaBase + " AND CodTurno_TU = @CodTurno_TU";
@@ -134,7 +134,7 @@ namespace Datos
             //Pregunto que caso es
             if (caso == 1)
             {
-                //Establesco la consulta
+                //Establezco la consulta
                 consulta = ConsultaBase + " AND DNI_ME = @DNI_ME AND Fecha_TU = @Fecha_TU";
 
                 //Creo el sqlCommand y lo cargo
@@ -144,11 +144,10 @@ namespace Datos
 
                 //Devuelvo el sqlCommand
                 return sqlComand;
-
             }
             else if (caso == 2)
             {
-                //Establesco la consulta
+                //Establezco la consulta
                 consulta = ConsultaBase + " AND DNI_PA = @DNI_PA AND Fecha_TU = @Fecha_TU";
 
                 //Creo el sqlCommand y lo cargo
@@ -158,11 +157,10 @@ namespace Datos
 
                 //Devuelvo el sqlCommand
                 return sqlComand;
-
             }
             else if (caso == 3)
             {
-                //Establesco la consulta
+                //Establezco la consulta
                 consulta = ConsultaBase + " AND DNI_ME = @DNI_ME";
 
                 //Creo el sqlCommand y lo cargo
@@ -171,12 +169,11 @@ namespace Datos
 
                 //Devuelvo el sqlCommand
                 return sqlComand;
-
             }
             else if (caso == 4)
             {
 
-                //Establesco la consulta
+                //Establezco la consulta
                 consulta = ConsultaBase + " AND DNI_PA = @DNI_PA";
 
                 //Creo el sqlCommand y lo cargo
@@ -185,11 +182,10 @@ namespace Datos
 
                 //Devuelvo el sqlCommand
                 return sqlComand;
-
             }
             else if (caso == 5)
             {
-                //Establesco la consulta
+                //Establezco la consulta
                 consulta = ConsultaBase + " AND Fecha_TU = @Fecha_TU";
 
                 //Creo el sqlCommand y lo cargo
@@ -252,8 +248,10 @@ namespace Datos
                         SELECT COUNT(*) 
                         FROM sys.objects 
                         WHERE type = 'P' AND name = 'SP_ModificacionTurno_Grupo10'";
+                    
                     SqlCommand cmdExiste = new SqlCommand(consultaExiste, conexion);
                     int cantidad = (int)cmdExiste.ExecuteScalar();
+                    
                     if (cantidad == 0)
                     {
                         // Crear el procedimiento si no existe

@@ -35,7 +35,7 @@
             width: 1342px;
         }
         .auto-style11 {
-            width: 100%;
+            width: 103%;
         }
         .auto-style12 {
             margin-right: 0px;
@@ -101,15 +101,15 @@
                     <td class="auto-style10">
                         <asp:RequiredFieldValidator ID="rfvTxtFiltroLegajo" runat="server" ControlToValidate="txtFiltroLegajoMedico" Display="Dynamic" ErrorMessage="Debe ingresar un valor antes de filtrar" ValidationGroup="GrupoListarMedico">*</asp:RequiredFieldValidator>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="vertical-align: top;">
+                        <asp:Label ID="lblFiltroDia" runat="server" ForeColor="Orange" Text="Filtrar Médicos según el día en que se encuentran disponible:"></asp:Label>
                         <asp:GridView ID="gvDisponibilidad" runat="server" AutoGenerateColumns="False" GridLines="None">
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:Button ID="btnDia" runat="server" CommandArgument='<%# Bind("NumDia_DI") %>' CommandName="FiltroDias" Text='<%# Bind("Descripcion_DI") %>' OnCommand="btnDia_Command" />
+                                    <asp:Button ID="btnDia" runat="server" CommandArgument='<%# Bind("NumDia_DI") %>' CommandName="FiltroDias" Text='<%# Bind("Descripcion_DI") %>' OnCommand="btnDia_Command" ForeColor="Orange" Height="30px" Width="100px" />
                                     <br />
                                     <br />
                                 </ItemTemplate>
@@ -122,7 +122,7 @@
                             <table class="auto-style11">
                                 <tr>
                                     <td>
-                                        <asp:GridView ID="gvListaMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvListaMedicos_PageIndexChanging">
+                                        <asp:GridView ID="gvListaMedicos" runat="server" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="Vertical" OnPageIndexChanging="gvListaMedicos_PageIndexChanging" Width="1380px">
                                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                             <EditRowStyle BackColor="#999999" />
                                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -208,7 +208,6 @@
                             </table>
                         </asp:Panel>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 </table>
             <br />

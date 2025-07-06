@@ -39,7 +39,7 @@ namespace Datos
         public DataTable getTablaMedicos()
         {
             const string consulta =
-                "SELECT Legajo_ME AS Legajo, Apellido_ME AS Apellido, Nombre_ME AS Nombre, Sexo_ME AS Sexo, Nacionalidad_ME AS Nacionalidad, " +
+                "SELECT Apellido_ME AS Apellido, Nombre_ME AS Nombre, Legajo_ME AS Legajo, Sexo_ME AS Sexo, Nacionalidad_ME AS Nacionalidad, " +
                 "FORMAT(FechaNacimiento_ME, 'dd/MM/yyyy') AS [Fecha de Nacimiento], Direccion_ME AS Dirección, Localidad_ME AS Localidad, " +
                 "Descripcion_PR AS Provincia, Correo_ME AS Correo, Telefono_ME AS Teléfono, Descripcion_ES AS Especialidad, " +
                 "DNI_ME AS DNI " +

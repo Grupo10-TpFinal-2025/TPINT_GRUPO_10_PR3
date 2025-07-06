@@ -153,6 +153,9 @@ namespace Vistas
                 gvListaMedicos.PageIndex = 0;
                 gvListaMedicos.DataSource = tablaFiltrada;
                 gvListaMedicos.DataBind();
+
+                LimpiarTxtFiltrosAvanzados();
+                LimpiarValoresFiltrosAvanzados();
             }
         }
 

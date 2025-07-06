@@ -124,7 +124,7 @@
                                         <asp:Label ID="lbl_it_Descripcion" runat="server" Text='<%# Bind("Descripcion") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Estado">
+                                <asp:TemplateField HeaderText="Estado" Visible="False">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chk_it_Estado" runat="server" Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>' Enabled="false" />
                                     </ItemTemplate>

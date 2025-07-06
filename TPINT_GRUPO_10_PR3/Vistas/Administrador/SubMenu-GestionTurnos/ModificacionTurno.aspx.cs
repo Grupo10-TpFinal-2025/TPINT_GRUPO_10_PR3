@@ -144,12 +144,10 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     //Encontrar el control dentro de la fila
                     CheckBox chkPendiente = e.Row.FindControl("chk_eit_Pendiente") as CheckBox;
                     CheckBox chkAsistencia = e.Row.FindControl("chk_eit_Asistencia") as CheckBox;
-
-
-                    if (chkPendiente != null && chkAsistencia != null)
+                    TextBox txtDescripcion = (TextBox)e.Row.FindControl("txt_et_Descripcion");
+                    if (string.IsNullOrEmpty(txtDescripcion.Text))
                     {
-                        chkPendiente.Attributes["onclick"] = $"toggleExclusive('{chkPendiente.ClientID}', '{chkAsistencia.ClientID}', 'pendiente');";
-                        chkAsistencia.Attributes["onclick"] = $"toggleExclusive('{chkPendiente.ClientID}', '{chkAsistencia.ClientID}', 'asistencia');";
+                        txtDescripcion.Text = "Sin Completar";
                     }
 
                     Label lblFechaTurnoActual = e.Row.FindControl("lbl_et_Turno") as Label;
@@ -157,6 +155,10 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
                     if (chkPendiente.Checked)
                     {
+                        chkAsistencia.Enabled = false;
+                        txtDescripcion.Enabled = false;
+                        lblModificacionMensaje.Text = "Este turno aun esta pendiente, por lo que su asistencia y descripcion aun no son modificables.";
+
                         Label lblIDConsulta = e.Row.FindControl("lbl_et_IDConsulta") as Label;
                         Label legajo = e.Row.FindControl("lbl_et_Legajo") as Label;
 
@@ -206,17 +208,11 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     else
                     {
                         lblModificacionMensaje.Text = "Este turno no esta pendiente, por lo que su fecha no es modificable.";
+                        chkAsistencia.Enabled = true;
+                        txtDescripcion.Enabled = true;
                         lblFechaTurnoActual.Visible = true;
                         ddlfechasTurnos.Visible = false;
-
                     }
-
-                    TextBox txtDescripcion = (TextBox)e.Row.FindControl("txt_et_Descripcion");
-                    if (string.IsNullOrEmpty(txtDescripcion.Text))
-                    {
-                        txtDescripcion.Text = "Sin Completar";
-                    }
-
                 }
             }
         }
@@ -361,5 +357,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             ddlfechasTurnos.DataSource = fechasTurnosLibres;
             ddlfechasTurnos.DataBind();
         }
+
     }
 }

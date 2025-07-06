@@ -125,8 +125,8 @@
             <EditItemTemplate>
                 <asp:DropDownList ID="ddl_et_FechasTurnos" runat="server">
                 </asp:DropDownList>
-                <br />
-                <asp:Label ID="lbl_et_Turno" runat="server" Text='<%# Eval("Turno") %>' Visible="False"></asp:Label>
+                &nbsp;<asp:Label ID="lbl_et_Turno" runat="server" Text='<%# Eval("Turno") %>' Visible="False"></asp:Label>
+                &nbsp;<br />
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl_it_Turno" runat="server" Text='<%# Eval("Turno") %>'></asp:Label>
@@ -141,7 +141,7 @@
             </ItemTemplate>
             <EditItemTemplate>
                 <asp:CheckBox ID="chk_eit_Pendiente" runat="server"
-                    Checked='<%# Bind("Pendiente") %>' />
+                    Checked='<%# Eval("Pendiente") != DBNull.Value && Convert.ToBoolean(Eval("Pendiente")) %>' Enabled="False" />
             </EditItemTemplate>
         </asp:TemplateField>
 

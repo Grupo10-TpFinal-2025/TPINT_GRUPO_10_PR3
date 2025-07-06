@@ -78,16 +78,8 @@ namespace Vistas.Medico
 
             turno.CodTurno = Convert.ToInt32(((Label)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("lbl_et_IDTurno")).Text);
             turno.Fecha = DateTime.Parse(((Label)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("lbl_et_Fecha")).Text);
-            RadioButtonList rblAsistencia = (RadioButtonList)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("rbl_et_Asistencia");
-            if ( rblAsistencia.SelectedValue == null)
-            {
-                turno.Asistencia = "NULL";
-            }
-            else
-            {
-                turno.Asistencia = rblAsistencia.SelectedValue;
-            }
-                turno.Descripcion = ((TextBox)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("txt_et_Descripcion")).Text;
+            turno.Asistencia = ((RadioButtonList)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("rbl_et_Asistencia")).SelectedValue;
+            turno.Descripcion = ((TextBox)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("txt_et_Descripcion")).Text;
             turno.Pendiente = 0;
             turno.Estado = true;
 

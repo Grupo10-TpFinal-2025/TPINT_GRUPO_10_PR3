@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -293,10 +294,8 @@ namespace Datos
 
             sqlComand.Parameters.AddWithValue("@Fecha_TU", turno.Fecha);
             sqlComand.Parameters.AddWithValue("@CodTurno_TU", turno.CodTurno);
-
             sqlComand.Parameters.AddWithValue("@Pendiente_TU", turno.Pendiente);
-
-            sqlComand.Parameters.AddWithValue("@Asistencia_TU", turno.Asistencia == null ? (object)DBNull.Value : Convert.ToInt32(turno.Asistencia));
+            sqlComand.Parameters.AddWithValue("@Asistencia_TU", string.IsNullOrEmpty(turno.Asistencia) ? (object)DBNull.Value : Convert.ToInt32(turno.Asistencia));
             sqlComand.Parameters.AddWithValue("@Descripcion_TU", turno.Descripcion);
             sqlComand.Parameters.AddWithValue("@Estado_TU", turno.Estado ? 1 : 0);
 

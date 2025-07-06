@@ -36,11 +36,11 @@ namespace Vistas.Medico
             {
                 lblUsuario.Text = Session["usuario"].ToString();
                 CargarTurnosMedico();
-                lblMensaje.Text = "Solo se habilita la edicion para los turnos no pendientes.";
+                lblMensaje.Text = "Solo se habilita la edición para los turnos no pendientes.";
             }
         }
 
-        public void CargarTurnosMedico()
+        private void CargarTurnosMedico()
         {
             negocioTurno = new NegocioTurno();
             DataTable TurnosMedico = negocioTurno.getTurnosXMedico(Convert.ToInt32(Session["legajo"]));
@@ -201,7 +201,6 @@ namespace Vistas.Medico
             else
             {
                 rblAsistencia.ClearSelection();
-
             }
         }
 

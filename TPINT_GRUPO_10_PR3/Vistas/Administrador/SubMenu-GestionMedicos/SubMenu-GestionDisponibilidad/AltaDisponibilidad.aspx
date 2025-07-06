@@ -81,7 +81,7 @@
                     <td class="auto-style3" style="font-size: medium; text-decoration: underline overline">CARGAR DISPONIBILIDAD:</td>
                 </tr>
                 <tr>
-                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; &nbsp; Legajo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    <td class="auto-style6" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; &nbsp;Legajo: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtLegajoDisponibilidad" runat="server" Font-Size="Small" TextMode="Number"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoDisponibilidad">Ingrese un legajo</asp:RequiredFieldValidator>
                         <asp:RangeValidator ID="rvLegajo" runat="server" ControlToValidate="txtLegajoDisponibilidad" MaximumValue="200" MinimumValue="1" Type="Integer">Número de legajo fuera de rango</asp:RangeValidator>
@@ -90,7 +90,7 @@
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; Día:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlDiasDis" runat="server" OnSelectedIndexChanged="ddlDiasDis_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="ddlDiasDis">Seleccióne día</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvDia" runat="server" ControlToValidate="ddlDiasDis">Seleccione día</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>

@@ -81,11 +81,11 @@
 
             <h1>Bienvenido Administrador</h1>
 
-            <asp:Button ID="btnGestionMedicos" runat="server" Text="Gestionar médicos" CssClass="btn-action" OnClick="btnGestionMedicos_Click" />
+            <asp:Button ID="btnGestionMedicos" runat="server" Text="Gestionar Médicos" CssClass="btn-action" OnClick="btnGestionMedicos_Click" />
 
-            <asp:Button ID="btnGestionTurnos" runat="server" Text="Gestionar turnos" CssClass="btn-action" OnClick="btnGestionTurnos_Click" />
+            <asp:Button ID="btnGestionTurnos" runat="server" Text="Gestionar Turnos" CssClass="btn-action" OnClick="btnGestionTurnos_Click" />
 
-            <asp:Button ID="btnGestionPacientes" runat="server" Text="Gestionar pacientes" CssClass="btn-action" OnClick="btnGestionPacientes_Click" />
+            <asp:Button ID="btnGestionPacientes" runat="server" Text="Gestionar Pacientes" CssClass="btn-action" OnClick="btnGestionPacientes_Click" />
 
             <asp:Button ID="btnReportes" runat="server" Text="Reportes e Informes" CssClass="btn-action" OnClick="btnReportes_Click" />
 

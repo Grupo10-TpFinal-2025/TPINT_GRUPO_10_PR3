@@ -312,6 +312,27 @@ namespace Datos
             cmd.Parameters.Add("@Telefono_PA", SqlDbType.VarChar, 16).Value = paciente.Telefono;
         }
 
+        public bool ExisteDniDuplicado(string dni, string nacionalidad, int legajoActual)
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = @"SELECT COUNT(*) 
+                            FROM Paciente 
+                            WHERE DNI_PA = @Dni 
+                              AND Nacionalidad_PA = @Nacionalidad 
+                              AND Legajo_PA <> @Legajo 
+                              AND Estado_PA = 1"; // Asumiendo que solo importan activos
+
+                SqlCommand cmd = new SqlCommand(consulta, conexion);
+                cmd.Parameters.AddWithValue("@Dni", dni);
+                cmd.Parameters.AddWithValue("@Nacionalidad", nacionalidad);
+                cmd.Parameters.AddWithValue("@Legajo", legajoActual);
+
+                int cantidad = (int)cmd.ExecuteScalar();
+                return cantidad > 0;
+            }
+        }
+
         public int ModificacionPaciente(Paciente paciente)
         {
             sqlCommand = new SqlCommand();

@@ -14,7 +14,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
 	public partial class AltaMedico : System.Web.UI.Page
 	{
         //Variables globales
-        NegocioMedico negocioMedico = new NegocioMedico();
+        private readonly NegocioMedico negocioMedico = new NegocioMedico();
 
         //Page load
         protected void Page_Load(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
         }
 
         //Funcion que carga los ddl
-        void CargarDDLS()
+        private void CargarDDLS()
         {
             //Agrego la especialidad
             ddlEspecialidadMedico.DataSource = negocioMedico.readerEspecialidad();
@@ -147,7 +147,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
         }
         
         //Funcion de guarda valores en variable medico
-        Entidades.Medico CargaMedico()
+        private Entidades.Medico CargaMedico()
         {
             //Creo a medico
             Entidades.Medico medico = new Entidades.Medico();
@@ -172,7 +172,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
         }
 
         //funcion que limpia campos
-        void LimpiarCampos()
+        private void LimpiarCampos()
         {
             //Limpio los txtBox
             txtApellidoMedico.Text = string.Empty;

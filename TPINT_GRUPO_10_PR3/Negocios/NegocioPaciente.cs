@@ -52,6 +52,11 @@ namespace Negocios
         {
             return daoP.VerificarExistenciaPacienteXDNI(paciente);
         }
+
+        public bool ExisteDniDuplicado(string dni, string nacionalidad, int legajoActual)
+        {
+            return daoP.ExisteDniDuplicado(dni, nacionalidad, legajoActual);
+        }
         // ------------------------------------------------------------------------
 
         public int BajaLogicaPacientePorLegajo(string legajo)

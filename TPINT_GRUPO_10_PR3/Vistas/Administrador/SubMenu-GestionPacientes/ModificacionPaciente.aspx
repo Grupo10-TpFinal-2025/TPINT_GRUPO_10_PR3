@@ -212,7 +212,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' TextMode="Number" MaxLength="10" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No puede dejar el campo Télefono vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RangeValidator ID="rvTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="Ha ingresado un número de teléfono inválido" MaximumValue="9999999999" MinimumValue="1000000000" ValidationGroup="GrupoModificarPaciente">*</asp:RangeValidator>
+                                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Un telefono solo permite numeros  positivos y enteros (de 10 a 16 dígitos)." ValidationExpression="^\d{10,16}$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>

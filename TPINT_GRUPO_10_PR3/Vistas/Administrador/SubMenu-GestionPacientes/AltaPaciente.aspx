@@ -150,7 +150,7 @@
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtTelefonoPaciente" runat="server" Font-Size="Small" TextMode="Number" ValidationGroup="alta"></asp:TextBox>
                     &nbsp;<asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefonoPaciente" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefonoPaciente" ErrorMessage="Un telefono solo permite numeros  positivos y enteros (entre 7 y 10 dígitos)." ValidationExpression="^\d{7,10}$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefonoPaciente" ErrorMessage="Un telefono solo permite numeros  positivos y enteros (de 10 a 16 dígitos)." ValidationExpression="^\d{10,16}$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>

@@ -164,7 +164,7 @@
                                             <asp:ListItem Value="2">Paciente</asp:ListItem>
                                         </asp:DropDownList>
                                         &nbsp;<asp:TextBox ID="txtFiltroDni" runat="server" Width="105px" TextMode="Number"></asp:TextBox>
-                                        &nbsp;&nbsp;<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtFiltroDni" ErrorMessage="Ingrese solo numeros" ValidationExpression="^\d+$" ValidationGroup="FiltroAvanzado">*</asp:RegularExpressionValidator>
+                                        &nbsp;&nbsp;<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtFiltroDni" ErrorMessage="Ingrese solo caracteres numéricos" ValidationExpression="^\d+$" ValidationGroup="FiltroAvanzado">*</asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>

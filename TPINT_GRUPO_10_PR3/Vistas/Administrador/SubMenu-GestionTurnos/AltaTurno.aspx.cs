@@ -60,14 +60,14 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
         {
             try
             {
+                if (cod != "0")
+                {
                 ddlMedico.DataSource = negocioMedico.ObtenerSqlDataReaderMedicoPorEspecialidad(cod); ;
                 ddlMedico.DataTextField = "Medico";
                 ddlMedico.DataValueField = "Legajo_ME";
-                ddlMedico.DataBind();
-
-                if (cod != "0")
-                {
-                    ddlMedico.Items.Insert(0, new ListItem("--Seleccione un médico--", "0"));
+                ddlMedico.DataBind(); 
+                    
+                ddlMedico.Items.Insert(0, new ListItem("--Seleccione un médico--", "0"));
                 }
 
                 lblError.Visible = false;

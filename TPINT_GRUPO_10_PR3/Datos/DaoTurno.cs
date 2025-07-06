@@ -68,43 +68,37 @@ namespace Datos
         {
             List<Turno> listaTurnosMedico = new List<Turno>();
 
-            SqlConnection conexion = null;
-            SqlCommand comando;
-            SqlDataReader lector;
-
             try
-            {
-                string consulta = "SELECT Fecha_TU, Estado_TU FROM Turno WHERE LegajoMedico_TU = @LegajoMedico AND Fecha_TU > GETDATE() AND Fecha_TU <= DATEADD(Day, 30, GETDATE())";
-                conexion = datos.ObtenerConexion();
-                comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("LegajoMedico", legajoMedico);
-                lector = comando.ExecuteReader();
-
-                using (lector)
+            {                                                
+                using (SqlConnection conexion = datos.ObtenerConexion())
                 {
-                    while (lector.Read())
-                    {
-                        if ((bool)lector["Estado_TU"])
-                        {
-                            Turno turno = new Turno();
-                            turno.Fecha = (DateTime)lector["Fecha_TU"];
-                            turno.Estado = (bool)lector["Estado_TU"];
+                    string consulta = "SELECT Fecha_TU, Estado_TU FROM Turno WHERE LegajoMedico_TU = @LegajoMedico AND Fecha_TU > GETDATE() AND Fecha_TU <= DATEADD(Day, 30, GETDATE())";
 
-                            listaTurnosMedico.Add(turno);
+                    using(SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("LegajoMedico", legajoMedico);
+                        SqlDataReader lector = comando.ExecuteReader();
+
+                        using (lector)
+                        {
+                            while (lector.Read())
+                            {
+                                if ((bool)lector["Estado_TU"])
+                                {
+                                    Turno turno = new Turno();
+                                    turno.Fecha = (DateTime)lector["Fecha_TU"];
+                                    turno.Estado = (bool)lector["Estado_TU"];
+
+                                    listaTurnosMedico.Add(turno);
+                                }
+                            }
                         }
                     }
-                }
+                }               
             }
             catch (Exception)
             {
                 throw;
-            }
-            finally
-            {
-                if (conexion != null && conexion.State == ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
             }
 
             return listaTurnosMedico;

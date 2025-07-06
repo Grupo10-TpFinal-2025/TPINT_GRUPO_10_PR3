@@ -129,14 +129,6 @@
                                     <asp:Label ID="lbl_it_Fin" runat="server" Text='<%# Bind("Fin") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Estado">
-                                <EditItemTemplate>
-                                    <asp:CheckBox ID="cb_eit_Estado" runat="server" Checked='<%# Bind("Estado") %>' />
-                                </EditItemTemplate>
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="cb_it_Estado" runat="server" Checked='<%# Bind("Estado") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Legajo" ShowHeader="False" Visible="False">
                                 <EditItemTemplate>
                                     <asp:Label ID="lbl_eit_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>

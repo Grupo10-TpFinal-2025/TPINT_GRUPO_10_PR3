@@ -174,7 +174,7 @@
             </ItemTemplate>
         </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Estado">
+        <asp:TemplateField HeaderText="Estado" Visible="False">
             <EditItemTemplate>
                 <asp:CheckBox ID="chk_et_Estado" runat="server" Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>' Enabled="false" />
             </EditItemTemplate>

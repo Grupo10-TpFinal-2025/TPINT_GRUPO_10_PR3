@@ -176,6 +176,8 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 gvListadoPacientes.DataBind();
                 paciente = new Paciente();
             }
+
+            LimpiarFiltrosAvanzados();
         }
 
         private void LimpiarFiltrosAvanzados()

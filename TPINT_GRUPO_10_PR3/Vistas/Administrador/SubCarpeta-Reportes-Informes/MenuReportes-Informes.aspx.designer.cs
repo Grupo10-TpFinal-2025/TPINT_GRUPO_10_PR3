@@ -42,15 +42,6 @@ namespace Vistas.Administrador.SubCarpeta_Reportes_Informes
         protected global::System.Web.UI.WebControls.Label lblUsuarioAdministrador;
 
         /// <summary>
-        /// Control lblTituloGestionPacientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTituloGestionPacientes;
-
-        /// <summary>
         /// Control btnMedicoMasSolicitado.
         /// </summary>
         /// <remarks>

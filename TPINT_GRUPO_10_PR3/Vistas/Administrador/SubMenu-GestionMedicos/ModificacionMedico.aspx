@@ -231,7 +231,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion" TextMode="Number"></asp:TextBox>
                                     &nbsp;<asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (de 10 a 16 digitos)." ValidationExpression="^(?:\s*\d\s*){10,16}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros enteros y positivos (de 10 a 16 digitos)." ValidationExpression="^(?:\s*\d\s*){10,16}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>

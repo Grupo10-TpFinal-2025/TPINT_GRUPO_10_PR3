@@ -5,249 +5,132 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-        .auto-style2 {
-            width: 30px;
-        }
-        .auto-style3 {
-            width: 384px;
-        }
-        .auto-style4 {
-            width: 384px;
-            font-size: large;
-        }
-        .auto-style5 {
-            width: 30px;
-            height: 23px;
-        }
-        .auto-style6 {
-            width: 384px;
-            height: 23px;
-            font-size: large;
-        }
-        .auto-style7 {
-            height: 23px;
-        }
-        .auto-style8 {
-            width: 384px;
-            height: 23px;
-        }
-        .auto-style9 {
-            font-size: x-large;
-        }
-        .auto-style10 {
-            width: 384px;
-            font-size: large;
-            height: 35px;
-        }
-        .auto-style11 {
-            text-align: center;
-        }
-        .auto-style15 {
-            width: 384px;
-            height: 43px;
-        }
-        .auto-style16 {
-            width: 30px;
-            height: 43px;
-        }
-        .auto-style17 {
-            height: 43px;
-        }
-        .auto-style18 {
-            height: 23px;
-            width: 1040px;
-        }
-        .auto-style19 {
-            width: 1040px;
-        }
-        .auto-style20 {
-            height: 43px;
-            width: 1040px;
-        }
-        .auto-style21 {
-            width: 30px;
-            height: 35px;
-        }
-        .auto-style22 {
-            height: 35px;
-            width: 1040px;
-        }
-        .auto-style24 {
-            width: 475px;
-        }
-        .auto-style25 {
-            width: 29px;
-        }
-        .auto-style26 {
-            width: 193px;
-        }
-        .auto-style27 {
-            width: 193px;
-            font-size: large;
-            height: 37px;
-        }
-        .auto-style28 {
-            height: 37px;
-        }
-        .auto-style29 {
-            text-align: left;
-        }
-        .auto-style30 {
-            height: 35px;
-        }
-    </style>
+<title>Nuevo Usuario Médico</title>
+
+<style type="text/css">
+    body {
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        font-family: 'Segoe UI', Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 30px;
+        max-width: 500px;
+        margin: 50px auto;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .auto-style1 {
+        width: 100%;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 8px;
+        margin: 6px 0 12px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .btn-submit:hover {
+        background-color: #45a049;
+    }
+
+    .link-back {
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .error {
+        color: red;
+        font-size: 13px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+</style>
 </head>
+
 <body>
     <form id="form1" runat="server">
-        <table class="auto-style1">
-            <tr>
-                <td class="auto-style5"></td>
-                <td class="auto-style8"></td>
-                <td class="auto-style18">
-                    <asp:HyperLink ID="hlVolver" runat="server" NavigateUrl="~/Login.aspx">Volver al Login</asp:HyperLink>
-                </td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-            </tr>
-            <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td class="auto-style4"><span class="auto-style9">Ingrese el nuevo </span><strong><span class="auto-style9">usuario médico</span></strong>:</td>
-                <td class="auto-style19">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td class="auto-style3">
-                    <asp:TextBox ID="txtNuevoUsuario" runat="server" Height="20px" Width="126px" MaxLength="16" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvUsuarioNuevo" runat="server" ControlToValidate="txtNuevoUsuario" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Ingrese nombre de Usuario</asp:RequiredFieldValidator>
-                </td>
-                <td class="auto-style19">
-                    <asp:RegularExpressionValidator ID="revNuevoUsuario" runat="server" ControlToValidate="txtNuevoUsuario" ValidationExpression="^\S+$" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">No ingrese espacios en blanco</asp:RegularExpressionValidator>
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style5"></td>
-                <td class="auto-style6">Ingrese la contraseña:</td>
-                <td class="auto-style18"></td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-                <td class="auto-style7"></td>
-            </tr>
-            <tr>
-                <td class="auto-style16"></td>
-                <td class="auto-style15">
-                    <asp:TextBox ID="txtNuevaContraseña" runat="server" Height="20px" Width="126px" ValidationGroup="NuevoUsuario" MaxLength="30"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Ingrese una contraseña</asp:RequiredFieldValidator>
-                </td>
-                <td class="auto-style20">
-                    <asp:RegularExpressionValidator ID="revContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s]+$" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial y NO contener espacios en blanco</asp:RegularExpressionValidator>
-                </td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-                <td class="auto-style17"></td>
-            </tr>
-            <tr>
-                <td class="auto-style21"></td>
-                <td class="auto-style10">Reingrese la contraseña:</td>
-                <td class="auto-style22"></td>
-                <td class="auto-style30"></td>
-                <td class="auto-style30"></td>
-                <td class="auto-style30"></td>
-                <td class="auto-style30"></td>
-                <td class="auto-style30"></td>
-            </tr>
-            <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td class="auto-style3">
-                    <asp:TextBox ID="txtNuevaContraseña2" runat="server" Height="20px" Width="126px" TextMode="Password" ValidationGroup="NuevoUsuario" MaxLength="30"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtNuevaContraseña2" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Debe ingresar algún valor</asp:RequiredFieldValidator>
-                </td>
-                <td class="auto-style19">
-                    <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToCompare="txtNuevaContraseña" ControlToValidate="txtNuevaContraseña2" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Las contreñas deben coincidir</asp:CompareValidator>
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td class="auto-style3">
-                    <table class="auto-style1">
-                        <tr>
-                            <td class="auto-style27">Ingrese el Legajo médico:</td>
-                            <td class="auto-style28"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style26">
-                                <asp:TextBox ID="txtLegajoMedico" runat="server" Height="27px" TextMode="Number" Width="59px" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoMedico" ValidationGroup="NuevoUsuario" Display="Dynamic" EnableClientScript="False" ForeColor="Red">Ingrese un legajo</asp:RequiredFieldValidator>
-                            </td>
-                            <td>
-                                &nbsp;</td>
-                        </tr>
-                    </table>
-                </td>
-                <td class="auto-style19">
-                    &nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-        <div class="auto-style11">
+        <div class="form-container">
+            <h1>Nuevo Usuario Médico</h1>
+
+            <asp:HyperLink ID="hlVolver" runat="server" NavigateUrl="~/Login.aspx" CssClass="link-back">Volver al Login</asp:HyperLink>
+
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style25">&nbsp;</td>
-                    <td class="auto-style24">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style25">&nbsp;</td>
-                    <td class="auto-style24">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style25">&nbsp;</td>
-                    <td class="auto-style24">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style25">&nbsp;</td>
-                    <td class="auto-style24">
-                                <asp:Button ID="btnAgregarUsuarioMedico" runat="server" Height="35px" Text="Agregar Usuario" Width="124px" CausesValidation="true"  OnClick="btnAgregarUsuarioMedico_Click" ValidationGroup="NuevoUsuario"/>
-                            </td>
-                    <td class="auto-style29">
-                    <asp:Label ID="lblContraseña" runat="server"></asp:Label>
+                    <td>
+                        <label>Nombre de Usuario:</label><br />
+                        <asp:TextBox ID="txtNuevoUsuario" runat="server" CssClass="input-field" MaxLength="16" ValidationGroup="NuevoUsuario"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvUsuarioNuevo" runat="server" ControlToValidate="txtNuevoUsuario" ForeColor="Red" CssClass="error" ErrorMessage="Ingrese nombre de Usuario" ValidationGroup="NuevoUsuario" Display="Dynamic" />
+                        <asp:RegularExpressionValidator ID="revNuevoUsuario" runat="server" ControlToValidate="txtNuevoUsuario" ValidationExpression="^\S+$" ForeColor="Red" CssClass="error" ErrorMessage="No ingrese espacios en blanco" ValidationGroup="NuevoUsuario" Display="Dynamic" />
                     </td>
-                    <td>&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Contraseña:</label><br />
+                        <asp:TextBox ID="txtNuevaContraseña" runat="server" CssClass="input-field" MaxLength="30" TextMode="Password" ValidationGroup="NuevoUsuario"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ForeColor="Red" CssClass="error" ErrorMessage="Ingrese una contraseña" ValidationGroup="NuevoUsuario" Display="Dynamic" />
+                        <asp:RegularExpressionValidator ID="revContraseña" runat="server" ControlToValidate="txtNuevaContraseña" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s]+$" ForeColor="Red" CssClass="error" ErrorMessage="Debe tener mayúscula, minúscula, número, carácter especial y sin espacios" ValidationGroup="NuevoUsuario" Display="Dynamic" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Reingrese la Contraseña:</label><br />
+                        <asp:TextBox ID="txtNuevaContraseña2" runat="server" CssClass="input-field" MaxLength="30" TextMode="Password" ValidationGroup="NuevoUsuario"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvContraseña2" runat="server" ControlToValidate="txtNuevaContraseña2" ForeColor="Red" CssClass="error" ErrorMessage="Debe ingresar la contraseña nuevamente" ValidationGroup="NuevoUsuario" Display="Dynamic" />
+                        <asp:CompareValidator ID="cvContraseñas" runat="server" ControlToCompare="txtNuevaContraseña" ControlToValidate="txtNuevaContraseña2" ForeColor="Red" CssClass="error" ErrorMessage="Las contraseñas deben coincidir" ValidationGroup="NuevoUsuario" Display="Dynamic" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Legajo Médico:</label><br />
+                        <asp:TextBox ID="txtLegajoMedico" runat="server" CssClass="input-field" TextMode="Number" ValidationGroup="NuevoUsuario"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoMedico" ForeColor="Red" CssClass="error" ErrorMessage="Ingrese un legajo" ValidationGroup="NuevoUsuario" Display="Dynamic" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <asp:Button ID="btnAgregarUsuarioMedico" runat="server" Text="Agregar Usuario Médico" CssClass="btn-submit" ValidationGroup="NuevoUsuario" OnClick="btnAgregarUsuarioMedico_Click" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <asp:Label ID="lblContraseña" runat="server" ForeColor="Red" CssClass="error"></asp:Label>
+                    </td>
                 </tr>
             </table>
         </div>

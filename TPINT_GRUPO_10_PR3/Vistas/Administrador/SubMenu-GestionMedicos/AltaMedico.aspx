@@ -103,7 +103,7 @@
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp;&nbsp; &nbsp;
                         <asp:TextBox ID="txtDniMedico" runat="server" Font-Size="Small" TextMode="Number" ValidationGroup="alta" MaxLength="8"></asp:TextBox>
 &nbsp;<asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDniMedico" ErrorMessage="Debe ingresar un dni valido." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        &nbsp;<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDniMedico" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDniMedico" ErrorMessage="El DNI ingresado debe componerse de 8 números enteros positivos. " ValidationExpression="^\d{8}$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                         &nbsp;&nbsp; Fecha Nacimiento:
                         <asp:TextBox ID="txtFechaNacimientoMedico" runat="server" Font-Size="Small" TextMode="Date" ValidationGroup="alta"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvFeechaNacimiento" runat="server" ControlToValidate="txtFechaNacimientoMedico" ErrorMessage="Ingrese una fecha." ValidationGroup="alta">*</asp:RequiredFieldValidator>

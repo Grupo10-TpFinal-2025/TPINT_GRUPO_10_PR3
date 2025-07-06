@@ -7,6 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <style type="text/css">
+                body {
+        background: linear-gradient(135deg, #e0f7fa, #b3e5fc); /* degradado azul claro */
+        font-family: 'Segoe UI', Arial, sans-serif; /* tipografía moderna */
+        color: #333; /* texto gris oscuro */
+        margin: 0;
+        padding: 0;
+             }
 
 
         .auto-style1 {

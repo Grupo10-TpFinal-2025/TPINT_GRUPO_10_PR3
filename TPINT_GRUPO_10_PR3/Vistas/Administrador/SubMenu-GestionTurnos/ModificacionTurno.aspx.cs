@@ -235,7 +235,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             int legajo = Convert.ToInt32(registroTurno.Rows[0]["Legajo Medico"]);
             List<Disponibilidad> listaDisponibilidad = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajo);
 
-            DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             for (int i = 0; i < 12; i++)
             {
                 Calendario[i, 0] = i + 1;
@@ -259,38 +258,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             return Calendario;
         }
 
-        private List<DateTime> ListarFechasTurnos(int[,] calendario, int legajoMedico)
-        {
-            List<DateTime> fechasTurnos = new List<DateTime>();
-            List<Disponibilidad> ListaDisponibilidad = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
-            List<TimeSpan> horarios;
-
-            for (int i = 0; i < 12; i++)
-            {
-                for (int j = 0; j < 31; j++)
-                {
-                    if (calendario[i, j] != 0)
-                    {
-                        DateTime fecha = new DateTime(DateTime.Now.Year, i + 1, j + 1);
-                        int numeroDia = ((int)fecha.DayOfWeek == 0) ? 7 : (int)fecha.DayOfWeek;
-                        horarios = ObtenerHoras(legajoMedico, ListaDisponibilidad.Where(d => d.NumDia == numeroDia).ToList());
-
-                        for (int k = 0; k < horarios.Count; k++)
-                        {
-                            TimeSpan hora = horarios[k];
-                            DateTime fechaTurno = new DateTime(fecha.Year, fecha.Month, calendario[i, j], hora.Hours, hora.Minutes, 0);
-                            if (fechaTurno >= DateTime.Now)
-                            {
-                                fechasTurnos.Add(fechaTurno);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return fechasTurnos;
-        }
-
         private List<TimeSpan> ObtenerHoras(int legajoMedico, List<Disponibilidad> ListaDisponibilidad)
         {
             List<TimeSpan> horasDisponibles = new List<TimeSpan>();
@@ -308,6 +275,40 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
             }
 
             return horasDisponibles;
+        }
+
+        private List<DateTime> ListarFechasTurnos(int[,] calendario, int legajoMedico)
+        {
+            List<DateTime> fechasTurnos = new List<DateTime>();
+            List<Disponibilidad> ListaDisponibilidad = negocioDisponibilidad.ObtenerListaDisponibilidadMedico(legajoMedico);
+            List<TimeSpan> horarios;
+
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 31; j++)
+                {
+                    if (calendario[i, j] != 0)
+                    {
+                        DateTime fecha = new DateTime(DateTime.Now.Year, i + 1, j + 1);
+
+                        int numeroDia = ((int)fecha.DayOfWeek == 0) ? 7 : (int)fecha.DayOfWeek;
+
+                        horarios = ObtenerHoras(legajoMedico, ListaDisponibilidad.Where(d => d.NumDia == numeroDia).ToList());
+
+                        for (int k = 0; k < horarios.Count; k++)
+                        {
+                            TimeSpan hora = horarios[k];
+                            DateTime fechaTurno = new DateTime(fecha.Year, fecha.Month, calendario[i, j], hora.Hours, hora.Minutes, 0);
+                            if (fechaTurno >= DateTime.Now)
+                            {
+                                fechasTurnos.Add(fechaTurno);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return fechasTurnos;
         }
 
         private List<DateTime> DescontarTurnosOcupados(List<DateTime> fechasTurnos, int legajoMedico, DateTime fechaTurnoActual)

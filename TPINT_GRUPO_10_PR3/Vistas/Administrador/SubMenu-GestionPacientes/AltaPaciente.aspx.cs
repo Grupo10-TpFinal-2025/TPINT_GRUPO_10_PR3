@@ -84,6 +84,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
             txtFechaNacimientoPaciente.Text = string.Empty;
             txtDireccionPaciente.Text = string.Empty;
             txtLocalidadPaciente.Text = string.Empty;
+            ddlProvinciaPaciente.Items[0].Enabled = true;
             ddlProvinciaPaciente.SelectedIndex = 0;
             txtCorreoPaciente.Text = string.Empty;
             txtTelefonoPaciente.Text = string.Empty;

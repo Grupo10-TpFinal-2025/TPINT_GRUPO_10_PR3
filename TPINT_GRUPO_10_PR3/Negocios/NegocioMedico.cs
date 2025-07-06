@@ -60,6 +60,11 @@ namespace Negocios
             return daoMedico.getDias();
         }
 
+        public bool ExisteDniDuplicado(string dni, string nacionalidad, int legajoActual)
+        {
+            return daoMedico.ExisteDniDuplicado(dni, nacionalidad, legajoActual);
+        }
+
         //Modificar Medico----------------------------------------
         public DataTable ObtenerMedicos()
         {

@@ -111,9 +111,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Apellido">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>' MaxLength="50" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtApellido" runat="server" ControlToValidate="txt_et_Apellido" Display="Dynamic" ErrorMessage="No puede dejar el campo Apellido vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTxtApellido" runat="server" ControlToValidate="txt_et_Apellido" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Apellido" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtApellido" runat="server" ControlToValidate="txt_et_Apellido" Display="Dynamic" ErrorMessage="En un apellido solo se permiten letras y espacios, con una longitud entre 2 y 50 caracteres (no puede empezar ni terminar con espacios)." ValidationExpression="^(?=.{2,50}$)[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
@@ -121,9 +121,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nombre">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Nombre" runat="server" Text='<%# Bind("Nombre") %>' MaxLength="50" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtNombre" runat="server" ControlToValidate="txt_et_Nombre" Display="Dynamic" ErrorMessage="No puede dejar el campo Nombre vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTxtNombre" runat="server" ControlToValidate="txt_et_Nombre" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Nombre" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtNombre" runat="server" ControlToValidate="txt_et_Nombre" Display="Dynamic" ErrorMessage="En un nombre solo se permiten letras y espacios, con una longitud entre 2 y 50 caracteres (no puede empezar ni terminar con espacios)." ValidationExpression="^(?=.{2,50}$)[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
@@ -141,7 +141,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_DNI" runat="server" Text='<%# Bind("DNI") %>' ValidationGroup="GrupoModificarPaciente" TextMode="Number" MaxLength="8"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="No puede dejar el campo DNI vacío." ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RangeValidator ID="rvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="Ha ingresado un valor de DNI demasiado bajo" MaximumValue="99999999" MinimumValue="1000000" ValidationGroup="GrupoModificarPaciente">*</asp:RangeValidator>
+                                    <asp:RangeValidator ID="rvTxtDNI" runat="server" ControlToValidate="txt_et_DNI" Display="Dynamic" ErrorMessage="El DNI ingresado debe componerse de 8 caracteres numéricos. " MaximumValue="99999999" MinimumValue="10000000" ValidationGroup="GrupoModificarPaciente">*</asp:RangeValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
@@ -170,9 +170,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nacionalidad">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>' MaxLength="50" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtNacionalidad" runat="server" ControlToValidate="txt_et_Nacionalidad" Display="Dynamic" ErrorMessage="No puede dejar el campo Nacionalidad vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTxtNacionalidad" runat="server" ControlToValidate="txt_et_Nacionalidad" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Nacionalidad" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtNacionalidad" runat="server" ControlToValidate="txt_et_Nacionalidad" Display="Dynamic" ErrorMessage="En una Nacionalidad solo se permiten letras y espacios, con una longitud entre 2 y 50 caracteres (no puede empezar ni terminar con espacios)." ValidationExpression="^(?=.{2,50}$)[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:Label>
@@ -180,7 +180,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Provincia">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddl_et_Provincias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_et_Provincias_SelectedIndexChanged" ValidationGroup="GrupoModificarPaciente">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="rfvDdlProvincia" runat="server" ControlToValidate="ddl_et_Provincias" Display="Dynamic" ErrorMessage="No puede dejar el campo Provincia vacío" InitialValue="0" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
@@ -190,7 +190,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Localidad">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Localidad" runat="server" Text='<%# Bind("Localidad") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Localidad" runat="server" Text='<%# Bind("Localidad") %>' MaxLength="50" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtLocalidad" runat="server" ControlToValidate="txt_et_Localidad" Display="Dynamic" ErrorMessage="No puede dejar el campo Localidad vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTxtLocalidad" runat="server" ControlToValidate="txt_et_Localidad" Display="Dynamic" ErrorMessage="Solo puede ingresar letras y espacios en el campo Localidad" ValidationExpression="^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ¨\s]+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
@@ -200,9 +200,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Dirección">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Direccion" runat="server" Text='<%# Bind("Direccion") %>' MaxLength="100" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtDireccion" runat="server" ControlToValidate="txt_et_Direccion" Display="Dynamic" ErrorMessage="No puede dejar el campo Dirección vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTxtDireccion" runat="server" ControlToValidate="txt_et_Direccion" Display="Dynamic" ErrorMessage="No ingresó un formato válido en el campo Dirección" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revTxtDireccion" runat="server" ControlToValidate="txt_et_Direccion" Display="Dynamic" ErrorMessage="Debe ingresar calle y número." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
@@ -220,7 +220,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Correo" runat="server" Text='<%# Bind("Correo") %>' TextMode="Email"></asp:TextBox>
+                                    <asp:TextBox ID="txt_et_Correo" runat="server" Text='<%# Bind("Correo") %>' TextMode="Email" MaxLength="100" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtCorreo" runat="server" ControlToValidate="txt_et_Correo" Display="Dynamic" ErrorMessage="No puede dejar el campo Correo vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTxtCorreo" runat="server" ControlToValidate="txt_et_Correo" Display="Dynamic" ErrorMessage="No ingresó un formato de Correo válido" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>

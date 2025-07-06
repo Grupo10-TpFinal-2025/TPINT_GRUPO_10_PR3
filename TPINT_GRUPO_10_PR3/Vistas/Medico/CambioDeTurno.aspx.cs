@@ -36,6 +36,7 @@ namespace Vistas.Medico
             {
                 lblUsuario.Text = Session["usuario"].ToString();
                 CargarTurnosMedico();
+                lblMensaje.Text = "Solo se habilita la edicion para los turnos no pendientes.";
             }
         }
 
@@ -79,6 +80,9 @@ namespace Vistas.Medico
             turno.Fecha = DateTime.Parse(((Label)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("lbl_et_Fecha")).Text);
             turno.Asistencia = ((RadioButtonList)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("rbl_et_Asistencia")).SelectedValue;
             turno.Descripcion = ((TextBox)gvActualizacionTurnos.Rows[e.RowIndex].FindControl("txt_et_Descripcion")).Text;
+            turno.Pendiente = 0;
+            turno.Estado = true;
+
 
             int resultado = negocioTurno.ModificarTurno(turno);
             if (resultado > 0)

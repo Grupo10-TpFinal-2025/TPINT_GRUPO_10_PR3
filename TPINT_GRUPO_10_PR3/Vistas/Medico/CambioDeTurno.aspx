@@ -133,7 +133,6 @@
                             <asp:TemplateField HeaderText="Asistencia">
                                 <EditItemTemplate>
                                     <asp:RadioButtonList ID="rbl_et_Asistencia" runat="server">
-                                        <asp:ListItem Value="NULL">Sin registrar</asp:ListItem>
                                         <asp:ListItem Value="0">Ausente</asp:ListItem>
                                         <asp:ListItem Value="1">Presente</asp:ListItem>
                                     </asp:RadioButtonList>

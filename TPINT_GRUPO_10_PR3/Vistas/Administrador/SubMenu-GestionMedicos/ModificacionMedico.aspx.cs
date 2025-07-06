@@ -219,5 +219,10 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
             }
 
         }
+
+        protected void btnActualizar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

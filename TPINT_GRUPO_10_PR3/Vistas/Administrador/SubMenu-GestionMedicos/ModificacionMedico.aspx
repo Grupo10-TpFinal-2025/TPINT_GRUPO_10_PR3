@@ -124,19 +124,18 @@
                                 <EditItemTemplate>
                                     <asp:LinkButton ID="btnActualizar" runat="server" CausesValidation="True" 
                                         CommandName="Update" Text="Actualizar" 
-                                        ValidationGroup="Modificacion"></asp:LinkButton>
+                                        ValidationGroup="Modificacion" OnClick="btnActualizar_Click"></asp:LinkButton>
                                     <asp:LinkButton ID="btnCancelar" runat="server" CausesValidation="False" 
                                         CommandName="Cancel" Text="Cancelar"></asp:LinkButton>
                                 </EditItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Legajo">
+                            <asp:TemplateField HeaderText="Apellido">
                                 <EditItemTemplate>
-                                    <asp:Label ID="lbl_et_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
-                                    <br />
+                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>' ValidationGroup="Modificacion"></asp:TextBox>
+                                    &nbsp;<asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txt_et_Apellido" ErrorMessage="Debe ingresar un apellido." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
-                                    <br />
+                                    <asp:Label ID="lbl_it_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nombre">
@@ -148,13 +147,14 @@
                                     <asp:Label ID="lbl_it_Nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Apellido">
+                            <asp:TemplateField HeaderText="Legajo">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_Apellido" runat="server" Text='<%# Bind("Apellido") %>' ValidationGroup="Modificacion"></asp:TextBox>
-                                    &nbsp;<asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txt_et_Apellido" ErrorMessage="Debe ingresar un apellido." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    <asp:Label ID="lbl_et_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                    <br />
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lbl_it_Apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
+                                    <asp:Label ID="lbl_it_Legajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                    <br />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
@@ -183,6 +183,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>' TextMode="Date" ValidationGroup="Modificacion"></asp:TextBox>
                                     &nbsp;<asp:RequiredFieldValidator ID="rfvFeechaNacimiento" runat="server" ControlToValidate="txt_et_FechaNacimiento" ErrorMessage="Ingrese una fecha." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    <asp:RangeValidator ID="rvFecha" runat="server" ControlToValidate="txt_et_FechaNacimiento" ErrorMessage="Debe ingresarse una fecha como minimo superior a 1900." MaximumValue="2500-12-31" MinimumValue="1900-01-01" ValidationGroup="Modificacion">*</asp:RangeValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_FechaNacimiento" runat="server" Text='<%# Eval("Fecha de Nacimiento") %>'></asp:Label>

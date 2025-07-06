@@ -405,5 +405,29 @@ namespace Datos
                 throw new Exception("Error al validar la existencia del médico por DNI.");
             }
         }
+
+        public int ObtenerUltimoMedicoRegistrado()
+        {
+            string consulta = "SELECT MAX(Legajo_ME) AS [Ultimo Legajo] FROM Medico";
+            try
+            {
+                DataTable UltimoLegajo = datos.ObtenerTabla("Medico", consulta);
+                if (UltimoLegajo.Rows.Count > 0)
+                {
+                    DataRow fila = UltimoLegajo.Rows[0];
+                    int NumLegajo = Convert.ToInt32(fila["Ultimo Legajo"]);
+                    if (NumLegajo > 0)
+                    {
+                        return NumLegajo;
+                    }
+                }
+
+                return 0;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener el último médico registrado.");
+            }
+        }
     }
 }

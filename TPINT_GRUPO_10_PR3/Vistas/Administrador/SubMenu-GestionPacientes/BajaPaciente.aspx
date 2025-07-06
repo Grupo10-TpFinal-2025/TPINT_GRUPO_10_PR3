@@ -79,14 +79,16 @@
                 <tr>
                     <td class="auto-style7">
                         Legajo Paciente:&nbsp;<asp:TextBox ID="txtLegajoBaja" runat="server" ValidationGroup="Baja"></asp:TextBox>
-&nbsp;&nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" OnClick="btnBaja_Click" ValidationGroup="Baja" />
+&nbsp;<asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajoBaja" ErrorMessage=" Un legajo se compone solo por números enteros positivos, sin espacios ni ceros a la izquierda." ValidationExpression="^[1-9]\d{0,7999}$" ValidationGroup="Baja">*</asp:RegularExpressionValidator>
+                        &nbsp;<asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoBaja" ErrorMessage="Ingresé un legajo." ValidationGroup="Baja">*</asp:RequiredFieldValidator>
+                        &nbsp; <asp:Button ID="btnBaja" runat="server" Text="Dar de Baja" Width="120px" OnClick="btnBaja_Click" ValidationGroup="Baja" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style7">
                         &nbsp;<br />
-                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtLegajoBaja" ErrorMessage="Solo se permite el ingreso de números enteros sin espacios en el legajo." ValidationExpression="^\d+$" ValidationGroup="Baja">*</asp:RegularExpressionValidator>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:ValidationSummary ID="vsBajaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="Baja" Width="254px" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <br />
                         <asp:Label ID="lblResultadoBaja" runat="server"></asp:Label>
                         <br />

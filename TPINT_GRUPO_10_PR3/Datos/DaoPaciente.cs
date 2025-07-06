@@ -368,5 +368,29 @@ namespace Datos
 
             return paciente;
         }
+
+        public int ObtenerUltimoPacienteRegistrado()
+        {
+            string consulta = "SELECT MAX(Legajo_PA) AS [Ultimo Legajo] FROM Paciente";
+            try
+            {
+                DataTable UltimoLegajo = datos.ObtenerTabla("Medico", consulta);
+                if (UltimoLegajo.Rows.Count > 0)
+                {
+                    DataRow fila = UltimoLegajo.Rows[0];
+                    int NumLegajo = Convert.ToInt32(fila["Ultimo Legajo"]);
+                    if (NumLegajo > 0)
+                    {
+                        return NumLegajo;
+                    }
+                }
+
+                return 0;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener el último paciente registrado.");
+            }
+        }
     }
 }

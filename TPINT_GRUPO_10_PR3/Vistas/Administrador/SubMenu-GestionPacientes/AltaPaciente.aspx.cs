@@ -43,6 +43,10 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 //Asigno la fecha calculada como el atributo "min" del control.
                 txtFechaNacimientoPaciente.Attributes["min"] = fechaMinimaFormateada;
             }
+            else
+            {
+                lblMensaje.Text = string.Empty;
+            }
         }
 
         private void Registrar_AltaPaciente()
@@ -52,8 +56,19 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
             if (resultado)
             {
+                int legajo = negocioPaciente.ObtenerUltimoPacienteRegistrado();
+
+                if (legajo > 0)
+                {
+                    lblMensaje.Text = "Paciente registrado correctamente (Legajo asignado: " + legajo + ")";
+                }
+                else
+                {
+                    lblMensaje.Text = "Paciente registrado correctamente.";
+                }
+
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
-                lblMensaje.Text = "Paciente registrado correctamente.";
+
             }
             else
             {

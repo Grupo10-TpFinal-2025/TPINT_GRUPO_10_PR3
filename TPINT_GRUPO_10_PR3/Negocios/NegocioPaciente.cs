@@ -86,5 +86,10 @@ namespace Negocios
         {
             return daoP.ObtenerPacienteXCodTurno(codTurno);
         }
+
+        public int ObtenerUltimoPacienteRegistrado()
+        {
+            return daoP.ObtenerUltimoPacienteRegistrado();
+        }
     }
 }

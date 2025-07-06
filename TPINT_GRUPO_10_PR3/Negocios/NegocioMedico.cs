@@ -98,5 +98,10 @@ namespace Negocios
         {
             return daoMedico.ValidarExistenciaMedicoXDni(dni);
         }
+
+        public int ObtenerUltimoLegajoMedico()
+        {
+            return daoMedico.ObtenerUltimoMedicoRegistrado();
+        }
     }
 }

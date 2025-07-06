@@ -51,6 +51,11 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
                 //Asigno la fecha calculada como el atributo "min" del control.
                 txtFechaNacimientoMedico.Attributes["min"] = fechaMinimaFormateada;
             }
+            else
+            {
+                lblMensaje.Text = string.Empty;
+            }
+              
         }
 
         //Evento click "Agregar"
@@ -83,17 +88,28 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
                     //borro los campos en el formulario
                     LimpiarCampos();
 
+                    //Obtengo el ultimo legajo del medico
+                    int legajo = negocioMedico.ObtenerUltimoLegajoMedico();
+
                     //Mensaje de exito al cargar medico
+                    if (legajo > 0)
+                    {
+                        lblMensaje.Text = "Medico registrado exitosamente. (Legajo asignado: " + legajo + ")";
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "Medico registrado exitosamente.";
+                    }
+
                     lblMensaje.ForeColor = System.Drawing.Color.Green;
                     lblMensaje.Visible = true;
-                    lblMensaje.Text = "Se ha cargado con exito al sistema.";
                 }
                 else
                 {
                     //Mensaje de error
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Visible = true;
-                    lblMensaje.Text = "Ha ocurrido un error.";
+                    lblMensaje.Text = "Ha ocurrido un error registrando al nuevo medico.";
                 }
             }
         }
@@ -111,19 +127,24 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
 
                 LimpiarCampos();
 
-                //Mensaje de exito al cargar medico
+               int legajo = negocioMedico.ObtenerUltimoLegajoMedico();
+                if(legajo > 0)
+                {
+                    lblMensaje.Text = "Medico duplicado registrado exitosamente según su confirmación. (Legajo asignado: " + legajo + ")";
+                }
+                else
+                {
+                    lblMensaje.Text = "Medico duplicado registrado exitosamente según su confirmación.";
+                }
+
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "Medico duplicado registrado exitosamente según su confirmación.";
-                lblMensaje.CssClass = "mensaje-exito";
             }
             else
             {
-                //Mensaje de error
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "Ha ocurrido un error";
-                lblMensaje.CssClass = "mensaje-error";
             }
         }
 
@@ -217,6 +238,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
                 //Desactivar la opcion 0
                 ddlEspecialidadMedico.Items[0].Enabled = false;
             }
+
         }
 
         protected override void Render(HtmlTextWriter writer)

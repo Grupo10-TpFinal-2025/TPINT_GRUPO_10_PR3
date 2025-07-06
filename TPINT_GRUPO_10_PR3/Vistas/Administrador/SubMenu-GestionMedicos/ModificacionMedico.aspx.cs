@@ -81,17 +81,26 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
             medico.Telefono = ((TextBox)gvModificacionMedicos.Rows[e.RowIndex].FindControl("txt_et_Telefono")).Text.Trim();
             medico.CodigoEspecialidad = int.Parse(((DropDownList)gvModificacionMedicos.Rows[e.RowIndex].FindControl("ddl_et_Especialidades")).SelectedValue);
 
-            if (negocioMedico.ModificarMedico(medico))
-            {
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
-                lblMensaje.Text = "Médico modificado correctamente.";
-                gvModificacionMedicos.EditIndex = -1;
-                CargarMedicosTabla();
+            if (!(negocioMedico.ExisteDniDuplicado(medico.DNI, medico.Nacionalidad, medico.Legajo)))
+            { 
+
+                if (negocioMedico.ModificarMedico(medico))
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                    lblMensaje.Text = "Médico modificado correctamente.";
+                    gvModificacionMedicos.EditIndex = -1;
+                    CargarMedicosTabla();
+                }
+                else
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje.Text = "Error al modificar el médico. Verifique los datos ingresados.";
+                }
             }
             else
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
-                lblMensaje.Text = "Error al modificar el médico. Verifique los datos ingresados.";
+                lblMensaje.Text = "Error al modificar el paciente. El DNI Ingresado ya se encuentra en el Sistema.";
             }
         }
 

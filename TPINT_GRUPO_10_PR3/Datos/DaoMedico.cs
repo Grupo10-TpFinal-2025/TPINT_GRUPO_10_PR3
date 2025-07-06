@@ -92,6 +92,27 @@ namespace Datos
             }
         }
 
+        public bool ExisteDniDuplicado(string dni, string nacionalidad, int legajoActual)
+        {
+            using (SqlConnection conexion = datos.ObtenerConexion())
+            {
+                string consulta = @"SELECT COUNT(*) 
+                            FROM Medico 
+                            WHERE DNI_ME = @Dni 
+                              AND Nacionalidad_ME = @Nacionalidad 
+                              AND Legajo_ME <> @Legajo 
+                              AND Estado_ME = 1"; // Asumiendo que solo importan activos
+
+                SqlCommand cmd = new SqlCommand(consulta, conexion);
+                cmd.Parameters.AddWithValue("@Dni", dni);
+                cmd.Parameters.AddWithValue("@Nacionalidad", nacionalidad);
+                cmd.Parameters.AddWithValue("@Legajo", legajoActual);
+
+                int cantidad = (int)cmd.ExecuteScalar();
+                return cantidad > 0;
+            }
+        }
+
         private SqlCommand GenerarConsultaAvanzada(Medico medico, bool[,] filtros, string consulta)
         {
             sqlCommand = new SqlCommand();

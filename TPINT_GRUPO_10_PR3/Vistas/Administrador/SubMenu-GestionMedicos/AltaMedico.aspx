@@ -100,7 +100,7 @@
                     <td class="auto-style6" style="font-size: medium; text-decoration: underline overline">DATOS PERSONALES:</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp; DNI:&nbsp;&nbsp; &nbsp;
+                    <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp; DNI:&nbsp;&nbsp; &nbsp;
                         <asp:TextBox ID="txtDniMedico" runat="server" Font-Size="Small" TextMode="Number" ValidationGroup="alta" MaxLength="8"></asp:TextBox>
 &nbsp;<asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDniMedico" ErrorMessage="Debe ingresar un dni valido." ValidationGroup="alta">*</asp:RequiredFieldValidator>
                         &nbsp;<asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDniMedico" ErrorMessage="El DNI ingresado debe componerse de 8 números enteros positivos. " ValidationExpression="^\d{8}$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
@@ -112,9 +112,11 @@
                 <tr>
                     <td class="auto-style7" style="font-size: small; text-decoration: blink">Nombre: <asp:TextBox ID="txtNombreMedico" runat="server" Font-Size="Small" ValidationGroup="alta" MaxLength="50"></asp:TextBox>
 &nbsp;<asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombreMedico" ErrorMessage="Debe ingresar un nombre." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        &nbsp;<asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombreMedico" ErrorMessage="En un nombre solo se permiten letras y espacios, con una longitud entre 2 y 50 caracteres (no puede empezar ni terminar con espacios)." ValidationExpression="^(?=.{2,50}$)[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtApellidoMedico" runat="server" Font-Size="Small" ValidationGroup="alta" MaxLength="50"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellidoMedico" ErrorMessage="Debe ingresar un apellido." ValidationGroup="alta">*</asp:RequiredFieldValidator>
+                    &nbsp;<asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txtApellidoMedico" ErrorMessage="En un apellido solo se permiten letras y espacios, con una longitud entre 2 y 50 caracteres (no puede empezar ni terminar con espacios)." ValidationExpression="^(?=.{2,50}$)[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -133,7 +135,8 @@
                     <td class="auto-style3" style="text-decoration: blink; font-size: small">Nacionalidad:
                         <asp:TextBox ID="txtNacionalidadMedico" runat="server" Font-Size="Small" ValidationGroup="alta" MaxLength="50"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvNacionaldiad" runat="server" ControlToValidate="txtNacionalidadMedico" ErrorMessage="Debe ingresar una nacionalidad." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Provincia:
+&nbsp;<asp:RegularExpressionValidator ID="revNacionalidad" runat="server" ControlToValidate="txtNacionalidadMedico" ErrorMessage="En una Nacionalidad solo se permiten letras y espacios, con una longitud entre 2 y 50 caracteres (no puede empezar ni terminar con espacios)." ValidationExpression="^(?=.{2,50}$)[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+(?: [a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]+)*$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;&nbsp; Provincia:
                         <asp:DropDownList ID="ddlProvinciaMedico" runat="server" Font-Size="Small" Height="17px" ValidationGroup="alta" Width="126px" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaMedico_SelectedIndexChanged">
                         </asp:DropDownList>
 &nbsp; 
@@ -147,7 +150,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp; Dirección:
                         <asp:TextBox ID="txtDireccionMedico" runat="server" Font-Size="Small" ValidationGroup="alta" MaxLength="100"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Ingrese la direccion." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Debe ingresar calle y numero (sin caracteres especiales)." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revDireccion" runat="server" ControlToValidate="txtDireccionMedico" ErrorMessage="Debe ingresar calle y numero (sin caracteres especiales)." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+ \d+$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -159,14 +162,14 @@
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">Correo Electrónico:
                         <asp:TextBox ID="txtCorreoMedico" runat="server" Font-Size="Small" TextMode="Email" ValidationGroup="alta" MaxLength="100"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreoMedico" ErrorMessage="Debe ingresar el correo electronico." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txtCorreoMedico" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txtCorreoMedico" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:TextBox ID="txtTelefonoMedico" runat="server" Font-Size="Small" TextMode="Number" ValidationGroup="alta" MaxLength="10"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefonoMedico" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="alta">*</asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefonoMedico" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^\d{1,10}$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefonoMedico" ErrorMessage="Un telefono solo permite numeros  positivos y enteros (entre 7 y 10 dígitos)." ValidationExpression="^\d{7,10}$" ValidationGroup="alta">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>

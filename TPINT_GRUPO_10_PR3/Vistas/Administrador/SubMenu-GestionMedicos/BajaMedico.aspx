@@ -85,13 +85,15 @@
                     <td class="auto-style10">
                         <br />
                         Legajo del Médico:&nbsp;<asp:TextBox ID="txtLegajoBajaMedico" runat="server" ValidationGroup="Baja" ></asp:TextBox>
-&nbsp;&nbsp; <asp:Button ID="btnBajaMedico" runat="server" Text="Dar de Baja" Width="107px" OnClick="btnBajaMedico_Click" ValidationGroup="Baja" />
+&nbsp;<asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txtLegajoBajaMedico" ErrorMessage=" Un legajo se compone solo por números enteros positivos, sin espacios ni ceros a la izquierda." ValidationExpression="^[1-9]\d{0,7999}$" ValidationGroup="Baja">*</asp:RegularExpressionValidator>
+                        &nbsp;<asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txtLegajoBajaMedico" ErrorMessage="Ingresé un legajo." ValidationGroup="Baja">*</asp:RequiredFieldValidator>
+&nbsp; <asp:Button ID="btnBajaMedico" runat="server" Text="Dar de Baja" Width="107px" OnClick="btnBajaMedico_Click" ValidationGroup="Baja" />
                     &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style7">
                         <br />
-                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtLegajoBajaMedico" ErrorMessage="Solo se permite el ingreso de números enteros sin espacios en el legajo." ValidationExpression="^\d+$" ValidationGroup="Baja">*</asp:RegularExpressionValidator>
+            <asp:ValidationSummary ID="vsBajaMedico" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="Baja" Width="254px" />
                         <br />
                         <asp:Label ID="lblResultadoBajaMedico" runat="server"></asp:Label>
                         <br />

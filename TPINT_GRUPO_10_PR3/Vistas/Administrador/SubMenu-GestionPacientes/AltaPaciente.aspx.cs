@@ -28,7 +28,20 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                 System.Web.UI.ValidationSettings.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
                 CargarProvincias();
                 lblUsuarioAdministrador.Text = "Administrador";
-                txtFechaNacimientoPaciente.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
+
+                //Obtengo la fecha actual
+                DateTime hoy = DateTime.Today;
+
+                //Asigno al atributo "max" del control la fecha máxima de nacimiento como hoy
+                //(para evitar que se pueda seleccionar una fecha futura)
+                txtFechaNacimientoPaciente.Attributes["max"] = hoy.ToString("yyyy-MM-dd");
+
+                //Establesco la fecha minima (para asegurar que no tenga más de 140 años) 
+                DateTime fechaMinimaPermitida = hoy.AddYears(-140);
+                string fechaMinimaFormateada = fechaMinimaPermitida.ToString("yyyy-MM-dd");
+
+                //Asigno la fecha calculada como el atributo "min" del control.
+                txtFechaNacimientoPaciente.Attributes["min"] = fechaMinimaFormateada;
             }
         }
 

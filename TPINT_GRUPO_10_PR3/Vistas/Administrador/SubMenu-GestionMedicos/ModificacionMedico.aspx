@@ -159,9 +159,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="DNI">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txt_et_DNI" runat="server" ValidationGroup="Modificacion" Text='<%# Eval("DNI") %>' TextMode="Number"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txt_et_DNI" ErrorMessage="Solo se permite el ingreso de números en el DNI." ValidationExpression="^\d+$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    <asp:TextBox ID="txt_et_DNI" runat="server" ValidationGroup="Modificacion" Text='<%# Eval("DNI") %>' TextMode="Number" MaxLength="8"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txt_et_DNI" ErrorMessage="Debe ingresar un dni valido." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txt_et_DNI" ErrorMessage="El DNI ingresado debe componerse de 8 números enteros positivos. " ValidationExpression="^\d{8}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_DNI" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
@@ -230,8 +230,8 @@
                             <asp:TemplateField HeaderText="Teléfono">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion" TextMode="Number"></asp:TextBox>
-                                    &nbsp;<asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^(?:\s*\d\s*){1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
-                                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    &nbsp;<asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros (10 maximo)." ValidationExpression="^(?:\s*\d\s*){1,10}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>

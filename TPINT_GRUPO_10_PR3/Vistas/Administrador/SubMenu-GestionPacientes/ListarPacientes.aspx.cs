@@ -64,10 +64,6 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
         private bool[,] VerificarFiltroAvanzado()
         {
-            if (IsFiltrosVacios())
-            {
-                return filtros;
-            }
 
             if (txtDniPaciente.Text?.Trim().Length > 0)
             {

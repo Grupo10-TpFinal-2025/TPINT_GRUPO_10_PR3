@@ -210,6 +210,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedico
             txtLocalidadMedico.Text = string.Empty;
             txtNacionalidadMedico.Text = string.Empty;
             txtTelefonoMedico.Text = string.Empty;
+            rblSexoMedico.ClearSelection(); 
 
             //Activo la opcion default y limpio los ddl
             ddlProvinciaMedico.Items[0].Enabled = true;

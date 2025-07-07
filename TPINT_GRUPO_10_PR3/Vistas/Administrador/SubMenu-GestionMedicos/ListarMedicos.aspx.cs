@@ -136,7 +136,7 @@ namespace Vistas
 
                 if (IsFiltrosVacios())
                 {
-                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblFiltrosAvanzadosVacios.ForeColor = System.Drawing.Color.Red;
                     lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                     return;
                 }
@@ -149,6 +149,12 @@ namespace Vistas
 
                 DataTable tablaFiltrada = negocioMedico.getTablaMedicosFiltrada(medico, aplicarFiltroAvanzado, filtros);
                 Session["TablaFiltrada"] = tablaFiltrada;
+
+                if (tablaFiltrada.Rows.Count == 0)
+                {
+                    lblFiltrosAvanzadosVacios.ForeColor = System.Drawing.Color.Red;
+                    lblFiltrosAvanzadosVacios.Text = "No se encontraron resultados con los filtros aplicados.";
+                }
 
                 gvListaMedicos.PageIndex = 0;
                 gvListaMedicos.DataSource = tablaFiltrada;
@@ -165,7 +171,8 @@ namespace Vistas
             
             if (IsFiltrosVacios())
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                LimpiarTxtFiltrosAvanzados();
+                lblFiltrosAvanzadosVacios.ForeColor = System.Drawing.Color.Red;
                 lblFiltrosAvanzadosVacios.Text = "No se llenó ningún filtro particular.";
                 return;
             }

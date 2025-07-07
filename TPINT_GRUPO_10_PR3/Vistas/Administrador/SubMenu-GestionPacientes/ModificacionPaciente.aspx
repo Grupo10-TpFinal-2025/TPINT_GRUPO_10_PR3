@@ -210,6 +210,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Teléfono">
                                 <EditItemTemplate>
+                                    <br />
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' TextMode="Number" MaxLength="10" ValidationGroup="GrupoModificarPaciente"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvTxtTelefono" runat="server" ControlToValidate="txt_et_Telefono" Display="Dynamic" ErrorMessage="No puede dejar el campo Télefono vacío" ValidationGroup="GrupoModificarPaciente">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Un telefono solo permite numeros positivos y enteros (de 10 a 16 dígitos)." ValidationExpression="^\d{10,16}$" ValidationGroup="GrupoModificarPaciente">*</asp:RegularExpressionValidator>

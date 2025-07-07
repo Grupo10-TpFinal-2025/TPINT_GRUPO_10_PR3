@@ -130,6 +130,7 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
                     DropDownList ddlEspecialidades = (DropDownList)e.Row.FindControl("ddl_et_Especialidades");
                     RadioButtonList rblSexo = (RadioButtonList)e.Row.FindControl("rbl_et_Sexo");
                     TextBox txtFechaNacimiento = (TextBox)e.Row.FindControl("txt_et_FechaNacimiento");
+                    TextBox telefono = (TextBox)e.Row.FindControl("txt_et_Telefono");
 
                     CargarDDL(ddlProvincias, ddlEspecialidades);
 
@@ -137,10 +138,13 @@ namespace Vistas.Administrador.SubMenu_GestionMedicos
                     string IDEspecialidad = DataBinder.Eval(e.Row.DataItem, "CodEspecialidad").ToString();
                     char sexo = Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "Sexo").ToString()[0]);
                     string fechaStr = DataBinder.Eval(e.Row.DataItem, "Fecha de Nacimiento").ToString();
+                    string numeroTelefono = DataBinder.Eval(e.Row.DataItem, "Telefono").ToString().Trim();
+
                     SeleccionarProvincia(ddlProvincias, IDProvincia);
                     SeleccionarEspecialidad(ddlEspecialidades, IDEspecialidad);
                     SeleccionarSexo(rblSexo, sexo);
                     SeleccionarFechaNacimiento(txtFechaNacimiento, fechaStr);
+                    telefono.Text = numeroTelefono;
                 }
             }
         }

@@ -231,7 +231,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Telefono" runat="server" Text='<%# Bind("Telefono") %>' ValidationGroup="Modificacion" TextMode="Number"></asp:TextBox>
                                     &nbsp;<asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Debe ingresar un numero de telefono." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Solo se permiten numeros enteros y positivos (de 10 a 16 digitos)." ValidationExpression="^(?:\s*\d\s*){10,16}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txt_et_Telefono" ErrorMessage="Un telefono solo permite numeros  positivos y enteros (entre 10 y 16 dígitos)." ValidationExpression="^\d{10,16}$" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Telefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
@@ -240,8 +240,9 @@
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txt_et_Correo" runat="server" style="margin-bottom: 0px" Text='<%# Bind("Correo") %>' ValidationGroup="Modificacion" TextMode="Email"></asp:TextBox>
-                                    &nbsp;<br /> <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="revCorreo" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar un correo electronico valido." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Modificacion">*</asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txt_et_Correo" ErrorMessage="Debe ingresar el correo electronico." ValidationGroup="Modificacion">*</asp:RequiredFieldValidator>
+                                    <br /> 
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl_it_Correo" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>

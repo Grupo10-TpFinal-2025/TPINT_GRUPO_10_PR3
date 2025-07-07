@@ -174,14 +174,20 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             if(gvDisponibilidades.Rows.Count == 0)
             {
                 lblLegajoNoEncontrado.Visible = true;
+                lblSinRegistros.Visible = false;
+                lblDisponibilidadActiva.Text = string.Empty;                
             }
             else
             {
                 lblDisponibilidadActiva.Text = $"Usted está viendo: disponibilidades para el médico con legajo {numeroLegajo} para todos los días.";
                 lblLegajoNoEncontrado.Visible = false;
             }
-                           
-            LimpiarFiltros();                        
+
+            Session["CodEspecialidad"] = null;
+            Session["NombreEspecialidad"] = null;
+
+            LimpiarFiltros();
+          
         }
         
 
@@ -247,7 +253,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                         break;
 
                     default:
-                        cadena += $"HorarioFin_DIS < '{horario}'";
+                        cadena += $"HorarioInicio_DIS < '{horario}'";
                         break;
                 }
             }

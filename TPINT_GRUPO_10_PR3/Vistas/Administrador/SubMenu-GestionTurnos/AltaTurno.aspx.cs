@@ -480,7 +480,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         protected void btnAgregarT_Click(object sender, EventArgs e)
         {
-            if (ddlMedico.SelectedValue == "0" || ddlDia.SelectedValue == "0" || ddlSemana.SelectedValue == "0" || ddlHorario.SelectedValue == "0" || string.IsNullOrWhiteSpace(txtDniPaciente.Text.Trim()) || string.IsNullOrWhiteSpace(txtDescripcion.Text.Trim()))
+            if (ddlMedico.SelectedValue == "0" || ddlDia.SelectedValue == "0" || ddlSemana.SelectedValue == "0" || ddlHorario.SelectedValue == "0" || string.IsNullOrWhiteSpace(txtDniPaciente.Text.Trim()))
             {
                 lblResultadoAltaT.Text = "Debe completar todos los campos.";
                 lblResultadoAltaT.ForeColor = System.Drawing.Color.Red;
@@ -492,7 +492,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 int legajoMedico = int.Parse(ddlMedico.SelectedValue);
                 string dniPaciente = txtDniPaciente.Text;
                 int legajoPaciente = negocioTurno.ObtenerLegajoPacientePorDNI(dniPaciente);
-                string descripcion = (string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? "" : txtDescripcion.Text;
+                string descripcion = "";
 
                 if (legajoPaciente <= 0)
                 {
@@ -542,10 +542,10 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         public void LimpiarCampos()
         {
+            ddlEspecialidad.Items[0].Enabled = true;
             ddlEspecialidad.SelectedIndex = 0;
             ddlMedico.Items.Clear();
             txtDniPaciente.Text = string.Empty;
-            txtDescripcion.Text = string.Empty;
             ddlSemana.Items.Clear();
             ddlDia.Items.Clear();
             ddlHorario.Items.Clear();

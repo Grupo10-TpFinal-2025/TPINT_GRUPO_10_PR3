@@ -51,6 +51,9 @@
         .auto-style22 {
             margin-left: 0px;
         }
+        .auto-style23 {
+            height: 100px;
+        }
     </style>
 </head>
 <body>
@@ -164,13 +167,15 @@
                             </table>
                         </asp:Panel>
                         <br />
-                        <br />
                         <asp:Button ID="btnMenuFiltrosAvanzados" runat="server" Height="29px" Text="Aplicar Filtros Avanzados" Width="234px" OnClick="btnMenuFiltrosAvanzados_Click" />
                         <br />
                         <br />
                         </td>
                 </tr>
-            </table>
+                <tr>
+                    <td class="auto-style4">
+                        &nbsp;</td>
+                    <td>
             <asp:Panel ID="pnlFiltrosAvanzados" runat="server" Visible="False">
                 <table class="auto-style1">
                     <tr>
@@ -212,7 +217,7 @@
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="auto-style23">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnAplicarFiltrosAvanzados" runat="server" Height="27px" Text="Aplicar" Width="103px" OnClick="btnAplicarFiltrosAvanzados_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Button ID="btnLimpiarFiltrosMedicos" runat="server" Height="27px" Text="Limpiar Filtros" Width="129px" OnClick="btnLimpiarFiltrosMedicos_Click" />
@@ -225,13 +230,18 @@
                     <tr>
                         <td>&nbsp;</td>
                     </tr>
-                    <tr>
-                        <td>
-                            <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestión de Disponibilidad...</asp:HyperLink>
-                        </td>
-                    </tr>
                 </table>
             </asp:Panel>
+                        </td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">
+                        &nbsp;</td>
+                    <td>
+                            <asp:HyperLink ID="hlMenuGestionDisponibilidad" runat="server" NavigateUrl="~/Administrador/SubMenu-GestionMedicos/SubMenu-GestionDisponibilidad/MenuDisponibilidad.aspx">Regresar a Menú de Gestión de Disponibilidad...</asp:HyperLink>
+                        </td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

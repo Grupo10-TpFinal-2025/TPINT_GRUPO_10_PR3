@@ -115,6 +115,7 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                     DropDownList ddlProvincias = (DropDownList)e.Row.FindControl("ddl_et_Provincias");
                     RadioButtonList rblSexo = (RadioButtonList)e.Row.FindControl("rbl_et_Sexo");
                     TextBox txtFechaNacimiento = (TextBox)e.Row.FindControl("txt_et_FechaNacimiento");
+                    TextBox txtTelefono = (TextBox)e.Row.FindControl("txt_et_Telefono");
 
                     // Llamar al método para cargar los datos en el DropDownList
                     CargarDDLProvincias(ddlProvincias);
@@ -123,11 +124,13 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
                     string IDProvincia = DataBinder.Eval(e.Row.DataItem, "CodProvincia").ToString();
                     char sexo = Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "Sexo").ToString()[0]);
                     string fechaStr = DataBinder.Eval(e.Row.DataItem, "Fecha de Nacimiento").ToString();
+                    string numeroTelefono = txtTelefono.Text.Trim();
 
                     // Establezco como predefinido el valor actual de los campos en la BD
                     SeleccionarProvincia(ddlProvincias, IDProvincia);
                     SeleccionarSexo(rblSexo, sexo);
                     SeleccionarFechaNacimiento(txtFechaNacimiento, fechaStr);
+                    txtTelefono.Text = numeroTelefono;
                 }
             }
         }

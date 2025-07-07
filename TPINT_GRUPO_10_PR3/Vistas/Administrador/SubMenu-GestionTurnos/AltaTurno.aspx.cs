@@ -542,6 +542,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
         public void LimpiarCampos()
         {
+            ddlEspecialidad.Items[0].Enabled = true;
             ddlEspecialidad.SelectedIndex = 0;
             ddlMedico.Items.Clear();
             txtDniPaciente.Text = string.Empty;

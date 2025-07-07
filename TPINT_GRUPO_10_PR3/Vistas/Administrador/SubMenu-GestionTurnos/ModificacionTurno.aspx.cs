@@ -152,6 +152,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     if (chkPendiente.Checked)
                     {
                         txtDescripcion.Enabled = false;
+                        lblModificacionMensaje.ForeColor = System.Drawing.Color.Blue;
                         lblModificacionMensaje.Text = "Este turno aun esta pendiente, por lo que su descripcion aun no es modificables.";
 
                         Label lblIDConsulta = e.Row.FindControl("lbl_et_IDConsulta") as Label;
@@ -182,6 +183,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                         {
                             if (ddlfechasTurnos.Items.Count <= 0)
                             {
+                                lblModificacionMensaje.ForeColor = System.Drawing.Color.Blue;
                                 lblModificacionMensaje.Text = "Actualmente este medico no cuenta con disponibilidad vigente para poder modificar la fecha de este turno.";
                                 lblFechaTurnoActual.Visible = true;
                                 ddlfechasTurnos.Visible = false;
@@ -202,10 +204,12 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
                     else
                     {
+                        lblModificacionMensaje.ForeColor = System.Drawing.Color.Blue;
                         lblModificacionMensaje.Text = "Este turno no esta pendiente, por lo que su fecha no es modificable.";
                         txtDescripcion.Enabled = true;
                         lblFechaTurnoActual.Visible = true;
                         ddlfechasTurnos.Visible = false;
+                        Session["fechaModificable"] = false;
                     }
                 }
             }

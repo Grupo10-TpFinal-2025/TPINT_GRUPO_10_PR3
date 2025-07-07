@@ -174,16 +174,6 @@
             </ItemTemplate>
         </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Estado" Visible="False">
-            <EditItemTemplate>
-                <asp:CheckBox ID="chk_et_Estado" runat="server" Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>' Enabled="false" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:CheckBox ID="chk_it_Estado" runat="server"
-                    Checked='<%# Eval("Estado") != DBNull.Value && Convert.ToBoolean(Eval("Estado")) %>'
-                    Enabled="false" />
-            </ItemTemplate>
-        </asp:TemplateField>
     </Columns>
 
     <EditRowStyle BackColor="#999999" />

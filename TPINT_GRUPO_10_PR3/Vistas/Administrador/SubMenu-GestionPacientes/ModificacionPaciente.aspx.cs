@@ -105,26 +105,26 @@ namespace Vistas.Administrador.SubMenu_GestionPacientes
 
         protected void gvModificacionPacientes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            // Nos aseguramos de que es una fila de datos
+            // Asegurar que es una fila de datos
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Verificamos si la fila está en modo de edición
+                // Verificar si la fila está en modo de edición
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
-                    //Encontrar el control dentro de la fila
+                    // Encontrar el control dentro de la fila
                     DropDownList ddlProvincias = (DropDownList)e.Row.FindControl("ddl_et_Provincias");
                     RadioButtonList rblSexo = (RadioButtonList)e.Row.FindControl("rbl_et_Sexo");
                     TextBox txtFechaNacimiento = (TextBox)e.Row.FindControl("txt_et_FechaNacimiento");
 
-                    //Llamar al metodo para cargar los datos en el DropDownList
+                    // Llamar al método para cargar los datos en el DropDownList
                     CargarDDLProvincias(ddlProvincias);
 
-                    //Seleccionar el valor actual obteniendo del campo seleccionado.
+                    // Se capturan los valores de algunos campos que serán necesarios
                     string IDProvincia = DataBinder.Eval(e.Row.DataItem, "CodProvincia").ToString();
                     char sexo = Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "Sexo").ToString()[0]);
                     string fechaStr = DataBinder.Eval(e.Row.DataItem, "Fecha de Nacimiento").ToString();
 
-                    // Busco y selecciono el item en el DropDownList
+                    // Establezco como predefinido el valor actual de los campos en la BD
                     SeleccionarProvincia(ddlProvincias, IDProvincia);
                     SeleccionarSexo(rblSexo, sexo);
                     SeleccionarFechaNacimiento(txtFechaNacimiento, fechaStr);

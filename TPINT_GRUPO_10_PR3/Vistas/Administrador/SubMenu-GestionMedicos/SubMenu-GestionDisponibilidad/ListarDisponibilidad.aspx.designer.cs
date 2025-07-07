@@ -186,6 +186,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         protected global::System.Web.UI.WebControls.Label lblSinRegistros;
 
         /// <summary>
+        /// Control hlMenuGestionDisponibilidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlMenuGestionDisponibilidad;
+
+        /// <summary>
         /// Control btnMenuFiltrosAvanzados.
         /// </summary>
         /// <remarks>
@@ -292,14 +301,5 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFiltrosAvanzadosVacios;
-
-        /// <summary>
-        /// Control hlMenuGestionDisponibilidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlMenuGestionDisponibilidad;
     }
 }

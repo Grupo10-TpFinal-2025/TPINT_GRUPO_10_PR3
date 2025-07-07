@@ -119,9 +119,7 @@
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp; &nbsp; &nbsp;&nbsp; DNI Paciente:&nbsp;&nbsp;
                         <asp:TextBox ID="txtDniPaciente" runat="server" Font-Size="Small" Height="17px" Width="120px" TextMode="Number"></asp:TextBox>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Descripción:&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtDescripcion" runat="server" Font-Size="Small" Height="36px" Width="350px" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
-                    </td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style3" style="font-size: small; text-decoration: blink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semana:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <asp:DropDownList ID="ddlSemana" runat="server" Height="20px" Width="100px" OnSelectedIndexChanged="ddlSemana_SelectedIndexChanged" AutoPostBack="True">

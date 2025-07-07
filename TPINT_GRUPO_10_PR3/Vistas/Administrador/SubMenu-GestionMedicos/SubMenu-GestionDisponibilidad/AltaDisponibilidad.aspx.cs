@@ -43,6 +43,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             ddlDiasDis.DataValueField = "NumDia_DI";
             ddlDiasDis.DataBind();
 
+            //inserta en el indice 0 con cadena vacía.
             ddlDiasDis.Items.Insert(0, new ListItem("-- Seleccione día --", ""));
         }
 
@@ -53,14 +54,14 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
 
             TimeSpan horaInicio = new TimeSpan(8, 0, 0); // 08:00
             TimeSpan horaFin = new TimeSpan(19, 0, 0);   // hasta 19:00
-            TimeSpan intervalo = new TimeSpan(1, 0, 0);
+            TimeSpan intervalo = new TimeSpan(1, 0, 0);  // intervalos entre los turnos
 
             TimeSpan actual = horaInicio;
-            while (actual <= horaFin)
+            while (actual <= horaFin) 
             {
-                string horaStr = actual.ToString(@"hh\:mm");
+                string horaStr = actual.ToString(@"hh\:mm"); //convierte actual en el formato horas(0 a 23) y minutos
                 ddlHorarioInicioDis.Items.Add(new ListItem(horaStr, horaStr));
-                actual = actual.Add(intervalo);
+                actual = actual.Add(intervalo); // agrego turnos de hora en hora...
             }
         }
 
@@ -69,15 +70,15 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             ddlHorarioFinDis.Items.Clear();
             ddlHorarioFinDis.Items.Insert(0, new ListItem("-- Seleccione horario --", ""));
 
-            TimeSpan horaMax = new TimeSpan(20, 0, 0); // 20:00
-            TimeSpan intervalo = new TimeSpan(1, 0, 0);
+            TimeSpan horaMax = new TimeSpan(20, 0, 0); // 20:00 (si el anterior era hasta las 19)
+            TimeSpan intervalo = new TimeSpan(1, 0, 0); // intervalos como antes para los turnos
 
             TimeSpan actual = horaInicio.Add(intervalo);
             while (actual <= horaMax)
             {
-                string horaStr = actual.ToString(@"hh\:mm");
+                string horaStr = actual.ToString(@"hh\:mm"); //repito el formato
                 ddlHorarioFinDis.Items.Add(new ListItem(horaStr, horaStr));
-                actual = actual.Add(intervalo);
+                actual = actual.Add(intervalo); //le agrego intervalos por turnos de 1 hora
             }
         }
 
@@ -94,7 +95,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                     ddlHorarioInicioDis.SelectedValue == "" ||
                     ddlHorarioFinDis.SelectedValue == "")
                 {
-                    lblMensaje.Text = " Por favor complete todos los campos antes de continuar.";
+                    lblMensaje.Text = " Por favor complete todos los campos antes de continuar."; //si todos los anteriores son falsos
                     LimpiarCampos();
                     return;
                 }
@@ -102,9 +103,9 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
                 int legajoMedico = int.Parse(txtLegajoDisponibilidad.Text);
                 int numDia = int.Parse(ddlDiasDis.SelectedValue);
                 TimeSpan horarioInicio = TimeSpan.Parse(ddlHorarioInicioDis.SelectedValue);
-                TimeSpan horarioFin = TimeSpan.Parse(ddlHorarioFinDis.SelectedValue);
+                TimeSpan horarioFin = TimeSpan.Parse(ddlHorarioFinDis.SelectedValue); //convierto todo a su formato correspondiente
 
-                if (horarioInicio >= horarioFin)
+                if (horarioInicio >= horarioFin) //logicamente tiene que haber diferencia entre el inicio y fin
                 {
                     lblMensaje.Text = " El horario de inicio debe ser anterior al de fin.";
                     LimpiarCampos();
@@ -176,7 +177,7 @@ namespace Vistas.Administrador.SubMenu_GestionDisponibilidad
             {
                 ddlHorarioFinDis.Items.Clear();
                 ddlHorarioFinDis.Items.Insert(0, new ListItem("-- Seleccione horario --", ""));
-            }
+            } //carga el horario de fin. Si no elijo nada vuelve al valor inicial
         }
     }
 }

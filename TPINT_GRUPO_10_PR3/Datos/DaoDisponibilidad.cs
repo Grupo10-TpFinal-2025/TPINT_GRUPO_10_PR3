@@ -239,7 +239,7 @@ namespace Datos
                 string consulta = "SELECT NumDia_DI, Descripcion_DI FROM Dia";
                 using (SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
-                    using (SqlDataReader reader = comando.ExecuteReader())
+                    using (SqlDataReader reader = comando.ExecuteReader()) //recorre fila a fila el resultado de la columna
                     {
                         tablaDias.Load(reader);
                     }

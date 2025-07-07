@@ -232,7 +232,7 @@ namespace Datos
                                Apellido_ME + ' ' + Nombre_ME AS 'Medico', 
                                CodigoEspecialidad_ME
                         FROM Medico
-                        WHERE CodigoEspecialidad_ME = @CodigoEspecialidad_ME
+                        WHERE CodigoEspecialidad_ME = @CodigoEspecialidad_ME AND Estado_Me = 1
                         END";
 
                     SqlCommand cmdCrear = new SqlCommand(crearProc, conexion);

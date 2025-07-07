@@ -103,10 +103,7 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                 string descripcion = txtDescripcion != null ? txtDescripcion.Text.Trim() : "Sin Completar";
                 turnoModificado.Descripcion = descripcion;
 
-                // Traer el estado actual (ya que la SP lo requiere)
-                CheckBox chkEstado = fila.FindControl("chk_et_Estado") as CheckBox;
-                bool estado = chkEstado != null && chkEstado.Checked;
-                turnoModificado.Estado = estado;
+                turnoModificado.Estado = true;
 
                 // Llamar a NegocioTurno para actualizar en la BD
                 int filasAfectadas = negocioTurno.ModificarTurno(turnoModificado);
@@ -154,9 +151,8 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
 
                     if (chkPendiente.Checked)
                     {
-                        chkAsistencia.Enabled = false;
                         txtDescripcion.Enabled = false;
-                        lblModificacionMensaje.Text = "Este turno aun esta pendiente, por lo que su asistencia y descripcion aun no son modificables.";
+                        lblModificacionMensaje.Text = "Este turno aun esta pendiente, por lo que su descripcion aun no es modificables.";
 
                         Label lblIDConsulta = e.Row.FindControl("lbl_et_IDConsulta") as Label;
                         Label legajo = e.Row.FindControl("lbl_et_Legajo") as Label;
@@ -207,7 +203,6 @@ namespace Vistas.Administrador.SubMenu_GestionTurnos
                     else
                     {
                         lblModificacionMensaje.Text = "Este turno no esta pendiente, por lo que su fecha no es modificable.";
-                        chkAsistencia.Enabled = true;
                         txtDescripcion.Enabled = true;
                         lblFechaTurnoActual.Visible = true;
                         ddlfechasTurnos.Visible = false;

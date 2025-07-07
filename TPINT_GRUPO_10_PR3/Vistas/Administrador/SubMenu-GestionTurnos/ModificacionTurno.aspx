@@ -160,7 +160,7 @@
             </ItemTemplate>
             <EditItemTemplate>
                 <asp:CheckBox ID="chk_eit_Asistencia" runat="server"
-                    Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>' />
+                    Checked='<%# Eval("Asistencia") != DBNull.Value && Convert.ToBoolean(Eval("Asistencia")) %>' Enabled="False" />
             </EditItemTemplate>
         </asp:TemplateField>
 

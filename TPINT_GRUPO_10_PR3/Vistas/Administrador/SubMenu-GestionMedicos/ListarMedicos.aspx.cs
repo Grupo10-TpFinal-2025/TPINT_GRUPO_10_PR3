@@ -291,24 +291,24 @@ namespace Vistas
             if (e.CommandName == "FiltroDias")
             {
                 medico = new Entidades.Medico();
-
                 medico.DiaDisponible = Convert.ToInt32(e.CommandArgument);
+                
                 DataTable tablaFiltrada = negocioMedico.getTablaMedicosFiltrada(medico, false, filtros);
                 Session["TablaFiltrada"] = tablaFiltrada;
+                
+                gvListaMedicos.PageIndex = 0;
                 gvListaMedicos.DataSource = tablaFiltrada;
                 gvListaMedicos.DataBind();
-                if (gvDisponibilidad == null)
+                
+                if (tablaFiltrada.Rows.Count == 0)
                 {
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
-                    lblMensaje.Text = "No se encontraron resultados para la provincia seleccionada.";
+                    lblMensaje.Text = "No se encontraron resultados para el día seleccionado.";
                 }
                 else
                 {
                     lblMensaje.Text = string.Empty;
                 }
-
-                gvListaMedicos.PageIndex = 0;
-                medico.DiaDisponible = 0;
             }
         }
     }

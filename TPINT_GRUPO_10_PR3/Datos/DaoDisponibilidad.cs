@@ -18,8 +18,8 @@ namespace Datos
             M.Nombre_ME AS 'Medico', 
             DIA.Descripcion_DI AS 'Dia', 
             CONVERT(VARCHAR(5), HorarioInicio_DIS, 108) + ' - ' + CONVERT(VARCHAR(5), 
-            HorarioFin_DIS, 108) AS 'Horario'
-            Estado_DIS
+            HorarioFin_DIS, 108) AS 'Horario',
+            Estado_DIS AS 'Estado'
             FROM Disponibilidad DIS 
             INNER JOIN Dia DIA ON DIA.NumDia_DI = DIS.NumDia_DIS 
             INNER JOIN Medico M ON M.Legajo_ME = DIS.LegajoMedico_DIS 
@@ -132,10 +132,14 @@ namespace Datos
                 if (condiciones.Count > 0)
                 {
                     //string.Join() concatena elementos de una lista, y entre medio, agrega en este caso "AND"
-                    consulta += " WHERE " + string.Join(" AND ", condiciones);
+                    consulta += " WHERE " + string.Join(" AND ", condiciones) + " AND Estado_DIS = 1 " ;
+                }
+                else
+                {
+                    consulta += " WHERE Estado_DIS = 1 ";
                 }
 
-                consulta += " AND Estado_DIS = 1 " + ordenamiento;
+                consulta += ordenamiento;
 
                 comando.CommandText = consulta;
 

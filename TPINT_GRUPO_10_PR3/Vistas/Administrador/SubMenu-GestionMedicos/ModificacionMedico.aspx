@@ -105,8 +105,8 @@
             </table>
         <table class="auto-style1">
             <tr>
-                <td class="auto-style8"></td>
-                <td class="auto-style19"></td>
+                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style19" style="border: thin dotted #FFFFFF; font-size: x-small; font-style: normal; font-weight: normal; font-family: 'Cascadia Code Light'; text-decoration: blink; cursor: wait; background-color: #FFFFFF; color: #006699; z-index: auto;">Tener en cuenta: Los turnos ya registrados a una disponibilidad modificada deberán de ser realizados de todos modos, aun estando fuera de los nuevos horarios registrados.</td>
                 <td class="auto-style17"></td>
                 <td class="auto-style17"></td>
             </tr>

@@ -154,10 +154,15 @@ namespace Datos
 
             //Creo el sqlComand y ejecuto
             cmd.Connection = connection;
-            cmd.ExecuteNonQuery();
+            int resultado = cmd.ExecuteNonQuery();
 
             //Cierro
             CerrarConexion();
+
+            if (resultado <= 0)
+            {
+                return false;
+            }
 
             //Devuelvo true
             return true;
